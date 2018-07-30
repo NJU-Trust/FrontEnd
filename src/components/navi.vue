@@ -28,59 +28,78 @@
 <script>
 export default {
   name: 'navi',
+  mounted: function () {
+    localStorage.ifLogin = true;
+    localStorage.ifUnread = true;
+    localStorage.photoSrc = '/static/pic/photo.jpg';
+
+    $("#manageAccount").css('display','none');
+    if (localStorage.ifLogin){
+      document.getElementById('last').removeChild(document.getElementById('signup'));
+      document.getElementById('secondLast').removeChild(document.getElementById('login'));
+      var personalCenter = document.createElement('a');
+      personalCenter.innerText = '个人中心';
+      personalCenter.href = './personalCenter.html';
+      var newLi = document.createElement('li');
+      newLi.style.cssFloat = 'right';
+      $('#nav').append(newLi);
+      newLi.appendChild(personalCenter);
+
+      var message = document.createElement('img');
+      message.className = 'message';
+      message.src = '/static/pic/message_white.png';
+      document.getElementById('secondLast').appendChild(message);
+      if (localStorage.ifUnread){
+        message.src = '/static/pic/message_yellow.png';
+      }
+
+      $('#last').hover(
+        function(){
+          $('#last').css('border-bottom','3px solid transparent');
+          $('#last').css('border-top','3px solid transparent');
+        },
+        function(){
+          $('#last').css('border-bottom','3px solid transparent');
+          $('#last').css('border-top','3px solid transparent');
+        }
+      );
+      $('#secondLast').hover(
+        function(){
+          $('#secondLast').css('border-bottom','3px solid transparent');
+          $('#secondLast').css('border-top','3px solid transparent');
+        },
+        function(){
+          $('#secondLast').css('border-bottom','3px solid transparent');
+          $('#secondLast').css('border-top','3px solid transparent');
+        }
+      );
+      $('.message').hover(
+        function(){
+          message.src = '/static/pic/message_blue.png';
+        },
+        function(){
+          if(localStorage.ifUnread){
+            message.src = '/static/pic/message_yellow.png';
+          }else{
+            message.src = '/static/pic/message_white.png';
+          }
+        }
+      );
+
+      var photo = document.createElement('img');
+      photo.id="photo";
+      photo.className = 'photo';
+      photo.src = localStorage.photoSrc;
+      document.getElementById('last').appendChild(photo);
+      photo.onmouseover=function(e){
+        $("#manageAccount").css('display','inherit');
+        $(navi).mouseleave(function (e) {
+          $("#manageAccount").css('display','none');
+        })
+      }
+    }
+  }
 }
-// function init() {
-//   alert("boynextdoor");
-//   localStorage.ifLogin = true;
-//   localStorage.ifUnread = true;
-//
-//   if (localStorage.ifLogin){
-//     document.getElementById('last').removeChild(document.getElementById('signup'));
-//     document.getElementById('secondLast').removeChild(document.getElementById('login'));
-//     var personalCenter = document.createElement('a');
-//     personalCenter.innerText = '个人中心';
-//     personalCenter.href = './personalCenter.html';
-//     document.getElementById('secondLast').appendChild(personalCenter);
-//
-//     var message = document.createElement('img');
-//     message.className = 'message';
-//     message.src = '/static/pic/message_white.png';
-//     document.getElementById('last').appendChild(message);
-//     if (localStorage.ifUnread){
-//       message.src = '/static/pic/message_yellow.png';
-//     }
-//     $('#last').hover(
-//       function(){
-//         $('#last').css('border-bottom','3px solid transparent');
-//         $('#last').css('border-top','3px solid transparent');
-//       },
-//       function(){
-//         $('#last').css('border-bottom','3px solid transparent');
-//         $('#last').css('border-top','3px solid transparent');
-//       }
-//     );
-//     $('.message').hover(
-//       function(){
-//         message.src = '/static/pic/message_blue.png';
-//       },
-//       function(){
-//         if(localStorage.ifUnread){
-//           message.src = '/static/pic/message_yellow.png';
-//         }else{
-//           message.src = '/static/pic/message_white.png';
-//         }
-//       }
-//     );
-//
-//     var photo = document.createElement('img');
-//     photo.className = 'photo';
-//     photo.src = '/static/pic/photo.jpg';//localStorage.photoSrc;
-//     var newLi = document.createElement('li');
-//     newLi.style.cssFloat = 'right';
-//     $('#nav').append(newLi);
-//     newLi.appendChild(photo);
-//   }
-// }
 </script>
 
 
@@ -108,6 +127,11 @@ export default {
     background-color: black;
   }
 
+
+
+</style>
+
+<style>
   #nav li{
     min-width: 90px;
     text-align: center;
@@ -124,13 +148,11 @@ export default {
     color:dodgerblue;
   }
 
-</style>
-
-<style>
   .message{
     height:25px;
     width: auto;
     margin-top: 10px;
+    cursor: pointer;
   }
 
   .message:hover{
