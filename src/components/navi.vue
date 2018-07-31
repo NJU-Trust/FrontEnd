@@ -1,5 +1,5 @@
 <template>
-  <div class="col-xs-12 col-md-12 whole" id="navi">
+  <div class="whole" id="navi" style="width:100%;">
     <img src="/static/pic/logo1_white.png" class="img-responsive logo" alt="Cinque Terre">
 
     <nav class="navbar navbar-inverse wholeNav">
