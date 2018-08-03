@@ -11,7 +11,7 @@
             <li><a href="./loan.html">借款</a></li>
             <li><a href="./guide.html">教程</a></li>
             <li id="last" style="float: right;"><a id="signup" href="./signup.html">注册</a></li>
-            <li id="secondLast" style="float: right;"><a id="login" href="./login.html">登录</a></li>
+            <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
       </div>
@@ -20,7 +20,7 @@
       <button style="background-color: lightskyblue">用户模式</button>
       <button>管理模式</button>
       <button>审核模式</button>
-      <button>退出</button>
+      <button v-on:click="logout">退出</button>
     </div>
   </div>
 </template>
@@ -29,12 +29,13 @@
 export default {
   name: 'navi',
   mounted: function () {
-    localStorage.ifLogin = true;
+    localStorage.ifLogin = false;
     localStorage.ifUnread = true;
     localStorage.photoSrc = '/static/pic/photo.jpg';
+    localStorage.account="test";
 
     $("#manageAccount").css('display','none');
-    if (localStorage.ifLogin){
+    if (localStorage.ifLogin==true){
       document.getElementById('last').removeChild(document.getElementById('signup'));
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
@@ -97,6 +98,14 @@ export default {
           $("#manageAccount").css('display','none');
         })
       }
+    }
+  },
+
+  methods: {
+    logout: function () {
+      this.$axios.get("/logout", {"account": 123}).then(res => {
+        this.$router.replace('/index');
+      });
     }
   }
 }
