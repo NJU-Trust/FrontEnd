@@ -1,21 +1,25 @@
 <template>
   <div class="col-xs-12 col-md-12" style="padding: 0;">
-    <navi></navi>
-    <div>
-      <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;position: absolute">
-      <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 180px;z-index: 0;position: absolute;width: 50%;left: 25%;">
-      <button type="button" class="mainButton">即刻trust</button>
-      <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 490px;z-index: 0;position: absolute;width: 40%;left: 30%;">
+    <div style="width: 100%;float: top;">
+      <navi></navi>
+      <div>
+        <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
+        <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 180px;z-index: 0;position: absolute;width: 50%;left: 25%;">
+        <button type="button" class="mainButton">即刻trust</button>
+        <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 490px;z-index: 0;position: absolute;width: 40%;left: 30%;">
+      </div>
     </div>
+    <bottomBar style="float: bottom"></bottomBar>
   </div>
 
 </template>
 
 <script>
-    import navi from '@/components/navi.vue'
+    import navi from '@/components/navi.vue';
+    import bottomBar from '@/components/bottomBar.vue';
     export default {
       name: "homepage",
-      components:{navi},
+      components:{navi,bottomBar},
       mounted: function () {
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
