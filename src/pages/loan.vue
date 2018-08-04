@@ -6,8 +6,10 @@
 
 <script>
     import navi from '@/components/navi.vue';
+
     export default {
-        name: "loan"
+        name: "loan",
+        components:{navi},
     }
 </script>
 
