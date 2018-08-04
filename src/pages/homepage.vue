@@ -9,17 +9,17 @@
         <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 490px;z-index: 0;position: absolute;width: 40%;left: 30%;">
       </div>
     </div>
-    <bottomBar style="float: bottom"></bottomBar>
+    <footerBar style="float: bottom"></footerBar>
   </div>
 
 </template>
 
 <script>
     import navi from '@/components/navi.vue';
-    import bottomBar from '@/components/bottomBar.vue';
+    import footerBar from '@/components/footerBar.vue';
     export default {
       name: "homepage",
-      components:{navi,bottomBar},
+      components:{navi,footerBar},
       mounted: function () {
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
