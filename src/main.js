@@ -5,12 +5,14 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
-import axios from 'axios'
+import axios from './httpConfig/http'
+// import store from './store/index'; //引入store
+
 
 Vue.use(ElementUI)
 
-Vue.config.productionTip = false
-Vue.prototype.$axios= axios
+Vue.config.productionTip = false;
+Vue.prototype.$axios= axios;
 
 
 /* eslint-disable no-new */
