@@ -12,10 +12,10 @@
 
           <div class="consume" style="margin-top: 20px">
             <div class="row">
-              <label for="name">项目名称</label> <el-input id="name" placeholder="请输入名称" clearable></el-input>
+              <label for="name">项目名称</label> <el-input id="name" v-model="name" placeholder="请输入名称" clearable></el-input>
             </div>
             <div class="row">
-              <label for="money">拆借金额</label><el-input id="money" placeholder="请输入金额" clearable></el-input>
+              <label for="money">拆借金额</label><el-input id="money" v-model="money" placeholder="请输入金额" clearable></el-input>
             </div>
             <div class="row">
               <label>开始日期</label><br>
@@ -42,6 +42,10 @@
               </el-date-picker>
             </div>
           </div>
+
+          <div class="learn" style="margin-top: 20px">
+
+          </div>
         </div>
       </div>
     </div>
@@ -55,14 +59,18 @@
       components:{navi},
       methods:{
         change1(){
-
+          date1 = '';
+          date2 = '';
+          date3 = ''
         },
         change2(){
-
+          date1 = '';
+          date2 = '';
+          date3 = ''
         },
       },
 
-      data(){
+     /* data(){
         return {
           pickerOptions1: {
             disabledDate(time) {
@@ -73,7 +81,7 @@
           date2: '',
           date3: ''
         };
-      },
+      },*/
 
     }
 </script>

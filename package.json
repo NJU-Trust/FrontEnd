@@ -12,11 +12,17 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "element-ui": "^2.3.4",
     "http-proxy-middleware": "^0.18.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vux": "^2.9.2"
+=======
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
+    "element-ui": "^2.3.4"
+>>>>>>> 5304716cd2d9cdfcbe16ec7c3dff903b724f5925
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
