@@ -4,6 +4,7 @@ import homepage from '@/pages/homepage'
 import login from '@/pages/login'
 import loan from '@/pages/loan'
 import signup from '@/pages/signup'
+import userspace from '@/pages/userspace'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: signup
+    },
+    {
+      path: '/userspace',
+      name: 'userspace',
+      component: userspace
     }
   ],
   mode:"history"
