@@ -10,7 +10,7 @@
             <li><a href="./invest.html">投资</a></li>
             <li><a id="loan" href="/loan">借款</a></li>
             <li><a href="./guide.html">教程</a></li>
-            <li id="last" style="float: right;"><a id="signup" href="./signup.html">注册</a></li>
+            <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
@@ -106,6 +106,10 @@ export default {
       this.$axios.get("/logout", {"account": 123}).then(res => {
         this.$router.replace('/index');
       });
+    },
+
+    toNormal: function () {
+
     }
   }
 }
