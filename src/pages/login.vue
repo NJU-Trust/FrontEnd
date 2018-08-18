@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center><br>
+    <a href='/'><img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
     <div class="mainbox">
       <div class="loginbody">
         <h3 style="color: white;float: top;" align="center">登录</h3>
@@ -8,8 +8,8 @@
         <input id="password" type="password" style="margin-top: 8%;" align="center" placeholder="请输入密码"><br>
         <input type="checkbox" id="remember" style="display:inline;margin-left: 11%;margin-top: 13px;vertical-align: -3px">
         <p style="display: inline;color: white">记住密码</p>
-        <a href="./findPassword.html" style="margin-left: 20%">忘记密码？</a>
-        <a href="./signup.html" style="margin-left: 3%">立即注册</a>
+        <a href="./findPassword" style="margin-left: 20%">忘记密码？</a>
+        <a href="./signup" style="margin-left: 3%">立即注册</a>
         <button id="login" v-on:click="login()">登录</button>
       </div>
 
