@@ -1,15 +1,16 @@
 <template>
   <div class="whole" id="navi" style="width:100%;">
-    <img src="/static/pic/logo1_white.png" class="img-responsive logo" alt="Cinque Terre">
+    <a href="./"><img src="/static/pic/logo1_silver.png" id="naviLogo" class="img-responsive logo" alt="Cinque Terre"></a>
 
     <nav class="navbar navbar-inverse wholeNav">
       <div class="container-fluid" style="width: 100%">
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
-            <li><a href="./homepage.html" style="color: dodgerblue">首页</a></li>
-            <li><a href="./invest.html">投资</a></li>
+            <li><a id="invest" href="./invest">投资</a></li>
             <li><a id="loan" href="/loan">借款</a></li>
-            <li><a href="./guide.html">教程</a></li>
+            <li><a id="trade" href="/trade">交易</a></li>
+            <li><a id="notice" href="/notice">发布</a></li>
+            <li><a id="guide" href="./guide">教程</a></li>
             <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
@@ -29,6 +30,12 @@
 export default {
   name: 'navi',
   mounted: function () {
+    $(localStorage.route).css("color","dodgerblue");
+    if(localStorage.route=="#homepage"){
+      document.getElementById("naviLogo").src="/static/pic/logo1_white.png";
+    }
+
+
     localStorage.ifLogin = false;
     localStorage.ifUnread = true;
     localStorage.photoSrc = '/static/pic/photo.jpg';
@@ -108,9 +115,6 @@ export default {
       });
     },
 
-    toNormal: function () {
-
-    }
   }
 }
 </script>

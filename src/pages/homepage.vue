@@ -76,6 +76,9 @@
       mounted: function () {
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
+      },
+      beforeCreate: function () {
+        localStorage.route="#homepage"
       }
 
     }
