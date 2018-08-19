@@ -5,6 +5,8 @@ import login from '@/pages/login'
 import loan from '@/pages/loan'
 import signup from '@/pages/signup'
 import userspace from '@/pages/userspace'
+import normalcheck from '@/pages/normalcheck'
+import finstanding from '@/pages/finstanding'
 
 Vue.use(Router)
 
@@ -34,7 +36,19 @@ export default new Router({
       path: '/userspace',
       name: 'userspace',
       component: userspace
+    },
+    {
+      path: '/normalcheck',
+      name: 'normalcheck',
+      component: normalcheck
+    },
+    {
+      path: '/finstanding',
+      name: 'finstanding',
+      component: finstanding
     }
+
+
   ],
   mode:"history"
 })
