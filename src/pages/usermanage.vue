@@ -22,6 +22,13 @@
         <form style="display:inline-block">
           <input type="text" name="username" value="" readonly="readonly"/>
         </form>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <div class="search" style="display:inline-block">
+          <form style="display:inline-block; padding:0; width:80px">
+            <input type="text" name="username" value="" style="width:80px"/>
+          </form>
+          <img src="../../static/pic/search.png" style="width: 18px;height:18px;">
+        </div>
       </div>
       <br/>
       <br/>
@@ -38,10 +45,48 @@
         <br/>
         <br/>
         <label>投资信息</label>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
 
 
     </div>
 
+
+
   </div>
+
+
+
 </template>
+
+
+<style scoped>
+  .search{
+    background-color:black;
+    padding: 0.25% 0.5%;
+    border: 1px solid white;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+    color: #FFF;
+  }
+</style>
