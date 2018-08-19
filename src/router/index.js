@@ -34,6 +34,11 @@ export default new Router({
       path: '/userspace',
       name: 'userspace',
       component: userspace
+    },
+    {
+      path: '/usermanage',
+      name: 'usermanage',
+      component: usermanage
     }
   ],
   mode:"history"
