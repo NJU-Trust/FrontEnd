@@ -8,6 +8,7 @@ import userspace from '@/pages/userspace'
 import normalcheck from '@/pages/normalcheck'
 import finstanding from '@/pages/finstanding'
 import usermanage from '@/pages/usermanage'
+import userdetail from '@/pages/userdetail'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/usermanage',
       name: 'usermanage',
       component: usermanage
+    },
+    {
+      path: '/userdetail',
+      name: 'userdetail',
+      component: userdetail
     }
 
 
