@@ -93,6 +93,10 @@
               </el-radio-group>
             </div>
 
+            <div class="row" style="margin-left: 250px">
+              <el-button type="primary" round>提交</el-button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -107,12 +111,12 @@
       components:{navi},
       methods:{
         change1(){
-          document.getElementById("consume").style.display = "none";
+          document.getElementById("learn").style.display = "none";
+          document.getElementById("consume").style.display = "inline";
         },
         change2(){
-          date1 = '';
-          date2 = '';
-          date3 = ''
+          document.getElementById("consume").style.display = "none";
+          document.getElementById("learn").style.display = "inline";
         },
       },
 
