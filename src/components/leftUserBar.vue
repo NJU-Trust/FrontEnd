@@ -3,8 +3,8 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="#" class="active">基本信息</a></li>
-        <li><a href="#l">财务分析</a></li>
+        <li><a href="/userspace" id="leftA" class="active" @click="setA">基本信息</a></li>
+        <li><a href="/finstanding" @click="setC">财务状况</a></li>
       </ul>
       <hr/>
     </div>
@@ -21,14 +21,13 @@
       <ul class="left_ul">
         <li><a href="#">历史融资</a></li>
         <li><a href="#">历史投资</a></li>
-        <li><a href="#">历史统计</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="#">普通验证</a></li>
+        <li><a href="/normalcheck" id="checkA" @click="setB">普通验证</a></li>
         <li><a href="#">校友验证</a></li>
         <li><a href="#">交叉验证</a></li>
       </ul>
@@ -38,7 +37,22 @@
 
 <script>
   export default {
-      name: "leftUserBar"
+      name: "leftUserBar",
+      methods:{
+        setA: function () {
+          this.$store.commit('newAuthor','基本信息')
+        },
+        setB: function () {
+          this.$store.commit('newAuthor','普通验证');
+          //document.getElementById("checkA").style.color = "#ffffff";
+          //document.getElementById("temptitle").style.color="#ffffff";
+        },
+        setC: function () {
+          document.getElementById("userinformation").style.display="none";
+          // document.getElementById("tmptitle").color = "#ffffff";
+          // this.$store.commit('newAuthor','财务统计');
+        }
+      }
   }
 </script>
 
