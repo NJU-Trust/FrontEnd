@@ -1,8 +1,10 @@
 <template>
-  <div class="UserPage1">
-    <div class="usermanage" style="padding:50px 0px 0px 0px;position: absolute;width: 100%;background-color:lightblue;">
+  <div class="UserPage1" >
+    <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
+    <div class="usermanage" style="padding:50px 0px 0px 0px;position: absolute;width: 100%;">
 
       <div class="base-info" style="padding:10px 0px 0px 50px;">
+
         <label>用户名称：</label>
         <form style="display:inline-block;">
           <input type="text" name="username" value="" readonly="readonly"/>
@@ -88,5 +90,20 @@
     border-top-left-radius: 5%;
     border-bottom-left-radius: 5%;
     color: #FFF;
+  }
+  .usermanage{
+    height: 500px;
+    min-width: 160px;
+    min-height: 60px;
+    padding: 0px 0px;
+    line-height: 10px;
+    background-color:rgba(0,50,200,0.3);
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-family: "Microsoft YaHei UI";
+    top: 80px;
+    position: absolute;
+    letter-spacing: 2px;
   }
 </style>
