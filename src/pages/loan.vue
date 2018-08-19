@@ -10,7 +10,7 @@
             </el-row>
           </div>
 
-          <div class="consume" style="margin-top: 20px">
+          <div class="primary_panel" style="margin-top: 20px">
             <div class="row">
               <label for="name">项目名称</label> <el-input id="name" v-model="name" placeholder="请输入名称" clearable></el-input>
             </div>
@@ -43,7 +43,55 @@
             </div>
           </div>
 
-          <div class="learn" style="margin-top: 20px">
+          <div id="consume" style="margin-top: 20px">
+
+            <div class="row">
+              <label>资金用途分类</label><br>
+              <el-radio-group v-model="usage_radio">
+                <el-radio :label="3">分类一</el-radio>
+                <el-radio :label="6">分类二</el-radio>
+                <el-radio :label="9">分类三</el-radio>
+              </el-radio-group>
+            </div>
+
+            <div class="row">
+              <label>资金用途详述</label><br>
+              <el-input
+                type="textarea"
+                :rows="4"
+                placeholder="请输入内容"
+                v-model="textarea1">
+              </el-input>
+              <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+
+            </div>
+
+            <div class="row" style="margin-left: 250px">
+              <el-button type="primary" round>提交</el-button>
+            </div>
+
+          </div>
+
+          <div id="learn" style="margin-top: 20px;display: none">
+            <div class="row">
+              <label>项目说明</label><br>
+              <el-input
+                type="textarea"
+                :rows="4"
+                placeholder="请输入内容"
+                v-model="textarea1">
+              </el-input>
+              <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+            </div>
+
+            <div class="row">
+              <label>还款方案</label><br>
+              <el-radio-group v-model="usage_radio">
+                <el-radio :label="3">方案一</el-radio>
+                <el-radio :label="6">方案二</el-radio>
+                <el-radio :label="9">方案三</el-radio>
+              </el-radio-group>
+            </div>
 
           </div>
         </div>
@@ -59,9 +107,7 @@
       components:{navi},
       methods:{
         change1(){
-          date1 = '';
-          date2 = '';
-          date3 = ''
+          document.getElementById("consume").style.display = "none";
         },
         change2(){
           date1 = '';
@@ -70,7 +116,7 @@
         },
       },
 
-     /* data(){
+      data(){
         return {
           pickerOptions1: {
             disabledDate(time) {
@@ -79,9 +125,11 @@
           },
           date1: '',
           date2: '',
-          date3: ''
+          date3: '',
+          usage_radio: 3,
+          textarea1: ''
         };
-      },*/
+      },
 
     }
 </script>
@@ -94,7 +142,7 @@
     .back{
       /*background-color: #85d1d1;*/
       width: 100%;
-      height: 800px;
+      height: 1500px;
       border: 1px solid black;
     }
     .sheet{
