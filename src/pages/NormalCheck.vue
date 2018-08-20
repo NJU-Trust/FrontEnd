@@ -81,7 +81,7 @@
         </div>
       </div>
       <hr/>
-      <div>
+      <div style="text-align: justify">
         <el-button type="primary" round>&nbsp;提交&nbsp;</el-button>
       </div>
 

@@ -10,7 +10,7 @@
   import personalCenter from "../components/personalCenter";
 
   export default {
-  name:"finstanding",
+  name:"FinancialStanding",
     components: {personalCenter}
   }
 

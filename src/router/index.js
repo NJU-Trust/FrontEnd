@@ -4,9 +4,9 @@ import homepage from '@/pages/homepage'
 import login from '@/pages/login'
 import loan from '@/pages/loan'
 import signup from '@/pages/signup'
-import userspace from '@/pages/userspace'
-import normalcheck from '@/pages/normalcheck'
-import finstanding from '@/pages/finstanding'
+import UserSpace from '@/pages/UserSpace'
+import NormalCheck from '@/pages/NormalCheck'
+import FinancialStanding from '@/pages/FinancialStanding'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
 
@@ -35,19 +35,19 @@ export default new Router({
       component: signup
     },
     {
-      path: '/userspace',
-      name: 'userspace',
-      component: userspace
+      path: '/UserSpace',
+      name: 'UserSpace',
+      component: UserSpace
     },
     {
-      path: '/normalcheck',
-      name: 'normalcheck',
-      component: normalcheck
+      path: '/UserSpace/NormalCheck',
+      name: 'NormalCheck',
+      component: NormalCheck
     },
     {
-      path: '/finstanding',
-      name: 'finstanding',
-      component: finstanding
+      path: '/UserSpace/FinancialStanding',
+      name: 'FinancialStanding',
+      component: FinancialStanding
     },
     {
       path: '/usermanage',

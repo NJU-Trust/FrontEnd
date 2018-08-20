@@ -3,8 +3,8 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/userspace" id="leftA" class="active" @click="setA">基本信息</a></li>
-        <li><a href="/finstanding" @click="setC">财务状况</a></li>
+        <li><a href="/UserSpace" id="leftA" class="active" @click="setA">基本信息</a></li>
+        <li><a href="/UserSpace/FinancialStanding" @click="setC">财务状况</a></li>
       </ul>
       <hr/>
     </div>
@@ -27,7 +27,7 @@
     <div class="left_menus">
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/normalcheck" id="checkA" @click="setB">普通验证</a></li>
+        <li><a href="/UserSpace/NormalCheck" id="checkA" @click="setB">普通验证</a></li>
         <li><a href="#">校友验证</a></li>
         <li><a href="#">交叉验证</a></li>
       </ul>
