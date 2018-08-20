@@ -119,7 +119,32 @@
 
           </div>
         </div>
-        <div id="check" class="sheet"></div>
+        <div id="check" class="sheet">
+          <el-table
+            :data="tableData"
+            style="width: 100%">
+            <el-table-column
+              prop="name"
+              label="名称"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="num"
+              label="已投资数目"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="date"
+              label="截止日期"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="action"
+              label="操作"
+              width="180">
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </div>
 </template>
@@ -154,9 +179,11 @@
         },
         change11(){
           document.getElementById("sheet").style.display = "none";
+          document.getElementById("check").style.display = "inline";
         },
         change22(){
           document.getElementById("sheet").style.display = "inline";
+          document.getElementById("check").style.display = "none";
         }
       },
 
@@ -171,7 +198,28 @@
           date2: '',
           date3: '',
           usage_radio: 3,
-          textarea1: ''
+          textarea1: '',
+          tableData: [{
+            name: '融资项目一',
+            num: '1',
+            date: '2018/9/17',
+            action:''
+          }, {
+            name: '融资项目二',
+            num: '2',
+            date: '2018/9/17',
+            action:''
+          }, {
+            name: '融资项目三',
+            num: '3',
+            date: '2018/9/17',
+            action:''
+          }, {
+            name: '融资项目四',
+            num: '4',
+            date: '2018/9/17',
+            action:''
+          }]
         };
       },
 
