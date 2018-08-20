@@ -19,8 +19,8 @@
     </nav>
     <div id="manageAccount">
       <button style="background-color: lightskyblue">用户模式</button>
-      <button>管理模式</button>
-      <button>审核模式</button>
+      <a href="./adminObjects" id="admin"><button>管理模式</button></a>
+      <a href="./examineObjects" id="examine"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
   </div>
@@ -34,20 +34,31 @@ export default {
     if(localStorage.route=="#homepage"){
       document.getElementById("naviLogo").src="/static/pic/logo1_white.png";
     }
+    //localStorage.ifAdmin=0;
+    var ifAdmin=localStorage.ifAdmin;
+    if(ifAdmin==0){
+      $("#admin").remove();
+    }
+    //localStorage.ifExamine=0;
+    var ifExamine=localStorage.ifAdmin;
+    if(ifExamine==0){
+      $("#examine").remove();
+    }
 
 
-    localStorage.ifLogin = false;
-    localStorage.ifUnread = true;
-    localStorage.photoSrc = '/static/pic/photo.jpg';
-    localStorage.account="test";
+
+    // localStorage.ifLogin = true;
+    // localStorage.ifUnread = true;
+    // localStorage.photoSrc = '/static/pic/photo.jpg';
+    // localStorage.account="test";
 
     $("#manageAccount").css('display','none');
-    if (localStorage.ifLogin==true){
+    if (localStorage.ifLogin){
       document.getElementById('last').removeChild(document.getElementById('signup'));
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
       personalCenter.innerText = '个人中心';
-      personalCenter.href = './personalCenter.html';
+      personalCenter.href = './userSpace';
       var newLi = document.createElement('li');
       newLi.style.cssFloat = 'right';
       $('#nav').append(newLi);
@@ -111,7 +122,8 @@ export default {
   methods: {
     logout: function () {
       this.$axios.get("/logout", {"account": 123}).then(res => {
-        this.$router.replace('/index');
+        localStorage.ifLogin = false;
+        this.$router.replace('/');
       });
     },
 

@@ -68,6 +68,12 @@
 
 </template>
 
+<script>
+  export default {
+    name: "userdetail",
+  }
+</script>
+
 
 <style scoped>
   .userdetail{
