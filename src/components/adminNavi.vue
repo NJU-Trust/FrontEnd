@@ -17,8 +17,8 @@
     </nav>
     <div id="manageAccount">
       <button style="background-color: lightskyblue">用户模式</button>
-      <a href="./adminObjects"><button>管理模式</button></a>
-      <a href="./examineObjects"><button>审核模式</button></a>
+      <a href="./adminObjects" id="admin"><button>管理模式</button></a>
+      <a href="./examineObjects" id="examine"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
   </div>
@@ -32,7 +32,16 @@
         if(localStorage.route=="#homepage"){
           document.getElementById("naviLogo").src="/static/pic/logo1_white.png";
         }
-
+        //localStorage.ifAdmin=0;
+        var ifAdmin=localStorage.ifAdmin;
+        if(ifAdmin==0){
+          $("#admin").remove();
+        }
+        //localStorage.ifExamine=0;
+        var ifExamine=localStorage.ifAdmin;
+        if(ifExamine==0){
+          $("#examine").remove();
+        }
 
         localStorage.ifLogin = false;
         localStorage.ifUnread = true;
@@ -45,7 +54,7 @@
           document.getElementById('secondLast').removeChild(document.getElementById('login'));
           var personalCenter = document.createElement('a');
           personalCenter.innerText = '个人中心';
-          personalCenter.href = './personalCenter.html';
+          personalCenter.href = './userSpace';
           var newLi = document.createElement('li');
           newLi.style.cssFloat = 'right';
           $('#nav').append(newLi);
