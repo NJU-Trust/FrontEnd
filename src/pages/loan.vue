@@ -2,11 +2,31 @@
     <div id="app">
       <navi></navi>
       <div class="back">
-        <div class="sheet">
+        <div class="left">
+          <div class="left_label" @click="change11">
+
+          </div>
+          <div class="left_label" @click="change22">
+
+          </div>
+
+        </div>
+        <div id="sheet" class="sheet" style="display: none">
           <div class="chooseButton">
             <el-row>
-              <el-button id="consume_btn" @click="change1" autofocus="true">消费类小额短期</el-button>
-              <el-button id="learn_btn" @click="change2">学习培训类大额长期</el-button>
+
+              <div class="choose_panel">
+                <div id="con_tab" class="choose_label consume_label" @click="change1">
+                  消费类小额短期
+                </div>
+
+                <div id="learn_tab" class="choose_label learn_label" @click="change2">
+                  学习培训类大额长期
+                </div>
+              </div>
+
+              <!--<el-button id="consume_btn" @click="change1" autofocus="true">消费类小额短期</el-button>
+              <el-button id="learn_btn" @click="change2">学习培训类大额长期</el-button>-->
             </el-row>
           </div>
 
@@ -99,25 +119,45 @@
 
           </div>
         </div>
+        <div id="check" class="sheet"></div>
       </div>
     </div>
 </template>
 
 <script>
     import navi from '@/components/navi.vue';
+    import ElCard from "element-ui/packages/card/src/main";
 
     export default {
       name: "loan",
-      components:{navi},
+      components:{
+        ElCard,
+        navi},
       methods:{
         change1(){
           document.getElementById("learn").style.display = "none";
           document.getElementById("consume").style.display = "inline";
+
+          document.getElementById("con_tab").style.backgroundColor = "lightskyblue";
+          document.getElementById("con_tab").style.color = "black";
+          document.getElementById("learn_tab").style.color = "white";
+          document.getElementById("learn_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
         },
         change2(){
           document.getElementById("consume").style.display = "none";
           document.getElementById("learn").style.display = "inline";
+
+          document.getElementById("con_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
+          document.getElementById("con_tab").style.color = "white";
+          document.getElementById("learn_tab").style.color = "black";
+          document.getElementById("learn_tab").style.backgroundColor = "lightskyblue";
         },
+        change11(){
+          document.getElementById("sheet").style.display = "none";
+        },
+        change22(){
+          document.getElementById("sheet").style.display = "inline";
+        }
       },
 
       data(){
@@ -143,22 +183,71 @@
     /*.body{
       background-color: #5f9ea0;
     }*/
+
+    .left_label{
+      width:200px;
+      height:50px;
+      /*margin-top: 20px;*/
+      border: 1px black solid;
+      text-align:center;
+      padding-top: 17px;
+    }
+
+    .choose_panel{
+      display: flex;
+    }
+
+    .choose_label{
+      width:200px;
+      height:50px;
+      /*border: 1px black solid;*/
+      margin-left: 20px;
+      text-align:center;
+      padding-top: 17px;
+    }
+
+    .choose_label:hover{
+      box-shadow: 2px 4px 6px #6a6a6a;
+      color: black;
+    }
+
+    .consume_label{
+      color: black;
+      background-color: lightskyblue;
+      opacity:0.5;
+    }
+
+    .learn_label{
+      color: white;
+      background-color: rgba(17, 17, 17, 0.17);
+      opacity:0.5;
+    }
     .back{
       /*background-color: #85d1d1;*/
       width: 100%;
       height: 1500px;
-      border: 1px solid black;
+      display:flex;
+    }
+    .left{
+      border:1px black solid;
+      width:200px;
+      height: 150px;
+      margin-top: 100px;
+      padding-top: 20px;
+      position: fixed;
     }
     .sheet{
       margin-top: 100px;
       margin-left:25%;
     }
     .chooseButton{
-      margin-left: 20%;
+      margin-left: 15%;
     }
     .row{
       width:400px;
       padding: 10px;
     }
+
+
 
 </style>
