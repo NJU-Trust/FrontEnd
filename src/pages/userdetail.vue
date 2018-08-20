@@ -1,5 +1,6 @@
 <template>
   <div class="UserDetail" >
+    <adminNavi></adminNavi>
     <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
     <div class="userdetail" style="padding:50px 0px 0px 0px;position: absolute;width: 100%;">
 
@@ -17,7 +18,9 @@
         <label>邮箱：</label>
         <label>XXXXXXXXXXXXXX</label>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <button type="button" class="returnButton">返回列表</button>
+        <router-link to="/usermanage">
+          <button type="button" class="returnButton">返回列表</button>
+        </router-link>
       </div>
       <br/>
       <br/>
@@ -69,25 +72,27 @@
 </template>
 
 <script>
+  import adminNavi from '@/components/adminNavi.vue';
   export default {
     name: "userdetail",
+    components:{adminNavi},
   }
 </script>
 
 
 <style scoped>
   .userdetail{
-    height: 550px;
+    height: 570px;
     min-width: 160px;
-    min-height: 60px;
+    min-height: 80px;
     padding: 0px 0px;
     line-height: 10px;
     background-color:rgba(0,50,200,0.3);
     color: white;
     border: none;
-    font-size: 13px;
+    font-size: 14px;
     font-family: "Microsoft YaHei UI";
-    top: 80px;
+    top: 60px;
     position: absolute;
     letter-spacing: 2px;
   }
@@ -103,8 +108,8 @@
     border: none;
     font-size: 18px;
     font-family: "Microsoft YaHei UI";
-    top: 550px;
-    position: fixed;
+    top: 530px;
+    position: absolute;
     width: 14%;
     left: 43%;
     letter-spacing: 2px;

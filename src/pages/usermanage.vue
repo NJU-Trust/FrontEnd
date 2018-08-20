@@ -1,4 +1,4 @@
-<template id="mylist">
+<template>
   <div class="UserList">
     <adminNavi></adminNavi>
     <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
@@ -37,9 +37,15 @@
       -->
       <tr>
         <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.column_name}}</th>
+        <th style="border: 1px solid white;text-align:center;">操作</th>
       </tr>
       <tr v-for='item in inforList'>
         <td v-for='it in columnList' style="border: 1px solid white ;text-align:center;">{{item[it.column_name]}}</td>
+        <td style="border: 1px solid white ;text-align:center;">
+          <router-link to="/userdetail">
+            <button class="checkDetailButton">查看</button>
+          </router-link>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -134,6 +140,8 @@
             '       邮箱       ': '10@qq.com',}]
       }
     },
+    methods:{
+    }
     /*
     props: {
       pageNum: {
@@ -210,21 +218,6 @@
 
 
 <style scoped>
-  .UserList{
-    height: 550px;
-    min-width: 160px;
-    min-height: 60px;
-    padding: 0px 0px;
-    line-height: 1px;
-    background-color:rgba(0,50,200,0.3);
-    color: white;
-    border: none;
-    font-size: 30px;
-    font-family: "Microsoft YaHei UI";
-    top: 0px;
-    position: absolute;
-    letter-spacing: 2px;
-  }
   .mytable{
     height: 580px;
     min-width: 400px;
@@ -243,11 +236,11 @@
     letter-spacing: 2px;
   }
   .usertable{
-    height: 400px;
+    height: 450px;
     min-width: 400px;
     min-height: 60px;
     padding: 100px 0px;
-    line-height: 2px;
+    line-height: 40px;
     color: white;
     border-collapse: collapse;
     border: none;
@@ -259,10 +252,10 @@
     position: absolute;
     letter-spacing: 2px;
   }
-  .sureButton{
+  .sureButton,.checkDetailButton{
     border-radius: 30px;
     min-width: 80px;
-    min-height: 30px;
+    min-height: 28px;
     padding: 0px 0px;
     line-height: 18px;
     background-color:rgba(0,50,200,0.5);
