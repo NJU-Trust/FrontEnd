@@ -79,13 +79,13 @@
 
       methods:{
           signup: function () {
-            var ac=$('account').val();
-            var pw=$('password').val();
-            var phone=$('phone').val();
-            var email=$('email').val();
-            var mc=$('messageCode').val();
-            var ec=$('emailCode').val();
-            this.$axios.post("http://localhost:8000/api/auth/login", {"username": ac, "password": pw}).then(res => {
+            var ac=$('#account').val();
+            var pw=$('#password').val();
+            var phone=$('#phone').val();
+            var email=$('#email').val();
+            var mc=$('#messageCode').val();
+            var ec=$('#emailCode').val();
+            this.$axios.post("http://localhost:8000/api/auth/signup", {"account": ac, "password": pw,"phone":phone,"email":email,"messageCode":mc,"emailCode":ec}).then(res => {
               var data=res.data;
               if(data.result==1){
                 alert("注册成功!");
@@ -95,6 +95,8 @@
                 $('account').focus();
               }else if(data.result==3){
                 alert("验证码错误");
+              }else{
+                alert("请重试");
               }
 
             });
@@ -144,7 +146,7 @@
                   }
                 }, 1000);
               }else if(data.result==2){
-                alert("邮箱地址有误");
+                alert("手机号码有误");
               }else{
                 alert("发送失败");
               }
