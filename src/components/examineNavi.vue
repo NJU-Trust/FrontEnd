@@ -118,7 +118,7 @@
     methods: {
       logout: function () {
         localStorage.ifLogin = 0;
-        this.$router.replace('./');
+        this.$router.go(0);
         this.$axios.post("/logout", {"account": localStorage.account}).then(res => {
         });
       },
