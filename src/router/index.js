@@ -9,6 +9,7 @@ import NormalCheck from '@/pages/NormalCheck'
 import FinancialStanding from '@/pages/FinancialStanding'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
+import invest from '@/pages/invest'
 
 Vue.use(Router)
 
@@ -58,8 +59,12 @@ export default new Router({
       path: '/userdetail',
       name: 'userdetail',
       component: userdetail
+    },
+    {
+      path:'/invest',
+      name:'invest',
+      component:invest
     }
-
 
   ],
   mode:"history"

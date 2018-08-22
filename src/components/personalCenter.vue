@@ -53,8 +53,6 @@
   import FooterBar from "../components/footerBar";
   // import userPanel from "../components/userPanel";
 
-
-
   export default {
     name:"personalCenter",
     components: {FooterBar, leftUserBar, navi},
