@@ -16,8 +16,8 @@
       </div>
     </nav>
     <div id="manageAccount">
-      <button style="background-color: lightskyblue">用户模式</button>
-      <a href="./adminObjects" id="admin"><button>管理模式</button></a>
+      <a href="./"><button>用户模式</button></a>
+      <a href="./adminObjects" id="admin"><button style="background-color: lightskyblue">管理模式</button></a>
       <a href="./examineObjects" id="examine"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
@@ -38,7 +38,7 @@
           $("#admin").remove();
         }
         //localStorage.ifExamine=0;
-        var ifExamine=localStorage.ifAdmin;
+        var ifExamine=localStorage.ifExamine;
         if(ifExamine==0){
           $("#examine").remove();
         }
@@ -93,7 +93,7 @@
               message.src = '/static/pic/message_blue.png';
             },
             function(){
-              if(localStorage.ifUnread){
+              if(localStorage.ifUnread==1){
                 message.src = '/static/pic/message_yellow.png';
               }else{
                 message.src = '/static/pic/message_white.png';
@@ -116,8 +116,9 @@
       },
       methods: {
         logout: function () {
-          this.$axios.get("/logout", {"account": 123}).then(res => {
-            this.$router.replace('/index');
+          localStorage.ifLogin = 0;
+          this.$router.go(0);
+          this.$axios.post("/logout", {"account": localStorage.account}).then(res => {
           });
         },
 
