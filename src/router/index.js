@@ -59,7 +59,7 @@ export default new Router({
       path: '/userdetail',
       name: 'userdetail',
       component: userdetail
-    }
+    },
     {
       path:'/invest',
       name:'invest',
