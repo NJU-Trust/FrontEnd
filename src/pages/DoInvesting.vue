@@ -6,27 +6,11 @@
         //返回按钮
         <div class="left">
           <div class="left_label" @click="change1">
-          <button id="login" v-on:click="backPage()">登录</button>
+          <button id="backPage" v-on:click="backPage()">返回</button>
           </div>
         </div>
 
         <div id="sheet" class="sheet" style="display: none">
-              //长期短期选择按钮
-          <!-- <div class="chooseButton">
-            <el-row>
-
-              <div class="choose_panel">
-                <div id="con_tab" class="choose_label consume_label" @click="change1">
-                  消费类小额短期
-                </div>
-
-                <div id="learn_tab" class="choose_label learn_label" @click="change2">
-                  学习培训类大额长期
-                </div>
-              </div>
-            </el-row>
-          </div> -->
-
           <div class="primary_panel" style="margin-top: 20px">
             //项目名称栏
             <div class="row">
@@ -39,43 +23,21 @@
             
             <div class="row">
               <label>开始日期</label><br>
-              <el-date-picker
-                v-model="date1"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
             </div>
             
             <div class="row">
               <label>截止日期</label><br>
-              <el-date-picker
-                v-model="date2"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
             </div>
             
             <div class="row">
               <label>还款日期</label><br>
-              <el-date-picker
-                v-model="date3"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
             </div>
           </div>
 
-          
+        //短期投资  
           <div id="consume" style="margin-top: 20px">
             <div class="row">
               <label>资金用途详述</label><br>
-              <el-input
-                type="textarea"
-                :rows="4"
-                placeholder="请输入内容"
-                v-model="textarea1">
-              </el-input>
-              <!-- <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button> -->
             </div>
 
             <div class="row" style="margin-left: 250px">
@@ -88,13 +50,6 @@
           <div id="learn" style="margin-top: 20px;display: none">
             <div class="row">
               <label>项目说明</label><br>
-              <el-input
-                type="textarea"
-                :rows="4"
-                placeholder="请输入内容"
-                v-model="textarea1">
-              </el-input>
-              <!-- <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button> -->
             </div>
 
             <div class="row" style="margin-left: 250px">
