@@ -9,7 +9,7 @@ import NormalCheck from '@/pages/NormalCheck'
 import FinancialStanding from '@/pages/FinancialStanding'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
-import invest from '@pages/userdetail'
+import invest from '@/pages/invest'
 
 Vue.use(Router)
 
