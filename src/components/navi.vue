@@ -7,9 +7,9 @@
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
             <li><a id="invest" href="./invest">投资</a></li>
-            <li><a id="loan" href="/loan">借款</a></li>
-            <li><a id="trade" href="/trade">交易</a></li>
-            <li><a id="notice" href="/notice">发布</a></li>
+            <li><a id="loan" href="./loan">借款</a></li>
+            <li><a id="trade" href="./trade">交易</a></li>
+            <li><a id="notice" href="./notice">发布</a></li>
             <li><a id="guide" href="./guide">教程</a></li>
             <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
@@ -18,10 +18,10 @@
       </div>
     </nav>
     <div id="manageAccount">
-      <button style="background-color: lightskyblue">用户模式</button>
+      <a href="./"><button style="background-color: lightskyblue">用户模式</button></a>
       <a href="./adminObjects" id="admin"><button>管理模式</button></a>
       <a href="./examineObjects" id="examine"><button>审核模式</button></a>
-      <button v-on:click="logout">退出</button>
+      <button v-on:click="logout()">退出</button>
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
       $("#admin").remove();
     }
     //localStorage.ifExamine=0;
-    var ifExamine=localStorage.ifAdmin;
+    var ifExamine=localStorage.ifExamine;
     if(ifExamine==0){
       $("#examine").remove();
     }
@@ -53,7 +53,7 @@ export default {
     // localStorage.account="test";
 
     $("#manageAccount").css('display','none');
-    if (localStorage.ifLogin){
+    if (localStorage.ifLogin==1){
       document.getElementById('last').removeChild(document.getElementById('signup'));
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
@@ -68,7 +68,7 @@ export default {
       message.className = 'message';
       message.src = '/static/pic/message_white.png';
       document.getElementById('secondLast').appendChild(message);
-      if (localStorage.ifUnread){
+      if (localStorage.ifUnread==1){
         message.src = '/static/pic/message_yellow.png';
       }
 
@@ -121,9 +121,9 @@ export default {
 
   methods: {
     logout: function () {
-      this.$axios.get("/logout", {"account": 123}).then(res => {
-        localStorage.ifLogin = false;
-        this.$router.replace('/');
+      localStorage.ifLogin = 0;
+      this.$router.go(0);
+      this.$axios.post("/logout", {"account": localStorage.account}).then(res => {
       });
     },
 
