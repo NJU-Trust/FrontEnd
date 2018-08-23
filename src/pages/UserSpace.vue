@@ -85,7 +85,7 @@
               </tbody>
             </table>
           </div>
-          <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+          <div id="myChart" :style="{width: '400px', height: '300px'}"></div>
 
         </div>
 
