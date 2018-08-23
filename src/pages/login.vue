@@ -45,11 +45,10 @@
             // //   alert("账户或密码错误");
             // // }
             // }
-            function (response) {
+            res => {
               store.commit(types.LOGIN, response.data['accessToken']);
               console.log(response.data)
-            }
-            ).catch(function (error) {
+            }).catch(err => {
             console.log(error)
           });
         }
