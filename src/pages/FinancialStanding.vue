@@ -47,6 +47,28 @@
         </div>
         <div class="class_outcome" id="id_class_outcome" style="display: none">
           <p style="font-size: 3em">此处展示{{value7.toString()}}的支出数据</p>
+          <h4><b>您本月的支出情况</b></h4>
+          <div class="table-responsive" style="text-indent: 5px">
+            <table class="table table-bordered">
+              <!--<caption><b>您的信用评级为：100</b></caption>-->
+              <thead>
+              <tr>
+                <th>支出总额</th>
+                <th>刚性支出</th>
+                <th>可调指出的总额</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>70</td>
+                <td>30</td>
+                <td>100</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr/>
+          <h4><b>您本月的支出变化</b></h4>
           <div id="myOutcomeBar" :style="{width: '800px', height: '300px'}"></div>
           <hr/>
           <h4><b>您本月的支出分布统计图</b></h4>
@@ -181,7 +203,7 @@
         let myOutcomeBar = echarts.init(document.getElementById('myOutcomeBar'))
         // 绘制图表
         myOutcomeBar.setOption({
-          title: { text: '您本月的支出变化' },
+          // title: { text: '您本月的支出变化' },
           tooltip: {
             trigger: 'axis',
             axisPointer:{
@@ -227,33 +249,33 @@
           legend: {
             orient: 'vertical',
             x: 'left',
-            data:['直达','营销广告','搜索引擎','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他']
+            data:['交通','生活用品','学习费用','饮食','体育锻炼','水电费','其他']
           },
           series: [
+            // {
+            //   name:'访问来源',
+            //   type:'pie',
+            //   selectedMode: 'single',
+            //   radius: [0, '30%'],
+            //
+            //   label: {
+            //     normal: {
+            //       position: 'inner'
+            //     }
+            //   },
+            //   labelLine: {
+            //     normal: {
+            //       show: false
+            //     }
+            //   },
+            //   data:[
+            //     {value:335, name:'直达', selected:true},
+            //     {value:679, name:'营销广告'},
+            //     {value:1548, name:'搜索引擎'}
+            //   ]
+            // },
             {
-              name:'访问来源',
-              type:'pie',
-              selectedMode: 'single',
-              radius: [0, '30%'],
-
-              label: {
-                normal: {
-                  position: 'inner'
-                }
-              },
-              labelLine: {
-                normal: {
-                  show: false
-                }
-              },
-              data:[
-                {value:335, name:'直达', selected:true},
-                {value:679, name:'营销广告'},
-                {value:1548, name:'搜索引擎'}
-              ]
-            },
-            {
-              name:'访问来源',
+              name:'支出去向',
               type:'pie',
               radius: ['40%', '55%'],
               label: {
@@ -301,13 +323,12 @@
                 }
               },
               data:[
-                {value:335, name:'直达'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1048, name:'百度'},
-                {value:251, name:'谷歌'},
-                {value:147, name:'必应'},
+                {value:310, name:'交通'},
+                {value:234, name:'生活用品'},
+                {value:135, name:'学习费用'},
+                {value:666, name:'饮食'},
+                {value:251, name:'体育锻炼'},
+                {value:147, name:'水电费'},
                 {value:102, name:'其他'}
               ]
             }
