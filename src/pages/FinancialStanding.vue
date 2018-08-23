@@ -42,6 +42,7 @@
       <div class="LevelOneIndex" id="leveloneindex">
         <div class="class_income" id="id_class_income">
           <p style="font-size: 3em;">此处展示{{value7.toString()}}的收入数据</p>
+          <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
 
         </div>
         <div class="class_outcome" id="id_class_outcome" style="display: none">
@@ -57,6 +58,15 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
+  // 引入基本模板
+  let echarts = require('echarts/lib/echarts')
+  // 引入柱状图组件
+  require('echarts/lib/chart/bar')
+  require('echarts/lib/chart/line')
+  // 引入提示框和title组件
+  require('echarts/lib/component/tooltip')
+  require('echarts/lib/component/title')
+
 
   const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
 
@@ -114,6 +124,34 @@
         checkboxGroup2: ['上海'],
         indexAs: indexAOptions
       };
+    },
+    mounted() {
+      this.drawIncomeBar();
+    },
+    methods: {
+      drawIncomeBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myIncomeBar = echarts.init(document.getElementById('myChart'))
+        // 绘制图表
+        myIncomeBar.setOption({
+          title: { text: '您近六个月的信用变化' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["0月", "2月", "3月", "4月", "5月", "6月"]
+          },
+          yAxis: {
+            name: '信用指标',
+            type: 'value'
+          },
+          series: [{
+            name: '信用情况',
+            type: 'line',
+            data: [5, 20, 36, 10, 40, 20, 60]
+          }]
+        });
+      }
     }
   }
 
