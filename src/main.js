@@ -8,6 +8,8 @@ import router from './router'
 import axios from './httpConfig/http'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import echarts from 'echarts'
+
 
 // import store from './store/index'; //引入store
 
@@ -17,6 +19,8 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios= axios;
+Vue.prototype.$echarts = echarts
+
 
 
 /* eslint-disable no-new */

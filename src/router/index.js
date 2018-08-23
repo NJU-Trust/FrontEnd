@@ -11,6 +11,7 @@ import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
+import AlumniCheck from '@/pages/AlumniCheck'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
       path: '/UserSpace/FinancialStanding',
       name: 'FinancialStanding',
       component: FinancialStanding
+    },
+    {
+      path: '/UserSpace/AlumniCheck',
+      name: 'AlumniCheck',
+      component: AlumniCheck
     },
     {
       path: '/usermanage',

@@ -42,6 +42,7 @@
       <div class="LevelOneIndex" id="leveloneindex">
         <div class="class_income" id="id_class_income">
           <p style="font-size: 3em;">此处展示{{value7.toString()}}的收入数据</p>
+
         </div>
         <div class="class_outcome" id="id_class_outcome" style="display: none">
           <p style="font-size: 3em">此处展示{{value7.toString()}}的支出数据</p>

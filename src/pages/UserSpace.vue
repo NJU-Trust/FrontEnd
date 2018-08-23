@@ -66,8 +66,9 @@
       <div class="col-xs-12 col-md-12">
         <h4>信用状况</h4><hr/>
         <div class="user_credit">
-          <div class="table-responsive">
+          <div class="table-responsive" style="text-indent: 5px">
             <table class="table table-bordered">
+              <caption><b>您的信用评级为：100</b></caption>
               <thead>
               <tr>
                 <th>财务信息评级</th>
@@ -84,8 +85,9 @@
               </tbody>
             </table>
           </div>
+          <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+
         </div>
-        <div id="charts_test" style="width: 600px;height:400px;"></div>
 
       </div>
 
@@ -95,10 +97,47 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  
+
+  // 引入基本模板
+  let echarts = require('echarts/lib/echarts')
+  // 引入柱状图组件
+  require('echarts/lib/chart/bar')
+  require('echarts/lib/chart/line')
+  // 引入提示框和title组件
+  require('echarts/lib/component/tooltip')
+  require('echarts/lib/component/title')
+
   export default {
     name:"userspace",
-    components: {personalCenter}
+    components: {personalCenter},
+    mounted() {
+      this.drawLine();
+    },
+    methods: {
+      drawLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('myChart'))
+        // 绘制图表
+        myChart.setOption({
+          title: { text: '您近六个月的信用变化' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
+          },
+          yAxis: {
+            name: '信用指标',
+            type: 'value'
+          },
+          series: [{
+            name: '信用情况',
+            type: 'line',
+            data: [5, 20, 36, 10, 40, 20, 60]
+          }]
+        });
+      }
+    }
   }
 
 </script>
@@ -133,6 +172,11 @@
   .user_info .table>tbody>tr>th{
     border:0px;
     min-width: 110px;
+  }
+
+  .user_credit caption>b{
+    color: #333333;
+    font-size: large;
   }
 
 </style>
