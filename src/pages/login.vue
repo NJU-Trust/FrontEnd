@@ -27,6 +27,8 @@
 </template>
 
 <script>
+  import store from '../vuex/store'
+  import * as types from '../vuex/types'
     export default {
       name: "login",
       methods: {
@@ -34,14 +36,21 @@
           alert("here");
           var ac=document.getElementById('account').value;
           var pw=document.getElementById('password').value;
-          this.$axios.post("http://localhost:8000/api/auth/signin", {"username": ac, "password": pw}).then(res => {
-            console.log(res.data);
-            if(res.data==true){
-              this.$router.replace('/');
-            }else{
-              alert("账户或密码错误");
+          this.$axios.post('/user/signin', {"username": ac, "password": pw}).then(
+            // res => {
+            // console.log(res.data);
+            // // if(res.data==true){
+            // //   this.$router.replace('/');
+            // // }else{
+            // //   alert("账户或密码错误");
+            // // }
+            // }
+            function (response) {
+              store.commit(types.LOGIN, response.data['accessToken']);
+              console.log(response.data)
             }
-
+            ).catch(function (error) {
+            console.log(error)
           });
         }
       }
