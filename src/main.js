@@ -8,6 +8,7 @@ import router from './router'
 import axios from './httpConfig/http'
 import Vuex from 'vuex'
 import store from './vuex/store'
+
 // import store from './store/index'; //引入store
 
 
