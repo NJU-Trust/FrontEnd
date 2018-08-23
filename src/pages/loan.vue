@@ -3,11 +3,11 @@
       <navi></navi>
       <div class="back">
         <div class="left">
-          <div class="left_label" @click="change11">
-
+          <div class="left_label look_label" @click="change11">
+            查看借款情况
           </div>
-          <div class="left_label" @click="change22">
-
+          <div class="left_label ask_label" @click="change22">
+            申请借款
           </div>
 
         </div>
@@ -66,12 +66,22 @@
           <div id="consume" style="margin-top: 20px">
 
             <div class="row">
-              <label>资金用途分类</label><br>
-              <el-radio-group v-model="usage_radio">
-                <el-radio :label="3">分类一</el-radio>
-                <el-radio :label="6">分类二</el-radio>
-                <el-radio :label="9">分类三</el-radio>
-              </el-radio-group>
+
+              <el-form :inline="true" :model="formInline" class="demo-form-inline">
+
+                <el-form-item label="资金用途分类">
+                  <el-select v-model="formInline.region" placeholder="资金用途分类">
+                    <el-option label="日常生活周转" value="daily"></el-option>
+                    <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
+                    <el-option label="游戏娱乐电影音乐" value="game"></el-option>
+                    <el-option label="旅游" value="travel"></el-option>
+                    <el-option label="购买电子产品" value="shop"></el-option>
+                    <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
+                  </el-select>
+                </el-form-item>
+
+              </el-form>
+
             </div>
 
             <div class="row">
@@ -84,6 +94,21 @@
               </el-input>
               <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
 
+            </div>
+
+            <div class="row">
+              <label>还款方案</label><br>
+              <div class="return">
+                <div class="return_label">
+                  方案一
+                </div>
+                <div class="return_label">
+                  方案二
+                </div>
+                <div class="return_label">
+                  方案三
+                </div>
+              </div>
             </div>
 
             <div class="row" style="margin-left: 250px">
@@ -102,15 +127,6 @@
                 v-model="textarea1">
               </el-input>
               <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-            </div>
-
-            <div class="row">
-              <label>还款方案</label><br>
-              <el-radio-group v-model="usage_radio">
-                <el-radio :label="3">方案一</el-radio>
-                <el-radio :label="6">方案二</el-radio>
-                <el-radio :label="9">方案三</el-radio>
-              </el-radio-group>
             </div>
 
             <div class="row" style="margin-left: 250px">
@@ -208,6 +224,11 @@
           date3: '',
           usage_radio: 3,
           textarea1: '',
+          formInline: {
+            user: '',
+            region: ''
+          },
+
           tableData: [{
             name: '融资项目一',
             num: '1',
@@ -245,9 +266,20 @@
       width:200px;
       height:50px;
       /*margin-top: 20px;*/
-      border: 1px black solid;
+     /* border: 1px black solid;*/
       text-align:center;
       padding-top: 17px;
+      font-size: 16px;
+    }
+
+    .look_label{
+      background-color: lightskyblue;
+      opacity:0.5;
+    }
+
+    .ask_label{
+      background-color: rgba(17, 17, 17, 0.17);
+      opacity:0.5;
     }
 
     .choose_panel{
@@ -265,7 +297,7 @@
 
     .choose_label:hover{
       box-shadow: 2px 4px 6px #6a6a6a;
-      color: black;
+      /*color: black;*/
     }
 
     .consume_label{
@@ -280,16 +312,16 @@
       opacity:0.5;
     }
     .back{
-      /*background-color: #85d1d1;*/
+      /*background-color: rgba(173,216,230,0.5);*/
       width: 100%;
       height: 1500px;
       display:flex;
     }
     .left{
-      border:1px black solid;
+      /*border:1px black solid;*/
       width:200px;
       height: 150px;
-      margin-top: 100px;
+      margin-top: 120px;
       padding-top: 20px;
       position: fixed;
     }
@@ -300,11 +332,22 @@
     .chooseButton{
       margin-left: 15%;
     }
+    .return{
+      display: flex;
+      /*border:1px black solid;*/
+      width: 500px;
+      height: 200px;
+    }
+    .return_label{
+      width:100px;
+      height: 150px;
+      border: 1px black solid;
+      margin-right:40px;
+    }
     .row{
       width:400px;
       padding: 10px;
     }
-
 
 
 </style>
