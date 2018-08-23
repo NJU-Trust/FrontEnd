@@ -31,7 +31,6 @@
             </div>
             
 
-
             <div class="row">
               <!-- 进度条显示 -->
               <label for="money">剩余金额/总金额:</label><p>40 / 50</p>
@@ -39,7 +38,7 @@
             </div>
             
 
-            <!-- 增加剩余XX天 -->
+            <!-- 日期 -->
             <div class="row">
               <label>开始日期:</label><br>
               <p>2018/2/30</p>
@@ -106,39 +105,6 @@
 
 <style scoped>
 
-    /*.body{
-      background-color: #5f9ea0;
-    }*/
-
-    .choose_panel{
-      display: flex;
-    }
-
-    .choose_label{
-      width:200px;
-      height:50px;
-      /*border: 1px black solid;*/
-      margin-left: 20px;
-      text-align:center;
-      padding-top: 17px;
-    }
-
-    .choose_label:hover{
-      box-shadow: 2px 4px 6px #6a6a6a;
-      color: black;
-    }
-
-    .consume_label{
-      color: black;
-      background-color: lightskyblue;
-      opacity:0.5;
-    }
-
-    .learn_label{
-      color: white;
-      background-color: rgba(17, 17, 17, 0.17);
-      opacity:0.5;
-    }
     .back{
       /*background-color: #85d1d1;*/
       width: 100%;
@@ -160,17 +126,14 @@
       width: 600px;
       margin-left:30%;
     }
-    .chooseButton{
-      margin-left: 15%;
-    }
     .row{
       width:400px;
       padding: 10px;
       margin-left: 20px;
     }
     .checkbutton{
+      margin-top: 20px;
       margin-left: 40%;
-
     }
 
 </style>
