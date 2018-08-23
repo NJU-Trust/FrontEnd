@@ -27,58 +27,52 @@
         <button class="sureButton">确认筛选</button>
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      <div class="pre">
-        <a href=""><i class="fa fa-chevron-right fa-4x" style="color:white;position: absolute;padding: 100px 10px"></i></a>
-      </div>
-    <table class="usertable">
-      <tbody class="usertablebody">
-      <tr>
-        <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.text}}</th>
-        <th style="border: 1px solid white;text-align:center;">操作</th>
-      </tr>
-      <tr v-for='item in inforList'>
-        <td v-for='it in columnList' style="border: 1px solid white ;text-align:center;">{{item[it.column_name]}}</td>
-        <td style="border: 1px solid white ;text-align:center;">
-          <router-link to="/userdetail">
-            <button class="checkDetailButton">查看</button>
-          </router-link>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+      <table class="usertable">
+        <tbody class="usertablebody">
+        <tr>
+          <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.text}}</th>
+          <th style="border: 1px solid white;text-align:center;">操作</th>
+        </tr>
+        <tr v-for='item in inforList'>
+          <td v-for='it in columnList' style="border: 1px solid white ;text-align:center;">{{item[it.column_name]}}</td>
+          <td style="border: 1px solid white ;text-align:center;">
+            <router-link to="/userdetail">
+              <button class="checkDetailButton">查看</button>
+            </router-link>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="full-width">
+        <tr>
+          <th></th>
+          <th colspan="4"><!--
+          <button class="ui button green" v-if="aKey==='1'" @click="doAudit(2, 0)">通过审核</button>
+          <button class="ui button green" v-if="aKey==='1'" @click="doAudit(2, -1)">全部通过审核</button>
+          <button class="ui button red" v-if="aKey==='1'" @click="doAudit(3, 0)">不通过审核</button>
+          <button class="ui button red" v-if="aKey==='1'" @click="doAudit(3, -1)">全部不通过审核</button>
+          <button class="ui button small" v-if="aKey==='0'" @click="doAudit(1, 0)">审核</button>
+          <button class="ui button small" v-if="aKey==='0'" @click="doAudit(1, -1)">全部审核</button>
+          <button class="ui button small" v-if="aKey==='2' || aKey==='3'" @click="doAudit(1, 0)">再次审核</button>
+          <button class="ui button small" v-if="aKey==='2' || aKey==='3'" @click="doAudit(1, -1)">全部再次审核</button>
+          -->
+            <button class="ui button left labeled icon" @click="turnPage(-1)">
+              <i class="left arrow icon"></i> Prev
+            </button>
+            <span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>
+            <button class="ui button right labeled icon" @click="turnPage(1)">
+              <i class="right arrow icon"></i> Next
+            </button>
+            <div class="jtp">
+              <span>跳转到第 </span>
+              <div class="ui input icon">
+                <input type="text" v-model="jPage" @keyup.enter="jumpToPage">
+              </div><span> 页</span>
+            </div>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
     </div>
-<!--
-    <div class="pager-wrapper" v-if="pageNum < 6">
-      <div v-for="(item, index) in pages" class="item" :class='{active : active === (index + 1)}' @click="changePage(item)">
-        {{item}}
-      </div>
-    </div>
-    <div v-else>
-      <div class="pager-wrapper" v-if="active < 4">
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === (index + 1)}' @click="changePage(item)">
-          {{item}}
-        </div>
-        <div class="point">...</div>
-        <div class="item" @click="end">{{pageNum}}</div>
-      </div>
-      <div class="pager-wrapper" v-else-if="active < (pageNum - 2)">
-        <div class="item" @click="start">1</div>
-        <div class="point">...</div>
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === item}' @click="changePage(item)">
-          {{item}}
-        </div>
-        <div class="point">...</div>
-        <div class="item" @click="end">{{pageNum}}</div>
-      </div>
-      <div class="pager-wrapper" v-else>
-        <div class="item" @click="start">1</div>
-        <div class="point">...</div>
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === item}' @click="changePage(item)">
-          {{item}}
-        </div>
-      </div>
-    </div>
--->
 
 
   </div>
@@ -95,7 +89,14 @@
     components:{adminNavi},
     data () {
       return {
-        limit: 9, // 每页显示行数
+        //users: userStorage.fetch(), // users 数据
+        //selectedUsers: [], // 保存选中的 users 数组
+        //selectedUser: {}, // 选中 user
+        //fKey: '', // 过滤 name 的关键字
+        //name: '', // 上一次过滤的 name 关键字，初始化为''
+        //aKey: '', // select audit 的关键字
+        //audit: '', // 上一次过滤的 audit关键字，初始化为''
+        limit: 5, // 每页显示行数
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
         jPage: 1, // 跳转到某页
@@ -143,77 +144,6 @@
     },
     methods:{
     }
-    /*
-    props: {
-      pageNum: {
-        type: Number,
-        default: 10
-      },
-      activeIndex: {
-        type: Number,
-        default: 1
-      }
-    },
-    data () {
-      return {
-        pages: [],
-        active: 1
-      }
-    },
-    watch: {
-      active (val) {
-        this.init()
-      }
-    },
-    created () {
-      this.active = this.activeIndex
-      this.init()
-    },
-    methods: {
-      init () {
-        if (this.pageNum < 6) {
-          let pages = []
-          for (let i = 1; i < (this.pageNum + 1); i++) {
-            pages.push(i)
-          }
-          this.pages = pages
-        } else {
-          if (this.active < 4) {
-            let pages = [1, 2, 3]
-            this.pages = pages
-            console.log(this.pages)
-          } else if (this.active < (this.pageNum - 2)) {
-            let pages = [this.active - 1, this.active, this.active + 1]
-            this.pages = pages
-          } else {
-            let pages = [this.pageNum - 2, this.pageNum - 1, this.pageNum]
-            this.pages = pages
-          }
-        }
-      },
-      changePage (item) {
-        this.active = item
-        this.$emit('changePage', item)
-      },
-      start () {
-        this.active = 1
-        this.$emit('changePage', this.active)
-      },
-      end () {
-        this.active = this.pageNum
-        this.$emit('changePage', this.active)
-      },
-      prev () {
-        if (this.active === 1) return
-        this.active--
-        this.$emit('changePage', this.active)
-      },
-      next () {
-        if (this.active === this.pageNum) return
-        this.active++
-        this.$emit('changePage', this.active)
-      }
-    }*/
   }
 </script>
 
@@ -225,7 +155,7 @@
     min-height: 80px;
     padding: 0px 0px;
     line-height: 3px;
-    background-color:rgba(0,50,200,0.3);
+    background-color:rgba(0,100,200,0.3);
     color: white;
     border: none;
     font-size: 16px;
@@ -271,36 +201,32 @@
   }
 
 
-  .pager-wrapper{
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
+  .status-picker select {
+    border-radius: 5px;
+    width: 200px;
+    float: left;
+    height: 37px;
+    margin-bottom: -13px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    padding: 0 10px;
+  }
+
+  .jtp {
+    margin-top: 10px;
+  }
+
+  .jtp .ui.icon.input input {
+    padding: 0.5em!important;
+    width: 32px;
+  }
+
+  .modal .content {
+    display: flex!important;
     justify-content: center;
+    align-items: center;
   }
-  .item{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    font-size: 16px;
-    padding: 4px 20px;
-    border: 1px solid #d7d7d7;
-    margin-left: 16px;
-    cursor: pointer;
-    color: #a5a5a5;
-  }
-  .active{
-    background: #a5a5a5;
-    color: #fff;
-    border: 1px solid #a5a5a5;
-  }
-  .point{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    margin-left: 16px;
-    letter-spacing: 3px;
-    color: #a5a5a5;
-  }
+
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" />
+

@@ -87,7 +87,7 @@
     min-height: 80px;
     padding: 0px 0px;
     line-height: 10px;
-    background-color:rgba(0,50,200,0.3);
+    background-color:rgba(0,100,200,0.3);
     color: white;
     border: none;
     font-size: 14px;
