@@ -27,16 +27,13 @@
         <button class="sureButton">确认筛选</button>
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <div class="pre">
+        <a href=""><i class="fa fa-chevron-right fa-4x" style="color:white;position: absolute;padding: 100px 10px"></i></a>
+      </div>
     <table class="usertable">
       <tbody class="usertablebody">
-      <!--
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户等级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      -->
       <tr>
-        <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.column_name}}</th>
+        <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.text}}</th>
         <th style="border: 1px solid white;text-align:center;">操作</th>
       </tr>
       <tr v-for='item in inforList'>
@@ -98,46 +95,50 @@
     components:{adminNavi},
     data () {
       return {
-        columnList: [{column_name:'       用户名称       '},
-          {column_name:'       用户等级       '},
-          {column_name:'       电话       '},
-          {column_name:'       邮箱       '}],
-        inforList: [{'       用户名称       ': '佳未1',
-          '       用户等级       ': '1',
-          '       电话       ': '12345678',
-          '       邮箱       ': '1@qq.com',},
-          {'       用户名称       ': '佳未2',
-            '       用户等级       ': '2',
-            '       电话       ': '22345678',
-            '       邮箱       ': '2@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未10',
-            '       用户等级       ': '10',
-            '       电话       ': '32345678',
-            '       邮箱       ': '10@qq.com',}]
+        limit: 9, // 每页显示行数
+        totalPage: 0, // 总页数
+        currentPage: 0, // 当前页
+        jPage: 1, // 跳转到某页
+        columnList: [{column_name:'username',text:"用户名称"},
+          {column_name:'level',text:"用户等级"},
+          {column_name:'tel',text:'电话'},
+          {column_name:'email',text:'邮箱'}],
+        inforList: [{'username': '佳未1',
+          'level': '1',
+          'tel': '12345678',
+          'email': '1@qq.com',},
+          {'username': '佳未2',
+            'level': '2',
+            'tel': '22345678',
+            'email': '2@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未3',
+            'level': '3',
+            'tel': '32345678',
+            'email': '3@qq.com',},
+          {'username': '佳未10',
+            'level': '10',
+            'tel': '32345678',
+            'email': '10@qq.com',}]
       }
     },
     methods:{
@@ -301,3 +302,5 @@
     color: #a5a5a5;
   }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" />
