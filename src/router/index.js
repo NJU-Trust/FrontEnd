@@ -10,6 +10,7 @@ import FinancialStanding from '@/pages/FinancialStanding'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
+import DoInvesting from '@/pages/DoInvesting'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ export default new Router({
       path:'/invest',
       name:'invest',
       component:invest
+    },
+    {
+      path:'/DoInvesting',
+      name:'DoInvesting',
+      component:DoInvesting
     }
 
 
