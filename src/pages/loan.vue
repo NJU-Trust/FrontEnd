@@ -116,50 +116,39 @@
                 </el-collapse>
               </el-form-item>
 
-              <el-form-item label="test">
+              <el-form-item>
                 <div v-if="this.form3.activeName==='1'">A</div>
                 <div v-else-if="this.form3.activeName==='2'">B</div>
                 <div v-else-if="this.form3.activeName==='3'">C</div>
                 <div v-else-if="this.form3.activeName==='4'">D</div>
               </el-form-item>
-              <!--<el-form-item label="test" v-if="this.form3.activeName==='2'">
-
-              </el-form-item>
-              <el-form-item label="test" v-if="this.form3.activeName==='3'">
-
-              </el-form-item>
-              <el-form-item label="test" v-if="this.form3.activeName==='4'">
-
-              </el-form-item>-->
 
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">确定贷款</el-button>
                 <el-button @click="clean_form3">清空重写</el-button>
               </el-form-item>
 
-              <!--<el-form-item label="生成还款方案">
-                <el-switch v-model="form3.create"></el-switch>
-              </el-form-item>-->
-
-              <!--<el-form-item v-if="form3.create" label="还款方案" id="return">
-
-              </el-form-item>-->
 
             </el-form>
 
           </div>
 
           <div id="learn" style="margin-top: 20px;display: none">
-            <div class="row">
-              <label>项目说明</label><br>
-              <el-input
-                type="textarea"
-                :rows="4"
-                placeholder="请输入内容"
-                v-model="textarea2">
-              </el-input>
-              <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-            </div>
+
+            <el-form ref="form4" :model="form4" label-width="100px" class="primary_info">
+              <div class="title">项目信息</div>
+              <el-form-item label="项目说明">
+                <el-input
+                  type="textarea"
+                  :rows="4"
+                  placeholder="请输入内容"
+                  v-model="form4.textarea2">
+                </el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+              </el-form-item>
+            </el-form >
 
             <div class="row" style="margin-left: 250px">
               <el-button type="primary" round>提交</el-button>
@@ -280,7 +269,9 @@
             create:false,
             activeName: '',
           },
-
+          form4:{
+            textarea2:''
+          },
 
           usage_radio: 3,
           textarea2:'',
