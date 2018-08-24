@@ -35,10 +35,7 @@
             <el-form ref="form1" :model="form1" label-width="80px" class="primary_info">
               <div class="title">基本信息</div>
               <el-form-item label="项目名称">
-                <el-input v-model="form1.name"></el-input>
-              </el-form-item>
-              <el-form-item label="拆借金额">
-                <el-input v-model="form1.money"></el-input>
+                <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
               </el-form-item>
               <el-form-item label="开始日期">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
@@ -46,9 +43,7 @@
               <el-form-item label="截止日期">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
               </el-form-item>
-              <el-form-item label="还款日期">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date3" style="width: 100%;"></el-date-picker>
-              </el-form-item>
+
             </el-form>
 
             </div>
@@ -84,8 +79,14 @@
 
             <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
               <div class="title">关于还款</div>
+              <el-form-item label="拆借金额">
+                <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
+              </el-form-item>
+              <el-form-item label="还款日期">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
+              </el-form-item>
               <el-form-item label="设置还款利率">
-                <el-input v-model="form3.rate"></el-input>
+                <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
               </el-form-item>
 
               <el-form-item label="生成还款方案">
@@ -225,7 +226,6 @@
           },
           form1:{
             name: '',
-            money: '',
             date1: '',
             date2: '',
             date3: '',
@@ -236,6 +236,8 @@
             textarea1:''
           },
           form3:{
+            money:'',
+            return_date:'',
             rate:'',
             create:false
           },
