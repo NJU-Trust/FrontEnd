@@ -3,54 +3,57 @@
     <adminNavi></adminNavi>
     <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
     <div class="mytable">
-      <div class="base-info" style="padding:50px 0px 0px 100px; font-size:12px;">
-        <label style="font-size: 14px;">输入筛选条件:</label>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+      <div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">
+        <label style="font-size: 14px;">筛选条件:</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>用户名称：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="username" value="" v-model="input_username"/><!--<input type="text" v-model="input_username" />-->
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>用户等级：</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>信用评级：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="level" value="" v-model="input_level"/>
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label >电话：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="tel" value="" v-model="input_tel"/>
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>邮箱：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value="">
+          <input type="text" name="email" value="" v-model="input_email">
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <!--选择过滤条件-->
+        <label>借款状态：</label>
+        <select name="state" type="hidden" v-model.lazy="state" style="color:black;">
+          <option value="">所有</option>
+          <option value="无借款">无借款</option>
+          <option value="待还款">待还款</option>
+          <option value="逾期用户">逾期用户</option>
+        </select>
+
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <div class="tableBackground" style="background-color:rgba(173,216,230,0.3);">
       <table class="usertable">
         <tbody class="usertablebody">
         <tr>
-          <th></th>
           <th style="border: 1px solid white;text-align:center;">用户名称</th>
-          <th style="border: 1px solid white;text-align:center;">用户等级</th>
+          <th style="border: 1px solid white;text-align:center;">信用评级</th>
           <th style="border: 1px solid white;text-align:center;">电话</th>
           <th style="border: 1px solid white;text-align:center;">邮箱</th>
+          <th style="border: 1px solid white;text-align:center;">借款状态</th>
           <th style="border: 1px solid white;text-align:center;">操作</th>
         </tr>
         <tr v-for="user in filteredUsers" @click="showModel" >
-          <td class="collapsing">
-            <div class="ui toggle slider checkbox" v-if="aKey!==''">
-              <input type="checkbox" :value="user" v-model="selectedUsers"> <label></label>
-              <!--当按照某一审核要求过滤时显示，其 v-model 指向 selectedUsers 数组，
-              用来保存批量操作中选中的 user ，之后可以直接对此数组进行操作，改动会同步到 users-->
-            </div>
-          </td>
           <td style="border: 1px solid white ;text-align:center;">{{ user.username }}</td>
           <td style="border: 1px solid white ;text-align:center;">{{ user.level }}</td>
           <td style="border: 1px solid white ;text-align:center;">{{ user.tel }}</td>
           <td style="border: 1px solid white ;text-align:center;">{{ user.email }}</td>
+          <td style="border: 1px solid white ;text-align:center;">{{ user.state }}</td>
           <td style="border: 1px solid white ;text-align:center;">
             <router-link to="/userdetail">
               <button class="checkDetailButton">查看</button>
@@ -85,46 +88,50 @@
 <script>
   import footerBar from '@/components/footerBar.vue';
   import adminNavi from '@/components/adminNavi.vue';
-  var mockUsers = [{username: '佳未1',
+  var mockUsers = [{username: '佳未1',state:'无借款',
     level: '1',
     tel: '12345678',
     email: '1@qq.com',},
-    {username: '佳未2',
+    {username: '佳未2',state:'无借款',
       level: '2',
       tel: '22345678',
       email: '2@qq.com',},
-    {username: '佳未3',
+    {username: '佳未3',state:'无借款',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未3',
+    {username: '佳未3',state:'无借款',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未3',
+    {username: '佳未3',state:'无借款',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未3',
+    {username: '佳未3',state:'无借款',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未3',
+    {username: '佳未3',state:'逾期用户',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未9',
+    {username: '佳未9',state:'待还款',
       level: '9',
       tel: '32345678',
       email: '9@qq.com',},
-    {username: '佳未3',
+    {username: '佳未',state:'待还款',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未10',
+    {username: '佳未10',state:'无借款',
       level: '10',
       tel: '32345678',
-      email: '10@qq.com',}];
+      email: '10@qq.com',},
+    {username: '许杨',state:'无借款',
+      level: '5',
+      tel: '99945678',
+      email: 'xy@qq.com',}];
   var STORAGE_KEY = 'users';
   var userStorage = {
     fetch: function () {
@@ -143,10 +150,13 @@
         users: userStorage.fetch(), // users 数据
         selectedUsers: [], // 保存选中的 users 数组
         selectedUser: {}, // 选中 user
-        fKey: '', // 过滤 name 的关键字
+        input_username: '', // 过滤 username 的关键字
+        input_level:'',// 过滤 level 的关键字
+        input_tel:'',// 过滤 tel 的关键字
+        input_email:'',// 过滤 email 的关键字
         name: '', // 上一次过滤的 name 关键字，初始化为''
-        aKey: '', // select audit 的关键字
-        audit: '', // 上一次过滤的 audit关键字，初始化为''
+        state: '', // 过滤 state 的关键字
+        //audit: '', // 上一次过滤的 audit关键字，初始化为''
         limit: 9, // 每页显示行数
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
@@ -167,8 +177,11 @@
     // computed properties
     computed: {
       filteredUsers () {
-        let fUsers = this.queryFilter('name', this.fKey, this.users)
-        fUsers = this.queryFilter('audit', this.aKey, fUsers)
+        let fUsers = this.queryFilter('username', this.input_username, this.users)
+        fUsers = this.queryFilter('state', this.state, fUsers)
+        fUsers = this.queryFilter('level',this.input_level,fUsers)
+        fUsers = this.queryFilter('tel',this.input_tel,fUsers)
+        fUsers = this.queryFilter('email',this.input_email,fUsers)
         return this.paginate(fUsers)
       }
     },
@@ -229,7 +242,7 @@
         }
       },
 
-      doAudit(newAudit, user) {
+      /*doAudit(newAudit, user) {
         // user 可指定，为 0 时指选中用户，为 -1 时指全部用户
         let users = []
         if (user === 0) {
@@ -247,7 +260,7 @@
         users.forEach((user) => {
           user.audit = aId
         })
-      },
+      },*/
       showModel(e) {
         let target = e.target
         if (target.nodeName.toLowerCase() === 'td') {
@@ -280,7 +293,7 @@
   }
   .tableBackground{
     background-color:rgba(173,216,230,0.5);
-    min-height: 462px;
+    min-height: 470px;
   }
   .usertable{
     min-width: 400px;
