@@ -12,6 +12,8 @@ import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
+import enterInvest from '@/pages/enterInvest'
+import largeInvest from '@/pages/largeInvest'
 
 Vue.use(Router)
 
@@ -76,9 +78,17 @@ export default new Router({
       path:'/DoInvesting',
       name:'DoInvesting',
       component:DoInvesting
-    }
-
-
+    },
+    {
+      path:'/enterInvest',
+      name:'enterInvest',
+      component:enterInvest
+    },
+    {
+      path:'/largeInvest',
+      name:'largeInvest',
+      component:largeInvest
+    },
   ],
   mode:"history"
 })
