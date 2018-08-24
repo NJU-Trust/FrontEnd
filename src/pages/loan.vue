@@ -80,13 +80,20 @@
             <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
               <div class="title">关于还款</div>
               <el-form-item label="拆借金额">
-                <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
+                <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
+                  <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
+                </el-tooltip>
               </el-form-item>
               <el-form-item label="还款日期">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
+                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为一年建议范围为[N1,N2]" placement="top-start">
+                  <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
+                </el-tooltip>
               </el-form-item>
               <el-form-item label="设置还款利率">
-                <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
+                <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
+                  <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
+                </el-tooltip>
+
               </el-form-item>
 
               <el-form-item label="生成还款方案">
