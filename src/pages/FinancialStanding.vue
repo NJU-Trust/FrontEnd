@@ -3,7 +3,7 @@
     <div>
       <div class="chooseButton">
         <el-row>
-          <el-button id="income_btn" @click="change_income" autofocus="true" >收入</el-button>
+          <el-button id="income_btn" @click="change_income">收入</el-button>
           <el-button id="outcome_btn" @click="change_outcome">支出</el-button>
           <el-button id="othercome_btn" @click="change_othercome">其他</el-button>
         </el-row>
@@ -13,7 +13,7 @@
         <div class="block">
           <span class="demonstration">请选择你要查看的时间区间段</span>
           <el-date-picker
-            v-model="value7"
+            v-model="date_value_choose"
             type="daterange"
             align="right"
             unlink-panels
@@ -25,11 +25,11 @@
         </div>
       </div>
       <hr/>
-      <div class="LevelTwoIndex" id="leveltwoindex">
+      <div class="LevelTwoIndex" id="leveltwocheck">
         <div>
           <div style="margin-top: 20px">
-            <el-checkbox-group v-model="checkboxGroup2" size="medium">
-              <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA">{{indexA}}</el-checkbox-button>
+            <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="showIndexs">
+              <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
             </el-checkbox-group>
           </div>
         </div>
@@ -40,22 +40,28 @@
       </div>
       <hr/>
       <div class="LevelOneIndex" id="leveloneindex">
-        <div class="class_income" id="id_class_income">
-          <p style="font-size: 3em;">此处展示{{value7.toString()}}的收入数据</p>
-          <div id="myIncomeBar" :style="{width: '800px', height: '300px'}"></div>
 
+        <div class="class_income" id="id_class_income">
+          <p style="font-size: 1em;">此处展示{{date_value_choose.toString()}}的收入数据</p>
+          <div id="myIncomeOverview">
+            <h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>
+          </div>
+          <hr/>
+          <h4><b>您本月的收入变化</b></h4>
+          <div id="myIncomeBar" :style="{width: '800px', height: '300px'}"></div>
         </div>
+
         <div class="class_outcome" id="id_class_outcome" style="display: none">
-          <p style="font-size: 3em">此处展示{{value7.toString()}}的支出数据</p>
+          <p style="font-size: 1em">此处展示{{date_value_choose.toString()}}的支出数据</p>
           <h4><b>您本月的支出情况</b></h4>
-          <div class="table-responsive" style="text-indent: 5px">
+          <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
             <table class="table table-bordered">
               <!--<caption><b>您的信用评级为：100</b></caption>-->
               <thead>
               <tr>
-                <th>支出总额</th>
-                <th>刚性支出</th>
-                <th>可调指出的总额</th>
+                <th><i class="el-icon-info" style="color: #409EFF"></i>&nbsp支出总额</th>
+                <th><i class="el-icon-tickets" style="color: #409EFF"></i>&nbsp刚性支出</th>
+                <th><i class="el-icon-sold-out" style="color: #409EFF"></i>&nbsp可调指出的总额</th>
               </tr>
               </thead>
               <tbody>
@@ -74,8 +80,49 @@
           <h4><b>您本月的支出分布统计图</b></h4>
           <div id="myOutcomePie" :style="{width: '1000px', height: '450px'}"></div>
         </div>
+
         <div class="class_othercome"id="id_class_othercome" style="display: none">
-          <p style="font-size: 3em">此处展示{{value7.toString()}}的其他数据</p>
+          <p style="font-size: 3em">此处展示{{date_value_choose.toString()}}的其他数据</p>
+        </div>
+
+      </div>
+      <hr/>
+      <div class="LevelTwoIndex" id="leveltwoindex">
+        <p style="font-size: 1em;">此处展示{{checkboxGroup2.toString()}}的二级指标数据</p>
+        <p id="checktest" style="font-size: 1em; display: none">此处展示净资产数据</p>
+        <div class="LevelTwoPanel">
+          <div id="Index_NetWorth">
+            <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_EngelsCoefficient">
+            <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp  在同学中处于中等水平</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_RigidRatio">
+            <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_AssetLiabilityRatio">
+            <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_Solvency">
+            <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_Leverage">
+            <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_MonthConsumptionRatio">
+            <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%</b></h4>
+            <hr/>
+          </div>
+          <div id="Index_MonthlySavingsRatio">
+            <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
+            <hr/>
+          </div>
         </div>
       </div>
     </div>
@@ -130,8 +177,8 @@
           }]
         },
         // value6: '',
-        value7: '',
-        checkboxGroup2: ['上海'],
+        date_value_choose: '',
+        checkboxGroup2: [],
         indexAs: indexAOptions
       };
     },
@@ -139,6 +186,7 @@
       this.drawIncomeBar();
       this.drawOutcomeBar();
       this.drawOutcomePie();
+      this.showIndexs();
     },
     methods: {
       change_income(){
@@ -156,7 +204,61 @@
         document.getElementById("id_class_outcome").style.display = "none";
         document.getElementById("id_class_othercome").style.display = "inline";
       },
+      showIndexs(){
+        // const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
+        console.log(this.checkboxGroup2.toString());
+        if(this.checkboxGroup2.toString().indexOf("净资产") != -1) {
+          document.getElementById("Index_NetWorth").style.display = "inline";
+        } else {
+          document.getElementById("Index_NetWorth").style.display = "none";
+        }
 
+        if(this.checkboxGroup2.toString().indexOf("恩格尔系数") != -1) {
+          document.getElementById("Index_EngelsCoefficient").style.display = "inline";
+        } else {
+          document.getElementById("Index_EngelsCoefficient").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("刚性比率") != -1) {
+          document.getElementById("Index_RigidRatio").style.display = "inline";
+        } else {
+          document.getElementById("Index_RigidRatio").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("资产负债率") != -1) {
+          document.getElementById("Index_AssetLiabilityRatio").style.display = "inline";
+        } else {
+          document.getElementById("Index_AssetLiabilityRatio").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("偿债能力") != -1) {
+          document.getElementById("Index_Solvency").style.display = "inline";
+        } else {
+          document.getElementById("Index_Solvency").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("杠杆比例") != -1) {
+          document.getElementById("Index_Leverage").style.display = "inline";
+        } else {
+          document.getElementById("Index_Leverage").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("月消费比率") != -1) {
+          document.getElementById("Index_MonthConsumptionRatio").style.display = "inline";
+        } else {
+          document.getElementById("Index_MonthConsumptionRatio").style.display = "none";
+        }
+
+        if(this.checkboxGroup2.toString().indexOf("月储蓄比例") != -1) {
+          document.getElementById("Index_MonthlySavingsRatio").style.display = "inline";
+        } else {
+          document.getElementById("Index_MonthlySavingsRatio").style.display = "none";
+        }
+
+
+
+
+      },
 
 
       drawIncomeBar() {
@@ -164,7 +266,7 @@
         let myIncomeBar = echarts.init(document.getElementById('myIncomeBar'))
         // 绘制图表
         myIncomeBar.setOption({
-          title: { text: '您本月的收入变化' },
+          // title: { text: '您本月的收入变化' },
           tooltip: {
             trigger: 'axis',
             axisPointer:{
@@ -249,7 +351,7 @@
           legend: {
             orient: 'vertical',
             x: 'left',
-            data:['交通','生活用品','学习费用','饮食','体育锻炼','水电费','其他']
+            data:['总日常支出','总学习支出','总饮食支出','总出行支出','总娱乐支出']
           },
           series: [
             // {
@@ -323,13 +425,11 @@
                 }
               },
               data:[
-                {value:310, name:'交通'},
-                {value:234, name:'生活用品'},
-                {value:135, name:'学习费用'},
-                {value:666, name:'饮食'},
-                {value:251, name:'体育锻炼'},
-                {value:147, name:'水电费'},
-                {value:102, name:'其他'}
+                {value:310, name:'总日常支出'},
+                {value:234, name:'总学习支出'},
+                {value:135, name:'总饮食支出'},
+                {value:666, name:'总出行支出'},
+                {value:251, name:'总娱乐支出'},
               ]
             }
           ]
@@ -343,3 +443,9 @@
 
 </script>
 
+<style>
+  .LevelTwoPanel i{
+    color: #409EFF;
+  }
+
+</style>

@@ -2,7 +2,7 @@
   <personalCenter paneltitle="基础信息">
     <div id="userinformation">
       <div class="col-xs-12 col-md-12">
-        <h4>个人资料<span style="font-size: smaller;"><a href="#">[编辑]</a></span></h4><hr/>
+        <h4><b class="user_info_title">个人资料</b><span style="font-size: smaller;"><a href="#">[编辑]</a></span></h4><hr/>
         <div class="col-xs-12 col-sm-9 placeholder">
           <div class="user_info">
             <div class="table-responsive">
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="col-xs-12 col-md-12">
-        <h4>信用状况</h4><hr/>
+        <h4><b class="user_info_title">信用状况</b></h4><hr/>
         <div class="user_credit">
           <div class="table-responsive" style="text-indent: 5px">
             <table class="table table-bordered">
@@ -177,6 +177,10 @@
   .user_credit caption>b{
     color: #333333;
     font-size: large;
+  }
+
+  .user_info_title{
+    color: #505050;
   }
 
 </style>

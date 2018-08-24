@@ -3,7 +3,7 @@
     <div>
       <div class="chooseButton">
         <el-row>
-          <el-button id="midcheck_btn" @click="change_mid" autofocus="true" >中级用户认证</el-button>
+          <el-button id="midcheck_btn" @click="change_mid">中级用户认证</el-button>
           <el-button id="adcheck_btn" @click="change_ad">高级用户认证</el-button>
         </el-row>
       </div>
