@@ -31,70 +31,73 @@
           </div>
 
           <div class="primary_panel" style="margin-top: 20px">
-            <div class="row">
-              <label for="name">项目名称</label> <el-input id="name" v-model="name" placeholder="请输入名称" clearable></el-input>
+
+            <el-form ref="form1" :model="form1" label-width="80px" class="primary_info">
+              <div class="title">基本信息</div>
+              <el-form-item label="项目名称">
+                <el-input v-model="form1.name"></el-input>
+              </el-form-item>
+              <el-form-item label="拆借金额">
+                <el-input v-model="form1.money"></el-input>
+              </el-form-item>
+              <el-form-item label="开始日期">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+              </el-form-item>
+              <el-form-item label="截止日期">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
+              </el-form-item>
+              <el-form-item label="还款日期">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date3" style="width: 100%;"></el-date-picker>
+              </el-form-item>
+            </el-form>
+
             </div>
-            <div class="row">
-              <label for="money">拆借金额</label><el-input id="money" v-model="money" placeholder="请输入金额" clearable></el-input>
-            </div>
-            <div class="row">
-              <label>开始日期</label><br>
-              <el-date-picker
-                v-model="date1"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
-            </div>
-            <div class="row">
-              <label>截止日期</label><br>
-              <el-date-picker
-                v-model="date2"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
-            </div>
-            <div class="row">
-              <label>还款日期</label><br>
-              <el-date-picker
-                v-model="date3"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
-            </div>
-          </div>
+
 
           <div id="consume" style="margin-top: 20px">
 
-            <div class="row">
+            <el-form ref="form2" :model="form2" label-width="100px" class="primary_info">
+              <div class="title">资金去向</div>
+              <el-form-item label="资金用途分类">
+                <el-select v-model="form2.region" placeholder="资金用途分类">
+                  <el-option label="日常生活周转" value="daily"></el-option>
+                  <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
+                  <el-option label="游戏娱乐电影音乐" value="game"></el-option>
+                  <el-option label="旅游" value="travel"></el-option>
+                  <el-option label="购买电子产品" value="shop"></el-option>
+                  <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
+                </el-select>
+              </el-form-item>
 
-              <el-form :inline="true" :model="formInline" class="demo-form-inline">
+              <el-form-item label="资金用途详述">
+                <el-input
+                  type="textarea"
+                  :rows="4"
+                  placeholder="请输入内容"
+                  v-model="form2.textarea1">
+                </el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
+              </el-form-item>
+            </el-form>
 
-                <el-form-item label="资金用途分类">
-                  <el-select v-model="formInline.region" placeholder="资金用途分类">
-                    <el-option label="日常生活周转" value="daily"></el-option>
-                    <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
-                    <el-option label="游戏娱乐电影音乐" value="game"></el-option>
-                    <el-option label="旅游" value="travel"></el-option>
-                    <el-option label="购买电子产品" value="shop"></el-option>
-                    <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
-                  </el-select>
-                </el-form-item>
+            <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
+              <div class="title">关于还款</div>
+              <el-form-item label="设置还款利率">
+                <el-input v-model="form3.rate"></el-input>
+              </el-form-item>
 
-              </el-form>
+              <el-form-item label="生成还款方案">
+                <el-switch v-model="form3.create"></el-switch>
+              </el-form-item>
 
-            </div>
+              <el-form-item v-if="form3.create" label="还款方案" id="return">
 
-            <div class="row">
-              <label>资金用途详述</label><br>
-              <el-input
-                type="textarea"
-                :rows="4"
-                placeholder="请输入内容"
-                v-model="textarea1">
-              </el-input>
-              <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+              </el-form-item>
 
-            </div>
+
+            </el-form>
 
             <div class="row">
               <label>还款方案</label><br>
@@ -124,7 +127,7 @@
                 type="textarea"
                 :rows="4"
                 placeholder="请输入内容"
-                v-model="textarea1">
+                v-model="textarea2">
               </el-input>
               <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
             </div>
@@ -209,7 +212,8 @@
         change22(){
           document.getElementById("sheet").style.display = "inline";
           document.getElementById("check").style.display = "none";
-        }
+        },
+
       },
 
       data(){
@@ -219,15 +223,25 @@
               return time.getTime() > Date.now();
             },
           },
-          date1: '',
-          date2: '',
-          date3: '',
-          usage_radio: 3,
-          textarea1: '',
-          formInline: {
-            user: '',
-            region: ''
+          form1:{
+            name: '',
+            money: '',
+            date1: '',
+            date2: '',
+            date3: '',
           },
+          form2: {
+            user: '',
+            region: '',
+            textarea1:''
+          },
+          form3:{
+            rate:'',
+            create:false
+          },
+
+          usage_radio: 3,
+          textarea2:'',
 
           tableData: [{
             name: '融资项目一',
@@ -343,6 +357,22 @@
       height: 150px;
       border: 1px black solid;
       margin-right:40px;
+    }
+
+    .primary_info{
+      margin-top: 50px;
+      border:2px #d6d6d6 solid;
+      border-radius:20px;
+      padding:10px 50px 20px 40px;
+      /*padding-left:40px;
+      padding-top:10px;
+      padding-bottom: 30px;
+      padding-right: 40px;*/
+    }
+    .title{
+      font-size: 23px;
+      color: #acacac;
+      padding-bottom: 20px;
     }
     .row{
       width:400px;
