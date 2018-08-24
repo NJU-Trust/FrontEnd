@@ -28,7 +28,8 @@
       <div class="LevelTwoIndex" id="leveltwocheck">
         <div>
           <div style="margin-top: 20px">
-            <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="showIndexs">
+            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选（此处暂时有点bug，全选后不能立刻显示）</el-checkbox>
+            <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange">
               <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
             </el-checkbox-group>
           </div>
@@ -82,7 +83,7 @@
         </div>
 
         <div class="class_othercome"id="id_class_othercome" style="display: none">
-          <p style="font-size: 3em">此处展示{{date_value_choose.toString()}}的其他数据</p>
+          <p style="font-size: 1em">此处展示{{date_value_choose.toString()}}的其他数据</p>
         </div>
 
       </div>
@@ -96,11 +97,11 @@
             <hr/>
           </div>
           <div id="Index_EngelsCoefficient">
-            <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp  在同学中处于中等水平</b></h4>
+            <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4>
             <hr/>
           </div>
           <div id="Index_RigidRatio">
-            <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%</b></h4>
+            <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%，当前可支配收入较多，建议后期缩减开支</b></h4>
             <hr/>
           </div>
           <div id="Index_AssetLiabilityRatio">
@@ -116,7 +117,7 @@
             <hr/>
           </div>
           <div id="Index_MonthConsumptionRatio">
-            <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%</b></h4>
+            <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平，您倾向于预期消费</b></h4>
             <hr/>
           </div>
           <div id="Index_MonthlySavingsRatio">
@@ -179,7 +180,9 @@
         // value6: '',
         date_value_choose: '',
         checkboxGroup2: [],
-        indexAs: indexAOptions
+        indexAs: indexAOptions,
+        checkAll: false,
+        isIndeterminate: true
       };
     },
     mounted() {
@@ -189,6 +192,16 @@
       this.showIndexs();
     },
     methods: {
+      handleCheckAllChange(val) {
+        this.checkboxGroup2 = val ? indexAOptions : [];
+        this.isIndeterminate = false;
+      },
+      handleCheckedCitiesChange(value) {
+        let checkedCount = value.length;
+        this.checkAll = checkedCount === this.indexAs.length;
+        this.isIndeterminate = checkedCount > 0 && checkedCount < this.indexAs.length;
+        this.showIndexs();
+      },
       change_income(){
         document.getElementById("id_class_income").style.display = "inline";
         document.getElementById("id_class_outcome").style.display = "none";
