@@ -46,10 +46,10 @@
             // // }
             // }
             res => {
-              store.commit(types.LOGIN, response.data['accessToken']);
-              console.log(response.data)
+              store.commit(types.LOGIN, res.data['accessToken']);
+              console.log(res.data)
             }).catch(err => {
-            console.log(error)
+            console.log(err)
           });
         }
       }
