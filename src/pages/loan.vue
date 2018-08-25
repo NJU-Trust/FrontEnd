@@ -27,9 +27,6 @@
                   学习培训类大额长期
                 </div>
               </div>
-
-              <!--<el-button id="consume_btn" @click="change1" autofocus="true">消费类小额短期</el-button>
-              <el-button id="learn_btn" @click="change2">学习培训类大额长期</el-button>-->
             </el-row>
           </div>
 
@@ -103,6 +100,9 @@
                   <el-collapse-item title="等额本金" name="1">
                     <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
                     <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                    <!--<div>
+                      <evaluate></evaluate>
+                    </div>-->
                   </el-collapse-item>
                   <el-collapse-item title="等额本息" name="2">
                     <div>每月偿还等同数额的贷款；</div>
@@ -224,6 +224,9 @@
         rightBar,
         evaluate
       },
+      beforeCreate:function(){
+        localStorage.route = "#loan";
+      },
       methods:{
         change1(){
           document.getElementById("learn").style.display = "none";
@@ -320,10 +323,6 @@
 
 <style scoped>
 
-    /*.body{
-      background-color: #5f9ea0;
-    }*/
-
     .left_label{
       width:200px;
       height:50px;
@@ -393,7 +392,7 @@
       margin-left:27%;
     }
     .chooseButton{
-      margin-left: 15%;
+      margin-left: 20%;
     }
     .return{
       display: flex;
@@ -409,15 +408,11 @@
     }
 
     .primary_info{
-      width:700px;
+      width:750px;
       margin-top: 50px;
       border:2px #d6d6d6 solid;
       border-radius:20px;
       padding:10px 50px 20px 40px;
-      /*padding-left:40px;
-      padding-top:10px;
-      padding-bottom: 30px;
-      padding-right: 40px;*/
     }
     .title{
       font-size: 23px;

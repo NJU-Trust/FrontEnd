@@ -2,7 +2,7 @@
     <div class="main_panel">
       <div class="top_panel">
         <div>
-          <div style="padding-left: 20px">
+          <div style="padding-left: 30px">
             还款难度：
             <i class="el-icon-star-on"></i>
             <i class="el-icon-star-on"></i>
