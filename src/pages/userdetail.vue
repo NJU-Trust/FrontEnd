@@ -7,17 +7,19 @@
       <div class="base-info" style="padding:10px 0px 0px 100px;">
 
         <label>用户名称：</label>
-        <label>XXXXXXXXXXXXXX</label>
+        <label>XXXXXXXX</label>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>用户等级：</label>
-        <label>XXXXXXXXXXXXXX</label>
+        <label>信用评级：</label>
+        <label>XXXXXXXX</label>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label >手机号：</label>
-        <label>XXXXXXXXXXXXXX</label>
+        <label>XXXXXXXX</label>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>邮箱：</label>
-        <label>XXXXXXXXXXXXXX</label>
+        <label>XXXXXXX</label>
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>借款状态：</label>
+        <label>XXXXXXX</label>
         <router-link to="/usermanage">
           <button type="button" class="returnButton">返回列表</button>
         </router-link>
@@ -36,7 +38,7 @@
         <br/>
         <br/>
         <br/>
-        <label>投资信息</label>
+        <label>投资历史</label>
         <br/>
         <br/>
         <br/>
@@ -48,7 +50,7 @@
         <br/>
         <br/>
         <br/>
-        <br/>
+        <label>个人财务</label>
         <br/>
         <br/>
         <br/>
@@ -63,8 +65,7 @@
 
     </div>
 
-
-
+    <footerBar></footerBar>
   </div>
 
 
@@ -72,22 +73,23 @@
 </template>
 
 <script>
+  import footerBar from '@/components/footerBar.vue';
   import adminNavi from '@/components/adminNavi.vue';
   export default {
     name: "userdetail",
-    components:{adminNavi},
+    components:{adminNavi,footerBar},
   }
 </script>
 
 
 <style scoped>
   .userdetail{
-    height: 570px;
+    height: 572px;
     min-width: 160px;
     min-height: 80px;
     padding: 0px 0px;
     line-height: 10px;
-    background-color:rgba(0,100,200,0.3);
+    background-color:rgba(173,216,230,0.5);
     color: white;
     border: none;
     font-size: 14px;
