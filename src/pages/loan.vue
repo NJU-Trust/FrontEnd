@@ -7,7 +7,7 @@
       <el-form class="back">
         <div class="left">
           <div class="left_label look_label" @click="change11">
-            查看借款情况
+            我的借款情况
           </div>
           <div class="left_label ask_label" @click="change22">
             申请借款
@@ -134,7 +134,7 @@
                 </div>
               </el-form-item>
 
-              <el-form-item>
+              <el-form-item style="padding-left: 140px">
                 <el-button type="primary" @click="onSubmit">确定贷款</el-button>
                 <el-button @click="clean_form3">清空重写</el-button>
               </el-form-item>
@@ -167,19 +167,42 @@
 
           </div>
         </div>
-        <div id="check" class="sheet">
+        <div id="check" style="margin-top: 100px;">
+          <div class="choose">
+            <el-form :inline="true" :model="formInline" class="demo-form-inline">
+              <el-form-item label="项目金额">
+                <el-input v-model="formInline.money" style="width: 120px;"></el-input>
+              </el-form-item>
+              <el-form-item label="项目类型" >
+                <el-select v-model="formInline.category">
+                  <el-option label="不限" value="any"></el-option>
+                  <el-option label="消费类小额短期" value="consume"></el-option>
+                  <el-option label="学习培训类大额长期" value="learn"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="还款日期" >
+                <el-date-picker type="date" placeholder="选择日期" v-model="formInline.return_date" style="width: 140px;"></el-date-picker>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSubmit">查询</el-button>
+              </el-form-item>
+            </el-form>
+            <!--<div class="title">筛选条件</div>-->
+          </div>
           <el-table
             :data="tableData"
-            style="width: 100%">
+            style="margin-left: 30%">
             <el-table-column
               prop="name"
               label="名称"
-              width="180">
+              width="140"
+              align="center">
             </el-table-column>
             <el-table-column
               prop="num"
-              label="已投资数目"
-              width="180">
+              label="已获投资数"
+              width="180"
+              align="center">
             </el-table-column>
             <el-table-column
               prop="date"
@@ -187,9 +210,15 @@
               width="180">
             </el-table-column>
             <el-table-column
+              prop="process"
+              label="项目进度"
+              width="140">
+            </el-table-column>
+            <el-table-column
               prop="action"
               label="操作"
-              width="180">
+              width="180"
+              align="center">
               <template slot-scope="scope">
                 <el-button
                   size="mini"
@@ -298,23 +327,32 @@
             name: '融资项目一',
             num: '1',
             date: '2018/9/17',
+            process:'200/1000',
             action:''
           }, {
             name: '融资项目二',
             num: '2',
             date: '2018/9/17',
+            process:'200/1000',
             action:''
           }, {
             name: '融资项目三',
             num: '3',
             date: '2018/9/17',
+            process:'200/1000',
             action:''
           }, {
             name: '融资项目四',
             num: '4',
             date: '2018/9/17',
+            process:'200/1000',
             action:''
-          }]
+          }],
+          formInline:{
+            money:'',
+            category:'any',
+            return_date:''
+          }
         };
       },
 
@@ -418,6 +456,13 @@
       font-size: 23px;
       color: #acacac;
       padding-bottom: 20px;
+    }
+
+    .choose{
+      display: flex;
+     /* border: 1px black solid;*/
+      margin-left: 30%;
+      width:1000px;
     }
     .row{
       width:400px;
