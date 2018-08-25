@@ -1,6 +1,9 @@
 <template>
     <div id="app">
       <navi></navi>
+      <div>
+        <right-bar></right-bar>
+      </div>
       <el-form class="back">
         <div class="left">
           <div class="left_label look_label" @click="change11">
@@ -73,7 +76,7 @@
                 </el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
+                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
               </el-form-item>
             </el-form>
 
@@ -107,20 +110,28 @@
                   </el-collapse-item>
                   <el-collapse-item title="一次性还本付息" name="3">
                     <div>贷款到期后一次性归还本金和利息；</div>
-                    <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长；</div>
+                    <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
                   </el-collapse-item>
                   <el-collapse-item title="先息后本" name="4">
-                    <div>每月只需支付利息，期末还清本金</div>
-                    <div>资金利用时间长</div>
+                    <div>每月只需支付利息，期末还清本金；</div>
+                    <div>资金利用时间长。</div>
                   </el-collapse-item>
                 </el-collapse>
               </el-form-item>
 
               <el-form-item>
-                <div v-if="this.form3.activeName==='1'">A</div>
-                <div v-else-if="this.form3.activeName==='2'">B</div>
-                <div v-else-if="this.form3.activeName==='3'">C</div>
-                <div v-else-if="this.form3.activeName==='4'">D</div>
+                <div v-if="this.form3.activeName==='1'">
+                 <evaluate></evaluate>
+                </div>
+                <div v-else-if="this.form3.activeName==='2'">
+                  B
+                </div>
+                <div v-else-if="this.form3.activeName==='3'">
+                  C
+                </div>
+                <div v-else-if="this.form3.activeName==='4'">
+                  D
+                </div>
               </el-form-item>
 
               <el-form-item>
@@ -146,7 +157,7 @@
                 </el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" style="margin-top: 10px">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
               </el-form-item>
             </el-form >
 
@@ -201,13 +212,17 @@
     import navi from '@/components/navi.vue';
     import ElCard from "element-ui/packages/card/src/main";
     import footerBar from '@/components/footerBar.vue';
+    import rightBar from '@/components/rightBar.vue';
+    import evaluate from '@/components/evaluate.vue';
 
     export default {
       name: "loan",
       components:{
         ElCard,
         navi,
-        footerBar
+        footerBar,
+        rightBar,
+        evaluate
       },
       methods:{
         change1(){
