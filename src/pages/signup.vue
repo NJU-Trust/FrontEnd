@@ -20,20 +20,23 @@
 
       </div>
 
-      <div style="text-align: center; color: white;text-align: center;font-size: 20px; margin-top: 2%">
-        <span style="color: white;text-align: center;font-size: 22px;font-family: 'Microsoft YaHei UI'">Trust,让你的大学生活更美好</span><br>
-        <p style="color: white;text-align: center;display: block;padding-top: 40px">@怎么码都码不队</p>
-        <div style="margin-top: 0;" class="bott">
-          <a>关于我们</a>|<a>联系我们</a>|<a>微博</a>
-        </div>
-      </div>
+      <!--<div style="text-align: center; color: white;text-align: center;font-size: 20px; margin-top: 2%">-->
+        <!--<span style="color: white;text-align: center;font-size: 22px;font-family: 'Microsoft YaHei UI'">Trust,让你的大学生活更美好</span><br>-->
+        <!--<p style="color: white;text-align: center;display: block;padding-top: 40px">@怎么码都码不队</p>-->
+        <!--<div style="margin-top: 0;" class="bott">-->
+          <!--<a>关于我们</a>|<a>联系我们</a>|<a>微博</a>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
+    <footer-bar style="margin-top: 100px"></footer-bar>
   </div>
 </template>
 
 <script>
+  import footerBar from '@/components/footerBar.vue';
     export default {
         name: "signup",
+      components: {footerBar},
       mounted: function(){
         $("#account").change(function () {
           if($("#account").val().length<2){
@@ -167,7 +170,7 @@
     background-attachment:fixed;
     background-position: center center;
     background-repeat: no-repeat;
-    padding-bottom: 0;
+    padding: 0;
   }
 
   .mainbox{
