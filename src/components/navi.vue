@@ -20,7 +20,7 @@
     <div id="manageAccount">
       <button style="background-color: lightskyblue">用户模式</button>
       <a href="./adminObjects" id="admin"><button>管理模式</button></a>
-      <a href="./examineObjects" id="examine"><button>审核模式</button></a>
+      <a href="./EnterVerify" id="EnterVerify"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
   </div>

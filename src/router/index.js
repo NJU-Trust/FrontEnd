@@ -12,6 +12,10 @@ import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
+import EnterVerify from '@/pages/EnterVerify'
+import userverify from '@/pages/userverify'
+import targetverify from '@/pages/targetverify'
+import targetcheck from '@/pages/targetcheck'
 
 Vue.use(Router)
 
@@ -76,6 +80,25 @@ export default new Router({
       path:'/DoInvesting',
       name:'DoInvesting',
       component:DoInvesting
+    },
+    {
+      path:'/EnterVerify',
+      name:'EnterVerify',
+      component:EnterVerify
+    },
+    {
+      path:'/userverify',
+      name:'userverify',
+      component:userverify
+    },
+    {
+      path:'/targetverify',
+      name:'tergetverify',
+      component:targetverify
+    },{
+      path:'/targetcheck',
+      name:'targetcheck',
+      component:targetcheck
     }
 
 
