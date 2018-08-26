@@ -55,8 +55,14 @@
           <td style="border: 1px solid white ;text-align:center;">{{ user.email }}</td>
           <td style="border: 1px solid white ;text-align:center;">{{ user.state }}</td>
           <td style="border: 1px solid white ;text-align:center;">
-            <router-link to="/userdetail">
-              <button class="checkDetailButton">查看</button>
+            <router-link to="">
+              <button class="checkDetailButton">历史投资</button>
+            </router-link>
+            <router-link to="">
+              <button class="checkDetailButton">查看标的</button>
+            </router-link>
+            <router-link to="">
+              <button class="checkDetailButton">个人财务</button>
             </router-link>
           </td>
         </tr>
