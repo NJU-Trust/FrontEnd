@@ -10,8 +10,8 @@
             <li><a id="loan" href="/loan">借款</a></li>
             <li><a id="trade" href="/trade">交易</a></li>
             <li><a id="notice" href="/notice">发布</a></li>
-            <li><a id="guide" href="./guide">教程</a></li>
-            <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
+            <li><a id="guide" href="/guide">教程</a></li>
+            <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
@@ -19,8 +19,8 @@
     </nav>
     <div id="manageAccount">
       <button style="background-color: lightskyblue">用户模式</button>
-      <a href="./adminObjects" id="admin"><button>管理模式</button></a>
-      <a href="./examineObjects" id="examine"><button>审核模式</button></a>
+      <a href="/adminObjects" id="admin"><button>管理模式</button></a>
+      <a href="/examineObjects" id="examine"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
   </div>
@@ -58,7 +58,7 @@ export default {
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
       personalCenter.innerText = '个人中心';
-      personalCenter.href = './userSpace';
+      personalCenter.href = '/userSpace';
       var newLi = document.createElement('li');
       newLi.style.cssFloat = 'right';
       $('#nav').append(newLi);
