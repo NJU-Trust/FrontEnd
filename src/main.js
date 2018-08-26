@@ -5,9 +5,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
-import axios from './httpConfig/http'
+import axios from './httpConfig/url_config'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import echarts from 'echarts'
+
+
 // import store from './store/index'; //引入store
 
 
@@ -16,6 +19,8 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios= axios;
+Vue.prototype.$echarts = echarts
+
 
 
 /* eslint-disable no-new */

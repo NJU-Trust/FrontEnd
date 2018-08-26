@@ -1,25 +1,31 @@
 <template>
   <div class="investList">
-  <div class="type">
-    <p class="center">STUDY</p>
-  </div>
-  <div>
-    <p class="month" style="margin-top:5%;">Profit : </p>
-    <p class="profit">10.9840%</p>
-    <p class="month">/ per year</p>
-  </div>
-  <div class="itemDescription">
-    <p class="itemName">托福补课学费</p>
-    <p class="money">￥8 000  </p><p class="moneyName"> / 剩余金额</p>
-    <p style="margin-top:5%;">借款总金额：￥8 000</p>
-    <p>完成率：0%</p>
-    <p>借款截止：2018.9.10</p>
-    <p>还款日期：2019.9.10</p>
-    <p></p>
-  </div>
-  <div>
-    <input type="button" value="Invest now" class="enterInvest">
-  </div>
+    <div class="type">
+      <p class="center">STUDY</p>
+    </div>
+    <div>
+      <p class="month" style="margin-top:5%;">Profit : </p>
+      <p class="profit">10.9840%</p>
+      <p class="month">/ per year</p>
+    </div>
+    <div class="itemDescription">
+      <p class="itemName">托福补课学费</p>
+      <p class="money">￥3 000  </p><p class="moneyName"> / 剩余金额</p>
+      <p style="margin-top:5%;">借款总金额：￥8 000</p>
+      <p>完成度:</p>
+      <div class="progress round-conner">
+        <div class="curRate round-conner">
+          <p>62.5%</p>
+        </div>
+        <div style="display:inline;"></div>
+      </div>
+      <p>借款截止：2018.9.10</p>
+      <p>还款日期：2019.9.10</p>
+      <p></p>
+    </div>
+    <div>
+      <input type="button" value="Invest now" class="enterInvest"/>
+    </div>
   </div>
 </template>
 <script>
@@ -29,6 +35,20 @@
 </script>
 
 <style scoped>
+  .progress {
+    background: #A6A3A3;
+    margin-left:5%;
+    margin-right:5%;
+  }
+  .curRate {
+    width: 62.5%;
+    background: #4285F4;
+    color:white;
+  }
+  .round-conner {
+    height: 18px;
+    border-radius: 15px;
+  }
   .investList{
     background: white;
     border:1px solid #e4e4e4;

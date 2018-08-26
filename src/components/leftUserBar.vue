@@ -28,7 +28,7 @@
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
         <li><a href="/UserSpace/NormalCheck" id="checkA" @click="setB">普通验证</a></li>
-        <li><a href="#">校友验证</a></li>
+        <li><a href="/UserSpace/AlumniCheck">校友验证</a></li>
         <li><a href="#">交叉验证</a></li>
       </ul>
     </div>

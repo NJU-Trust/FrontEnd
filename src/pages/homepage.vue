@@ -74,7 +74,6 @@
       name: "homepage",
       components:{Login, navi, footerBar, rightBar,announcement,topRange},
       mounted: function () {
-        //localStorage.ifLogin=1;
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
       },

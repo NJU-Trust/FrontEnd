@@ -6,13 +6,13 @@
         <h3 style="color: white;float: top;" align="center">注册</h3>
         <input id="phone" type="text" style="margin-top: 20px;" placeholder="请输入手机号码">
         <input id="email" type="text" style="margin-top: 20px" placeholder="请输入邮箱地址">
-        <input id="account" type="text" style="margin-top: 20px;" align="center" placeholder="请输入用户名，长度在2到15个字符之间"><br>
+        <input id="nickname" type="text" style="margin-top: 20px;" align="center" placeholder="请输入昵称，长度在2到15个字符之间"><br>
         <input id="password" type="password" style="margin-top: 20px;" align="center" placeholder="请输入密码，长度在6到20个字符之间"><br>
         <input id="passwordConfirm" type="password" style="margin-top: 20px;" align="center" placeholder="确认密码"><br>
         <input id="messageCode" type="text" style="width:40%;margin-top: 20px;" placeholder="请输入短信验证码">
-        <button id="sendMessage" v-on:click="sendMessage()">获取验证码</button>
+        <button id="sendMessage">获取验证码</button>
         <input id="emailCode" type="text" style="width:40%;margin-top: 20px;" placeholder="请输入邮箱验证码">
-        <button id="sendEmail" v-on:click="sendEmail()">获取验证码</button>
+        <button id="sendEmail">获取验证码</button>
         <button id="signup" class="bigButton" v-on:click="signup()">注册</button><br>
         <div style="width: 100%;text-align: center;margin-top: 10px">
           <a href="/login" style="font-size: 16px;color: yellow;">已有账号，立即登录</a>
@@ -157,7 +157,7 @@
             });
           }
       }
-
+      
     }
 </script>
 

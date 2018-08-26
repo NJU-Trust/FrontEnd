@@ -1,82 +1,83 @@
-<template id="mylist">
+<template>
   <div class="UserList">
     <adminNavi></adminNavi>
     <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
     <div class="mytable">
-      <div class="base-info" style="padding:50px 0px 0px 70px; font-size:12px;">
+      <div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">
+        <label style="font-size: 14px;">筛选条件:</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>用户名称：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="username" value="" v-model="input_username"/><!--<input type="text" v-model="input_username" />-->
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>用户等级：</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>信用评级：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="level" value="" v-model="input_level"/>
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label >电话：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value=""/>
+          <input type="text" name="tel" value="" v-model="input_tel"/>
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>邮箱：</label>
         <form style="display:inline-block;color:black">
-          <input type="text" name="username" value="">
+          <input type="text" name="email" value="" v-model="input_email">
         </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <button class="sureButton">确认筛选</button>
-      </div>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    <table class="usertable">
-      <tbody class="usertablebody">
-      <!--
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户等级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      -->
-      <tr>
-        <th v-for='item in columnList' style="border: 1px solid white;text-align:center;">{{item.column_name}}</th>
-      </tr>
-      <tr v-for='item in inforList'>
-        <td v-for='it in columnList' style="border: 1px solid white ;text-align:center;">{{item[it.column_name]}}</td>
-      </tr>
-      </tbody>
-    </table>
-    </div>
-<!--
-    <div class="pager-wrapper" v-if="pageNum < 6">
-      <div v-for="(item, index) in pages" class="item" :class='{active : active === (index + 1)}' @click="changePage(item)">
-        {{item}}
-      </div>
-    </div>
-    <div v-else>
-      <div class="pager-wrapper" v-if="active < 4">
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === (index + 1)}' @click="changePage(item)">
-          {{item}}
-        </div>
-        <div class="point">...</div>
-        <div class="item" @click="end">{{pageNum}}</div>
-      </div>
-      <div class="pager-wrapper" v-else-if="active < (pageNum - 2)">
-        <div class="item" @click="start">1</div>
-        <div class="point">...</div>
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === item}' @click="changePage(item)">
-          {{item}}
-        </div>
-        <div class="point">...</div>
-        <div class="item" @click="end">{{pageNum}}</div>
-      </div>
-      <div class="pager-wrapper" v-else>
-        <div class="item" @click="start">1</div>
-        <div class="point">...</div>
-        <div v-for="(item, index) in pages" class="item" :class='{active : active === item}' @click="changePage(item)">
-          {{item}}
-        </div>
-      </div>
-    </div>
--->
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <!--选择过滤条件-->
+        <label>借款状态：</label>
+        <select name="state" type="hidden" v-model.lazy="state" style="color:black;">
+          <option value="">所有</option>
+          <option value="无借款">无借款</option>
+          <option value="待还款">待还款</option>
+          <option value="逾期用户">逾期用户</option>
+        </select>
 
+      </div>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <div class="tableBackground" style="background-color:rgba(173,216,230,0.3);">
+      <table class="usertable">
+        <tbody class="usertablebody">
+        <tr>
+          <th style="border: 1px solid white;text-align:center;">用户名称</th>
+          <th style="border: 1px solid white;text-align:center;">信用评级</th>
+          <th style="border: 1px solid white;text-align:center;">电话</th>
+          <th style="border: 1px solid white;text-align:center;">邮箱</th>
+          <th style="border: 1px solid white;text-align:center;">借款状态</th>
+          <th style="border: 1px solid white;text-align:center;">操作</th>
+        </tr>
+        <tr v-for="user in filteredUsers" @click="showModel" >
+          <td style="border: 1px solid white ;text-align:center;">{{ user.username }}</td>
+          <td style="border: 1px solid white ;text-align:center;">{{ user.level }}</td>
+          <td style="border: 1px solid white ;text-align:center;">{{ user.tel }}</td>
+          <td style="border: 1px solid white ;text-align:center;">{{ user.email }}</td>
+          <td style="border: 1px solid white ;text-align:center;">{{ user.state }}</td>
+          <td style="border: 1px solid white ;text-align:center;">
+            <router-link to="/userdetail">
+              <button class="checkDetailButton">查看</button>
+            </router-link>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="full-width">
+        <tr>
+          <th></th>
+          <th colspan="4" style="text-align:center;">
+            <button class="pageButton" @click="turnPage(-1)">Prev</button>
+            <span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>
+            <button class="pageButton" @click="turnPage(1)">Next</button>
+            <span>跳转到第</span>
+            <input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">
+            <span>页</span>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+      </div>
+    </div>
+    <footerBar></footerBar>
 
   </div>
 
@@ -85,153 +86,201 @@
 </template>
 
 <script>
+  import footerBar from '@/components/footerBar.vue';
   import adminNavi from '@/components/adminNavi.vue';
+  var mockUsers = [{username: '佳未1',state:'无借款',
+    level: '1',
+    tel: '12345678',
+    email: '1@qq.com',},
+    {username: '佳未2',state:'无借款',
+      level: '2',
+      tel: '22345678',
+      email: '2@qq.com',},
+    {username: '佳未3',state:'无借款',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未3',state:'无借款',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未3',state:'无借款',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未3',state:'无借款',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未3',state:'逾期用户',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未9',state:'待还款',
+      level: '9',
+      tel: '32345678',
+      email: '9@qq.com',},
+    {username: '佳未',state:'待还款',
+      level: '3',
+      tel: '32345678',
+      email: '3@qq.com',},
+    {username: '佳未10',state:'无借款',
+      level: '10',
+      tel: '32345678',
+      email: '10@qq.com',},
+    {username: '许杨',state:'无借款',
+      level: '5',
+      tel: '99945678',
+      email: 'xy@qq.com',}];
+  var STORAGE_KEY = 'users';
+  var userStorage = {
+    fetch: function () {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || mockUsers
+    },
+    save: function (data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    }
+  };
 
   export default {
     name: "usermanage",
-    components:{adminNavi},
+    components:{adminNavi,footerBar},
     data () {
       return {
-        columnList: [{column_name:'       用户名称       '},
-          {column_name:'       用户等级       '},
-          {column_name:'       电话       '},
-          {column_name:'       邮箱       '}],
-        inforList: [{'       用户名称       ': '佳未1',
-          '       用户等级       ': '1',
-          '       电话       ': '12345678',
-          '       邮箱       ': '1@qq.com',},
-          {'       用户名称       ': '佳未2',
-            '       用户等级       ': '2',
-            '       电话       ': '22345678',
-            '       邮箱       ': '2@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未3',
-            '       用户等级       ': '3',
-            '       电话       ': '32345678',
-            '       邮箱       ': '3@qq.com',},
-          {'       用户名称       ': '佳未10',
-            '       用户等级       ': '10',
-            '       电话       ': '32345678',
-            '       邮箱       ': '10@qq.com',}]
+        users: userStorage.fetch(), // users 数据
+        selectedUsers: [], // 保存选中的 users 数组
+        selectedUser: {}, // 选中 user
+        input_username: '', // 过滤 username 的关键字
+        input_level:'',// 过滤 level 的关键字
+        input_tel:'',// 过滤 tel 的关键字
+        input_email:'',// 过滤 email 的关键字
+        name: '', // 上一次过滤的 name 关键字，初始化为''
+        state: '', // 过滤 state 的关键字
+        //audit: '', // 上一次过滤的 audit关键字，初始化为''
+        limit: 9, // 每页显示行数
+        totalPage: 0, // 总页数
+        currentPage: 0, // 当前页
+        jPage: 1, // 跳转到某页
+
+
       }
     },
-    /*
-    props: {
-      pageNum: {
-        type: Number,
-        default: 10
-      },
-      activeIndex: {
-        type: Number,
-        default: 1
-      }
-    },
-    data () {
-      return {
-        pages: [],
-        active: 1
-      }
-    },
+    // watch
     watch: {
-      active (val) {
-        this.init()
+      users: {
+        handler () {
+          userStorage.save(this.users)
+        },
+        deep: true
       }
     },
-    created () {
-      this.active = this.activeIndex
-      this.init()
+    // computed properties
+    computed: {
+      filteredUsers () {
+        let fUsers = this.queryFilter('username', this.input_username, this.users)
+        fUsers = this.queryFilter('state', this.state, fUsers)
+        fUsers = this.queryFilter('level',this.input_level,fUsers)
+        fUsers = this.queryFilter('tel',this.input_tel,fUsers)
+        fUsers = this.queryFilter('email',this.input_email,fUsers)
+        return this.paginate(fUsers)
+      }
     },
     methods: {
-      init () {
-        if (this.pageNum < 6) {
-          let pages = []
-          for (let i = 1; i < (this.pageNum + 1); i++) {
-            pages.push(i)
+      addUser() {
+        this.users.push(this.user)
+      },
+      queryFilter(prop, key, arr) {
+        // none query string, return arr
+        if (!key) {
+          return arr
+        }
+        // filtering
+        arr = arr.filter((user) => {
+          if (user[prop].toString().indexOf(key) !== -1) {
+            return true
           }
-          this.pages = pages
-        } else {
-          if (this.active < 4) {
-            let pages = [1, 2, 3]
-            this.pages = pages
-            console.log(this.pages)
-          } else if (this.active < (this.pageNum - 2)) {
-            let pages = [this.active - 1, this.active, this.active + 1]
-            this.pages = pages
+        })
+        // if it's a new filter query, research and turn to page one
+        if (key !== this[prop]) {
+          this.currentPage = 0
+          // save last filter query
+          this[prop] = key
+        }
+        return arr
+      },
+
+      paginate(arr) {
+        // totalPage
+        this.totalPage = Math.ceil(arr.length / this.limit)
+        let page = this.currentPage
+        let curLimit = this.limit
+        // 返回指定条数的数组
+        arr = arr.slice(curLimit * page, curLimit * (page + 1))
+        return arr
+      },
+      turnPage(num) {
+        if (num === 1) {
+          if (this.currentPage === this.totalPage - 1) {
+            return
           } else {
-            let pages = [this.pageNum - 2, this.pageNum - 1, this.pageNum]
-            this.pages = pages
+            this.currentPage++
+          }
+        } else {
+          if (this.currentPage === 0) {
+            return
+          } else {
+            this.currentPage--
           }
         }
       },
-      changePage (item) {
-        this.active = item
-        this.$emit('changePage', item)
+      jumpToPage() {
+        let jPage = this.jPage - 1
+        if (jPage < 0 || jPage > this.totalPage) {
+          alert('page out of range')
+        } else {
+          this.currentPage = jPage
+        }
       },
-      start () {
-        this.active = 1
-        this.$emit('changePage', this.active)
+
+      /*doAudit(newAudit, user) {
+        // user 可指定，为 0 时指选中用户，为 -1 时指全部用户
+        let users = []
+        if (user === 0) {
+          users = this.selectedUsers
+        } else if (user === -1) {
+          this.filteredUsers.forEach((v) => {
+            users.push(v)
+          })
+        } else {
+          users.push(user)
+        }
+        this.setAuditId(users, newAudit)
       },
-      end () {
-        this.active = this.pageNum
-        this.$emit('changePage', this.active)
-      },
-      prev () {
-        if (this.active === 1) return
-        this.active--
-        this.$emit('changePage', this.active)
-      },
-      next () {
-        if (this.active === this.pageNum) return
-        this.active++
-        this.$emit('changePage', this.active)
+      setAuditId(users, aId) {
+        users.forEach((user) => {
+          user.audit = aId
+        })
+      },*/
+      showModel(e) {
+        let target = e.target
+        if (target.nodeName.toLowerCase() === 'td') {
+          $('.ui.modal').modal('show')
+        }
+        let index = $(target.parentNode).index()
+        this.selectedUser = this.filteredUsers[index]
       }
-    }*/
+    }
   }
 </script>
 
 
 <style scoped>
-  .UserList{
-    height: 550px;
-    min-width: 160px;
-    min-height: 60px;
-    padding: 0px 0px;
-    line-height: 1px;
-    background-color:rgba(0,50,200,0.3);
-    color: white;
-    border: none;
-    font-size: 30px;
-    font-family: "Microsoft YaHei UI";
-    top: 0px;
-    position: absolute;
-    letter-spacing: 2px;
-  }
   .mytable{
-    height: 580px;
     min-width: 400px;
     min-height: 80px;
     padding: 0px 0px;
     line-height: 3px;
-    background-color:rgba(0,50,200,0.3);
+    background-color:rgba(173,216,230,0.5);
     color: white;
     border: none;
     font-size: 16px;
@@ -242,12 +291,14 @@
     position: absolute;
     letter-spacing: 2px;
   }
+  .tableBackground{
+    background-color:rgba(173,216,230,0.5);
+    min-height: 470px;
+  }
   .usertable{
-    height: 400px;
     min-width: 400px;
-    min-height: 60px;
-    padding: 100px 0px;
-    line-height: 2px;
+    padding: 240px 0px;
+    line-height: 40px;
     color: white;
     border-collapse: collapse;
     border: none;
@@ -259,13 +310,13 @@
     position: absolute;
     letter-spacing: 2px;
   }
-  .sureButton{
+  .sureButton,.checkDetailButton,.pageButton{
     border-radius: 30px;
     min-width: 80px;
-    min-height: 30px;
+    min-height: 28px;
     padding: 0px 0px;
     line-height: 18px;
-    background-color:rgba(0,50,200,0.5);
+    background-color:rgba(0,100,200,0.8);
     color: white;
     border: none;
     font-size: 14px;
@@ -277,34 +328,21 @@
   }
 
 
-  .pager-wrapper{
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .status-picker select {
+    border-radius: 5px;
+    width: 200px;
+    float: left;
+    height: 37px;
+    margin-bottom: -13px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    padding: 0 10px;
   }
-  .item{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    font-size: 16px;
-    padding: 4px 20px;
-    border: 1px solid #d7d7d7;
-    margin-left: 16px;
-    cursor: pointer;
-    color: #a5a5a5;
+
+  .jtp {
+    color:black;
   }
-  .active{
-    background: #a5a5a5;
-    color: #fff;
-    border: 1px solid #a5a5a5;
-  }
-  .point{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    margin-left: 16px;
-    letter-spacing: 3px;
-    color: #a5a5a5;
-  }
+
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" />
+

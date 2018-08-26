@@ -3,7 +3,7 @@
     <div>
       <div class="chooseButton">
         <el-row>
-          <el-button id="midcheck_btn" @click="change_mid" autofocus="true" >中级用户认证</el-button>
+          <el-button id="midcheck_btn" @click="change_mid">中级用户认证</el-button>
           <el-button id="adcheck_btn" @click="change_ad">高级用户认证</el-button>
         </el-row>
       </div>
@@ -86,20 +86,6 @@
       </div>
 
     </div>
-
-    <!--<form role="form">-->
-      <!--<div class="form-group">-->
-        <!--<label for="inputStuCard">点击此处上传校园卡照片</label>-->
-        <!--<input type="file" id="inputStuCard">-->
-        <!--<p class="help-block">校园卡正面，能清楚看到头像，姓名以及学号</p>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label for="inputStuLicense">点击此处上传学生证</label>-->
-        <!--<input type="file" id="inputStuLicense">-->
-        <!--<p class="help-block">学生证首页，能清楚看清楚头像，姓名，院系以及学号</p>-->
-      <!--</div>-->
-      <!--<button type="submit" class="btn btn-default">提交</button>-->
-    <!--</form>-->
   </personalCenter>
 </template>
 

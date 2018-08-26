@@ -32,28 +32,30 @@
 <script>
 
   import footerBar from '@/components/footerBar.vue';
-
+  import store from '../vuex/store'
+  import * as types from '../vuex/types'
     export default {
       name: "login",
       components: {footerBar},
       methods: {
         login: function () {
+          alert("here");
           var ac=document.getElementById('account').value;
           var pw=document.getElementById('password').value;
-          this.$axios.post("http://localhost:8000/api/auth/login", {"username": ac, "password": pw}).then(res => {
-            var data=res.data;
-            if(data.result){
-              localStorage.ifLogin=1;
-              localStorage.account=ac;
-              localStorage.ifUnread = data.ifRead;
-              localStorage.photoSrc = data.photoSrc;
-              localStorage.ifAdmin=data.ifAdmin;
-              localStorage.ifExamine=data.ifExamine;
-              this.$router.replace('./');
-            }else{
-              alert("账户或密码错误");
-            }
-
+          this.$axios.post('/user/signin', {"username": ac, "password": pw}).then(
+            // res => {
+            // console.log(res.data);
+            // // if(res.data==true){
+            // //   this.$router.replace('/');
+            // // }else{
+            // //   alert("账户或密码错误");
+            // // }
+            // }
+            res => {
+              store.commit(types.LOGIN, res.data['accessToken']);
+              console.log(res.data)
+            }).catch(err => {
+            console.log(err)
           });
         }
       }
