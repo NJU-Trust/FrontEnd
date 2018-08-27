@@ -52,32 +52,45 @@
           </div>
         </div>
         <div class="ad_checkpanel" id="ad_checkid" style="margin-top: 30px;margin-bottom: 30px;display: none;" >
-          <div class="col-xs-12 col-sm-6 placeholder" style="min-height: 200px">
-            <label>请上传手持身份证照片</label><br>
-            <el-upload
-              class="upload-demo"
-              drag
-              action="https://jsonplaceholder.typicode.com/posts/"
-              multiple>
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-              <div class="el-upload__tip" slot="tip">手持身份证照片，身份证头像需高清</div>
-            </el-upload>
+          <h4><b>请导入相关数据 </b></h4>
+          <hr/>
+          <div style="position: relative">
+            <div class="col-xs-12 col-sm-6 placeholder" style="min-height: 200px">
+              <label>请上传手持身份证照片</label><br>
+              <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/"
+                multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                <div class="el-upload__tip" slot="tip">手持身份证照片，身份证头像需高清</div>
+              </el-upload>
+            </div>
+            <div class="col-xs-12 col-sm-6 placeholder" style="min-height: 200px">
+              <label>请导入支付宝数据</label><br>
+              <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/"
+                multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">上传支付宝的消费记录，且不超过500kb</div>
+                <div class="el-upload__tip" slot="tip">会进行脱敏处理，不会泄露个人隐私</div>
+              </el-upload>
+            </div>
           </div>
-          <div class="col-xs-12 col-sm-6 placeholder" style="min-height: 200px">
-            <label>请导入支付宝数据</label><br>
-            <el-upload
-              class="upload-demo"
-              drag
-              action="https://jsonplaceholder.typicode.com/posts/"
-              multiple>
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-              <div class="el-upload__tip" slot="tip">上传支付宝的消费记录，且不超过500kb</div>
-              <div class="el-upload__tip" slot="tip">会进行脱敏处理，不会泄露个人隐私</div>
-            </el-upload>
-          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div id="cross_checkid" style="position: relative; display: none;">
+        <hr>
+        <h4><b>请进行信用交叉检验 </b></h4>
+        <hr/>
+        <div style="height: 300px;width: 800px;border: 1px solid black;margin: 5px">
+          <h3 style="text-align: center">此处预留用于信用交叉检验</h3>
         </div>
       </div>
       <hr/>
@@ -101,12 +114,16 @@
         document.getElementById("ad_checkid").style.display = "none";
         document.getElementById("mid_info").style.display = "inline";
         document.getElementById("mid_checkid").style.display = "inline";
+        document.getElementById("cross_checkid").style.display = "none";
       },
       change_ad(){
         document.getElementById("mid_info").style.display = "none";
         document.getElementById("mid_checkid").style.display = "none";
         document.getElementById("ad_info").style.display = "inline";
         document.getElementById("ad_checkid").style.display = "inline";
+        document.getElementById("cross_checkid").style.display = "inline";
+
+
       },
     },
   }

@@ -12,8 +12,14 @@ import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
+import ProjectRencently from '@/pages/ProjectRencently'
+import ProjectFavorite from '@/pages/ProjectFavorite'
+import InvestHistory from '@/pages/InvestHistory'
+import LoanHistory from '@/pages/LoanHistory'
 import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
+
+
 
 Vue.use(Router)
 
@@ -58,6 +64,26 @@ export default new Router({
       path: '/UserSpace/AlumniCheck',
       name: 'AlumniCheck',
       component: AlumniCheck
+    },
+    {
+      path: '/UserSpace/ProjectRencently',
+      name: 'ProjectRencently',
+      component: ProjectRencently
+    },
+    {
+      path: '/UserSpace/ProjectFavorite',
+      name: 'ProjectFavorite',
+      component: ProjectFavorite
+    },
+    {
+      path: '/UserSpace/InvestHistory',
+      name: 'InvestHistory',
+      component: InvestHistory
+    },
+    {
+      path: '/UserSpace/LoanHistory',
+      name: 'LoanHistory',
+      component: LoanHistory
     },
     {
       path: '/usermanage',
