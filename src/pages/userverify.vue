@@ -10,7 +10,6 @@
         <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
       </div>
     </div>
-
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -46,95 +45,197 @@
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="">
-                  <!--<span>{{ props.row.username }}</span>-->
-                </el-form-item>
-                <el-form-item label="">
-                  <!--<span>{{ props.row.state }}</span>-->
-                </el-form-item>
 
                 <el-form-item label="证书或证明截图">
-                  <span >{{ props.row.rate }}</span>
+                  <div v-if="props.row.certi_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{props.row.certi_pic}}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
-                <el-form-item >
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                <el-form-item>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.certi_pic === 0">
+                 </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.certi_pic === 1">
+                    <span >审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                      <div id="demo">
+                        <el-button
+                      size="mini"
+                      type="text"
+                      onclick="getElementById('demo').innerHTML='审核通过'">合格</el-button>
+                        <el-button
+                      size="mini"
+                      type="text"
+                      onclick="getElementById('demo').innerHTML='审核未通过'">不合格</el-button>
+                      </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="教务网信息截图">
-                  <span>{{ props.row.money }}</span>
+                  <div v-if="props.row.stu_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{ props.row.stu_pic }}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
                 <el-form-item>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.stu_pic === 0">
+                  </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.stu_pic === 1">
+                    <span >审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                    <div id="demo1">
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo1').innerHTML='审核通过'">合格</el-button>
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo1').innerHTML='审核未通过'">不合格</el-button>
+                    </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="政府公示">
-                  <span>{{ props.row.startTime }}</span>
+                  <div v-if="props.row.gov_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{ props.row.gov_pic }}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
                 <el-form-item>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.gov_pic === 0">
+                  </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.gov_pic === 1">
+                    <span >审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                    <div id="demo2">
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo2').innerHTML='审核通过'">合格</el-button>
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo2').innerHTML='审核未通过'">不合格</el-button>
+                    </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="学习综合服务平台">
-                  <span>{{ props.row.endTime }}</span>
+                  <div v-if="props.row.ser_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{ props.row.ser_pic }}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
                 <el-form-item>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.ser_pic === 0">
+                  </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.ser_pic === 1">
+                    <span >审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                      <div id="demo3">
+                        <el-button
+                          size="mini"
+                          type="text"
+                          onclick="getElementById('demo3').innerHTML='审核通过'">合格</el-button>
+                        <el-button
+                          size="mini"
+                          type="text"
+                          onclick="getElementById('demo3').innerHTML='审核未通过'">不合格</el-button>
+                      </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="银行信用截图">
-                  <span>{{ props.row.grade }}</span>
+                  <div v-if="props.row.bank_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{ props.row.bank_pic }}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
                 <el-form-item>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.bank_pic === 0">
+                  </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.bank_pic === 1">
+                    <span style="color:#66CD00">审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                    <div id="demo4">
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo4').innerHTML='审核通过'">合格</el-button>
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo4').innerHTML='审核未通过'">不合格</el-button>
+                    </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="图书馆信用截图">
-                  <span>{{ props.row.returntype }}</span>
+                  <div v-if="props.row.lib_pic === 0">
+                    <span >无数据</span>
+                  </div>
+                  <div v-else>
+                    <span>{{ props.row.lib_pic }}</span>
+                    <!-- 否则显示数据库传过来图片-->
+                  </div>
                 </el-form-item>
                 <el-form-item>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">合格</el-button>
-                  <el-button
-                    size="mini"
-                    type="text"
-                    @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  <!--没有图片选项-->
+                  <div v-if="props.row.lib_pic === 0">
+                  </div>
+                  <!-- 有图片,已经审核过 -->
+                  <div v-else-if="props.row.lib_pic === 1">
+                    <span style="color:#66CD00">审核通过</span>
+                  </div>
+                  <!-- 有图片,还没有审核过/首次审核没有通过 -->
+                  <div v-else>
+                    <div id="demo5">
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo5').innerHTML='审核通过'">合格</el-button>
+                      <el-button
+                        size="mini"
+                        type="text"
+                        onclick="getElementById('demo5').innerHTML='审核未通过'">不合格</el-button>
+                    </div>
+                  </div>
                 </el-form-item>
 
                 <el-form-item label="">
@@ -177,7 +278,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
   import navi from '@/components/navi.vue';
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue'
@@ -208,68 +309,47 @@
         tableData5: [{
           username: '小红',
           state: 1,
-          money:'暂无',
-          endTime:'暂无',
-          grade:'暂无',
           desc: '暂无',
-          returntype: '暂无',
-          rate: '暂无',
-          startTime: '暂无',
+          certi_pic: '图片',
+          stu_pic:0,
+          gov_pic: 1,
+          ser_pic:'图片',
+          bank_pic:'图片',
+          lib_pic: 0,
         }, {
           username: '小蓝',
           state: 2,
-          money:4000,
-          endTime:'2018-12-25',
-          grade:'AA',
           desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '19%',
-          startTime: '2018-8-25',
+          certi_pic: 1,
+          stu_pic:'暂无',
+          gov_pic: '暂无',
+          ser_pic:0,
+          bank_pic:'图片',
+          lib_pic: 0,
         }, {
           username: '小黄',
           state: 1,
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
           desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
+          certi_pic: '14.8%',
+          stu_pic:'暂无',
+          gov_pic: '暂无',
+          ser_pic:0,
+          bank_pic:'图片',
+          lib_pic: 0,
         },{
-          username: '小绿',
-          state: 1,
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
-        },{
-          username: '小白',
-          state: 2,
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
-        }, {
           username: '小黑',
           state: 1,
-          money:5000,
-          endTime:'2018-12-25',
-          grade:'D',
           desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '17.1%',
-          startTime: '2018-8-25',
+          certi_pic: '17.1%',
+          stu_pic:'暂无',
+          gov_pic: '暂无',
+          ser_pic:0,
+          bank_pic:'图片',
+          lib_pic: 0,
         }]
       }
-    }
+    },
   }
-
 </script>
 
 <style scoped>
