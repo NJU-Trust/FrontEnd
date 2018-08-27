@@ -25,6 +25,9 @@
         </div>
       </div>
       <div>
+        
+      </div>
+      <div>
         <el-table
           :data="tableData"
           stripe
@@ -100,7 +103,7 @@
 
   .main_panel{
     width:500px;
-    height:400px;
+    height:600px;
   }
 
   .top_panel{
