@@ -5,15 +5,7 @@
         <right-bar></right-bar>
       </div>
       <el-form class="back">
-        <div class="left">
-          <div id="look_tab" class="left_label look_label" @click="change11">
-            我的借款情况
-          </div>
-          <div id="ask_tab" class="left_label ask_label" @click="change22">
-            申请借款
-          </div>
 
-        </div>
         <div id="sheet" class="sheet">
           <div class="chooseButton">
             <el-row>
@@ -256,7 +248,6 @@
       </el-form>
       <footerBar style="float: bottom"></footerBar>
     </div>
-  <!--<footerBar style="float: bottom"></footerBar>-->
 </template>
 
 <script>
@@ -413,11 +404,11 @@
             process:'200/1000',
             action:''
           }],
-          /*formInline:{
+          formInline:{
             money:'',
             category:'any',
             return_date:''
-          }*/
+          }
         };
       },
 
@@ -528,12 +519,12 @@
       padding-bottom: 20px;
     }
 
-    /*.choose{
+    .choose{
       display: flex;
-     !* border: 1px black solid;*!
+     /* border: 1px black solid;*/
       margin-left: 30%;
       width:1000px;
-    }*/
+    }
     .row{
       width:400px;
       padding: 10px;
