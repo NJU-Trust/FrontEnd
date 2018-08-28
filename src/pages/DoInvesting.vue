@@ -1,17 +1,27 @@
 <template>
-    <div id="app">
-      <navi></navi>
+    <div id="app" style="padding:0;background-color: #D9F3FB;">
+      <div style="width: 100%;float: top;">
+        <navi ></navi>
+      </div>
+
       <div class="back">
 
         <!-- 返回按钮 -->
         <div class="left">
-          <div class="left_label" @click="change1">
           <el-button  icon="el-icon-back" v-on:click="backPage()"></el-button>
-          </div>
         </div>
 
 
         <div id="sheet" class="sheet" style="display: inline">
+          <div class="picSpace">
+              <div id="pics" style="">
+                <img src="/static/pic/library.png">
+              </div>
+              <div id="picSlide">
+
+              </div>
+          </div>
+
           <div class="primary_panel" style="margin-top: 20px">
             <!-- 项目名称栏 -->
             <div class="row">
@@ -66,13 +76,19 @@
               </el-tabs>
             </template>
             <br><br><br>
-
+            
             <div class="row">
-              <label>请选择投资金额</label>
-            </div>
-            <el-input v-model="input" placeholder="请输入金额"></el-input>
+              <el-button class="successbutton" @click="confirm">立即投资</el-button>
+              <el-button class="markbutton">加入收藏</el-button>
+            </div><br><br>
 
-            <el-button class="checkbutton" icon="success"> 确认 </el-button>
+            <div id="confirminvest" style="display:none">
+              <label style="margin-left : 10px">请选择投资金额</label>
+              <el-input v-model="input" placeholder="请输入金额" style="margin-left:10px;width:50%;"></el-input>
+              <el-button>确认</el-button>
+            </div>
+            
+
           </div>
         </div>
 
@@ -90,14 +106,16 @@
         ElCard,
         navi},
       methods:{
-        backPage(){
-          //返回查看投资项目界面
-          this.$router.go(-1);
-        },
         data() {
           return {
             input: ''
           }
+        },backPage(){
+          //返回查看投资项目界面
+          this.$router.go(-1);
+        },
+        confirm(){
+          document.getElementById("confirminvest").style.display = "inline";
         }
       }
     }
@@ -106,10 +124,10 @@
 <style scoped>
 
     .back{
-      /*background-color: #85d1d1;*/
       width: 100%;
       height: 1500px;
       display:flex;
+      background-color: lightblue;
     }
     .left{
       width:200px;
@@ -120,20 +138,28 @@
       position: fixed;
     }
     .sheet{
-      background: #a0c7f5;
       margin-top: 100px;
       margin-bottom: 100px;
-      width: 600px;
-      margin-left:30%;
+    }
+    .primary_panel{
+      float: right;
     }
     .row{
       width:400px;
       padding: 10px;
       margin-left: 20px;
     }
-    .checkbutton{
-      margin-top: 20px;
-      margin-left: 40%;
+    .successbutton{
+      float: left;
+      margin-left: 25%;
+
+    }
+    .markbutton{
+      float: right;
+      margin-left: 20%;
+    }
+    .picture{
+      float: left;
     }
 
 </style>

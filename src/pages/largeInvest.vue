@@ -11,10 +11,10 @@
         <div class="userInput">
           <p>投资金额：</p><input type="number" name="investAmount" />
           <p>项目类型：</p><select>
-            <option value="any">不限</option>
-            <option value="largeLong">大额长期项目</option>
-            <option value="smallShort">小额短期项目</option>
-          </select>
+          <option value="any">不限</option>
+          <option value="largeLong">大额长期项目</option>
+          <option value="smallShort">小额短期项目</option>
+        </select>
           <p>期望归还日期：</p><input type="date" name="investExpectedDate"/>
           <input type="submit" value="确认" style="width:6%"/>
         </div>
@@ -41,12 +41,12 @@
       <div class="searchBorder">
         <h3>筛选您期望的项目</h3>
         <div>
-        <p class="leftFont">项目类型</p><br>
-        <form class="col-sm-12 col-md-12">
-          <input type="button" value="不限" name="Any" class="searchButton"/>
-          <input type="button" value="小额短期" name="Any" class="searchButton"/>
-          <input type="button" value="大额长期" name="Any" class="searchButton"/>
-        </form><br><br><br>
+          <p class="leftFont">项目类型</p><br>
+          <form class="col-sm-12 col-md-12">
+            <input type="button" value="不限" name="Any" class="searchButton"/>
+            <input type="button" value="小额短期" name="Any" class="searchButton"/>
+            <input type="button" value="大额长期" name="Any" class="searchButton"/>
+          </form><br><br><br>
         </div>
         <div>
           <p class="leftFont">项目完成度</p><br>
@@ -57,7 +57,7 @@
           </form><br><br><br>
         </div>
         <div>
-        <p class="leftFont">收益率</p><br>
+          <p class="leftFont">收益率</p><br>
           <form class="col-sm-12 col-md-12">
             <input type="button" value="不限" name="Any" class="searchButton"/>
             <input type="button" value="> 0.5%" name="Any" class="searchButton"/>
@@ -115,7 +115,7 @@
   import rightBar from '@/components/rightBar.vue'
   import investList from '@/components/investList.vue'
   export default {
-    name: "invest",
+    name: "largeInvest",
     components:{navi, footerBar, rightBar,investList},
     data(){
       return{

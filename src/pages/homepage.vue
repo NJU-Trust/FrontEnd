@@ -79,6 +79,7 @@
       },
       beforeCreate: function () {
         localStorage.route="#homepage"
+        localStorage.ifLogin=1;
       }
 
     }

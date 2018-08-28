@@ -6,9 +6,9 @@
       <div class="container-fluid" style="width: 100%">
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
-            <li><a id="object" href="./examineInfo" style="width: 120px">信息审核</a></li>
-            <li style="margin-left: 30px"><a id="user" href="./examineObject" style="width: 120px;">标的审核</a></li>
-            <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
+            <li><a id="object" href="/examineInfo" style="width: 120px">信息审核</a></li>
+            <li style="margin-left: 30px"><a id="user" href="/examineObject" style="width: 120px;">标的审核</a></li>
+            <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
@@ -16,8 +16,8 @@
     </nav>
     <div id="manageAccount">
       <button style="background-color: lightskyblue">用户模式</button>
-      <a href="./adminObjects" id="admin"><button>管理模式</button></a>
-      <a href="./examineObjects" id="examine"><button>审核模式</button></a>
+      <a href="/adminObjects" id="admin"><button>管理模式</button></a>
+      <a href="/examineObjects" id="examine"><button>审核模式</button></a>
       <button v-on:click="logout">退出</button>
     </div>
   </div>
@@ -55,7 +55,7 @@
         document.getElementById('secondLast').removeChild(document.getElementById('login'));
         var personalCenter = document.createElement('a');
         personalCenter.innerText = '个人中心';
-        personalCenter.href = './userSpace';
+        personalCenter.href = '/userSpace';
         var newLi = document.createElement('li');
         newLi.style.cssFloat = 'right';
         $('#nav').append(newLi);

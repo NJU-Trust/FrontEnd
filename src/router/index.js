@@ -16,6 +16,8 @@ import EnterVerify from '@/pages/EnterVerify'
 import userverify from '@/pages/userverify'
 import targetverify from '@/pages/targetverify'
 import targetcheck from '@/pages/targetcheck'
+import enterInvest from '@/pages/enterInvest'
+import largeInvest from '@/pages/largeInvest'
 
 Vue.use(Router)
 
@@ -102,6 +104,17 @@ export default new Router({
     }
 
 
+    },
+    {
+      path:'/enterInvest',
+      name:'enterInvest',
+      component:enterInvest
+    },
+    {
+      path:'/largeInvest',
+      name:'largeInvest',
+      component:largeInvest
+    },
   ],
   mode:"history"
 })

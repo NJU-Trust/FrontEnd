@@ -5,10 +5,11 @@
         <h4>规则中心</h4>
         <a>借款规则</a>
         <a>投资规则</a>
+        <a>发布规则</a>
+        <a>交易规则</a>
       </div>
       <div class="insultSession">
         <h4>帮助中心</h4>
-        <a>新手指南</a>
         <a>用户须知</a>
         <a>常见问题</a>
         <a>费用说明</a>
@@ -17,14 +18,12 @@
         <h4>安全中心</h4>
         <a>政策法规</a>
         <a>隐私保护</a>
-        <a>争议处理</a>
       </div>
       <div class="insultSession">
         <h4>关于我们</h4>
         <a>平台定位</a>
         <a>团队简介</a>
         <a>合作机构</a>
-        <a>管理团队</a>
       </div>
       <div class="rightSession">
         <div style="display: inline-block"></div>

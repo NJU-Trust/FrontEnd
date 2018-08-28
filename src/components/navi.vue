@@ -6,12 +6,12 @@
       <div class="container-fluid" style="width: 100%">
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
-            <li><a id="invest" href="./invest">投资</a></li>
+            <li><a id="invest" href="/enterInvest">投资</a></li>
             <li><a id="loan" href="/loan">借款</a></li>
             <li><a id="trade" href="/trade">交易</a></li>
             <li><a id="notice" href="/notice">发布</a></li>
-            <li><a id="guide" href="./guide">教程</a></li>
-            <li id="last" style="float: right;"><a id="signup" href="./signup">注册</a></li>
+            <li><a id="guide" href="/guide">教程</a></li>
+            <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
@@ -58,7 +58,7 @@ export default {
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
       personalCenter.innerText = '个人中心';
-      personalCenter.href = './userSpace';
+      personalCenter.href = '/userSpace';
       var newLi = document.createElement('li');
       newLi.style.cssFloat = 'right';
       $('#nav').append(newLi);

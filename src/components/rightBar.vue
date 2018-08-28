@@ -5,7 +5,7 @@
         <i class="el-icon-share"></i>
       </div>
       <div id="shareContainer">
-        <img src="/static/pic/qq.png" class="shareChoice" v-on:click="qqShare"/>
+        <img src="../../static/pic/qq.png" class="shareChoice" v-on:click="qqShare"/>
         <img src="/static/pic/wechat.png" class="shareChoice"/>
         <img src="/static/pic/sina.png" class="shareChoice"/>
       </div>
