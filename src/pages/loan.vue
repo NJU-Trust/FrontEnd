@@ -14,7 +14,7 @@
           </div>
 
         </div>
-        <div id="sheet" class="sheet" style="display: none">
+        <div id="sheet" class="sheet">
           <div class="chooseButton">
             <el-row>
 
@@ -85,7 +85,7 @@
                 </el-tooltip>
               </el-form-item>
               <el-form-item label="还款日期">
-                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为一年建议范围为[N1,N2]" placement="top-start">
+                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为1年，建议范围为[N1,N2]" placement="top-start">
                   <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
                 </el-tooltip>
               </el-form-item>
@@ -98,7 +98,7 @@
               <el-form-item label="还款方式">
                 <el-collapse v-model="form3.activeName" accordion>
 
-                  <div @click="get_average_capital">
+                  <div @click="get_average_capital(1)">
                     <el-collapse-item title="等额本金" name="1" >
                       <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
                       <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
@@ -179,13 +179,13 @@
                 </el-tooltip>
               </el-form-item>
               <el-form-item label="还款日期">
-                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为一年建议范围为[N1,N2]" placement="top-start">
+                <el-tooltip class="item" effect="dark" content="大额贷款最长期限为5年，建议范围为[N1,N2]" placement="top-start">
                   <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
                 </el-tooltip>
               </el-form-item>
-              <el-form-item label="设置还款利率">
+              <el-form-item label="基准还款利率">
                 <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
-                  <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
+                  <el-input v-model="form3.rate"></el-input>
                 </el-tooltip>
               </el-form-item>
 
@@ -252,70 +252,7 @@
 
           </div>
         </div>
-        <div id="check" style="margin-top: 100px;">
-          <div class="choose">
-            <el-form :inline="true" :model="formInline" class="demo-form-inline">
-              <el-form-item label="项目金额">
-                <el-input v-model="formInline.money" style="width: 120px;"></el-input>
-              </el-form-item>
-              <el-form-item label="项目类型" >
-                <el-select v-model="formInline.category">
-                  <el-option label="不限" value="any"></el-option>
-                  <el-option label="消费类小额短期" value="consume"></el-option>
-                  <el-option label="学习培训类大额长期" value="learn"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="还款日期" >
-                <el-date-picker type="date" placeholder="选择日期" v-model="formInline.return_date" style="width: 140px;"></el-date-picker>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="primary" @click="onSubmit">查询</el-button>
-              </el-form-item>
-            </el-form>
-            <!--<div class="title">筛选条件</div>-->
-          </div>
-          <el-table
-            :data="tableData"
-            style="margin-left: 30%">
-            <el-table-column
-              prop="name"
-              label="名称"
-              width="140"
-              align="center">
-            </el-table-column>
-            <el-table-column
-              prop="num"
-              label="已获投资数"
-              width="180"
-              align="center">
-            </el-table-column>
-            <el-table-column
-              prop="date"
-              label="截止日期"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="process"
-              label="项目进度"
-              width="140">
-            </el-table-column>
-            <el-table-column
-              prop="action"
-              label="操作"
-              width="180"
-              align="center">
-              <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
+
       </el-form>
       <footerBar style="float: bottom"></footerBar>
     </div>
@@ -328,6 +265,7 @@
     import footerBar from '@/components/footerBar.vue';
     import rightBar from '@/components/rightBar.vue';
     import evaluate from '@/components/evaluate.vue';
+    import checkList from '@/components/checkList.vue';
 
     export default {
       name: "loan",
@@ -336,7 +274,8 @@
         navi,
         footerBar,
         rightBar,
-        evaluate
+        evaluate,
+        checkList
       },
       beforeCreate:function(){
         localStorage.route = "#loan";
@@ -385,7 +324,8 @@
           this.form3.activeName = '';
         },
 
-        get_average_capital:function(){
+        get_average_capital(num){
+          console.log()
           console.log("等额本金");
           this.scheme.capital = 20000;
           this.scheme.interest = 4000;
@@ -473,11 +413,11 @@
             process:'200/1000',
             action:''
           }],
-          formInline:{
+          /*formInline:{
             money:'',
             category:'any',
             return_date:''
-          }
+          }*/
         };
       },
 
@@ -492,7 +432,7 @@
       /*margin-top: 20px;*/
      /* border: 1px black solid;*/
       text-align:center;
-      padding-top: 17px;
+      padding-top: 15px;
       font-size: 16px;
     }
 
@@ -588,12 +528,12 @@
       padding-bottom: 20px;
     }
 
-    .choose{
+    /*.choose{
       display: flex;
-     /* border: 1px black solid;*/
+     !* border: 1px black solid;*!
       margin-left: 30%;
       width:1000px;
-    }
+    }*/
     .row{
       width:400px;
       padding: 10px;
