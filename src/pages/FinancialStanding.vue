@@ -36,7 +36,7 @@
         <div class="LevelTwoIndex" id="leveltwocheck">
           <div>
             <div style="margin-top: 20px">
-              <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选（此处暂时有点bug，全选后不能立刻显示）</el-checkbox>
+              <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
               <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange">
                 <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
               </el-checkbox-group>
@@ -45,7 +45,7 @@
         </div>
         <hr/>
         <div style="text-align: justify">
-          <el-button type="primary" round>&nbsp;提交&nbsp;</el-button>
+          <el-button type="primary" round @click="FinSubmit">&nbsp;提交&nbsp;</el-button>
         </div>
         <hr/>
         <div class="LevelOneIndex" id="leveloneindex">
@@ -87,7 +87,11 @@
             <div id="myOutcomeBar" :style="{width: '800px', height: '300px'}"></div>
             <hr/>
             <h4><b>您本月的支出分布统计图</b></h4>
-            <div id="myOutcomePie" :style="{width: '1000px', height: '450px'}"></div>
+            <div id="myOutcomePie" :style="{width: '900px', height: '450px'}"></div>
+            <h4><b>您本月的可调整支出统计图</b></h4>
+            <div id="myAdjustOutcomePie" :style="{width: '900px', height: '450px'}"></div>
+            <h4><b>您本月的饮食支出分布统计图</b></h4>
+            <div id="myFoodOutcomePie" :style="{width: '900px', height: '450px'}"></div>
           </div>
 
           <div id="mySurplus">
@@ -101,7 +105,10 @@
             <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
             <hr/>
             <h4><b>您本月的蚂蚁花呗情况</b></h4>
-            <div id="myAntBar" style="width: 1000px; height: 300px; "></div>
+            <div id="myAntBar" style="width: 800px; height: 300px; "></div>
+            <h4><b>您各项投资金额和收益为</b></h4>
+            <div id="myInvestLoanPie" style="width: 800px; height: 300px; "></div>
+
             <hr/>
           </div>
 
@@ -198,9 +205,15 @@
           <p>
             在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。
           </p>
-          
-        </div>
 
+        </div>
+        <div class="LoanPanel">
+          <h4><b>您的结余为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 3752.30 元</b></h4>
+          <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
+          <hr/>
+          <div id="ForecastK" :style="{width: '400px', height: '300px'}"></div>
+          <div id="ForecastA" :style="{width: '400px', height: '300px'}"></div>
+        </div>
       </div>
     </div>
   </personalCenter>
@@ -218,6 +231,10 @@
   // 引入提示框和title组件
   require('echarts/lib/component/tooltip')
   require('echarts/lib/component/title')
+  //
+  require('echarts/theme/macarons')
+  require('echarts/theme/shine')
+
 
 
   const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
@@ -330,13 +347,18 @@
       this.drawIncomeBar();
       this.drawOutcomeBar();
       this.drawOutcomePie();
+      this.drawAdjustOutcomePie();
+      this.drawFoodOutcomePie();
       this.drawAntBar();
       this.showIndexs();
+      this.drawK();
+      this.drawA();
     },
     methods: {
       handleCheckAllChange(val) {
         this.checkboxGroup2 = val ? indexAOptions : [];
         this.isIndeterminate = false;
+        this.showIndexs();
       },
       handleCheckedCitiesChange(value) {
         let checkedCount = value.length;
@@ -371,6 +393,10 @@
         document.getElementById("id_class_outcome").style.display = "none";
         document.getElementById("mySurplus").style.display = "none";
         document.getElementById("id_class_othercome").style.display = "inline";
+      },
+
+      FinSubmit(){
+        this.showIndexs();
       },
       showIndexs(){
         // const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
@@ -422,9 +448,6 @@
         } else {
           document.getElementById("Index_MonthlySavingsRatio").style.display = "none";
         }
-
-
-
 
       },
 
@@ -604,6 +627,199 @@
         });
       },
 
+      drawAdjustOutcomePie() {
+        // 基于准备好的dom，初始化echarts实例
+        let myOutcomePie = echarts.init(document.getElementById('myAdjustOutcomePie'),'shine')
+        // 绘制图表
+        myOutcomePie.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['衣物饰品等消费性支出','饮食可调整支出','住宿可调整支出','娱乐爱好可调整支出']
+          },
+          series: [
+            // {
+            //   name:'访问来源',
+            //   type:'pie',
+            //   selectedMode: 'single',
+            //   radius: [0, '30%'],
+            //
+            //   label: {
+            //     normal: {
+            //       position: 'inner'
+            //     }
+            //   },
+            //   labelLine: {
+            //     normal: {
+            //       show: false
+            //     }
+            //   },
+            //   data:[
+            //     {value:335, name:'直达', selected:true},
+            //     {value:679, name:'营销广告'},
+            //     {value:1548, name:'搜索引擎'}
+            //   ]
+            // },
+            {
+              name:'支出去向',
+              type:'pie',
+              radius: ['40%', '55%'],
+              label: {
+                normal: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#eee',
+                  borderColor: '#aaa',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  // shadowBlur:3,
+                  // shadowOffsetX: 2,
+                  // shadowOffsetY: 2,
+                  // shadowColor: '#999',
+                  // padding: [0, 7],
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    // abg: {
+                    //     backgroundColor: '#333',
+                    //     width: '100%',
+                    //     align: 'right',
+                    //     height: 22,
+                    //     borderRadius: [4, 4, 0, 0]
+                    // },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              data:[
+                {value:310, name:'衣物饰品等消费性支出'},
+                {value:234, name:'饮食可调整支出'},
+                {value:135, name:'住宿可调整支出'},
+                {value:666, name:'娱乐爱好可调整支出'},
+              ]
+            }
+          ]
+        });
+      },
+
+      drawFoodOutcomePie() {
+        // 基于准备好的dom，初始化echarts实例
+        let myOutcomePie = echarts.init(document.getElementById('myFoodOutcomePie'),'macarons')
+        // 绘制图表
+        myOutcomePie.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['食堂支出','外卖支出','外出就餐支出','零食水果支出（三餐除外）']
+          },
+          series: [
+            {
+              name:'支出条数',
+              type:'pie',
+              selectedMode: 'single',
+              radius: [0, '30%'],
+
+              label: {
+                normal: {
+                  position: 'inner'
+                }
+              },
+              labelLine: {
+                normal: {
+                  show: false
+                }
+              },
+              data:[
+                {value:35, name:'食堂条数'},
+                {value:15, name:'外卖单数'},
+                {value:7, name:'外出次数'},
+                {value:9, name:'零食水果', selected:true}
+              ]
+            },
+            {
+              name:'支出去向',
+              type:'pie',
+              radius: ['40%', '55%'],
+              label: {
+                normal: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#eee',
+                  borderColor: '#aaa',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  // shadowBlur:3,
+                  // shadowOffsetX: 2,
+                  // shadowOffsetY: 2,
+                  // shadowColor: '#999',
+                  // padding: [0, 7],
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    // abg: {
+                    //     backgroundColor: '#333',
+                    //     width: '100%',
+                    //     align: 'right',
+                    //     height: 22,
+                    //     borderRadius: [4, 4, 0, 0]
+                    // },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              data:[
+                {value:652, name:'食堂支出'},
+                {value:234, name:'外卖支出'},
+                {value:135, name:'外出就餐支出'},
+                {value:78, name:'零食水果支出（三餐除外）'},
+              ]
+            }
+          ]
+        });
+      },
+
       drawAntBar() {
         // 基于准备好的dom，初始化echarts实例
         let myAntBar = echarts.init(document.getElementById('myAntBar'))
@@ -663,6 +879,57 @@
           ]
         });
       },
+
+      drawK() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('ForecastK'))
+        // 绘制图表
+        myChart.setOption({
+          title: { text: '预测的您第n个月时的结余K(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
+          },
+          yAxis: {
+            name: '结余K(n)',
+            type: 'value'
+          },
+          series: [{
+            name: '结余',
+            type: 'line',
+            data: [5, 20, 36, 10, 40,60],
+            smooth: true
+          }]
+        });
+      },
+
+      drawA() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('ForecastA'))
+        // 绘制图表
+        myChart.setOption({
+          title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
+          },
+          yAxis: {
+            name: '可调整支出A(n)',
+            type: 'value'
+          },
+          series: [{
+            name: '可调整支出',
+            type: 'line',
+            data: [5, 20, 69, 77, 40, 20],
+            smooth: true
+          }]
+        });
+      }
+
 
 
 

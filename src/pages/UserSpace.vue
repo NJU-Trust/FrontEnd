@@ -37,6 +37,10 @@
                   <td>2018/7/27</td>
                 </tr>
                 <tr>
+                  <th>学号</th>
+                  <td>161220001</td>
+                </tr>
+                <tr>
                   <th>年级</th>
                   <td>大二</td>
                 </tr>
@@ -68,19 +72,19 @@
         <div class="user_credit">
           <div class="table-responsive" style="text-indent: 5px">
             <table class="table table-bordered">
-              <caption><b>您的信用评级为：100</b></caption>
+              <caption><b>您的信用评级为：20</b></caption>
               <thead>
               <tr>
-                <th>财务信息评级</th>
-                <th>非财务信息评级</th>
+                <th>财务信息评级占比</th>
+                <th>非财务信息评级占比</th>
                 <th>总评</th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td>70</td>
-                <td>30</td>
-                <td>100</td>
+                <td>70%</td>
+                <td>30%</td>
+                <td>100%</td>
               </tr>
               </tbody>
             </table>

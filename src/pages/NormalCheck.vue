@@ -90,7 +90,7 @@
         <h4><b>请进行信用交叉检验 </b></h4>
         <hr/>
         <div style="height: 300px;width: 800px;border: 1px solid black;margin: 5px">
-          <h3 style="text-align: center">此处预留用于信用交叉检验</h3>
+          <h3 style="text-align: center">此处预留用于非结构化数据提交以及关系网交叉检验</h3>
         </div>
       </div>
       <hr/>
