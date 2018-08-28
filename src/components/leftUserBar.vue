@@ -3,8 +3,8 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace" id="leftA" class="active" @click="setA">基本信息</a></li>
-        <li><a href="/UserSpace/FinancialStanding" @click="setC">财务状况</a></li>
+        <li><a href="/UserSpace" id="leftAA" class="active" @click="setA">基本信息</a></li>
+        <li><a href="/UserSpace/FinancialStanding" id="leftAB"@click="setC">财务状况</a></li>
       </ul>
       <hr/>
     </div>
