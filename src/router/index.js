@@ -38,6 +38,16 @@ export default new Router({
       component: login
     },
     {
+      path: '/enterLoan',
+      name: 'enterLoan',
+      component: enterLoan
+    },
+    {
+      path: '/checkMyLoan',
+      name: '/checkMyloan',
+      component: checkMyLoan
+    },
+    {
       path: '/loan',
       name: 'loan',
       component: loan
