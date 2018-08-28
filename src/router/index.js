@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import homepage from '@/pages/homepage'
 import login from '@/pages/login'
+import enterLoan from '@/pages/enterLoan'
+import checkMyLoan from '@/pages/checkMyLoan'
 import loan from '@/pages/loan'
 import signup from '@/pages/signup'
 import UserSpace from '@/pages/UserSpace'
@@ -34,6 +36,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/enterLoan',
+      name: 'enterLoan',
+      component: enterLoan
+    },
+    {
+      path: '/checkMyLoan',
+      name: '/checkMyloan',
+      component: checkMyLoan
     },
     {
       path: '/loan',
