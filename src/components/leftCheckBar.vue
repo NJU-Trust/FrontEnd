@@ -3,17 +3,17 @@
   <div class="leftsidenav" style="position:relative;left:-160px;">
     <div style="position:relative;top:-100px;">
     <div class="left_menus">
-      <p class="left_head"  ><b>用户审核</b></p><hr/>
+      <p class="left_head"  ><b>用户信息审核</b></p><hr/>
       <ul class="left_ul">
         <li><a href="/EnterVerify" id="leftA"  @click="setA">非结构化信息</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
-      <p class="left_head"><b>标的审核</b></p><hr/>
+      <p class="left_head"><b>借款申请审核</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/targetverify">小额标的</a></li>
-        <li><a href="/targetverify">大额标的</a></li>
+        <li><a href="/smalltargetcheck">小额标的</a></li>
+        <li><a href="/largetargetcheck">大额标的</a></li>
       </ul>
       <hr/>
     </div>

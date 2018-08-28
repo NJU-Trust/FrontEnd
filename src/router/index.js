@@ -15,7 +15,8 @@ import AlumniCheck from '@/pages/AlumniCheck'
 import EnterVerify from '@/pages/EnterVerify'
 import userverify from '@/pages/userverify'
 import targetverify from '@/pages/targetverify'
-import targetcheck from '@/pages/targetcheck'
+import smalltargetcheck from '@/pages/smalltargetcheck'
+import largetargetcheck from '@/pages/largetargetcheck'
 import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
 
@@ -98,12 +99,14 @@ export default new Router({
       name:'tergetverify',
       component:targetverify
     },{
-      path:'/targetcheck',
-      name:'targetcheck',
-      component:targetcheck
-    }
-
-
+      path:'/smalltargetcheck',
+      name:'smalltargetcheck',
+      component:smalltargetcheck
+    },
+    {
+      path:'/largetargetcheck',
+      name:'largetargetcheck',
+      component:largetargetcheck
     },
     {
       path:'/enterInvest',

@@ -22,30 +22,15 @@
     </div>
 
     <!--正文内容 -->
-    <!--
-    <div class="back">
-      <div class="button_position">
-        <router-link to="/EnterVerify">
-          <button class="button">审核完成</button>
-        </router-link>
-      </div>
-      <div class="pic">
-        <h1>(截图)</h1>
-        <button class="button" style="opacity:1;padding:10px 25px;">合格</button>
-        <button class="button" style="opacity:1;padding:10px 25px;">不合格</button>
-      </div>
-    </div>
-    -->
     <div class="back">
       <div id="check" class="sheet" style="position:relative;top:-350px;left:250px">
         <el-table
           :data="tableData5"
-          max-height="350"
           style="width: 100%">
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
-
+                <!--这里的_pic变量表示的都是这类项目是否存在的状态。0表示无数据，1表示审核完成，其他表示正在等待审核。因此显示的部分还要增加新的变量-->
                 <el-form-item label="证书或证明截图">
                   <div v-if="props.row.certi_pic === 0">
                     <span >无数据</span>
@@ -69,11 +54,11 @@
                         <el-button
                       size="mini"
                       type="text"
-                      onclick="getElementById('demo').innerHTML='审核通过'">合格</el-button>
+                      @click="change('demo')">合格</el-button>
                         <el-button
                       size="mini"
                       type="text"
-                      onclick="getElementById('demo').innerHTML='审核未通过'">不合格</el-button>
+                      onclick="getElementById('demo').innerHTML='审核未通过';">不合格</el-button>
                       </div>
                   </div>
                 </el-form-item>
@@ -101,7 +86,7 @@
                       <el-button
                         size="mini"
                         type="text"
-                        onclick="getElementById('demo1').innerHTML='审核通过'">合格</el-button>
+                        @click="change('demo1')">合格</el-button>
                       <el-button
                         size="mini"
                         type="text"
@@ -133,7 +118,7 @@
                       <el-button
                         size="mini"
                         type="text"
-                        onclick="getElementById('demo2').innerHTML='审核通过'">合格</el-button>
+                        @click="change('demo2')">合格</el-button>
                       <el-button
                         size="mini"
                         type="text"
@@ -165,7 +150,7 @@
                         <el-button
                           size="mini"
                           type="text"
-                          onclick="getElementById('demo3').innerHTML='审核通过'">合格</el-button>
+                          @click="change('demo3')">合格</el-button>
                         <el-button
                           size="mini"
                           type="text"
@@ -197,7 +182,7 @@
                       <el-button
                         size="mini"
                         type="text"
-                        onclick="getElementById('demo4').innerHTML='审核通过'">合格</el-button>
+                        @click="change('demo4')">合格</el-button>
                       <el-button
                         size="mini"
                         type="text"
@@ -229,7 +214,7 @@
                       <el-button
                         size="mini"
                         type="text"
-                        onclick="getElementById('demo5').innerHTML='审核通过'">合格</el-button>
+                        @click="change('demo5')">合格</el-button>
                       <el-button
                         size="mini"
                         type="text"
@@ -238,17 +223,29 @@
                   </div>
                 </el-form-item>
 
-                <el-form-item label="">
+                <el-form-item label=" ">
                 </el-form-item>
 
+                <!--审核完成的控制方法：这个按钮用于控制用户状态。
+                  初始读取变量的时候，有数据未审核的项目数为x,最终判断合格的项目数Y是否等于X。
+                  如果y = x，则审核完成的按钮解禁；
+                  如果y != x，则审核完成按钮不解禁。（这样可以防止漏掉审核某一项的情况）-->
                 <el-form-item
-                  prop="action"
-                  label="审核结果">
-                  <el-button
-                    size="mini"
-                    type="primary"
-                    disabled
-                    @click="handleDelete(scope.$index, scope.row)">审核完成</el-button>
+                  prop="action">
+                <template slot-scope="scope">
+                  <router-link to="/EnterVerify">
+                    <el-button v-show="tempData.flag"
+                               size="mini"
+                               type="success"
+                    >审核完成
+                    </el-button>
+                    <el-button size="mini"
+                               type="primary"
+                               @click="clear()"
+                              >返回
+                    </el-button>
+                  </router-link>
+                </template>
                 </el-form-item>
               </el-form>
             </template>
@@ -283,9 +280,55 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue'
   import LeftCheckBar from "@/components/leftCheckBar";
+  let changenum = 0;
+  let count;
   export default {
     name: "userverify",
     components:{LeftCheckBar, navi, footerBar, rightBar},
+    methods:{
+      test:function(){
+        count = 0;
+        changenum = 0;
+        this.tempData.flag = false;
+        let certi_pic = this.tableData5[0].certi_pic;
+        if (certi_pic !== 0 && certi_pic !== 1){
+          count = count + 1;
+        }
+        let stu_pic = this.tableData5[0].stu_pic;
+        if (stu_pic !== 0 && stu_pic !== 1){
+          count = count + 1;
+        }
+        let gov_pic = this.tableData5[0].gov_pic;
+        if (gov_pic !== 0 && gov_pic !== 1){
+          count = count + 1;
+        }
+        let bank_pic = this.tableData5[0].bank_pic;
+        if (bank_pic !== 0 && bank_pic !== 1){
+          count = count + 1;
+        }
+        let ser_pic = this.tableData5[0].ser_pic;
+        if (ser_pic !== 0 && ser_pic !== 1){
+          count = count + 1;
+        }
+        console.log(count);
+        console.log(changenum);
+
+      },
+      change:function(temp){
+        changenum = changenum + 1;
+        document.getElementById(temp).innerHTML='审核通过';
+        console.log(count);
+        console.log(changenum);
+        if(changenum === count){
+          this.tempData.flag = true;
+          console.log(this.tempData.flag);
+        }
+      },
+      clear:function(){
+        count = 0;
+        changenum = 0;
+      }
+  },
     filters: {
       // el-tag类型转换
       statusFilter(status) {
@@ -306,50 +349,35 @@
     },
     data() {
       return {
-        tableData5: [{
+        tableData5:[{
           username: '小红',
           state: 1,
           desc: '暂无',
-          certi_pic: '图片',
+          certi_pic: '好多张图片',
           stu_pic:0,
           gov_pic: 1,
           ser_pic:'图片',
           bank_pic:'图片',
           lib_pic: 0,
-        }, {
-          username: '小蓝',
-          state: 2,
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          certi_pic: 1,
-          stu_pic:'暂无',
-          gov_pic: '暂无',
-          ser_pic:0,
-          bank_pic:'图片',
-          lib_pic: 0,
-        }, {
-          username: '小黄',
-          state: 1,
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          certi_pic: '14.8%',
-          stu_pic:'暂无',
-          gov_pic: '暂无',
-          ser_pic:0,
-          bank_pic:'图片',
-          lib_pic: 0,
-        },{
-          username: '小黑',
-          state: 1,
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          certi_pic: '17.1%',
-          stu_pic:'暂无',
-          gov_pic: '暂无',
-          ser_pic:0,
-          bank_pic:'图片',
-          lib_pic: 0,
-        }]
+        }],
+        tempData:{
+          count:0,
+          flag:false,
+        },
       }
     },
-  }
+    created:function(){
+      this.test();
+    },
+    /*watch:{
+      change:function(){
+        if(change === count){
+          flag = false;
+          console.log(flag);
+        }
+      }
+    },*/
+}
 </script>
 
 <style scoped>

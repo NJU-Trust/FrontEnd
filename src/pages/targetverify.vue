@@ -41,22 +41,17 @@
       <div id="check" class="sheet" style="position:relative;top:-350px;left:250px">
         <el-table
           :data="tableData5"
-          max-height="350"
           style="width: 100%">
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="用户名">
-                  <span>{{ props.row.username }}</span>
+                <!--项目基本信息 -->
+                <el-form-item label="" >
+                  <div style="font-size:20px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;项目基本信息</strong></div>
                 </el-form-item>
-                <el-form-item label="标的名称">
+                <el-form-item ></el-form-item>
+                <el-form-item label="项目名称">
                   <span>{{ props.row.name }}</span>
-                </el-form-item>
-                <el-form-item label="标的利率">
-                  <span>{{ props.row.rate }}</span>
-                </el-form-item>
-                <el-form-item label="标的金额">
-                  <span>{{ props.row.money }}</span>
                 </el-form-item>
                 <el-form-item label="开始时间">
                   <span>{{ props.row.startTime }}</span>
@@ -64,18 +59,46 @@
                 <el-form-item label="结束时间">
                   <span>{{ props.row.endTime }}</span>
                 </el-form-item>
-                <el-form-item label="风险评级">
-                  <span>{{ props.row.grade }}</span>
+                <el-form-item ></el-form-item>
+
+                <!-- 资金去向 -->
+                <el-form-item label="" >
+                  <div style="font-size:20px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;资金去向</strong></div>
                 </el-form-item>
-                <el-form-item label="还款方案">
-                  <span>{{ props.row.returntype }}</span>
+                <el-form-item ></el-form-item>
+                <el-form-item label="资金用途分类">
+                  <span>{{ props.row.classify }}</span>
                 </el-form-item>
-                <el-form-item label="用途描述">
+                <el-form-item ></el-form-item>
+                <el-form-item label="资金用途详述">
                   <span>{{ props.row.desc }}</span>
                 </el-form-item>
+                <el-form-item ></el-form-item>
+
+                <!--关于贷款 -->
+                <el-form-item label="" >
+                  <div style="font-size:20px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;关于贷款</strong></div>
+                </el-form-item>
+                <el-form-item ></el-form-item>
+                <el-form-item label="拆借金额">
+                  <span>{{ props.row.money }}</span>
+                </el-form-item>
+                <el-form-item label="还款利率">
+                  <span>{{ props.row.rate }}</span>
+                </el-form-item>
+                <el-form-item label="还款日期">
+                  <span>{{ props.row.repayDate }}</span>
+                </el-form-item>
+                <el-form-item label="还款方式">
+                  <span>{{ props.row.returntype }}</span>
+                </el-form-item>
+
+                <!--审核按钮-->
+                <el-form-item ></el-form-item>
                 <el-form-item
                   prop="action"
-                  label="审核">
+                  label="">
+                  <router-link to="/smalltargetcheck">
                   <el-button
                     size="mini"
                     type="success"
@@ -84,23 +107,24 @@
                     size="mini"
                     type="danger"
                     @click="handleDelete(scope.$index, scope.row)">不合格</el-button>
+                  </router-link>
                 </el-form-item>
               </el-form>
             </template>
           </el-table-column>
           <el-table-column
-            label="用户名"
-            prop="username"
-            width="200">
-          </el-table-column>
-          <el-table-column
-            label="标的名称"
+            label="项目名称"
             prop="name"
             width="200">
           </el-table-column>
           <el-table-column
-            label="用途描述"
-            prop="desc"
+            label="开始日期"
+            prop="startTime"
+            width="200">
+          </el-table-column>
+          <el-table-column
+            label="结束日期"
+            prop="endTime"
             width="450">
           </el-table-column>
         </el-table>
@@ -128,65 +152,15 @@
     data() {
       return {
         tableData5: [{
-          username: '小红',
           name: '看演唱会',
-          money:1000,
+          startTime: '2018-8-25',
           endTime:'2018-12-25',
-          grade:'A',
+          classify:'日常开销',
           desc: '为爱豆吃一学期土！',
-          returntype: '等额本息',
+          money:1000,
           rate: '10%',
-          startTime: '2018-8-25',
-        }, {
-          username: '小蓝',
-          name: '好滋好味鸡蛋仔',
-          money:4000,
-          endTime:'2018-12-25',
-          grade:'AA',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
-          rate: '19%',
-          startTime: '2018-8-25',
-        }, {
-          username: '小黄',
-          name: '好滋好味鸡蛋仔',
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
-        },{
-          username: '小绿',
-          name: '好滋好味鸡蛋仔',
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
-        },{
-          username: '小白',
-          name: '好滋好味鸡蛋仔',
-          money:3000,
-          endTime:'2018-12-25',
-          grade:'B',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '14.8%',
-          startTime: '2018-8-25',
-        }, {
-          username: '小黑',
-          name: '好滋好味鸡蛋仔',
-          money:5000,
-          endTime:'2018-12-25',
-          grade:'D',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          returntype: '等额本息',
-          rate: '17.1%',
-          startTime: '2018-8-25',
         }]
       }
     }
@@ -293,4 +267,8 @@
     margin-bottom: 0;
     width: 50%;
   }
+
+  .title{
+    font-size:20px;
+    }
 </style>
