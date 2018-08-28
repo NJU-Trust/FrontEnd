@@ -5,10 +5,10 @@
       <navi style="position: relative"></navi>
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;">
-        <div class="myspace">
-          <h2 class="myspace">审核模块</h2>
-          <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
-        </div>
+      <div class="myspace">
+        <h2 class="myspace">审核模块</h2>
+        <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
+      </div>
     </div>
 
     <!--左边栏-->
@@ -22,44 +22,44 @@
     </div>
 
     <!--正文内容 -->
-      <div class="back">
-        <div id="check" class="sheet" style="position:relative;top:-350px;left:250px">
-      <el-table
-        :data="tableData"
-        max-height="350"
-        style="width: 100%">
+    <div class="back">
+      <div id="check" class="sheet" style="position:relative;top:-350px;left:250px">
+        <el-table
+          :data="tableData"
+          max-height="350"
+          style="width: 100%">
           <el-table-column
-          prop="name"
-          label="用户名称"
-          width="300">
-        </el-table-column>
-        <el-table-column
-          prop="state"
-          label="当前状态"
-          width="300">
-          <template slot-scope="scope">
-            <el-tag :type="scope.row.state | statusFilter">{{scope.row.state | formatStata}}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="action"
-          label="操作"
-          width="300">
-          <template slot-scope="scope">
-            <router-link to="/userverify">
-              <button class="button" >审核
-              </button>
-            </router-link>
-            <!--
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
-          </template>
-        </el-table-column>
-      </el-table>
-        </div>
+            prop="name"
+            label="标的名称"
+            width="300">
+          </el-table-column>
+          <el-table-column
+            prop="state"
+            label="当前状态"
+            width="300">
+            <template slot-scope="scope">
+              <el-tag :type="scope.row.state | statusFilter">{{scope.row.state | formatStata}}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="action"
+            label="操作"
+            width="300">
+            <template slot-scope="scope">
+              <router-link to="/targetverify">
+                <button class="button" >审核
+                </button>
+              </router-link>
+              <!--
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
+    </div>
 
     <!--底栏-->
     <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
@@ -117,27 +117,27 @@
         },
 
         tableData: [{
-          name: '小红',
+          name: '看演唱会',
           state: 1,
           action:''
         }, {
-          name: '小黑',
+          name: '看漫展',
           state: 2,
           action:''
         }, {
-          name: '小黄',
+          name: '日产开销',
           state: 2,
           action:''
         },{
-          name: '小绿',
+          name: '不知道还能写啥',
           state: 1,
           action:''
         },{
-          name: '小白',
+          name: '不知道还能写啥+1',
           state: 2,
           action:''
         }, {
-          name: '小蓝',
+          name: '编不下去了',
           state: 1,
           action:''
         }]
@@ -178,7 +178,7 @@
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
-   }
+  }
 
   div.myspace{
     /*个人中心*/

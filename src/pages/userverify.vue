@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;">
       <div class="myspace">
-        <h2 class="myspace">用户-标的审核</h2>
+        <h2 class="myspace">审核模块</h2>
         <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
       </div>
     </div>
