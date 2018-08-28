@@ -1,5 +1,5 @@
 <template>
-    <div class="main_panel">
+    <el-form class="main_panel">
       <div class="top_panel">
         <div>
           <div style="padding-left: 30px">
@@ -17,15 +17,12 @@
           <div ></div>
         </div>
         <div style="margin-left: 100px">
-          贷款金额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold">10000</span>元
+          贷款金额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold">{{principal}}</span>元
           <div style="border: 1px #b7b7b7 solid"></div>
-          利息总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">5000</span>元
+          利息总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{interest}}</span>元
           <div style="border: 1px #b7b7b7 solid"></div>
-          还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">15000</span>元
+          还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{sum}}</span>元
         </div>
-      </div>
-      <div>
-        
       </div>
       <div>
         <el-table
@@ -61,7 +58,14 @@
           </el-table-column>
         </el-table>
       </div>
-    </div>
+      <div >
+        <div style="font-size: 22px;margin-top: 20px">贷款建议:</div>
+        <p id="enough" style="color: #31d09f" v-if="enough">根据预测，您足以支付每期还款</p>
+        <p id="not_enough" v-if="enough==false">在您的还款期内，根据历史消费记录预测，有X个月（a,b,c,d）应还金额超出当月预测结余，如果选择该方案，请酌情调整这些月份的消费</p>
+        <p id="can_change" v-if="change">对于上述需调整的月份，根据您的历史消费数据预测，您额可调整支出分类占比为：衣物饰品a% 饮食b% 住宿c% 娱乐消费d%.您可以根据自身需求调整这些消费</p>
+        <p id="cannot_change" v-if="change==false">根据您的历史消费，有X月（a,b,c,d)应还金额还需要其他资金收入，您可以考虑还款期内是否有以下的收入：奖学金、到期理财产品、兼职等，<span style="color: red">如果没有，请酌情调整所选贷款方案</span></p>
+      </div>
+    </el-form>
 </template>
 
 <script>
@@ -69,6 +73,11 @@
         name: "evaluate",
       data() {
         return {
+          principal:10000,
+          interest:5000,
+          sum:15000,
+          enough:false,
+          change:true,
           tableData: [{
             id:'1',
             sum:'',
@@ -103,7 +112,7 @@
 
   .main_panel{
     width:500px;
-    height:600px;
+    /*height:600px;*/
   }
 
   .top_panel{

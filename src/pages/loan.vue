@@ -6,10 +6,10 @@
       </div>
       <el-form class="back">
         <div class="left">
-          <div class="left_label look_label" @click="change11">
+          <div id="look_tab" class="left_label look_label" @click="change11">
             我的借款情况
           </div>
-          <div class="left_label ask_label" @click="change22">
+          <div id="ask_tab" class="left_label ask_label" @click="change22">
             申请借款
           </div>
 
@@ -278,10 +278,20 @@
         change11(){
           document.getElementById("sheet").style.display = "none";
           document.getElementById("check").style.display = "inline";
+
+          document.getElementById("ask_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
+          /*document.getElementById("con_tab").style.color = "white";
+          document.getElementById("learn_tab").style.color = "black";*/
+          document.getElementById("look_tab").style.backgroundColor = "lightskyblue";
         },
         change22(){
           document.getElementById("sheet").style.display = "inline";
           document.getElementById("check").style.display = "none";
+
+          document.getElementById("look_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
+          /*document.getElementById("con_tab").style.color = "white";
+          document.getElementById("learn_tab").style.color = "black";*/
+          document.getElementById("ask_tab").style.backgroundColor = "lightskyblue";
         },
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
@@ -369,6 +379,11 @@
       text-align:center;
       padding-top: 17px;
       font-size: 16px;
+    }
+
+    .left_label:hover{
+      box-shadow: 2px 4px 6px #6a6a6a;
+      /*color: black;*/
     }
 
     .look_label{
