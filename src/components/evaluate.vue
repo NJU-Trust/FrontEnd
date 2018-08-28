@@ -17,11 +17,11 @@
           <div ></div>
         </div>
         <div style="margin-left: 100px">
-          贷款金额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold">{{principal}}</span>元
+          贷款金额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold" v-model="scheme">{{scheme.capital}}</span>元
           <div style="border: 1px #b7b7b7 solid"></div>
-          利息总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{interest}}</span>元
+          利息总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.interest}}</span>元
           <div style="border: 1px #b7b7b7 solid"></div>
-          还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{sum}}</span>元
+          还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.sum}}</span>元
         </div>
       </div>
       <div>
@@ -42,7 +42,7 @@
             width="95">
           </el-table-column>
           <el-table-column
-            prop="principal"
+            prop="capital"
             label="偿还本金"
             width="95">
           </el-table-column>
@@ -71,35 +71,40 @@
 <script>
     export default {
         name: "evaluate",
+      props:['scheme'],
       data() {
         return {
-          principal:10000,
-          interest:5000,
-          sum:15000,
+
+          /*scheme:{
+            capital:0,
+            interest:0,
+            sum:0
+          },*/
+
           enough:false,
           change:true,
           tableData: [{
             id:'1',
             sum:'',
-            principal:'',
+            capital:'',
             interest:'',
             else:''
           }, {
             id:'2',
             sum:'',
-            principal:'',
+            capital:'',
             interest:'',
             else:''
           }, {
             id:'3',
             sum:'',
-            principal:'',
+            capital:'',
             interest:'',
             else:''
           }, {
             id:'4',
             sum:'',
-            principal:'',
+            capital:'',
             interest:'',
             else:''
           }]

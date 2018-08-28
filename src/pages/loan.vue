@@ -97,40 +97,50 @@
 
               <el-form-item label="还款方式">
                 <el-collapse v-model="form3.activeName" accordion>
-                  <el-collapse-item title="等额本金" name="1">
-                    <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
-                    <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
-                    <!--<div>
-                      <evaluate></evaluate>
-                    </div>-->
-                  </el-collapse-item>
-                  <el-collapse-item title="等额本息" name="2">
-                    <div>每月偿还等同数额的贷款；</div>
-                    <div>还款期限内压力平分，总利息高于等额本金。</div>
-                  </el-collapse-item>
-                  <el-collapse-item title="一次性还本付息" name="3">
-                    <div>贷款到期后一次性归还本金和利息；</div>
-                    <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
-                  </el-collapse-item>
-                  <el-collapse-item title="先息后本" name="4">
-                    <div>每月只需支付利息，期末还清本金；</div>
-                    <div>资金利用时间长。</div>
-                  </el-collapse-item>
+
+                  <div @click="get_average_capital">
+                    <el-collapse-item title="等额本金" name="1" >
+                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
+                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_average_capital_plus_interest">
+                    <el-collapse-item title="等额本息" name="2">
+                      <div>每月偿还等同数额的贷款；</div>
+                      <div>还款期限内压力平分，总利息高于等额本金。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_one_off">
+                    <el-collapse-item title="一次性还本付息" name="3">
+                      <div>贷款到期后一次性归还本金和利息；</div>
+                      <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_interest_first">
+                    <el-collapse-item title="先息后本" name="4">
+                      <div>每月只需支付利息，期末还清本金；</div>
+                      <div>资金利用时间长。</div>
+                    </el-collapse-item>
+                  </div>
+
                 </el-collapse>
               </el-form-item>
 
               <el-form-item>
                 <div v-if="this.form3.activeName==='1'">
-                 <evaluate></evaluate>
+                 <evaluate :scheme="scheme"></evaluate>
                 </div>
                 <div v-else-if="this.form3.activeName==='2'">
-                  B
+                  <evaluate :scheme="scheme"></evaluate>
                 </div>
                 <div v-else-if="this.form3.activeName==='3'">
                   C
                 </div>
                 <div v-else-if="this.form3.activeName==='4'">
-                  D
+                  <evaluate :scheme="scheme"></evaluate>
                 </div>
               </el-form-item>
 
@@ -298,6 +308,28 @@
         },
         clean_form3(){
           this.form3.activeName = '';
+        },
+
+        get_average_capital:function(){
+          console.log("等额本金");
+          this.scheme.capital = 20000;
+          this.scheme.interest = 4000;
+          this.scheme.sum = 24000;
+        },
+
+        get_average_capital_plus_interest(){
+          console.log("等额本息");
+          this.scheme.capital = 20000;
+          this.scheme.interest = 5000;
+          this.scheme.sum = 25000;
+        },
+
+        get_one_off(){
+          console.log("一次性还本付息")
+        },
+
+        get_interest_first(){
+          console.log("先息后本")
         }
 
       },
@@ -329,6 +361,14 @@
           form4:{
             textarea2:''
           },
+
+          scheme:{
+            capital:0,
+            interest:0,
+            sum:0,
+          },
+          capital:0,
+
 
           usage_radio: 3,
           textarea2:'',
