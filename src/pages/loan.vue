@@ -7,20 +7,14 @@
       <el-form class="back">
 
         <div id="sheet" class="sheet">
-          <div class="chooseButton">
-            <el-row>
 
-              <div class="choose_panel">
-                <div id="con_tab" class="choose_label consume_label" @click="change1">
-                  消费类小额短期
-                </div>
 
-                <div id="learn_tab" class="choose_label learn_label" @click="change2">
-                  学习培训类大额长期
-                </div>
-              </div>
-            </el-row>
-          </div>
+          <el-steps :active="active"  style="width: 800px">
+            <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
+            <el-step title="资金去向" icon="el-icon-upload" align-center></el-step>
+            <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
+          </el-steps>
+
 
           <div class="primary_panel" style="margin-top: 20px">
 
@@ -37,6 +31,8 @@
               </el-form-item>
 
             </el-form>
+
+            <el-button type="primary" plain @click="next" style="margin-left: 45%;margin-top: 50px">下一步</el-button>
 
             </div>
 
@@ -146,7 +142,7 @@
 
           </div>
 
-          <div id="learn" style="margin-top: 20px;display: none">
+          <!--<div id="learn" style="margin-top: 20px;display: none">
 
             <el-form ref="form4" :model="form4" label-width="100px" class="primary_info">
               <div class="title">项目信息</div>
@@ -159,7 +155,7 @@
                 </el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
+                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon&#45;&#45;right"></i></el-button>
               </el-form-item>
             </el-form >
 
@@ -242,7 +238,7 @@
               <el-button type="primary" round>提交</el-button>
             </div>
 
-          </div>
+          </div>-->
         </div>
 
       </el-form>
@@ -272,42 +268,7 @@
         localStorage.route = "#loan";
       },
       methods:{
-        change1(){
-          document.getElementById("learn").style.display = "none";
-          document.getElementById("consume").style.display = "inline";
 
-          document.getElementById("con_tab").style.backgroundColor = "lightskyblue";
-          document.getElementById("con_tab").style.color = "black";
-          document.getElementById("learn_tab").style.color = "white";
-          document.getElementById("learn_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-        },
-        change2(){
-          document.getElementById("consume").style.display = "none";
-          document.getElementById("learn").style.display = "inline";
-
-          document.getElementById("con_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";
-          document.getElementById("learn_tab").style.backgroundColor = "lightskyblue";
-        },
-        change11(){
-          document.getElementById("sheet").style.display = "none";
-          document.getElementById("check").style.display = "inline";
-
-          document.getElementById("ask_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("look_tab").style.backgroundColor = "lightskyblue";
-        },
-        change22(){
-          document.getElementById("sheet").style.display = "inline";
-          document.getElementById("check").style.display = "none";
-
-          document.getElementById("look_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("ask_tab").style.backgroundColor = "lightskyblue";
-        },
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
         },
@@ -336,12 +297,17 @@
 
         get_interest_first(){
           console.log("先息后本")
+        },
+
+        next() {
+          if (this.active++ > 2) this.active = 0;
         }
 
       },
 
       data(){
         return {
+          active: 0,
           pickerOptions1: {
             disabledDate(time) {
               return time.getTime() > Date.now();
@@ -373,42 +339,10 @@
             interest:0,
             sum:0,
           },
-          capital:0,
-
 
           usage_radio: 3,
           textarea2:'',
 
-          tableData: [{
-            name: '融资项目一',
-            num: '1',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目二',
-            num: '2',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目三',
-            num: '3',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目四',
-            num: '4',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }],
-          formInline:{
-            money:'',
-            category:'any',
-            return_date:''
-          }
         };
       },
 
@@ -515,13 +449,12 @@
     }
     .title{
       font-size: 23px;
-      color: #acacac;
+      color: #969696;
       padding-bottom: 20px;
     }
 
     .choose{
       display: flex;
-     /* border: 1px black solid;*/
       margin-left: 30%;
       width:1000px;
     }
