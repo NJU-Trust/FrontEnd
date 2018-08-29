@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import homepage from '@/pages/homepage'
 import login from '@/pages/login'
+import enterLoan from '@/pages/enterLoan'
+import checkMyLoan from '@/pages/checkMyLoan'
 import loan from '@/pages/loan'
+import repay from '@/pages/repay'
 import signup from '@/pages/signup'
 import UserSpace from '@/pages/UserSpace'
 import NormalCheck from '@/pages/NormalCheck'
@@ -12,6 +15,10 @@ import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
+import ProjectRencently from '@/pages/ProjectRencently'
+import ProjectFavorite from '@/pages/ProjectFavorite'
+import InvestHistory from '@/pages/InvestHistory'
+import LoanHistory from '@/pages/LoanHistory'
 import EnterVerify from '@/pages/EnterVerify'
 import userverify from '@/pages/userverify'
 import targetverify from '@/pages/targetverify'
@@ -35,9 +42,24 @@ export default new Router({
       component: login
     },
     {
+      path: '/enterLoan',
+      name: 'enterLoan',
+      component: enterLoan
+    },
+    {
+      path: '/checkMyLoan',
+      name: '/checkMyloan',
+      component: checkMyLoan
+    },
+    {
       path: '/loan',
       name: 'loan',
       component: loan
+    },
+    {
+      path: '/repay',
+      name: 'repay',
+      component: repay
     },
     {
       path: '/signup',
@@ -63,6 +85,26 @@ export default new Router({
       path: '/UserSpace/AlumniCheck',
       name: 'AlumniCheck',
       component: AlumniCheck
+    },
+    {
+      path: '/UserSpace/ProjectRencently',
+      name: 'ProjectRencently',
+      component: ProjectRencently
+    },
+    {
+      path: '/UserSpace/ProjectFavorite',
+      name: 'ProjectFavorite',
+      component: ProjectFavorite
+    },
+    {
+      path: '/UserSpace/InvestHistory',
+      name: 'InvestHistory',
+      component: InvestHistory
+    },
+    {
+      path: '/UserSpace/LoanHistory',
+      name: 'LoanHistory',
+      component: LoanHistory
     },
     {
       path: '/usermanage',

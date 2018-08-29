@@ -5,16 +5,8 @@
         <right-bar></right-bar>
       </div>
       <el-form class="back">
-        <div class="left">
-          <div class="left_label look_label" @click="change11">
-            我的借款情况
-          </div>
-          <div class="left_label ask_label" @click="change22">
-            申请借款
-          </div>
 
-        </div>
-        <div id="sheet" class="sheet" style="display: none">
+        <div id="sheet" class="sheet">
           <div class="chooseButton">
             <el-row>
 
@@ -85,7 +77,7 @@
                 </el-tooltip>
               </el-form-item>
               <el-form-item label="还款日期">
-                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为一年建议范围为[N1,N2]" placement="top-start">
+                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为1年，建议范围为[N1,N2]" placement="top-start">
                   <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
                 </el-tooltip>
               </el-form-item>
@@ -97,40 +89,50 @@
 
               <el-form-item label="还款方式">
                 <el-collapse v-model="form3.activeName" accordion>
-                  <el-collapse-item title="等额本金" name="1">
-                    <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
-                    <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
-                    <!--<div>
-                      <evaluate></evaluate>
-                    </div>-->
-                  </el-collapse-item>
-                  <el-collapse-item title="等额本息" name="2">
-                    <div>每月偿还等同数额的贷款；</div>
-                    <div>还款期限内压力平分，总利息高于等额本金。</div>
-                  </el-collapse-item>
-                  <el-collapse-item title="一次性还本付息" name="3">
-                    <div>贷款到期后一次性归还本金和利息；</div>
-                    <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
-                  </el-collapse-item>
-                  <el-collapse-item title="先息后本" name="4">
-                    <div>每月只需支付利息，期末还清本金；</div>
-                    <div>资金利用时间长。</div>
-                  </el-collapse-item>
+
+                  <div @click="get_average_capital(1)">
+                    <el-collapse-item title="等额本金" name="1" >
+                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
+                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_average_capital_plus_interest">
+                    <el-collapse-item title="等额本息" name="2">
+                      <div>每月偿还等同数额的贷款；</div>
+                      <div>还款期限内压力平分，总利息高于等额本金。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_one_off">
+                    <el-collapse-item title="一次性还本付息" name="3">
+                      <div>贷款到期后一次性归还本金和利息；</div>
+                      <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_interest_first">
+                    <el-collapse-item title="先息后本" name="4">
+                      <div>每月只需支付利息，期末还清本金；</div>
+                      <div>资金利用时间长。</div>
+                    </el-collapse-item>
+                  </div>
+
                 </el-collapse>
               </el-form-item>
 
               <el-form-item>
                 <div v-if="this.form3.activeName==='1'">
-                 <evaluate></evaluate>
+                 <evaluate :scheme="scheme"></evaluate>
                 </div>
                 <div v-else-if="this.form3.activeName==='2'">
-                  B
+                  <evaluate :scheme="scheme"></evaluate>
                 </div>
                 <div v-else-if="this.form3.activeName==='3'">
                   C
                 </div>
                 <div v-else-if="this.form3.activeName==='4'">
-                  D
+                  <evaluate :scheme="scheme"></evaluate>
                 </div>
               </el-form-item>
 
@@ -161,80 +163,91 @@
               </el-form-item>
             </el-form >
 
+            <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
+              <div class="title">关于贷款</div>
+              <el-form-item label="拆借金额">
+                <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
+                  <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
+                </el-tooltip>
+              </el-form-item>
+              <el-form-item label="还款日期">
+                <el-tooltip class="item" effect="dark" content="大额贷款最长期限为5年，建议范围为[N1,N2]" placement="top-start">
+                  <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
+                </el-tooltip>
+              </el-form-item>
+              <el-form-item label="基准还款利率">
+                <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
+                  <el-input v-model="form3.rate"></el-input>
+                </el-tooltip>
+              </el-form-item>
+
+              <el-form-item label="还款方式">
+                <el-collapse v-model="form3.activeName" accordion>
+
+                  <div @click="get_average_capital">
+                    <el-collapse-item title="等额本金" name="1" >
+                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
+                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_average_capital_plus_interest">
+                    <el-collapse-item title="等额本息" name="2">
+                      <div>每月偿还等同数额的贷款；</div>
+                      <div>还款期限内压力平分，总利息高于等额本金。</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_one_off">
+                    <el-collapse-item title="一次性还本付息" name="3">
+                      <div>贷款到期后一次性归还本金和利息；</div>
+                      <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
+                    </el-collapse-item>
+                  </div>
+
+                  <div @click="get_interest_first">
+                    <el-collapse-item title="先息后本" name="4">
+                      <div>每月只需支付利息，期末还清本金；</div>
+                      <div>资金利用时间长。</div>
+                    </el-collapse-item>
+                  </div>
+
+                </el-collapse>
+              </el-form-item>
+
+              <el-form-item>
+                <div v-if="this.form3.activeName==='1'">
+                  <evaluate :scheme="scheme"></evaluate>
+                </div>
+                <div v-else-if="this.form3.activeName==='2'">
+                  <evaluate :scheme="scheme"></evaluate>
+                </div>
+                <div v-else-if="this.form3.activeName==='3'">
+                  C
+                </div>
+                <div v-else-if="this.form3.activeName==='4'">
+                  <evaluate :scheme="scheme"></evaluate>
+                </div>
+              </el-form-item>
+
+              <el-form-item style="padding-left: 140px">
+                <el-button type="primary" @click="onSubmit">确定贷款</el-button>
+                <el-button @click="clean_form3">清空重写</el-button>
+              </el-form-item>
+
+
+            </el-form>
+
             <div class="row" style="margin-left: 250px">
               <el-button type="primary" round>提交</el-button>
             </div>
 
           </div>
         </div>
-        <div id="check" style="margin-top: 100px;">
-          <div class="choose">
-            <el-form :inline="true" :model="formInline" class="demo-form-inline">
-              <el-form-item label="项目金额">
-                <el-input v-model="formInline.money" style="width: 120px;"></el-input>
-              </el-form-item>
-              <el-form-item label="项目类型" >
-                <el-select v-model="formInline.category">
-                  <el-option label="不限" value="any"></el-option>
-                  <el-option label="消费类小额短期" value="consume"></el-option>
-                  <el-option label="学习培训类大额长期" value="learn"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="还款日期" >
-                <el-date-picker type="date" placeholder="选择日期" v-model="formInline.return_date" style="width: 140px;"></el-date-picker>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="primary" @click="onSubmit">查询</el-button>
-              </el-form-item>
-            </el-form>
-            <!--<div class="title">筛选条件</div>-->
-          </div>
-          <el-table
-            :data="tableData"
-            style="margin-left: 30%">
-            <el-table-column
-              prop="name"
-              label="名称"
-              width="140"
-              align="center">
-            </el-table-column>
-            <el-table-column
-              prop="num"
-              label="已获投资数"
-              width="180"
-              align="center">
-            </el-table-column>
-            <el-table-column
-              prop="date"
-              label="截止日期"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="process"
-              label="项目进度"
-              width="140">
-            </el-table-column>
-            <el-table-column
-              prop="action"
-              label="操作"
-              width="180"
-              align="center">
-              <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
+
       </el-form>
       <footerBar style="float: bottom"></footerBar>
     </div>
-  <!--<footerBar style="float: bottom"></footerBar>-->
 </template>
 
 <script>
@@ -243,6 +256,7 @@
     import footerBar from '@/components/footerBar.vue';
     import rightBar from '@/components/rightBar.vue';
     import evaluate from '@/components/evaluate.vue';
+    import checkList from '@/components/checkList.vue';
 
     export default {
       name: "loan",
@@ -251,7 +265,8 @@
         navi,
         footerBar,
         rightBar,
-        evaluate
+        evaluate,
+        checkList
       },
       beforeCreate:function(){
         localStorage.route = "#loan";
@@ -278,16 +293,49 @@
         change11(){
           document.getElementById("sheet").style.display = "none";
           document.getElementById("check").style.display = "inline";
+
+          document.getElementById("ask_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
+          /*document.getElementById("con_tab").style.color = "white";
+          document.getElementById("learn_tab").style.color = "black";*/
+          document.getElementById("look_tab").style.backgroundColor = "lightskyblue";
         },
         change22(){
           document.getElementById("sheet").style.display = "inline";
           document.getElementById("check").style.display = "none";
+
+          document.getElementById("look_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
+          /*document.getElementById("con_tab").style.color = "white";
+          document.getElementById("learn_tab").style.color = "black";*/
+          document.getElementById("ask_tab").style.backgroundColor = "lightskyblue";
         },
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
         },
         clean_form3(){
           this.form3.activeName = '';
+        },
+
+        get_average_capital(num){
+          console.log()
+          console.log("等额本金");
+          this.scheme.capital = 20000;
+          this.scheme.interest = 4000;
+          this.scheme.sum = 24000;
+        },
+
+        get_average_capital_plus_interest(){
+          console.log("等额本息");
+          this.scheme.capital = 20000;
+          this.scheme.interest = 5000;
+          this.scheme.sum = 25000;
+        },
+
+        get_one_off(){
+          console.log("一次性还本付息")
+        },
+
+        get_interest_first(){
+          console.log("先息后本")
         }
 
       },
@@ -319,6 +367,14 @@
           form4:{
             textarea2:''
           },
+
+          scheme:{
+            capital:0,
+            interest:0,
+            sum:0,
+          },
+          capital:0,
+
 
           usage_radio: 3,
           textarea2:'',
@@ -367,8 +423,13 @@
       /*margin-top: 20px;*/
      /* border: 1px black solid;*/
       text-align:center;
-      padding-top: 17px;
+      padding-top: 15px;
       font-size: 16px;
+    }
+
+    .left_label:hover{
+      box-shadow: 2px 4px 6px #6a6a6a;
+      /*color: black;*/
     }
 
     .look_label{
