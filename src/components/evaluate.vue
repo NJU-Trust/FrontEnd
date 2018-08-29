@@ -8,6 +8,10 @@
             <i class="el-icon-star-on"></i>
             <i class="el-icon-star-on"></i>
             <i class="el-icon-star-on"></i>
+            <el-tooltip class="item" effect="dark" content="点击查看借款难度算法" placement="bottom-start">
+              <i class="el-icon-question pointer" style="color: #409EFF"></i>
+            </el-tooltip>
+
           </div>
           <div style="padding-left: 50px">
             <span style="font-size: 25px;font-weight:bold;color: #cd5f33;padding-top: 20px;padding-left: 15px">654.44</span>
@@ -122,6 +126,10 @@
 
   .top_panel{
     display: flex;
+  }
+
+  .pointer:hover{
+    cursor:pointer;
   }
 
 </style>

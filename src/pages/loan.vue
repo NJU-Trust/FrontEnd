@@ -22,6 +22,13 @@
             </el-row>
           </div>
 
+          <el-steps :active="0"  style="width: 800px">
+            <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
+            <el-step title="资金去向" icon="el-icon-upload" align-center></el-step>
+            <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
+          </el-steps>
+
+
           <div class="primary_panel" style="margin-top: 20px">
 
             <el-form ref="form1" :model="form1" label-width="80px" class="primary_info">
@@ -35,6 +42,8 @@
               <el-form-item label="截止日期">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
               </el-form-item>
+
+              <el-button type="primary" plain @click="next">下一步</el-button>
 
             </el-form>
 
@@ -336,6 +345,10 @@
 
         get_interest_first(){
           console.log("先息后本")
+        },
+
+        next() {
+          if (this.active++ > 2) this.active = 0;
         }
 
       },
@@ -373,7 +386,7 @@
             interest:0,
             sum:0,
           },
-          capital:0,
+          active: 0,
 
 
           usage_radio: 3,
