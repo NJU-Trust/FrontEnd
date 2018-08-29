@@ -83,38 +83,33 @@
                 <div style="padding-left: 20px">
 
                   <el-form-item v-if="form2.layer4">
-                    <el-button type="primary" size="mini">总结余</el-button>
-                    <el-button type="primary" size="mini">月刚性支出</el-button>
-                    <el-button type="primary" size="mini">总刚性支出</el-button>
-                    <el-button type="primary" size="mini">月可调支出</el-button>
-                    <el-button type="primary" size="mini">总可调支出</el-button>
-                    <el-button type="primary" size="mini">月负债</el-button>
-                    <el-button type="primary" size="mini">总负债</el-button>
-                    <el-button type="primary" size="mini">净资产</el-button>
-                    <el-button type="primary" size="mini">恩格尔系数</el-button>
-                    <el-button type="primary" size="mini">刚性比率</el-button>
-                    <el-button type="primary" size="mini">资产负债率</el-button>
+
+
+
                     <el-button type="primary" size="mini">偿债能力</el-button>
                     <el-button type="primary" size="mini">杠杆比例</el-button>
                     <el-button type="primary" size="mini">消费比率</el-button>
                     <el-button type="primary" size="mini">储蓄比率</el-button>
-                    <el-button type="primary" size="mini">信用评级指标</el-button>
+                    <el-button type="primary" size="mini">刚性比率</el-button>
+                    <el-button type="primary" size="mini">恩格尔系数</el-button>
+                    <el-button type="primary" size="mini">资产负债率</el-button>
                     <el-button type="primary" size="mini">受教育情况</el-button>
+                    <el-button type="primary" size="mini">信用评级指标</el-button>
                     <el-button type="primary" size="mini">学生的经济来源</el-button>
                     <el-button type="primary" size="mini">学生成绩</el-button>
-                    <el-button type="primary" size="mini">挂科的数目</el-button>
-                    <el-button type="primary" size="mini">违纪信息</el-button>
-                    <el-button type="primary" size="mini">考试作弊信息</el-button>
-                    <el-button type="primary" size="mini">贷款偿还信息</el-button>
 
                   </el-form-item>
 
                   <el-form-item v-if="form2.layer3&&form2.layer4">
                     <el-button type="success" size="mini">月收入</el-button>
                     <el-button type="success" size="mini">月支出</el-button>
-                    <el-button type="success" size="mini">月结余</el-button>
+                    <el-button type="success" size="mini">结余</el-button>
+                    <el-button type="success" size="mini">负债</el-button>
+                    <el-button type="success" size="mini">净资产</el-button>
                     <el-button type="success" size="mini">总收入</el-button>
                     <el-button type="success" size="mini">总支出</el-button>
+                    <el-button type="success" size="mini">刚性支出</el-button>
+                    <el-button type="success" size="mini">可调支出</el-button>
                   </el-form-item>
 
                   <el-form-item v-if="form2.layer2&&form2.layer3&&form2.layer4">
