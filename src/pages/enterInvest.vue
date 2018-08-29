@@ -10,7 +10,7 @@
       <br><br><br>
       <p class="slogan">Trust us, receive fond</p><br><br><br>
       <div class="col-md-3 project">
-        <input type="button" value="小额短期投资" class="button" onclick="location.href='/largeInvest'"/>
+        <input type="button" value="小额短期投资" class="button" onclick="location.href='/invest'"/>
       </div>
       <div class="col-md-3 project">
         <input type="button" value="大额长期投资" class="button" onclick="location.href='/largeInvest'"/>
