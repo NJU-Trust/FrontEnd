@@ -37,58 +37,50 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:150px;margin-bottom: 100px;margin-left:8%;margin-right:30%;">
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-    </div>
-    <div style="margin-top:150px;margin-bottom:100px;margin-right:3%;margin-left:73%;">
-      <div class="searchBorder">
-        <h3>筛选您期望的项目</h3>
-        <div>
-          <p class="leftFont">标的用途种类</p><br>
-          <form class="col-sm-12 col-md-12">
-            <input type="button" value="不限" name="Any" class="searchButton"/>
-            <input type="button" value="日常生活费周转" name="Any" class="searchButton" style="width:60%;"/><br>
-            <input type="button" value="演唱会看比赛看剧音乐会等" name="Any" class="searchButton" style="width:91%;"/>
-            <input type="button" value="旅游" name="Any" class="searchButton"/>
-            <input type="button" value="游戏娱乐电影音乐" name="Any" class="searchButton" style="width:60%;"/><br>
-          </form>
+    <div class="col-xs-12 col-md-12">
+      <div class="col-xs-8 col-md-8">
+        <div style="margin-left:10%;width:96%;">
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
         </div>
-        <div>
-          <p class="leftFont" style="margin-top:20px;">信用分数</p><br>
-          <form class="col-sm-12 col-md-12">
-            <input type="button" value="不限" name="Any" class="searchButton"/>
-            <input type="button" value="50以上" name="Any" class="searchButton"/>
-            <input type="button" value="100以上" name="Any" class="searchButton"/>
-          </form><br><br><br>
+      </div>
+      <div class="col-xs-4 col-md-4">
+        <div style="margin-left:10%;">
+        <div class="searchBorder">
+          <h3>筛选您期望的项目</h3>
+          <div>
+            <p class="leftFont">标的用途种类</p><br>
+            <form class="col-sm-12 col-md-12">
+              <input type="button" value="不限" name="Any" class="searchButton"/>
+              <input type="button" value="日常生活费周转" name="Any" class="searchButton" style="width:60%;"/><br>
+              <input type="button" value="演唱会看比赛看剧音乐会等" name="Any" class="searchButton" style="width:91%;"/>
+              <input type="button" value="旅游" name="Any" class="searchButton"/>
+              <input type="button" value="游戏娱乐电影音乐" name="Any" class="searchButton" style="width:60%;"/><br>
+            </form>
+          </div>
+          <div>
+            <p class="leftFont" style="margin-top:20px;">信用分数</p><br>
+            <form class="col-sm-12 col-md-12">
+              <input type="button" value="不限" name="Any" class="searchButton"/>
+              <input type="button" value="50以上" name="Any" class="searchButton"/>
+              <input type="button" value="100以上" name="Any" class="searchButton"/>
+            </form><br><br><br>
+          </div>
+          <div>
+            <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+          </div>
         </div>
-        <div>
-          <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-        </div>-->
+        </div>
       </div>
-    </div>
-    <div style="margin-top:150px;margin-bottom: 100px;margin-left:8%;margin-right:30%;">
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-    </div>
-    <div class="investNotice backPic" :style="backPic" style="margin-top:150px;margin-bottom:100px;margin-right:3%;margin-left:73%;">
-      <div style="padding-top:46%;">
-        <h1 style="font-size:17px;text-align: center;">小贴士</h1>
-        <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+      <div class="col-xs-4 col-md-4">
+        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:20%;">
+          <div style="padding-top:46%;">
+            <h1 style="font-size:17px;text-align: center;">小贴士</h1>
+            <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-12" style="padding:0">
@@ -119,9 +111,10 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue'
   import investList from '@/components/investList.vue'
+  import ProjectList from "../components/projectList";
   export default {
     name: "invest",
-    components:{navi, footerBar, rightBar,investList},
+    components:{navi, footerBar, rightBar,investList,ProjectList},
     data(){
       return{
         backPic:{
