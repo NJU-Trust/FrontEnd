@@ -9,16 +9,20 @@ import repay from '@/pages/repay'
 import signup from '@/pages/signup'
 import UserSpace from '@/pages/UserSpace'
 import NormalCheck from '@/pages/NormalCheck'
+import AdvancedCheck from '@/pages/AdvancedCheck'
 import FinancialStanding from '@/pages/FinancialStanding'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
+import CrossCheck from '@/pages/CrossCheck'
 import ProjectRencently from '@/pages/ProjectRencently'
 import ProjectFavorite from '@/pages/ProjectFavorite'
-import InvestHistory from '@/pages/InvestHistory'
-import LoanHistory from '@/pages/LoanHistory'
+import ProjectHistory from '@/pages/ProjectHistory'
+import InvestEarnings from '@/pages/InvestEarnings'
+import LoanStatistics from '@/pages/LoanStatistics'
+import SchoolPerformance from '@/pages/SchoolPerformance'
 import EnterVerify from '@/pages/EnterVerify'
 import userverify from '@/pages/userverify'
 import targetverify from '@/pages/targetverify'
@@ -72,9 +76,19 @@ export default new Router({
       component: UserSpace
     },
     {
+      path: '/UserSpace/SchoolPerformance',
+      name: 'SchoolPerformance',
+      component: SchoolPerformance
+    },
+    {
       path: '/UserSpace/NormalCheck',
       name: 'NormalCheck',
       component: NormalCheck
+    },
+    {
+      path: '/UserSpace/AdvancedCheck',
+      name: 'AdvancedCheck',
+      component: AdvancedCheck
     },
     {
       path: '/UserSpace/FinancialStanding',
@@ -87,6 +101,11 @@ export default new Router({
       component: AlumniCheck
     },
     {
+      path: '/UserSpace/CrossCheck',
+      name: 'CrossCheck',
+      component: CrossCheck
+    },
+    {
       path: '/UserSpace/ProjectRencently',
       name: 'ProjectRencently',
       component: ProjectRencently
@@ -97,14 +116,19 @@ export default new Router({
       component: ProjectFavorite
     },
     {
-      path: '/UserSpace/InvestHistory',
-      name: 'InvestHistory',
-      component: InvestHistory
+      path: '/UserSpace/ProjectHistory',
+      name: 'ProjectHistory',
+      component: ProjectHistory
     },
     {
-      path: '/UserSpace/LoanHistory',
-      name: 'LoanHistory',
-      component: LoanHistory
+      path: '/UserSpace/InvestEarnings',
+      name: 'InvestEarnings',
+      component: InvestEarnings
+    },
+    {
+      path: '/UserSpace/LoanStatistics',
+      name: 'LoanStatistics',
+      component: LoanStatistics
     },
     {
       path: '/usermanage',
