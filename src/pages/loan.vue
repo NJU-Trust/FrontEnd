@@ -7,22 +7,9 @@
       <el-form class="back">
 
         <div id="sheet" class="sheet">
-          <div class="chooseButton">
-            <el-row>
 
-              <div class="choose_panel">
-                <div id="con_tab" class="choose_label consume_label" @click="change1">
-                  消费类小额短期
-                </div>
 
-                <div id="learn_tab" class="choose_label learn_label" @click="change2">
-                  学习培训类大额长期
-                </div>
-              </div>
-            </el-row>
-          </div>
-
-          <el-steps :active="0"  style="width: 800px">
+          <el-steps :active="active"  style="width: 800px">
             <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
             <el-step title="资金去向" icon="el-icon-upload" align-center></el-step>
             <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
@@ -43,9 +30,9 @@
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
               </el-form-item>
 
-              <el-button type="primary" plain @click="next">下一步</el-button>
-
             </el-form>
+
+            <el-button type="primary" plain @click="next" style="margin-left: 45%;margin-top: 50px">下一步</el-button>
 
             </div>
 
@@ -281,42 +268,7 @@
         localStorage.route = "#loan";
       },
       methods:{
-        change1(){
-          document.getElementById("learn").style.display = "none";
-          document.getElementById("consume").style.display = "inline";
 
-          document.getElementById("con_tab").style.backgroundColor = "lightskyblue";
-          document.getElementById("con_tab").style.color = "black";
-          document.getElementById("learn_tab").style.color = "white";
-          document.getElementById("learn_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-        },
-        change2(){
-          document.getElementById("consume").style.display = "none";
-          document.getElementById("learn").style.display = "inline";
-
-          document.getElementById("con_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";
-          document.getElementById("learn_tab").style.backgroundColor = "lightskyblue";
-        },
-        change11(){
-          document.getElementById("sheet").style.display = "none";
-          document.getElementById("check").style.display = "inline";
-
-          document.getElementById("ask_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("look_tab").style.backgroundColor = "lightskyblue";
-        },
-        change22(){
-          document.getElementById("sheet").style.display = "inline";
-          document.getElementById("check").style.display = "none";
-
-          document.getElementById("look_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("ask_tab").style.backgroundColor = "lightskyblue";
-        },
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
         },
@@ -355,6 +307,7 @@
 
       data(){
         return {
+          active: 0,
           pickerOptions1: {
             disabledDate(time) {
               return time.getTime() > Date.now();
@@ -386,17 +339,10 @@
             interest:0,
             sum:0,
           },
-          active: 0,
-
 
           usage_radio: 3,
           textarea2:'',
 
-          /*formInline:{
-            money:'',
-            category:'any',
-            return_date:''
-          }*/
         };
       },
 
@@ -503,13 +449,12 @@
     }
     .title{
       font-size: 23px;
-      color: #acacac;
+      color: #969696;
       padding-bottom: 20px;
     }
 
     .choose{
       display: flex;
-     /* border: 1px black solid;*/
       margin-left: 30%;
       width:1000px;
     }
