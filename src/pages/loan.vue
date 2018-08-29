@@ -155,7 +155,7 @@
 
           </div>
 
-          <div id="learn" style="margin-top: 20px;display: none">
+          <!--<div id="learn" style="margin-top: 20px;display: none">
 
             <el-form ref="form4" :model="form4" label-width="100px" class="primary_info">
               <div class="title">项目信息</div>
@@ -168,7 +168,7 @@
                 </el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
+                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon&#45;&#45;right"></i></el-button>
               </el-form-item>
             </el-form >
 
@@ -251,7 +251,7 @@
               <el-button type="primary" round>提交</el-button>
             </div>
 
-          </div>
+          </div>-->
         </div>
 
       </el-form>
@@ -392,36 +392,11 @@
           usage_radio: 3,
           textarea2:'',
 
-          tableData: [{
-            name: '融资项目一',
-            num: '1',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目二',
-            num: '2',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目三',
-            num: '3',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目四',
-            num: '4',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }],
-          formInline:{
+          /*formInline:{
             money:'',
             category:'any',
             return_date:''
-          }
+          }*/
         };
       },
 
