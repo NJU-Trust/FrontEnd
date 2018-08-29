@@ -62,10 +62,8 @@
                 <td>0</td>
               </tr>
               <tr>
-                <th>出勤率</th>
-                <td>100%</td>
                 <th>奖学金情况</th>
-                <td>校级</td>
+                <td colspan="3">校级</td>
               </tr>
               <tr>
                 <th>科研竞赛获奖情况</th>
@@ -95,10 +93,6 @@
               <tbody>
               <tr>
                 <th colspan="1">学费及住宿费缴纳状况</th>
-                <td colspan="3">全交</td>
-              </tr>
-              <tr>
-                <th colspan="1">水电费及与同学借款的缴纳情况</th>
                 <td colspan="3">全交</td>
               </tr>
               <tr>
