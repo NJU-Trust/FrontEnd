@@ -5,6 +5,7 @@ import login from '@/pages/login'
 import enterLoan from '@/pages/enterLoan'
 import checkMyLoan from '@/pages/checkMyLoan'
 import loan from '@/pages/loan'
+import largeLoan from '@/pages/largeLoan'
 import repay from '@/pages/repay'
 import signup from '@/pages/signup'
 import UserSpace from '@/pages/UserSpace'
@@ -55,6 +56,11 @@ export default new Router({
       path: '/loan',
       name: 'loan',
       component: loan
+    },
+    {
+      path: '/largeloan',
+      name: 'largeLoan',
+      component: largeLoan
     },
     {
       path: '/repay',
