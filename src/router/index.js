@@ -32,6 +32,7 @@ import smalltargetcheck from '@/pages/smalltargetcheck'
 import largetargetcheck from '@/pages/largetargetcheck'
 import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
+import recommend from '@/pages/recommend'
 
 Vue.use(Router)
 
@@ -195,6 +196,11 @@ export default new Router({
       path:'/largeInvest',
       name:'largeInvest',
       component:largeInvest
+    },
+    {
+      path:'/recommend',
+      name:'recommend',
+      component:recommend
     },
   ],
   mode:"history"
