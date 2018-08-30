@@ -16,40 +16,56 @@
       <right-bar></right-bar>
     </div>
 
-
     <!--左边栏-->
     <div style="position:relative;top:200px;">
       <leftCheckBar></leftCheckBar>
     </div>
 
     <!--正文内容 -->
-    <!--
     <div class="back">
-      <div class="button_position">
-        <router-link to="/EnterVerify">
-          <button class="button">审核完成</button>
-        </router-link>
-      </div>
-      <div class="pic">
-        <h1>(截图)</h1>
-        <button class="button" style="opacity:1;padding:10px 25px;">合格</button>
-        <button class="button" style="opacity:1;padding:10px 25px;">不合格</button>
-      </div>
-    </div>
-    -->
-    <div class="back">
-      <div id="check" class="sheet" style="position:relative;top:-350px;left:250px">
+      <div id="check" class="sheet" style="position:relative;top:-400px;left:250px">
+        <!--用户信息
+        <div style="font-size:20px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;用户基本信息</strong></div>
+        <div>
+          <span>用户名:{{username}}</span>
+        </div>
+        <el-form-item label="用户名">
+          <span>{{ props.row.username }}</span>
+        </el-form-item>-->
+
         <el-table
           :data="tableData5"
           style="width: 100%">
-          <el-table-column type="expand">
+          <el-table-column type="expand" >
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
+
+                <!--用户信息-->
+                <el-form-item label="" >
+                  <div style="font-size:20px;">
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;用户基本信息</strong>
+                  </div>
+                </el-form-item>
+                <el-form-item ></el-form-item>
+                <el-form-item label="用户名">
+                  <span>{{ props.row.username }}</span>
+                </el-form-item>
+                <el-form-item label="风险评级">
+                  <span>{{ props.row.grade }}</span>
+                </el-form-item>
+                <el-form-item label="非结构化信息审核情况">
+                  <span>{{ props.row.state }}</span>
+                </el-form-item>
+                <el-form-item ></el-form-item>
+
                 <!--项目基本信息 -->
                 <el-form-item label="" >
                   <div style="font-size:20px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;项目基本信息</strong></div>
                 </el-form-item>
                 <el-form-item ></el-form-item>
+                <el-form-item label="项目编号">
+                  <span>{{ props.row.id }}</span>
+                </el-form-item>
                 <el-form-item label="项目名称">
                   <span>{{ props.row.name }}</span>
                 </el-form-item>
@@ -59,7 +75,6 @@
                 <el-form-item label="结束时间">
                   <span>{{ props.row.endTime }}</span>
                 </el-form-item>
-                <el-form-item ></el-form-item>
 
                 <!-- 资金去向 -->
                 <el-form-item label="" >
@@ -112,19 +127,20 @@
               </el-form>
             </template>
           </el-table-column>
+
           <el-table-column
-            label="项目名称"
-            prop="name"
+            label="申请人"
+            prop="username"
             width="200">
           </el-table-column>
           <el-table-column
-            label="开始日期"
-            prop="startTime"
+            label="申请人风险评级"
+            prop="grade"
             width="200">
           </el-table-column>
           <el-table-column
-            label="结束日期"
-            prop="endTime"
+            label="申请人非结构化信息审核情况"
+            prop="state"
             width="450">
           </el-table-column>
         </el-table>
@@ -152,6 +168,10 @@
     data() {
       return {
         tableData5: [{
+          username:"小红",          //用户名
+          grade:'A',                //风险评级
+          state:'已通过',
+          id:'mu3424581',
           name: '看演唱会',
           startTime: '2018-8-25',
           endTime:'2018-12-25',
@@ -173,7 +193,7 @@
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    height: 400px;
+    height: 500px;
     display:flex;
   }
 
