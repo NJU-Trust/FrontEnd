@@ -31,6 +31,7 @@ import smalltargetcheck from '@/pages/smalltargetcheck'
 import largetargetcheck from '@/pages/largetargetcheck'
 import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
+import notice from '@/pages/notice'
 
 Vue.use(Router)
 
@@ -189,6 +190,10 @@ export default new Router({
       path:'/largeInvest',
       name:'largeInvest',
       component:largeInvest
+    },{
+      path:'/notice',
+      name:'notice',
+      component:notice
     },
   ],
   mode:"history"
