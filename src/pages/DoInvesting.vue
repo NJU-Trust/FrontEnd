@@ -96,7 +96,7 @@
 
       <div class="informlist">
           <template id="Inform">
-            <el-tabs  v-model="activeName" @tab-click="handleClick">
+            <el-tabs  v-model="activeName" tabPosition="left" type="border-card" @tab-click="handleClick">
               <el-tab-pane label="项目介绍" name="first">项目介绍</el-tab-pane>
               <el-tab-pane label="相关政策" name="second">相关政策</el-tab-pane>
             </el-tabs>
@@ -139,7 +139,7 @@
 
     .back{
       width: 100%;
-      height: 100%;
+      height: 1900px;
       display:flex;
       background-color:#D9F3FB;
     }
@@ -154,13 +154,13 @@
     .sheet{
       margin-top: 100px;
       margin-left: 50px;
-      margin-bottom: 100px;
+      height: 520px;
       width: 100%;
-
       border-style: groove;
     }
     .detail{
       float: right;
+      padding: 10px;
       margin-left: 10px;
       margin-right: 120px;
     }
@@ -180,6 +180,7 @@
     }
     .picSpace{
       float: left;
+      padding: 20px;
     }
     .pics{
       float: left;
@@ -188,7 +189,8 @@
     .informlist{
       position: absolute;
       padding: 50px;
-      margin-top: 800px;
+      margin-top: 650px;
+      margin-left: 120px;
     }
 
 </style>
