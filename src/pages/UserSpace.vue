@@ -163,14 +163,15 @@
         <el-col :span="6">
           <el-card shadow="always" class="mycard card_B">
             <p>信用评级
-              <el-popover
-                placement="top"
-                title="评级规则"
-                width="200"
-                trigger="hover"
-                content="财务信息评级占比	70%,非财务信息评级占比	30%">
-                <i class="el-icon-question" slot="reference" style="font-size: 14px"></i>
-              </el-popover>
+              <!--很尴尬，写了后竟然不对齐-->
+              <!--<el-popover-->
+                <!--placement="top"-->
+                <!--title="评级规则"-->
+                <!--width="200"-->
+                <!--trigger="hover"-->
+                <!--content="财务信息评级占比	70%,非财务信息评级占比	30%">-->
+                <!--<i class="el-icon-question" slot="reference" style="font-size: 12px"></i>-->
+              <!--</el-popover>-->
             </p>
             <span>76</span> 分
           </el-card>

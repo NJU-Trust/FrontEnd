@@ -1,13 +1,21 @@
 <template>
   <personalCenter paneltitle="项目信息">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="正在进行" name="first">
+
+      </el-tab-pane>
+      <el-tab-pane label="完成项目" name="second">
+
+      </el-tab-pane>
+      <el-tab-pane label="已发布项目" name="third">
+
+      </el-tab-pane>
+      <el-tab-pane label="违约记录" name="fourth">
+
+      </el-tab-pane>
+    </el-tabs>
+
     <div class="projectPanel">
-      <div class="chooseButton">
-        <el-row style="text-align: center">
-          <el-button id="invest_recent_btn" class="type_choose_btn" @click="change_invest_recently" autofocus="true" round>财务</el-button>
-          <el-button id="loan_recent_btn"  class="type_choose_btn" @click="change_loan_recently" round>借款</el-button>
-        </el-row>
-        <hr/>
-      </div>
       <div class="projectPages">
         <project-list></project-list><br/>
         <project-list></project-list><br/>
@@ -51,15 +59,13 @@
     data() {
       return {
         currentPage1: 2,
+        activeName: 'first'
       };
     },
     methods:{
-      change_invest_recently(){
-
+      handleClick(tab, event) {
+        console.log(tab, event);
       },
-      change_loan_recently(){
-
-      }
     }
   }
 
@@ -77,4 +83,10 @@
     padding-right: 50px;
   }
 
+</style>
+
+<style>
+  .el-tabs__item{
+    font-size: 18px !important;
+  }
 </style>
