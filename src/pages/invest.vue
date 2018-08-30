@@ -7,13 +7,12 @@
       <right-bar></right-bar>
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0; margin-top:80px;">
-      <div class="col-sm-9 col-md-9">
+      <div class="col-sm-8 col-md-8">
         <div class="inputBorder">
           <div class="col-sm-12 col-md-12">
             <div class="userInput">
               <p>投资金额：</p><input type="button" value="100以下"/><input type="button" value="100-500"/>
               <input type="button" value="500-1000"/><input type="number" value="1000"/><p>-</p><input type="number" value="2000"/>
-              <input type="submit" value="推荐"/>
             </div>
           </div>
           <div class="col-sm-12 col-md-12">
@@ -77,45 +76,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div style="margin-left:75%;margin-right:3%;">
-        <div class="userSearch">
-          <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
-          <input type="button" class="searchButton searchBack" :style="searchBack"/>
-        </div>
-      </div>
-      <div class="col-xs-3 col-md-3">
-        <div style="margin-left:10%;">
-          <div class="searchBorder">
-            <h3>筛选您期望的项目</h3>
-            <div>
-              <p class="leftFont">标的用途种类</p><br>
-              <form class="col-sm-12 col-md-12">
-                <input type="button" value="不限" name="Any" class="searchButton"/>
-                <input type="button" value="日常生活费周转" name="Any" class="searchButton" style="width:60%;"/><br>
-                <input type="button" value="演唱会看比赛看剧音乐会等" name="Any" class="searchButton" style="width:91%;"/>
-                <input type="button" value="旅游" name="Any" class="searchButton"/>
-                <input type="button" value="游戏娱乐电影音乐" name="Any" class="searchButton" style="width:60%;"/><br>
-              </form>
-            </div>
-            <div>
-              <p class="leftFont" style="margin-top:20px;">信用分数</p><br>
-              <form class="col-sm-12 col-md-12">
-                <input type="button" value="不限" name="Any" class="searchButton"/>
-                <input type="button" value="50以上" name="Any" class="searchButton"/>
-                <input type="button" value="100以上" name="Any" class="searchButton"/>
-              </form><br><br><br>
-            </div>
-            <div>
-              <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-12">
-      <div class="col-xs-8 col-md-8">
-        <div style="margin-left:10%;width:96%;">
+        <div style="margin-left:9%;width:91%;">
           <invest-list></invest-list><br/>
           <invest-list></invest-list><br/>
           <invest-list></invest-list><br/>
@@ -124,7 +85,28 @@
         </div>
       </div>
       <div class="col-xs-4 col-md-4">
-        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:20%;">
+        <div class="userSearch">
+          <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
+          <input type="button" class="searchButton searchBack" :style="searchBack"/>
+        </div>
+        <div class="searchBorder">
+          <h3>个性推荐</h3>
+          <div class="userInput">
+            <p>投资金额：</p>
+            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
+          </div><br><br><br>
+          <div class="userInput">
+            <p style="margin-right:30px;">利率：</p>
+            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
+          </div><br><br><br><br>
+          <div class="userInput">
+            <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
+          </div>
+          <div>
+            <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+          </div>
+        </div>
+        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:100px;">
           <div style="padding-top:46%;">
             <h1 style="font-size:17px;text-align: center;">小贴士</h1>
             <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
@@ -218,6 +200,15 @@
 </script>
 
 <style scoped>
+  .recommend{
+    font-size:14px;
+    float: left;
+    margin-left:5%;
+    width:95%;
+  }
+  .recommend input[type=number]{
+    width:30%;
+  }
   .sort{
     display: inline-block;
   }
@@ -231,11 +222,8 @@
     border:1px solid #e4e4e4;
     border-top:5px solid #4285F4;
     height:400px;
-    margin-right:12%;
-  }
-  .leftFont{
-    float:left;
-    margin-left:5%;
+    margin-right:10%;
+    margin-top:80px;
   }
   .searchButton{
     width:30%;
@@ -260,7 +248,7 @@
     border-radius: 20px;
     margin-top:5%;
     height:32px;
-    width:100%;
+    width:85%;
     background: white;
   }
   .userSearch input {
@@ -290,8 +278,7 @@
   }
   .inputBorder{
     border: 1px solid #DEDDDD;
-    margin-left:11%;
-    margin-right:7%;
+    margin-left:9%;
     background-color:white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
