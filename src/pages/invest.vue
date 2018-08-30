@@ -8,15 +8,26 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0; margin-top:80px;">
       <div class="col-sm-9 col-md-9">
-        <div class="userInput">
-          <p>投资金额：</p><input type="number" name="investAmount" />
-          <p>项目类型：</p><select>
-            <option value="any">不限</option>
-            <option value="largeLong">大额长期项目</option>
-            <option value="smallShort">小额短期项目</option>
-          </select>
-          <p>期望归还日期：</p><input type="date" name="investExpectedDate"/>
-          <input type="submit" value="确认" style="width:6%"/>
+        <div class="inputBorder">
+          <div class="col-sm-12 col-md-12">
+            <div class="userInput">
+              <p>投资金额：</p><input type="button" value="100以下"/><input type="button" value="100-500"/>
+              <input type="button" value="500-1000"/><input type="number" value="1000"/><p>-</p><input type="number" value="2000"/>
+              <input type="submit" value="推荐"/>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <div class="userInput">
+              <p>开始时间：</p><input type="button" value="立即开始"/><input type="button" value="5天之内"/>
+              <input type="button" value="10天之内"/><input type="date"/>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <div class="userInput">
+              <p>排序维度：</p><p>金额</p><input type="checkbox"/><p>期限</p><input type="checkbox"/><p>开始时间</p><input type="checkbox"/>
+              <p>利率</p><input type="checkbox"/>
+            </div>
+          </div>
         </div>
       </div>
       <div style="margin-left:75%;margin-right:3%;">
@@ -26,64 +37,50 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:150px;margin-bottom: 100px;margin-left:8%;margin-right:30%;">
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-    </div>
-    <div style="margin-top:150px;margin-bottom:100px;margin-right:3%;margin-left:73%;">
-      <div class="searchBorder">
-        <h3>筛选您期望的项目</h3>
-        <div>
-        <p class="leftFont">项目类型</p><br>
-        <form class="col-sm-12 col-md-12">
-          <input type="button" value="不限" name="Any" class="searchButton"/>
-          <input type="button" value="小额短期" name="Any" class="searchButton"/>
-          <input type="button" value="大额长期" name="Any" class="searchButton"/>
-        </form><br><br><br>
+    <div class="col-xs-12 col-md-12">
+      <div class="col-xs-8 col-md-8">
+        <div style="margin-left:10%;width:96%;">
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
+          <project-list></project-list><br/>
         </div>
-        <div>
-          <p class="leftFont">项目完成度</p><br>
-          <form class="col-sm-12 col-md-12">
-            <input type="button" value="不限" name="Any" class="searchButton"/>
-            <input type="button" value="50%以上" name="Any" class="searchButton"/>
-            <input type="button" value="80%以上" name="Any" class="searchButton"/>
-          </form><br><br><br>
+      </div>
+      <div class="col-xs-4 col-md-4">
+        <div style="margin-left:10%;">
+        <div class="searchBorder">
+          <h3>筛选您期望的项目</h3>
+          <div>
+            <p class="leftFont">标的用途种类</p><br>
+            <form class="col-sm-12 col-md-12">
+              <input type="button" value="不限" name="Any" class="searchButton"/>
+              <input type="button" value="日常生活费周转" name="Any" class="searchButton" style="width:60%;"/><br>
+              <input type="button" value="演唱会看比赛看剧音乐会等" name="Any" class="searchButton" style="width:91%;"/>
+              <input type="button" value="旅游" name="Any" class="searchButton"/>
+              <input type="button" value="游戏娱乐电影音乐" name="Any" class="searchButton" style="width:60%;"/><br>
+            </form>
+          </div>
+          <div>
+            <p class="leftFont" style="margin-top:20px;">信用分数</p><br>
+            <form class="col-sm-12 col-md-12">
+              <input type="button" value="不限" name="Any" class="searchButton"/>
+              <input type="button" value="50以上" name="Any" class="searchButton"/>
+              <input type="button" value="100以上" name="Any" class="searchButton"/>
+            </form><br><br><br>
+          </div>
+          <div>
+            <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+          </div>
         </div>
-        <div>
-        <p class="leftFont">收益率</p><br>
-          <form class="col-sm-12 col-md-12">
-            <input type="button" value="不限" name="Any" class="searchButton"/>
-            <input type="button" value="> 0.5%" name="Any" class="searchButton"/>
-            <input type="button" value="> 1.0%" name="Any" class="searchButton"/>
-          </form><br><br><br>
         </div>
-        <div>
-          <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture"/>
-        </div>-->
       </div>
-    </div>
-    <div style="margin-top:150px;margin-bottom: 100px;margin-left:8%;margin-right:30%;">
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-      <div class="col-sm-4 col-md-4">
-        <invest-list></invest-list>
-      </div>
-    </div>
-    <div class="investNotice backPic" :style="backPic" style="margin-top:150px;margin-bottom:100px;margin-right:3%;margin-left:73%;">
-      <div style="padding-top:46%;">
-        <h1 style="font-size:17px;text-align: center;">小贴士</h1>
-        <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+      <div class="col-xs-4 col-md-4">
+        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:20%;">
+          <div style="padding-top:46%;">
+            <h1 style="font-size:17px;text-align: center;">小贴士</h1>
+            <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-12" style="padding:0">
@@ -114,9 +111,10 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue'
   import investList from '@/components/investList.vue'
+  import ProjectList from "../components/projectList";
   export default {
     name: "invest",
-    components:{navi, footerBar, rightBar,investList},
+    components:{navi, footerBar, rightBar,investList,ProjectList},
     data(){
       return{
         backPic:{
@@ -160,6 +158,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    margin-top:5px;
   }
   .picture{
     height:150px;
@@ -203,18 +202,32 @@
   .userSearch input[type=button]:focus {
     outline:none;
   }
+  .inputBorder{
+    border: 1px solid #DEDDDD;
+    margin-left:11%;
+    margin-right:7%;
+    background-color:white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    height:120px;
+    margin-bottom: 20px;
+  }
   .userInput{
     margin-top:1%;
     font-size:16px;
     float: left;
-    margin-left: 5%;
+    margin-left:5%;
+    width:95%;
   }
   .userInput input{
-    width:18%;
+    width:10%;
     box-sizing: border-box;
     border: 1px solid #e4e4e4;
     border-radius: 4px;
     font-size: 16px;
+    margin-left:3%;
+    color:#B9B8B8;
   }
   .userInput p{
     display: inline;
@@ -222,6 +235,9 @@
   }
   .userInput input:focus{
     border: 1px solid lightblue;
+  }
+  .userInput input[type=date]{
+    width:24%;
   }
   .userInput select{
     width:18%;
@@ -231,10 +247,21 @@
     border-radius: 4px;
     font-size: 16px;
   }
+  .userInput input[type=button]{
+    width:14%;
+    margin-left:1%;
+    background-color:white;
+    border:1px solid #e4e4e4;
+    color:#B9B8B8;
+  }
   .userInput input[type=submit]{
     background: #4285F4;
     border-color: #4285F4;
     color:white;
+
+  }
+  .userInput input[type=checkbox]{
+    margin-left:1%;
   }
   .pagination {
     margin-top:50px;

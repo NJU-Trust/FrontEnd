@@ -10,10 +10,10 @@
       <br><br><br>
       <p class="slogan">Trust us, receive fond</p><br><br><br>
       <div class="col-md-3 project">
-        <input type="button" value="我的借款情况" class="button" onclick="location.href='/checkMyLoan'"/>
+        <input type="button" value="消费类小额短期借款" class="button" onclick="location.href='/loan'"/>
       </div>
       <div class="col-md-3 project">
-        <input type="button" value="申请借款" class="button" onclick="location.href='/loan'"/>
+        <input type="button" value="学习培训类大额长期借款" class="button" onclick="location.href='/largeLoan'"/>
       </div>
     </div>
     <div style="float:bottom; padding:0;margin-top:200px;">

@@ -7,24 +7,18 @@
       <el-form class="back">
 
         <div id="sheet" class="sheet">
-          <div class="chooseButton">
-            <el-row>
 
-              <div class="choose_panel">
-                <div id="con_tab" class="choose_label consume_label" @click="change1">
-                  消费类小额短期
-                </div>
 
-                <div id="learn_tab" class="choose_label learn_label" @click="change2">
-                  学习培训类大额长期
-                </div>
-              </div>
-            </el-row>
-          </div>
+          <el-steps :active="active"  style="width: 800px">
+            <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
+            <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
+            <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
+          </el-steps>
 
-          <div class="primary_panel" style="margin-top: 20px">
 
-            <el-form ref="form1" :model="form1" label-width="80px" class="primary_info">
+          <div id="primary" class="primary_panel" style="margin-top: 20px">
+
+            <el-form ref="form1" :model="form1" label-width="100px" class="primary_info" v-if="this.active===0">
               <div class="title">基本信息</div>
               <el-form-item label="项目名称">
                 <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
@@ -36,14 +30,6 @@
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
               </el-form-item>
 
-            </el-form>
-
-            </div>
-
-
-          <div id="consume" style="margin-top: 20px">
-
-            <el-form ref="form2" :model="form2" label-width="100px" class="primary_info">
               <div class="title">资金去向</div>
               <el-form-item label="资金用途分类">
                 <el-select v-model="form2.region" placeholder="资金用途分类">
@@ -67,9 +53,92 @@
               <el-form-item>
                 <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
               </el-form-item>
+
+
+
             </el-form>
 
-            <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
+            <el-form id="information" ref="form2" :model="form2" label-width="140px" class="primary_info" v-if="this.active===1">
+              <div class="title">信息披露层级</div>
+              <el-form-item label="资金用途分类">
+                <el-select v-model="form2.region" placeholder="资金用途分类">
+                  <el-option label="日常生活周转" value="daily"></el-option>
+                  <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
+                  <el-option label="游戏娱乐电影音乐" value="game"></el-option>
+                  <el-option label="旅游" value="travel"></el-option>
+                  <el-option label="购买电子产品" value="shop"></el-option>
+                  <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="选择信息披露层级">
+                <el-button type="primary" plain @click="get_layer(4)">第四层级</el-button>&nbsp&nbsp>
+                <el-button type="primary" plain @click="get_layer(3)">第三层级</el-button>&nbsp&nbsp>
+                <el-button type="primary" plain @click="get_layer(2)">第二层级</el-button>&nbsp&nbsp>
+                <el-button type="primary" plain @click="get_layer(1)">第一层级</el-button>
+              </el-form-item>
+
+              <el-form style="width: 700px;">
+
+                <div style="padding-left: 20px">
+
+                  <el-form-item v-if="form2.layer4">
+
+
+
+                    <el-button type="primary" size="mini">偿债能力</el-button>
+                    <el-button type="primary" size="mini">杠杆比例</el-button>
+                    <el-button type="primary" size="mini">消费比率</el-button>
+                    <el-button type="primary" size="mini">储蓄比率</el-button>
+                    <el-button type="primary" size="mini">刚性比率</el-button>
+                    <el-button type="primary" size="mini">恩格尔系数</el-button>
+                    <el-button type="primary" size="mini">资产负债率</el-button>
+                    <el-button type="primary" size="mini">受教育情况</el-button>
+                    <el-button type="primary" size="mini">信用评级指标</el-button>
+                    <el-button type="primary" size="mini">学生的经济来源</el-button>
+                    <el-button type="primary" size="mini">学生成绩</el-button>
+
+                  </el-form-item>
+
+                  <el-form-item v-if="form2.layer3&&form2.layer4">
+                    <el-button type="success" size="mini">月收入</el-button>
+                    <el-button type="success" size="mini">月支出</el-button>
+                    <el-button type="success" size="mini">结余</el-button>
+                    <el-button type="success" size="mini">负债</el-button>
+                    <el-button type="success" size="mini">净资产</el-button>
+                    <el-button type="success" size="mini">总收入</el-button>
+                    <el-button type="success" size="mini">总支出</el-button>
+                    <el-button type="success" size="mini">刚性支出</el-button>
+                    <el-button type="success" size="mini">可调支出</el-button>
+                  </el-form-item>
+
+                  <el-form-item v-if="form2.layer2&&form2.layer3&&form2.layer4">
+                    <el-button type="info" size="mini">月投资额</el-button>
+                    <el-button type="info" size="mini">总投资额</el-button>
+                    <el-button type="info" size="mini">各支出占总支出比率</el-button>
+                    <el-button type="info" size="mini">各月支出占总支出比率</el-button>
+                    <el-button type="info" size="mini">奖学金情况</el-button>
+                    <el-button type="info" size="mini">科研竞赛获奖</el-button>
+                    <el-button type="info" size="mini">学生工作（社团等）</el-button>
+                    <el-button type="info" size="mini">志愿时长</el-button>
+                  </el-form-item>
+
+                  <el-form-item v-if="form2.layer1&&form2.layer2&&form2.layer3&&form2.layer4">
+                    <el-button type="warning" size="mini">姓名</el-button>
+                    <el-button type="warning" size="mini">身份证号</el-button>
+                    <el-button type="warning" size="mini">月各支出</el-button>
+                    <el-button type="warning" size="mini">总各支出</el-button>
+                    <el-button type="warning" size="mini">月学习支出</el-button>
+                    <el-button type="warning" size="mini">总学习支出</el-button>
+                  </el-form-item>
+                </div>
+              </el-form>
+
+
+
+            </el-form>
+
+            <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" v-if="this.active>=2">
               <div class="title">关于贷款</div>
               <el-form-item label="拆借金额">
                 <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
@@ -123,100 +192,6 @@
 
               <el-form-item>
                 <div v-if="this.form3.activeName==='1'">
-                 <evaluate :scheme="scheme"></evaluate>
-                </div>
-                <div v-else-if="this.form3.activeName==='2'">
-                  <evaluate :scheme="scheme"></evaluate>
-                </div>
-                <div v-else-if="this.form3.activeName==='3'">
-                  C
-                </div>
-                <div v-else-if="this.form3.activeName==='4'">
-                  <evaluate :scheme="scheme"></evaluate>
-                </div>
-              </el-form-item>
-
-              <el-form-item style="padding-left: 140px">
-                <el-button type="primary" @click="onSubmit">确定贷款</el-button>
-                <el-button @click="clean_form3">清空重写</el-button>
-              </el-form-item>
-
-
-            </el-form>
-
-          </div>
-
-          <div id="learn" style="margin-top: 20px;display: none">
-
-            <el-form ref="form4" :model="form4" label-width="100px" class="primary_info">
-              <div class="title">项目信息</div>
-              <el-form-item label="项目说明">
-                <el-input
-                  type="textarea"
-                  :rows="4"
-                  placeholder="请输入内容"
-                  v-model="form4.textarea2">
-                </el-input>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
-              </el-form-item>
-            </el-form >
-
-            <el-form ref="form3" :model="form3" label-width="100px" class="primary_info">
-              <div class="title">关于贷款</div>
-              <el-form-item label="拆借金额">
-                <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
-                  <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
-                </el-tooltip>
-              </el-form-item>
-              <el-form-item label="还款日期">
-                <el-tooltip class="item" effect="dark" content="大额贷款最长期限为5年，建议范围为[N1,N2]" placement="top-start">
-                  <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
-                </el-tooltip>
-              </el-form-item>
-              <el-form-item label="基准还款利率">
-                <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
-                  <el-input v-model="form3.rate"></el-input>
-                </el-tooltip>
-              </el-form-item>
-
-              <el-form-item label="还款方式">
-                <el-collapse v-model="form3.activeName" accordion>
-
-                  <div @click="get_average_capital">
-                    <el-collapse-item title="等额本金" name="1" >
-                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
-                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
-                    </el-collapse-item>
-                  </div>
-
-                  <div @click="get_average_capital_plus_interest">
-                    <el-collapse-item title="等额本息" name="2">
-                      <div>每月偿还等同数额的贷款；</div>
-                      <div>还款期限内压力平分，总利息高于等额本金。</div>
-                    </el-collapse-item>
-                  </div>
-
-                  <div @click="get_one_off">
-                    <el-collapse-item title="一次性还本付息" name="3">
-                      <div>贷款到期后一次性归还本金和利息；</div>
-                      <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
-                    </el-collapse-item>
-                  </div>
-
-                  <div @click="get_interest_first">
-                    <el-collapse-item title="先息后本" name="4">
-                      <div>每月只需支付利息，期末还清本金；</div>
-                      <div>资金利用时间长。</div>
-                    </el-collapse-item>
-                  </div>
-
-                </el-collapse>
-              </el-form-item>
-
-              <el-form-item>
-                <div v-if="this.form3.activeName==='1'">
                   <evaluate :scheme="scheme"></evaluate>
                 </div>
                 <div v-else-if="this.form3.activeName==='2'">
@@ -238,9 +213,13 @@
 
             </el-form>
 
-            <div class="row" style="margin-left: 250px">
-              <el-button type="primary" round>提交</el-button>
+            <el-button-group style="margin-left: 35%;margin-top: 50px">
+              <el-button type="primary" icon="el-icon-arrow-left" @click="last">上一步</el-button>
+              <el-button type="primary" @click="next">下一步<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+            </el-button-group>
             </div>
+
+          <div>
 
           </div>
         </div>
@@ -272,42 +251,7 @@
         localStorage.route = "#loan";
       },
       methods:{
-        change1(){
-          document.getElementById("learn").style.display = "none";
-          document.getElementById("consume").style.display = "inline";
 
-          document.getElementById("con_tab").style.backgroundColor = "lightskyblue";
-          document.getElementById("con_tab").style.color = "black";
-          document.getElementById("learn_tab").style.color = "white";
-          document.getElementById("learn_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-        },
-        change2(){
-          document.getElementById("consume").style.display = "none";
-          document.getElementById("learn").style.display = "inline";
-
-          document.getElementById("con_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";
-          document.getElementById("learn_tab").style.backgroundColor = "lightskyblue";
-        },
-        change11(){
-          document.getElementById("sheet").style.display = "none";
-          document.getElementById("check").style.display = "inline";
-
-          document.getElementById("ask_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("look_tab").style.backgroundColor = "lightskyblue";
-        },
-        change22(){
-          document.getElementById("sheet").style.display = "inline";
-          document.getElementById("check").style.display = "none";
-
-          document.getElementById("look_tab").style.backgroundColor = "rgba(17, 17, 17, 0.17)";
-          /*document.getElementById("con_tab").style.color = "white";
-          document.getElementById("learn_tab").style.color = "black";*/
-          document.getElementById("ask_tab").style.backgroundColor = "lightskyblue";
-        },
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
         },
@@ -336,26 +280,70 @@
 
         get_interest_first(){
           console.log("先息后本")
+        },
+
+        last() {
+         if(this.active>0){
+           this.active--;
+         }
+        },
+
+        next() {
+          if (this.active<2){
+            this.active++;
+          }
+
+        },
+        get_layer(num){
+          console.log(num)
+          if(num===1){
+            this.form2.layer1 = true;
+            this.form2.layer2 = true;
+            this.form2.layer3 = true;
+            this.form2.layer4 = true;
+          }else if(num===2){
+            this.form2.layer1 = false;
+            this.form2.layer2 = true;
+            this.form2.layer3 = true;
+            this.form2.layer4 = true;
+          }else if(num===3){
+            this.form2.layer1 = false;
+            this.form2.layer2 = false;
+            this.form2.layer3 = true;
+            this.form2.layer4 = true;
+          }else if(num===4){
+            this.form2.layer1 = false;
+            this.form2.layer2 = false;
+            this.form2.layer3 = false;
+            this.form2.layer4 = true;
+          }
         }
 
       },
 
       data(){
         return {
+          active: 0,
           pickerOptions1: {
             disabledDate(time) {
               return time.getTime() > Date.now();
             },
           },
+
           form1:{
             name: '',
             date1: '',
             date2: '',
+
           },
           form2: {
             user: '',
             region: '',
-            textarea1:''
+            textarea1:'',
+            layer1:false,
+            layer2:false,
+            layer3:false,
+            layer4:false,
           },
           form3:{
             money:'',
@@ -364,51 +352,16 @@
             create:false,
             activeName: '',
           },
-          form4:{
-            textarea2:''
-          },
 
           scheme:{
             capital:0,
             interest:0,
             sum:0,
           },
-          capital:0,
-
 
           usage_radio: 3,
           textarea2:'',
 
-          tableData: [{
-            name: '融资项目一',
-            num: '1',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目二',
-            num: '2',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目三',
-            num: '3',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }, {
-            name: '融资项目四',
-            num: '4',
-            date: '2018/9/17',
-            process:'200/1000',
-            action:''
-          }],
-          formInline:{
-            money:'',
-            category:'any',
-            return_date:''
-          }
         };
       },
 
@@ -515,13 +468,12 @@
     }
     .title{
       font-size: 23px;
-      color: #acacac;
+      color: #6a6a6a;
       padding-bottom: 20px;
     }
 
     .choose{
       display: flex;
-     /* border: 1px black solid;*/
       margin-left: 30%;
       width:1000px;
     }

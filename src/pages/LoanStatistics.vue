@@ -1,6 +1,5 @@
 <template>
-  <personalCenter paneltitle="历史投资">
-
+  <personalCenter paneltitle="融资统计">
   </personalCenter>
 </template>
 
@@ -9,10 +8,9 @@
   import ProjectList from "../components/projectList";
 
   export default {
-    name:"investhistory",
+    name:"loanstatistics",
     components: {ProjectList, personalCenter},
   }
 
 </script>
-
 
