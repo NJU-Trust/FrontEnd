@@ -40,10 +40,11 @@
     <div class="col-xs-12 col-md-12">
       <div class="col-xs-8 col-md-8">
         <div style="margin-left:10%;width:96%;">
-          <project-list></project-list><br/>
-          <project-list></project-list><br/>
-          <project-list></project-list><br/>
-          <project-list></project-list><br/>
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
         </div>
       </div>
       <div class="col-xs-4 col-md-4">
