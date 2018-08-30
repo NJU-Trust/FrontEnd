@@ -108,7 +108,7 @@
     text-align: center;
   }
   .type{
-    background: #409EFF;
+    background: #A6A3A3;
     max-width:50%;
     color:white;
     margin-left:25%;
