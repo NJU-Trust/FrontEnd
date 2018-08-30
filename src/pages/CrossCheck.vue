@@ -1,5 +1,5 @@
 <template>
-  <personalCenter paneltitle="关系网验证">
+  <personalCenter paneltitle="关系验证">
     <div>
       <div class="AluUsrInstruction" id="ad_info" style="display: inline;margin-top: 10px;margin-bottom: 10px">
         <h3 style="text-indent: 0px">关系网验证</h3>
@@ -9,6 +9,7 @@
       </div>
       <hr/>
       <div style="min-height: 300px">
+
       </div>
       <hr/>
       <div style="text-align: justify">

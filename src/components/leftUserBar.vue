@@ -3,36 +3,35 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace" id="leftAA" class="active" @click="setA">基本信息</a></li>
-        <li><a href="/UserSpace/FinancialStanding">财务信息</a></li>
+        <li><a href="/UserSpace" id="leftAA" class="active" @click="setA">账户总览</a></li>
         <li><a href="/UserSpace/SchoolPerformance">校园表现</a></li>
+        <li><a href="/UserSpace/FinancialStanding">财务数据</a></li>
+        <li><a href="/UserSpace/BasicInformation" >基本信息</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
-      <p class="left_head"><b>我的项目</b></p><hr/>
+      <p class="left_head"><b>借款管理</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/ProjectRencently">最近项目</a></li>
-        <li><a href="/UserSpace/ProjectFavorite">收藏项目</a></li>
-        <li><a href="/UserSpace/ProjectHistory">历史项目</a></li>
+        <li><a href="/UserSpace/LoanInformation">项目信息</a></li>
+        <li><a href="/UserSpace/LoanStatistics">借款统计</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
-      <p class="left_head"><b>历史统计</b></p><hr/>
+      <p class="left_head"><b>投资管理</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/LoanStatistics">融资统计</a></li>
-        <li><a href="/UserSpace/InvestEarnings">投资收益</a></li>
+        <li><a href="/UserSpace/InvestInformation">项目信息</a></li>
+        <li><a href="/UserSpace/InvestEarnings">投资统计</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/NormalCheck" id="checkA" @click="setB">普通验证</a></li>
-        <li><a href="/UserSpace/AdvancedCheck">完整验证</a></li>
-        <li><a href="/UserSpace/AlumniCheck">校友验证</a></li>
-        <li><a href="/UserSpace/CrossCheck">关系网检验</a></li>
+        <li><a href="/UserSpace/NormalCheck" id="checkA" @click="setB">身份验证</a></li>
+        <li><a href="/UserSpace/AdvancedCheck">财务验证</a></li>
+        <li><a href="/UserSpace/CrossCheck">关系验证</a></li>
       </ul>
     </div>
   </div>
@@ -65,7 +64,7 @@
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
-    height:700px;
+    height:650px;
     margin-right: 10%;
     margin-left: 16%;
     box-shadow:

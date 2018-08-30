@@ -1,13 +1,6 @@
 <template>
-  <personalCenter paneltitle="最近项目">
+  <personalCenter paneltitle="项目信息">
     <div class="projectPanel">
-      <div class="chooseButton">
-        <el-row style="text-align: center">
-          <el-button id="invest_recent_btn" class="type_choose_btn" @click="change_invest_recently" autofocus="true" round>财务</el-button>
-          <el-button id="loan_recent_btn"  class="type_choose_btn" @click="change_loan_recently" round>借款</el-button>
-        </el-row>
-        <hr/>
-      </div>
       <div class="projectPages">
         <project-list></project-list><br/>
         <project-list></project-list><br/>
@@ -38,7 +31,7 @@
   import ProjectList from "../components/projectList";
 
   export default {
-    name:"projectrencently",
+    name:"investinformation",
     components: {ProjectList, personalCenter},
     methods: {
       handleSizeChange(val) {
@@ -52,14 +45,6 @@
       return {
         currentPage1: 2,
       };
-    },
-    methods:{
-      change_invest_recently(){
-
-      },
-      change_loan_recently(){
-
-      }
     }
   }
 
@@ -72,9 +57,5 @@
     margin-bottom: 20px;
   }
 
-  .type_choose_btn{
-    padding-left: 50px;
-    padding-right: 50px;
-  }
 
 </style>

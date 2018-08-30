@@ -12,15 +12,16 @@ import UserSpace from '@/pages/UserSpace'
 import NormalCheck from '@/pages/NormalCheck'
 import AdvancedCheck from '@/pages/AdvancedCheck'
 import FinancialStanding from '@/pages/FinancialStanding'
+import BasicInformation from '@/pages/BasicInformation'
 import usermanage from '@/pages/usermanage'
 import userdetail from '@/pages/userdetail'
 import invest from '@/pages/invest'
 import DoInvesting from '@/pages/DoInvesting'
 import AlumniCheck from '@/pages/AlumniCheck'
 import CrossCheck from '@/pages/CrossCheck'
-import ProjectRencently from '@/pages/ProjectRencently'
+import LoanInformation from '@/pages/LoanInformation'
 import ProjectFavorite from '@/pages/ProjectFavorite'
-import ProjectHistory from '@/pages/ProjectHistory'
+import InvestInformation from '@/pages/InvestInformation'
 import InvestEarnings from '@/pages/InvestEarnings'
 import LoanStatistics from '@/pages/LoanStatistics'
 import SchoolPerformance from '@/pages/SchoolPerformance'
@@ -87,6 +88,11 @@ export default new Router({
       component: SchoolPerformance
     },
     {
+      path: '/UserSpace/BasicInformation',
+      name: 'BasicInformation',
+      component: BasicInformation
+    },
+    {
       path: '/UserSpace/NormalCheck',
       name: 'NormalCheck',
       component: NormalCheck
@@ -112,9 +118,9 @@ export default new Router({
       component: CrossCheck
     },
     {
-      path: '/UserSpace/ProjectRencently',
-      name: 'ProjectRencently',
-      component: ProjectRencently
+      path: '/UserSpace/LoanInformation',
+      name: 'LoanInformation',
+      component: LoanInformation
     },
     {
       path: '/UserSpace/ProjectFavorite',
@@ -122,9 +128,9 @@ export default new Router({
       component: ProjectFavorite
     },
     {
-      path: '/UserSpace/ProjectHistory',
-      name: 'ProjectHistory',
-      component: ProjectHistory
+      path: '/UserSpace/InvestInformation',
+      name: 'InvestInformation',
+      component: InvestInformation
     },
     {
       path: '/UserSpace/InvestEarnings',
