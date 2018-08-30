@@ -10,7 +10,7 @@
         <p style="color: #777777;">在此处，你可以查看个人财务统计和收藏情况，并进行信用验证</p>
       </div>
     </div>
-
+    <!--background-color: #D9F3FB-->
     <div class="col-xs-12 col-md-12" style="padding: 0;position: relative; background-color: #D9F3FB; min-height: 800px">
       <div class="container-fluid">
         <div class="row">

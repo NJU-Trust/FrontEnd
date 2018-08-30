@@ -1,5 +1,5 @@
 <template>
-  <personalCenter paneltitle="普通验证">
+  <personalCenter paneltitle="身份验证">
     <div>
       <div class="MidUsrInstruction" id="mid_info" style="margin-top: 10px;margin-bottom: 10px">
         <h3 style="text-indent: 0px">中级账号校验</h3>
