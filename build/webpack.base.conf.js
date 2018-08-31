@@ -34,16 +34,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            scss: 'style-loader!css-loader!sass-loader',
-            sass: 'style-loader!css-loader!sass-loader?indentedSyntax',
-          },
-        },
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
         options: vueLoaderConfig
       },
       {
@@ -66,6 +56,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

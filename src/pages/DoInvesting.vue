@@ -3,7 +3,7 @@
     <navi></navi>
     <img src="/static/pic/Investing.png" class="img-responsive" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 300px">
     <div class="overview">
-      <div class="total" style="position:absolute;left:10%;top:20%;">
+      <div class="total" style="position:absolute;left:10%;top:20%;font-size:18px;">
         <label>标的编号XXXXXXX</label><br/>
         <div class="vue-progress-bar default-theme">
           <div class="vue-progress-bar__tip">
@@ -25,7 +25,6 @@
     export default {
       name: "DoInvesting",
       components:{navi},
-
       props:{
         label:String,
         text:String,
