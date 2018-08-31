@@ -34,6 +34,8 @@ import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
 import notice from '@/pages/notice'
 import recommend from '@/pages/recommend'
+import mesunderway from '@/pages/mesunderway'
+import mesdone from '@/pages/mesdone'
 
 Vue.use(Router)
 
@@ -206,6 +208,16 @@ export default new Router({
       path:'/recommend',
       name:'recommend',
       component:recommend
+    },
+    {
+      path:'/notice/mesunderway',
+      name:'mesunderway',
+      component:mesunderway
+    },
+    {
+      path:'/notice/mesdone',
+      name:'mesdone',
+      component:mesdone
     },
   ],
   mode:"history"

@@ -5,8 +5,8 @@
         <p class="left_head"><b>与我相关</b></p><hr/>
         <ul class="left_ul">
           <li><a href="/notice">发布消息</a></li>
-          <li><a href="/notice/#">正在进行</a></li>
-          <li><a href="/notice/#">已经完成</a></li>
+          <li><a href="/notice/mesunderway">正在进行</a></li>
+          <li><a href="/notice/mesdone">已经完成</a></li>
         </ul>
         <hr/>
       </div>
@@ -15,6 +15,7 @@
         <ul class="left_ul">
           <li><a href="/notice/found">失物招领</a></li>
           <li><a href="/notice/lost">寻物启事</a></li>
+          <li><a href="/notice/#">其他</a></li>
         </ul>
         <hr/>
       </div>
