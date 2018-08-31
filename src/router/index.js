@@ -34,7 +34,10 @@ import enterInvest from '@/pages/enterInvest'
 import largeInvest from '@/pages/largeInvest'
 import notice from '@/pages/notice'
 import recommend from '@/pages/recommend'
-
+import backAdminData from '@/pages/backAdminData'
+import trade from '@/pages/trade'
+import tradeMine from '@/pages/tradeMine'
+import test from '@/pages/test'
 Vue.use(Router)
 
 export default new Router({
@@ -197,7 +200,8 @@ export default new Router({
       path:'/largeInvest',
       name:'largeInvest',
       component:largeInvest
-    },{
+    },
+    {
       path:'/notice',
       name:'notice',
       component:notice
@@ -207,6 +211,29 @@ export default new Router({
       name:'recommend',
       component:recommend
     },
+    {
+      path:'/backAdminData',
+      name:'backAdminData',
+      component:backAdminData
+    },
+
+    {
+      path:'/trade',
+      name:'trade',
+      component:trade
+    },
+
+    {
+      path:'/trade/mine',
+      name:'tradeMine',
+      component:tradeMine
+    },
+    {
+      path:'/test',
+      name:'test',
+      component:test
+    }
+
   ],
   mode:"history"
 })
