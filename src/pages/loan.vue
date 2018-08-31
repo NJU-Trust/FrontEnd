@@ -156,7 +156,7 @@
 
             </el-form>
 
-            <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info test" v-if="this.active>=2">
+            <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" v-if="this.active>=2">
               <div class="title">关于贷款</div>
               <el-form-item label="拆借金额">
                 <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
@@ -208,7 +208,7 @@
                 </el-collapse>
               </el-form-item>
 
-              <el-form-item>
+              <!--<el-form-item>
                 <div v-if="this.form3.activeName==='1'">
                   <evaluate :scheme="scheme"></evaluate>
                 </div>
@@ -221,9 +221,9 @@
                 <div v-else-if="this.form3.activeName==='4'">
                   <evaluate :scheme="scheme"></evaluate>
                 </div>
-              </el-form-item>
+              </el-form-item>-->
 
-              <el-form-item style="padding-left: 140px">
+              <el-form-item style="padding-left: 20%">
                 <el-button type="primary" @click="onSubmit">确定贷款</el-button>
                 <el-button @click="clean_form3">清空重写</el-button>
               </el-form-item>
@@ -279,6 +279,7 @@
         },
 
         get_average_capital(num){
+          document.getElementById('small_loan').className+=' animation_left';
           console.log()
           console.log("等额本金");
           this.scheme.capital = 20000;
@@ -287,6 +288,9 @@
         },
 
         get_average_capital_plus_interest(){
+
+          document.getElementById('small_loan').className+=' animation_left';
+
           console.log("等额本息");
           this.scheme.capital = 20000;
           this.scheme.interest = 5000;
@@ -573,6 +577,7 @@
       border:2px #d6d6d6 solid;
       border-radius:20px;
       padding:10px 50px 20px 40px;
+      position: relative;
     }
     .title{
       font-size: 23px;
@@ -586,13 +591,18 @@
       width:1000px;
     }
 
-    .test:hover{
-      transform: translate(0, -10px);
-      -webkit-transform: translate(0, -10px);
-      -moz-transform: translate(0, -10px);
-      -o-transform: translate(0, -10px);
-      -ms-transform: translate(0, -10px);
+    .animation_left{
+      -webkit-animation:move_left 0.5s;
+      -webkit-animation-iteration-count:1;
+      -webkit-animation-fill-mode:forwards;
     }
+
+    @-webkit-keyframes move_left /* Safari and Chrome */
+    {
+      0%   {left:0px;  width:750px;}
+      100% {left:-200px; width:500px;}
+    }
+
     .row{
       width:400px;
       padding: 10px;
