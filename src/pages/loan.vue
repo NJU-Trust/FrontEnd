@@ -417,26 +417,32 @@
             }, {
               value: 'notice',
               label: '校际交换',
-            }, {
-              value: 'navigation',
-              label: 'Navigation',
-            }, {
-              value: 'others',
-              label: 'Others',
-
             }]
           }, {
-            value: 'ziyuan',
+            value: 'entertain',
             label: '娱乐',
             children: [{
-              value: 'axure',
-              label: 'Axure Components'
+              value: 'party',
+              label: '聚餐轰趴'
             }, {
-              value: 'sketch',
-              label: 'Sketch Templates'
+              value: 'sports',
+              label: '运动健身'
             }, {
-              value: 'jiaohu',
-              label: '组件交互文档'
+              value: 'show',
+              label: '观看演出'
+            }, {
+                value: 'travel',
+                label: '外出旅游'
+            }]
+          },{
+            value:'medical',
+            label:'医疗',
+            children:[{
+              value:'treatment',
+              label:'诊断治疗'
+            }, {
+              value:'healthy',
+              label:'保健养生'
             }]
           }],
           selectedOptions2: []
