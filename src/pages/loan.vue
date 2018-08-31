@@ -20,10 +20,18 @@
 
             <el-form ref="form1" :model="form1" label-width="100px" class="primary_info" v-if="this.active===0">
               <div class="title">基本信息</div>
+
               <el-form-item label="项目名称">
-                <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
+                <div>
+                  <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
+                  <div style="color:red;font-size: 12px;heigth:14px">*项目名称不超过20字 例：2018年9月16号Jessie J演唱会</div>
+                </div>
+
               </el-form-item>
-              <el-form-item label="开始日期">
+
+
+
+             <el-form-item label="开始日期">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
               </el-form-item>
               <el-form-item label="截止日期">
@@ -32,44 +40,42 @@
 
               <div class="title">资金去向</div>
               <el-form-item label="资金用途分类">
-                <el-select v-model="form2.region" placeholder="资金用途分类">
+                <!--<el-select v-model="form2.region" placeholder="资金用途分类">
                   <el-option label="日常生活周转" value="daily"></el-option>
                   <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
                   <el-option label="游戏娱乐电影音乐" value="game"></el-option>
                   <el-option label="旅游" value="travel"></el-option>
                   <el-option label="购买电子产品" value="shop"></el-option>
                   <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
-                </el-select>
+                </el-select>-->
+                <el-cascader
+                  expand-trigger="hover"
+                  :options="options"
+                  v-model="selectedOptions2"
+                  @change="handleChange">
+                </el-cascader>
+
               </el-form-item>
 
               <el-form-item label="资金用途详述">
-                <el-input
-                  type="textarea"
-                  :rows="4"
-                  placeholder="请输入内容"
-                  v-model="form2.textarea1">
-                </el-input>
+                <div>
+                  <el-input
+                    type="textarea"
+                    :rows="4"
+                    placeholder="请输入内容"
+                    v-model="form2.textarea1">
+                  </el-input>
+                  <div style="color:red;font-size: 12px;heigth:14px">*不超过100字</div>
+                  <div>
+                    <el-button type="primary" size="small" style="margin-top: -10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
+                  </div>
+                </div>
               </el-form-item>
-              <el-form-item>
-                <el-button type="primary" size="small" style="margin-top: 10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
-              </el-form-item>
-
-
 
             </el-form>
 
             <el-form id="information" ref="form2" :model="form2" label-width="140px" class="primary_info" v-if="this.active===1">
               <div class="title">信息披露层级</div>
-              <el-form-item label="资金用途分类">
-                <el-select v-model="form2.region" placeholder="资金用途分类">
-                  <el-option label="日常生活周转" value="daily"></el-option>
-                  <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
-                  <el-option label="游戏娱乐电影音乐" value="game"></el-option>
-                  <el-option label="旅游" value="travel"></el-option>
-                  <el-option label="购买电子产品" value="shop"></el-option>
-                  <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
-                </el-select>
-              </el-form-item>
 
               <el-form-item label="选择信息披露层级">
                 <el-button type="primary" plain @click="get_layer(4)">第四层级</el-button>&nbsp&nbsp>
@@ -83,44 +89,56 @@
                 <div style="padding-left: 20px">
 
                   <el-form-item v-if="form2.layer4">
+                    <div>
+                      <el-button type="primary" size="mini">偿债能力</el-button>
+                      <el-button type="primary" size="mini">杠杆比例</el-button>
+                      <el-button type="primary" size="mini">消费比率</el-button>
+                      <el-button type="primary" size="mini">储蓄比率</el-button>
+                      <el-button type="primary" size="mini">刚性比率</el-button>
+                      <el-button type="primary" size="mini">恩格尔系数</el-button>
+                      <el-button type="primary" size="mini">资产负债率</el-button>
+                    </div>
+                   <div>
+                     <el-button type="primary" size="mini">受教育情况</el-button>
+                     <el-button type="primary" size="mini">信用评级指标</el-button>
+                     <el-button type="primary" size="mini">学生的经济来源</el-button>
+                     <el-button type="primary" size="mini">学生成绩</el-button>
+                   </div>
 
-
-
-                    <el-button type="primary" size="mini">偿债能力</el-button>
-                    <el-button type="primary" size="mini">杠杆比例</el-button>
-                    <el-button type="primary" size="mini">消费比率</el-button>
-                    <el-button type="primary" size="mini">储蓄比率</el-button>
-                    <el-button type="primary" size="mini">刚性比率</el-button>
-                    <el-button type="primary" size="mini">恩格尔系数</el-button>
-                    <el-button type="primary" size="mini">资产负债率</el-button>
-                    <el-button type="primary" size="mini">受教育情况</el-button>
-                    <el-button type="primary" size="mini">信用评级指标</el-button>
-                    <el-button type="primary" size="mini">学生的经济来源</el-button>
-                    <el-button type="primary" size="mini">学生成绩</el-button>
 
                   </el-form-item>
 
                   <el-form-item v-if="form2.layer3&&form2.layer4">
-                    <el-button type="success" size="mini">月收入</el-button>
-                    <el-button type="success" size="mini">月支出</el-button>
-                    <el-button type="success" size="mini">结余</el-button>
-                    <el-button type="success" size="mini">负债</el-button>
-                    <el-button type="success" size="mini">净资产</el-button>
-                    <el-button type="success" size="mini">总收入</el-button>
-                    <el-button type="success" size="mini">总支出</el-button>
-                    <el-button type="success" size="mini">刚性支出</el-button>
-                    <el-button type="success" size="mini">可调支出</el-button>
+                    <div>
+                      <el-button type="success" size="mini">月收入</el-button>
+                      <el-button type="success" size="mini">月支出</el-button>
+                      <el-button type="success" size="mini">结余</el-button>
+                      <el-button type="success" size="mini">负债</el-button>
+                      <el-button type="success" size="mini">净资产</el-button>
+                      <el-button type="success" size="mini">总收入</el-button>
+                      <el-button type="success" size="mini">总支出</el-button>
+                      <el-button type="success" size="mini">刚性支出</el-button>
+                    </div>
+                    <div>
+                      <el-button type="success" size="mini">可调支出</el-button>
+                    </div>
+
+
                   </el-form-item>
 
                   <el-form-item v-if="form2.layer2&&form2.layer3&&form2.layer4">
-                    <el-button type="info" size="mini">月投资额</el-button>
-                    <el-button type="info" size="mini">总投资额</el-button>
-                    <el-button type="info" size="mini">各支出占总支出比率</el-button>
-                    <el-button type="info" size="mini">各月支出占总支出比率</el-button>
-                    <el-button type="info" size="mini">奖学金情况</el-button>
-                    <el-button type="info" size="mini">科研竞赛获奖</el-button>
-                    <el-button type="info" size="mini">学生工作（社团等）</el-button>
-                    <el-button type="info" size="mini">志愿时长</el-button>
+                    <div>
+                      <el-button type="info" size="mini">月投资额</el-button>
+                      <el-button type="info" size="mini">总投资额</el-button>
+                      <el-button type="info" size="mini">各支出占总支出比率</el-button>
+                      <el-button type="info" size="mini">各月支出占总支出比率</el-button>
+                      <el-button type="info" size="mini">奖学金情况</el-button>
+                    </div>
+                    <div>
+                      <el-button type="info" size="mini">科研竞赛获奖</el-button>
+                      <el-button type="info" size="mini">学生工作（社团等）</el-button>
+                      <el-button type="info" size="mini">志愿时长</el-button>
+                    </div>
                   </el-form-item>
 
                   <el-form-item v-if="form2.layer1&&form2.layer2&&form2.layer3&&form2.layer4">
@@ -150,7 +168,7 @@
                   <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
                 </el-tooltip>
               </el-form-item>
-              <el-form-item label="设置还款利率">
+              <el-form-item label="基准还款利率">
                 <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
                   <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
                 </el-tooltip>
@@ -317,6 +335,9 @@
             this.form2.layer3 = false;
             this.form2.layer4 = true;
           }
+        },
+        handleChange(value) {
+          console.log(value);
         }
 
       },
@@ -362,7 +383,65 @@
           usage_radio: 3,
           textarea2:'',
 
-        };
+          options: [{
+            value: 'shop',
+            label: '购物',
+            children: [{
+              value: 'clothing',
+              label: '鞋帽服饰',
+            },{
+              value: 'life',
+              label: '生活用品'
+            }, {
+              value: 'make_up',
+              label: '护肤美妆'
+            }, {
+              value: 'game',
+              label: '游戏动漫',
+            }, {
+              value: 'electronics',
+              label: '电子产品',
+            }]
+          }, {
+            value: 'study',
+            label: '学习',
+            children: [{
+              value: 'basic',
+              label: '学习用品',
+            }, {
+              value: 'book',
+              label: '书籍报刊',
+            }, {
+              value: 'data',
+              label: '培训考证',
+            }, {
+              value: 'notice',
+              label: '校际交换',
+            }, {
+              value: 'navigation',
+              label: 'Navigation',
+            }, {
+              value: 'others',
+              label: 'Others',
+
+            }]
+          }, {
+            value: 'ziyuan',
+            label: '娱乐',
+            children: [{
+              value: 'axure',
+              label: 'Axure Components'
+            }, {
+              value: 'sketch',
+              label: 'Sketch Templates'
+            }, {
+              value: 'jiaohu',
+              label: '组件交互文档'
+            }]
+          }],
+          selectedOptions2: []
+
+        };//return
       },
 
     }
