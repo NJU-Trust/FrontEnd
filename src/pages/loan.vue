@@ -18,7 +18,7 @@
 
           <div id="primary" class="primary_panel" style="margin-top: 20px">
 
-            <el-form ref="form1" :model="form1" label-width="100px" class="primary_info" v-if="this.active===0">
+            <el-form ref="form1" :model="form1" label-width="100px" class="primary_info " v-if="this.active===0">
               <div class="title">基本信息</div>
 
               <el-form-item label="项目名称">
@@ -156,7 +156,7 @@
 
             </el-form>
 
-            <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" v-if="this.active>=2">
+            <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info test" v-if="this.active>=2">
               <div class="title">关于贷款</div>
               <el-form-item label="拆借金额">
                 <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
@@ -254,6 +254,7 @@
     import rightBar from '@/components/rightBar.vue';
     import evaluate from '@/components/evaluate.vue';
     import checkList from '@/components/checkList.vue';
+    import scrollReveal from 'scrollreveal'
 
     export default {
       name: "loan",
@@ -445,10 +446,32 @@
               label:'保健养生'
             }]
           }],
-          selectedOptions2: []
+          selectedOptions2: [],
+          scrollReveal:scrollReveal()
 
         };//return
       },
+
+      mounted() {
+        this.scrollReveal.reveal('.reveal-top', {
+          // 动画的时长
+          duration: 2000,
+          // 延迟时间
+          delay: 500,
+          // 动画开始的位置，'bottom', 'left', 'top', 'right'
+          origin: 'top',
+          // 回滚的时候是否再次触发动画
+          reset: false,
+          // 在移动端是否使用动画
+          mobile: false,
+          // 滚动的距离，单位可以用%，rem等
+          distance: '200px',
+          // 其他可用的动画效果
+          opacity: 0.001,
+          easing: 'linear',
+          scale: 0.9,
+        });
+      }
 
     }
 </script>
@@ -561,6 +584,14 @@
       display: flex;
       margin-left: 30%;
       width:1000px;
+    }
+
+    .test:hover{
+      transform: translate(0, -10px);
+      -webkit-transform: translate(0, -10px);
+      -moz-transform: translate(0, -10px);
+      -o-transform: translate(0, -10px);
+      -ms-transform: translate(0, -10px);
     }
     .row{
       width:400px;
