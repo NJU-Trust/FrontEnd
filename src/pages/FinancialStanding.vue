@@ -118,46 +118,61 @@
               <!--</p>-->
             </div><!--历史版本修正建议-->
             <div>
-              <h4><b>您目前的还款情况如下</b></h4>
+              <h4><b>您目前的还款情况如下</b>(一个假的。暂时不知道这样的表格如何动态构建)</h4>
               <img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">
               <hr/>
             </div><!--更新版本修正建议-->
           </div>
           <div class="LoanPanel">
             <div class="LevelTwoIndex" id="leveltwoindex">
-            <div class="LevelTwoPanel">
-              <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp 3752.30 元</b></h4><hr/>
-              <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp 6632.30 元</b></h4><hr/>
-              <div id="Index_NetWorth">
-                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4><hr/>
-              </div>
-              <div id="Index_EngelsCoefficient">
-                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
-              </div>
-              <div id="Index_RigidRatio">
-                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
-              </div>
-              <div id="Index_AssetLiabilityRatio">
-                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4><hr/>
-              </div>
-              <div id="Index_Solvency">
-                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4><hr/>
-              </div>
-              <div id="Index_Leverage">
-                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4><hr/>
-              </div>
-              <div id="Index_MonthConsumptionRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平</b></h4>
-                <hr/>
-              </div>
-              <div id="Index_MonthlySavingsRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
+              <div class="LevelTwoPanel">
+                <el-row :gutter="2">
+                <el-col :span="12">
+                  <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp 3752.30 元</b></h4><hr/>
+                  <div id="Index_NetWorth">
+                    <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4><hr/>
+                  </div>
+                  <div id="Index_EngelsCoefficient">
+                    <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
+                  </div>
+                  <div id="Index_RigidRatio">
+                    <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
+                  </div>
+                  <div id="Index_AssetLiabilityRatio">
+                    <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4>
+                  </div>
+                </el-col>
+                <el-col :span="12">
+                  <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp 6632.30 元</b></h4><hr/>
+                  <div id="Index_Solvency">
+                    <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4><hr/>
+                  </div>
+                  <div id="Index_Leverage">
+                    <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4><hr/>
+                  </div>
+                  <div id="Index_MonthConsumptionRatio">
+                    <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平</b></h4>
+                    <hr/>
+                  </div>
+                  <div id="Index_MonthlySavingsRatio">
+                    <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
+                  </div>
+                </el-col>
+              </el-row>
               </div>
             </div>
-          </div>
             <hr/>
-            <div id="ForecastK" :style="{width: '400px', height: '300px'}"></div>
-            <div id="ForecastA" :style="{width: '400px', height: '300px'}"></div>
+            <div id="forecast_lines">
+              <el-row :gutter="2">
+                <el-col :span="12">
+                  <div id="ForecastK" :style="{width: '400px', height: '300px'}"></div>
+                </el-col>
+                <el-col :span="12">
+                  <div id="ForecastA" :style="{width: '400px', height: '300px'}"></div>
+                </el-col>
+              </el-row>
+              <hr/>
+            </div>
           </div>
           <div class="LoanPanel">
             <p>在您借款成功后第n个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
@@ -842,11 +857,11 @@
     font-size: 22px;
   }
 
-
 </style>
 
 <style>
   .el-tabs__item{
     font-size: 18px !important;
   }
+
 </style>
