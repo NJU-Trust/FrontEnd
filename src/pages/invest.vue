@@ -6,77 +6,99 @@
     <div>
       <right-bar></right-bar>
     </div>
-    <div class="col-xs-12 col-md-12" style="padding: 0; margin-top:80px;">
-      <div class="col-sm-8 col-md-8">
-        <div class="inputBorder">
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p>投资金额：</p><input type="button" value="100以下"/><input type="button" value="100-500"/>
-              <input type="button" value="500-1000"/><input type="number" value="1000"/><p>-</p><input type="number" value="2000"/>
-            </div>
+    <div class="col-xs-12 col-md-12" style="margin-top:80px;">
+      <div class="inputBorder">
+        <div class="col-sm-12 col-md-12">
+          <div style="margin-top:1%;margin-left:1%;">
+            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
+            <el-radio-group v-model="value_radio1">
+              <el-radio-button label="100以下"></el-radio-button>
+              <el-radio-button label="100-500"></el-radio-button>
+              <el-radio-button label="500-1000"></el-radio-button>
+              <el-radio-button label="1000以上"></el-radio-button>
+            </el-radio-group>
+            <el-input-number style="width:130px;"></el-input-number>
+            <div style="display: inline-block;margin-left:15px;"></div>
+            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
+            <el-radio-group v-model="value_radio2">
+              <el-radio-button label="立即开始"></el-radio-button>
+              <el-radio-button label="5天之内"></el-radio-button>
+              <el-radio-button label="10天之内"></el-radio-button>
+            </el-radio-group>
+            <el-date-picker
+              v-model="value1"
+              type="date"
+              placeholder="选择日期"
+              :picker-options="pickerOptions0" style="width:150px;">
+            </el-date-picker>
           </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p>开始时间：</p><input type="button" value="立即开始"/><input type="button" value="5天之内"/>
-              <input type="button" value="10天之内"/><input type="date"/>
-            </div>
+          <div style="margin-top:1%;margin-left:1%;">
+            <span><b>利率&nbsp&nbsp&nbsp</b></span>
+            <div style="display: inline-block;margin-left:23px;"></div>
+            <el-radio-group v-model="value_radio3">
+              <el-radio-button label="1%以下"></el-radio-button>
+              <el-radio-button label="1%-1.5%"></el-radio-button>
+              <el-radio-button label="1.5%-2%"></el-radio-button>
+              <el-radio-button label="2%以上"></el-radio-button>
+            </el-radio-group>
+            <el-input-number style="width:130px;"></el-input-number>
+            <div style="display: inline-block;margin-left:30px;"></div>
+            <span><b>还款期限&nbsp&nbsp&nbsp</b></span>
+            <el-radio-group v-model="value_radio4">
+              <el-radio-button label="10天"></el-radio-button>
+              <el-radio-button label="30天"></el-radio-button>
+              <el-radio-button label="60天"></el-radio-button>
+              <el-radio-button label="90天"></el-radio-button>
+            </el-radio-group>
+            <el-input-number style="width:150px;"></el-input-number>
           </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p style="margin-right:30px;">利率：</p><input type="button" value="（这里待完善）"/><input type="button" value="5天之内"/>
-              <input type="button" value="10天之内"/>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p>还款期限：</p><input type="button" value="10天"/><input type="button" value="30天"/>
-              <input type="button" value="60天"/><input type="number" value="90"/><p>天</p>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p>用户信用评级：</p>
-              <div class="sort">
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="userInput">
+            <p>用户信用评级：</p>
+            <div class="sort">
+              <div>
                 <div>
-                  <div>
-                    <el-checkbox :indeterminate="isIndeterminateB" v-model="checkAllB" @change="handleCheckAllChangeB">全选</el-checkbox>
-                    <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeB" style="display: inline-block;margin-left:10px;">
-                      <el-checkbox-button v-for="indexB in indexBs" :label="indexB" :key="indexB" >{{indexB}}</el-checkbox-button>
-                    </el-checkbox-group>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-              <p>标的分类：</p><input type="button" value="日常生活费周转" style="width:230px;"/><input type="button" value="演唱会看比赛看剧音乐会等" style="width:230px;"/>
-              <input type="button" value="旅游"/><input type="button" value="游戏娱乐电影音乐" style="width:230px;margin-left:95px;margin-top:5px;"/>
-              <input type="button" value="购买电子设备" style="width:230px;"/>
-              <input type="button" value="其他购买项如化妆品衣服鞋" style="width:230px;margin-left:95px;margin-top:5px;"/>
-              <input type="button" value="小额学习费用" style="width:230px;"/>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <hr style="border:1px solid #e4e4e4;"/>
-          </div>
-          <div class="col-sm-12 col-md-12">
-            <div class="userInput">
-            <p>排序维度：</p>
-              <div class="sort">
-                <div>
-                  <div>
-                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-                    <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange" style="display: inline-block;margin-left:10px;">
-                      <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
-                    </el-checkbox-group>
-                  </div>
+                  <el-checkbox :indeterminate="isIndeterminateB" v-model="checkAllB" @change="handleCheckAllChangeB">全选</el-checkbox>
+                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeB" style="display: inline-block;margin-left:10px;">
+                    <el-checkbox-button v-for="indexB in indexBs" :label="indexB" :key="indexB" >{{indexB}}</el-checkbox-button>
+                  </el-checkbox-group>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-sm-6 col-md-6">
+          <div class="userInput" style="margin-left:6%;">
+            <p>标的分类：</p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <hr style="border:1px solid #e4e4e4;"/>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <div class="userInput" style="margin-top:1%;">
+            <p>排序维度：</p>
+            <div class="sort">
+              <div>
+                <div>
+                  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange" style="display: inline-block;margin-left:10px;">
+                    <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
+                  </el-checkbox-group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-12" style="padding: 0;">
+      <div class="col-sm-8 col-md-8">
         <div style="margin-left:9%;width:91%;">
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
+          <invest-list></invest-list><br/>
           <invest-list></invest-list><br/>
           <invest-list></invest-list><br/>
           <invest-list></invest-list><br/>
@@ -192,8 +214,12 @@
           backgroundRepeat:"no-repeat",
           backgroundSize:"27px auto",
           backgroundColor:"white",
-        }
-      }
+        },
+        value_radio1: '上海',
+        value_radio2: '上海',
+        value_radio3: '上海',
+        value_radio4: '上海',
+      };
     },
     methods:{
       handleCheckAllChange(val) {
@@ -345,20 +371,22 @@
   }
   .inputBorder{
     border: 1px solid #DEDDDD;
-    margin-left:9%;
+    margin-left:5%;
+    margin-right:5%;
     background-color:white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height:380px;
+    height:280px;
     margin-bottom: 20px;
   }
   .userInput{
-    margin-top:1%;
-    font-size:16px;
+    margin-top:2%;
+    font-size:14px;
+    font-weight: 900;
     float: left;
-    margin-left:5%;
     width:95%;
+    margin-left:1%;
   }
   .userInput input{
     width:10%;
