@@ -38,10 +38,10 @@
         </div>
         <div class="projectPanel">
           <div class="projectPages">
-            <project-list></project-list><br/>
-            <project-list></project-list><br/>
-            <project-list></project-list><br/>
-            <project-list></project-list><br/>
+            <invest-list></invest-list>
+            <invest-list></invest-list>
+            <invest-list></invest-list>
+            <invest-list></invest-list>
           </div>
           <div id="poj_pagination">
             <div class="block">
@@ -76,7 +76,7 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  import ProjectList from "../components/projectList";
+  import ProjectList from "../components/investList";
 
   export default {
     name:"investinformation",

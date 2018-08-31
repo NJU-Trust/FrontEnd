@@ -17,10 +17,7 @@
 
     <div class="projectPanel">
       <div class="projectPages">
-        <project-list></project-list><br/>
-        <project-list></project-list><br/>
-        <project-list></project-list><br/>
-        <project-list></project-list><br/>
+
       </div>
       <div id="poj_pagination">
         <div class="block">
@@ -43,11 +40,10 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  import ProjectList from "../components/projectList";
 
   export default {
     name:"loaninformation",
-    components: {ProjectList, personalCenter},
+    components: {personalCenter},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

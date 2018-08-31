@@ -5,7 +5,7 @@
       <ul class="left_ul">
         <li><a href="/UserSpace" id="leftAA" class="active" @click="setA">账户总览</a></li>
         <li><a href="/UserSpace/SchoolPerformance">校园表现</a></li>
-        <li><a href="/UserSpace/FinancialStanding">财务数据</a></li>
+        <li><a href="/UserSpace/FinancialStanding">财务状况</a></li>
         <li><a href="/UserSpace/BasicInformation" >基本信息</a></li>
       </ul>
       <hr/>
