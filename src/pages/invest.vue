@@ -89,7 +89,7 @@
           <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
           <input type="button" class="searchButton searchBack" :style="searchBack"/>
         </div>
-        <div class="searchBorder">
+        <div class="searchBorder" style="margin-top:80px;">
           <h3>个性推荐</h3>
           <div class="userInput">
             <p>投资金额：</p>
@@ -106,9 +106,18 @@
             <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
           </div>
         </div>
-        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:100px;">
-          <div style="padding-top:46%;">
-            <h1 style="font-size:17px;text-align: center;">小贴士</h1>
+        <div class="searchBorder">
+          <h3>标的比较</h3>
+          <div class="userInput">
+            <p>请输入需要比较的标的编号：</p><br><br>
+            <p>A: </p><input type="number" value="0000" style="width:100px;"/>
+            <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
+            <div id="myradar" style="width: 350px;height: 380px"></div>
+          </div>
+        </div>
+        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:300px;">
+          <div style="padding-top:36%;">
+            <h1 style="font-size:19px;text-align: center;">小贴士</h1>
             <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
           </div>
         </div>
@@ -143,11 +152,25 @@
   import rightBar from '@/components/rightBar.vue'
   import investList from '@/components/investList.vue'
   import ProjectList from "../components/projectList";
+  import personalCenter from "../components/personalCenter";
   const indexAOptions = ['标的金额', '开始时间', '利率', '还款期限','用户信用分数'];
   const indexBOptions = ['AA','A','B','C','D'];
+  // 引入基本模板
+  let echarts = require('echarts/lib/echarts')
+  // 引入柱状图组件
+  require('echarts/lib/chart/radar')
+  // 引入提示框和title组件
+  require('echarts/lib/component/tooltip')
+  require('echarts/lib/component/title')
+
+  //引入主题
+  require('echarts/theme/infographic')
   export default {
     name: "invest",
     components:{navi, footerBar, rightBar,investList,ProjectList},
+    mounted() {
+      this.drawRadar();
+    },
     data(){
       return{
         date_value_choose: '',
@@ -159,7 +182,7 @@
         checkAllB:false,
         isIndeterminateB:true,
         backPic:{
-          backgroundImage:"url(" + require("../../static/pic/notice.png") + ")",
+          backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
           backgroundSize:"310px auto",
           marginTop:"5px"
@@ -195,6 +218,50 @@
         this.isIndeterminateB = checkedCount > 0 && checkedCount < this.indexBs.length;
         this.showIndexs();
       },
+      drawRadar() {
+        let myChart = echarts.init(document.getElementById('myradar'),'infographic')
+        myChart.setOption({
+          title: {
+            text: '比较'
+          },
+          tooltip: {},
+          legend: {
+            data: ['A', 'B']
+          },
+          radar: {
+            // shape: 'circle',
+            name: {
+              textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5],
+              }
+            },
+            indicator: [
+              { name: '金额', max: 100},
+              { name: '期限', max: 100},
+              { name: '成功借款次数', max: 100},
+              { name: '信用等级', max: 100},
+              { name: '利率', max: 100}
+            ]
+          },
+          series: [{
+            name: '两个标的比较',
+            type: 'radar',
+            data : [
+              {
+                value : [80, 76, 65, 89, 77, 66],
+                name : 'A'
+              },
+              {
+                value : [60, 70, 45, 80, 85, 27],
+                name : 'B'
+              }
+            ]
+          }]
+        });
+      },
     }
   }
 </script>
@@ -221,9 +288,9 @@
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid #4285F4;
-    height:400px;
+    height:500px;
     margin-right:10%;
-    margin-top:80px;
+    margin-top:30px;
   }
   .searchButton{
     width:30%;
