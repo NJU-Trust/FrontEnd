@@ -32,7 +32,7 @@
           <option value="">所有</option>
           <option value="无借款">无借款</option>
           <option value="待还款">待还款</option>
-          <option value="逾期用户">逾期用户</option>
+          <option value="逾期">逾期</option>
         </select>
 
       </div>
@@ -94,7 +94,8 @@
 <script>
   import footerBar from '@/components/footerBar.vue';
   import adminNavi from '@/components/adminNavi.vue';
-  var mockUsers = [{username: '佳未1',state:'无借款',
+  var mockUsers = [
+    {username: '佳未1',state:'无借款',
     level: '1',
     tel: '12345678',
     email: '1@qq.com',},
@@ -118,7 +119,7 @@
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
-    {username: '佳未3',state:'逾期用户',
+    {username: '佳未3',state:'逾期',
       level: '3',
       tel: '32345678',
       email: '3@qq.com',},
