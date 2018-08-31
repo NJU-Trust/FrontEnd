@@ -1,7 +1,16 @@
 <template>
   <personalCenter paneltitle="校园表现">
     <div id="userinformation">
-      <!--<h4><b class="user_info_title">非结构化信息</b></h4><hr/>-->
+      <el-row :gutter="2">
+        <el-col :span="12">
+          <div id="myradar" style="width: 400px;height: 410px"></div>
+        </el-col>
+        <el-col :span="11">
+          <p style="font-size: 24px">Trust作为贴心的校园金融助手，将您的在校表现纳入我们的信用评价体系，旨在为您提供全面而精准的服务。</p>
+          <p style="font-size: 24px">美好校园生活，Trust伴您成就卓越之旅！</p><br/>
+          <img class="img-responsive" src="../../static/pic/perform.png">
+        </el-col>
+      </el-row>
       <div class="user_credit">
         <div class="table-responsive" style="text-indent: 5px">
           <table class="table table-bordered">
@@ -93,39 +102,66 @@
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
-  require('echarts/lib/chart/bar')
-  require('echarts/lib/chart/line')
+  require('echarts/lib/chart/radar')
   // 引入提示框和title组件
   require('echarts/lib/component/tooltip')
   require('echarts/lib/component/title')
+
+  //引入主题
+  require('echarts/theme/infographic')
+
 
   export default {
     name:"schoolperformance",
     components: {personalCenter},
     mounted() {
-      this.drawLine();
+      this.drawRadar();
     },
     methods: {
-      drawLine() {
+      drawRadar() {
         // 基于准备好的dom，初始化echarts实例
-        let myChart = echarts.init(document.getElementById('myChart'))
+        let myChart = echarts.init(document.getElementById('myradar'),'infographic')
         // 绘制图表
         myChart.setOption({
-          title: { text: '您近六个月的信用变化' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
+          title: {
+            text: '校园表现'
           },
-          yAxis: {
-            name: '信用指标',
-            type: 'value'
+          tooltip: {},
+          legend: {
+            data: ['您的表现', '注册用户平均表现']
+          },
+          radar: {
+            // shape: 'circle',
+            name: {
+              textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5]
+              }
+            },
+            indicator: [
+              { name: '学校', max: 100},
+              { name: '学历', max: 100},
+              { name: '社交情况', max: 100},
+              { name: '获奖情况', max: 100},
+              { name: '成绩', max: 100}
+            ]
           },
           series: [{
-            name: '信用情况',
-            type: 'line',
-            data: [5, 20, 36, 10, 40, 20, 60]
+            name: '您的表现 VS 平均表现',
+            type: 'radar',
+            // areaStyle: {normal: {}},
+            data : [
+              {
+                value : [80, 76, 65, 89, 77, 66],
+                name : '您的表现'
+              },
+              {
+                value : [60, 70, 45, 80, 85, 27],
+                name : '注册用户平均表现'
+              }
+            ]
           }]
         });
       }

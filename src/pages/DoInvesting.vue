@@ -1,196 +1,80 @@
 <template>
-  <div id="app" style="padding:0;background-color: #D9F3FB;">
-    <div style="width: 100%;float: top;">
-      <navi></navi>
-    </div>
-    <div>
-      <right-bar></right-bar>
-    </div>
-
-    <div class="back">
-
-        <!-- 返回按钮 -->
-        <!-- <div class="left">
-          <el-button  icon="el-icon-back" v-on:click="backPage()"></el-button>
-        </div> -->
-
-
-      <div class="sheet" style="display: inline">
-        <div class="picSpace">
-            <div id="pics">
-              <img src="../../static/pic/library.jpg" style="width: 500px">
+  <div id="Investing">
+    <navi></navi>
+    <rightBar></rightBar>
+    <img src="/static/pic/Investing.png" class="img-responsive" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px">
+    <div class="overview">
+      <div class="total" style="position:absolute;left:8%;top:20%;font-size:18px;width:300px;text-align:left;">
+        <label>标的编号XX</label>
+        <label>剩余时间：{{leftTime}}</label>
+        <br/>
+        <el-progress :stroke-width="20" :percentage="percentage" ></el-progress>
+      </div>
+      <div style="border: 1px solid lightskyblue;height:120px;width:100%;position:absolute;top:40%;">
+        <div style="position:absolute;left:8%;padding:15px 0px 0px 0px;display: flex;text-align: center">
+          <div style="padding:0px 40px 0px 0px">
+            <span class="keypoint">{{revenueRate}}</span><label>%</label><br/>
+            <label>预期年化收益率</label>
+          </div>
+          <div style="padding:0px 40px 0px 0px">
+            <span class="keypoint">{{lifeOfLoan}}</span><br/>
+            <label>借款期限</label>
+          </div>
+          <div style="padding:0px 40px 0px 0px">
+            <span class="keypoint">{{totalLoan}}</span><label>元</label><br/>
+            <label>总额度</label>
+          </div>
+          <div class="selfmoney" style="padding: 10px 20px 0px 100px;font-size:20px;display:flex;">
+            <div style="padding:0px 40px 0px 0px">
+              <label>还需投资：{{leftNeeds}}元</label>
+              <br/>
+              <label>您的余额为：{{userMoney}}元</label>
             </div>
-            <ul class="picSlide" style="height:60px;list-style:none;padding:0;margin:0;">
-              <li>
-                <div class="pics">
-                  <img src="../../static/pic/library.jpg" style="height:50px;">
-                </div>
-              </li>
-
-              <li>
-                <div class="pics">
-                  <img src="../../static/pic/library.jpg" style="height:50px;">
-                </div>
-              </li>
-
-              <li>
-                <div class="pics">
-                  <img src="../../static/pic/library.jpg" style="height:50px;">
-                </div>
-              </li>
-
-              <li>
-                <div class="pics">
-                  <img src="../../static/pic/library.jpg" style="height:50px;">
-                </div>
-              </li>
-
-               
-            </ul>
-            
-        </div>
-
-        <div class="detail">
-          <!-- 项目名称栏 -->
-          <div class="detail-hd">
-            <h1 style="font-size:20px;font-weight:700">托福补课学费</h1>
+            <div style="padding:10px 40px 0px 0px">
+              <el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>
+            </div>
+            <div style="padding:10px 40px 0px 0px">
+              <el-button type="primary" round>{{DoInvest}}</el-button>
+            </div>
           </div>
-
-          <div class="row">
-            <!-- 进度条显示 -->
-            <label for="money">剩余金额/总金额:</label><p>40 / 50</p>
-            <el-progress :text-inside="true" :stroke-width="18" :percentage="80" color="rgba(142, 113, 199, 0.7)"></el-progress>
-          </div>
-            
-
-          <!-- 日期 -->
-          <div class="row">
-            <label>开始日期:</label><br>
-            <p>2018/2/30</p>
-          </div>
-            
-          <div class="row">
-            <label>截止日期:</label><br>
-            <p>2018/2/30</p>
-            <p>剩余2天</p>
-          </div>
-            
-          <div class="row">
-            <label>还款日期</label><br>
-            <p>2018/2/30</p>
-          </div>
-
-          <div class="row">
-            <el-button class="successbutton" @click="confirm">立即投资</el-button>
-            <el-button class="markbutton">加入收藏</el-button>
-          </div><br><br>
-
-          <div id="confirminvest" style="display:none">
-            <label style="margin-left : 10px">请选择投资金额</label>
-            <el-input v-model="input" placeholder="请输入金额" style="margin-left:10px;width:50%;"></el-input>
-            <el-button>确认</el-button>
-          </div>
-            
         </div>
       </div>
-
-      <div class="informlist">
-          <template id="Inform">
-            <el-tabs  v-model="activeName" tabPosition="left" type="border-card" @tab-click="handleClick">
-              <el-tab-pane label="项目介绍" name="first">项目介绍</el-tab-pane>
-              <el-tab-pane label="相关政策" name="second">相关政策</el-tab-pane>
-            </el-tabs>
-          </template>
-          <br><br><br>
-        </div>
-
     </div>
   </div>
 </template>
 
 <script>
     import navi from '@/components/navi.vue';
-    import ElCard from "element-ui/packages/card/src/main";
     import rightBar from '@/components/rightBar.vue';
-
     export default {
       name: "DoInvesting",
-      components:{
-        ElCard,
-        navi,
-        rightBar},
-      methods:{
-        data() {
-          return {
-            input: ''
-          }
-        },backPage(){
-          //返回查看投资项目界面
-          this.$router.go(-1);
-        },
-        confirm(){
-          document.getElementById("confirminvest").style.display = "inline";
+      components:{navi,rightBar},
+      data(){
+        return{
+          percentage:70,
+          leftTime:"1天2小时59分11秒",
+          revenueRate:10.0,
+          lifeOfLoan:"3个月",
+          totalLoan:100000,
+          leftNeeds:3000,
+          userMoney:100,
+          num1: 100,
+          DoInvest:"确认投资",
+        }
+      },
+      methods: {
+        handleChange(value) {
+          console.log(value);
         }
       }
     }
 </script>
 
-<style scoped>
-
-    .back{
-      width: 100%;
-      height: 1900px;
-      display:flex;
-      background-color:#D9F3FB;
-    }
-    /* .left{
-      width:200px;
-      height: 150px;
-      margin-top: 300px;
-      margin-left: 50px;
-      padding-top: 20px;
-      position: fixed;
-    } */
-    .sheet{
-      margin-top: 100px;
-      margin-left: 50px;
-      height: 520px;
-      width: 100%;
-      border-style: groove;
-    }
-    .detail{
-      float: right;
-      padding: 10px;
-      margin-left: 10px;
-      margin-right: 120px;
-    }
-    .row{
-      width:400px;
-      padding: 10px;
-      margin-left: 0;
-    }
-    .successbutton{
-      float: left;
-      margin-left: 25%;
-
-    }
-    .markbutton{
-      float: right;
-      margin-left: 20%;
-    }
-    .picSpace{
-      float: left;
-      padding: 20px;
-    }
-    .pics{
-      float: left;
-      padding: 5px;
-    }
-    .informlist{
-      position: absolute;
-      padding: 50px;
-      margin-top: 650px;
-      margin-left: 120px;
-    }
-
+<style scope>
+  .keypoint{
+    font-size:40px;
+    color:deepskyblue;
+  }
 </style>
+
+
