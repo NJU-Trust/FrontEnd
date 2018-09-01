@@ -51,7 +51,7 @@
     name: "projectList",
     methods: {
       showDetails(){
-        window.location.href='/userdetail';
+        window.location.href='/DoInvesting';
       }
     }
 
