@@ -1,5 +1,20 @@
 <template>
     <el-form class="main_panel">
+      <div style="display: flex;margin-bottom: 35px">
+        <div class="scheme_type" style="color: #ff6445">
+          等额本金
+          <div style="border: 1px solid #ff6445"></div>
+        </div>
+        <div class="scheme_type">
+          等额本息
+        </div>
+        <div class="scheme_type">
+          一次性还本付息
+        </div>
+        <div class="scheme_type">
+          先息后本
+        </div>
+      </div>
       <div class="top_panel">
         <div>
           <div style="padding-left: 30px">
@@ -28,8 +43,8 @@
           还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.sum}}</span>元
         </div>
       </div>
-      <div>
-        <el-table
+      <div style="min-height: 400px;" ref="myEchart">
+        <!--<el-table
           :data="tableData"
           stripe
           style="width: 100%"
@@ -60,9 +75,9 @@
             label="剩余本金"
             >
           </el-table-column>
-        </el-table>
+        </el-table>-->
       </div>
-      <div >
+      <div style="margin-top: 50px">
         <div style="font-size: 22px;margin-top: 20px">贷款建议:</div>
         <p id="enough" style="color: #31d09f" v-if="enough">根据预测，您足以支付每期还款</p>
         <p id="not_enough" v-if="enough==false">在您的还款期内，根据历史消费记录预测，有X个月（a,b,c,d）应还金额超出当月预测结余，如果选择该方案，请酌情调整这些月份的消费</p>
@@ -73,6 +88,8 @@
 </template>
 
 <script>
+
+  import Chart from 'echarts'
     export default {
         name: "evaluate",
       props:['scheme'],
@@ -130,6 +147,11 @@
 
   .pointer:hover{
     cursor:pointer;
+  }
+
+  .scheme_type{
+    margin-left: 30px;
+    font-size: 16px;
   }
 
 </style>
