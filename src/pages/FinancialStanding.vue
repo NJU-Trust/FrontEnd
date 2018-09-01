@@ -1,7 +1,7 @@
 <template>
   <personalCenter paneltitle="财务状况">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="财务数据" name="first">
+      <el-tab-pane label="财务分析" name="first">
         <div id="financial_id">
           <div class="FinDateChoice">
             <el-row :gutter="2">
@@ -91,7 +91,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="分析建议" name="second">
+      <el-tab-pane label="财务建议" name="second">
         <div id="loan_id">
           <!--<div class="LevelTwoIndex" id="leveltwocheck">-->
             <!--<div>-->
