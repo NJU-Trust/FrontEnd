@@ -253,6 +253,12 @@
   .box-card {
     width: 800px;
     height: 250px;
+    border-radius: 5px;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    margin: 0px;
+    padding: 5px;
   }
 
   .label{

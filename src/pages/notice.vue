@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">Lost && Found</h2>
+        <h2 class="myspace">Lost && Found -- 发布消息</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -18,7 +18,8 @@
 
     <!--正文-->
     <!--用于个人发布消息-->
-    <div class="publishmes" style="position:relative;left:80px;top:-350px;">
+    <div class="back">
+      <div class="publishmes" style="position:relative;left:80px;top:-350px;">
       <el-form ref="form" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:140px;top:60px;">
           <el-form-item label="消息性质">
             <el-radio-group v-model="sizeForm.resource" size="small">
@@ -55,15 +56,19 @@
           </el-form-item>
           <el-form-item label="物品信息" style="position:relative;top:-100px;">
             <el-input type="textarea"
-                      style="width:380px;"
+                      style="width:360px"
+                      minRows="1"
+                      maxRows="3"
+                      autosize
+                      placeholder="请输物品的详细信息"
                       v-model="sizeForm.desc"></el-input>
           </el-form-item>
-          <el-form-item size="large" style="position:relative;top:-120px;left:500px;">
+          <el-form-item size="large" style="position:absolute;top:400px;left:500px;">
             <el-button type="primary" @click="onSubmit">发布</el-button>
           </el-form-item>
         </el-form>
     </div>
-
+    </div>
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -143,5 +148,13 @@
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
   }
+
+  .back{
+    /*background-color: rgba(173,216,230,0.5);*/
+    width: 100%;
+    height: 200px;
+    display:flex;
+  }
+
 
 </style>

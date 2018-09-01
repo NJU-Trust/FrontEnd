@@ -655,7 +655,7 @@
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    //height: 400px;
+    //height: 500px;
     display:flex;
   }
 
