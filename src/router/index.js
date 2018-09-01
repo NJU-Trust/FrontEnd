@@ -44,6 +44,7 @@ import tradeGoing from '@/pages/tradeGoing'
 import tradeFinished from '@/pages/tradeFinished'
 import backAdminData from '@/pages/backAdminData'
 import test from '@/pages/test'
+import subjectManage from '@/pages/subjectManage'
 Vue.use(Router)
 
 export default new Router({
@@ -265,6 +266,11 @@ export default new Router({
       path:'/test',
       name:'test',
       component:test
+    },
+    {
+      path:'/subjectManage',
+      name:'subjectManage',
+      component:subjectManage
     }
 
 
