@@ -193,9 +193,7 @@
     </div>
     <hr/>
     <div id="user_calendar">
-      <div style="width: 600px;height: 300px;background-color: #CCFFFF">
-        <span style="font-size: 100px">日历</span>
-      </div>
+       <img class="img-responsive" src="../../static/pic/cal_demo.png">
     </div>
 
   </personalCenter>
