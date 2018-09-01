@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">Lost && Found -- 寻物启事</h2>
+        <h2 class="myspace">信息发布平台 -- 寻物启事</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -20,13 +20,15 @@
     <div class="back">
       <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
         <!--图标分隔 -->
-        <el-breadcrumb separator-class="el-icon-arrow-right" style="position:relative;top:30px;left:30px;">
+        <el-breadcrumb separator-class="el-icon-arrow-right" style="position:relative;top:60px;left:60px;">
           <el-breadcrumb-item :to="{ path: '/' }" style="font-size: 16px;">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/notice' }" style="font-size: 16px;">发布</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/notice/lost' }" style="font-size: 16px;">寻物启事</el-breadcrumb-item>
         </el-breadcrumb>
         <!-- 搜索 -->
-        <template >
+        <el-button type="primary" icon="el-icon-search" style="position:relative;top:30px;left:750px;">搜索</el-button>
+        <el-input  placeholder="请输入想要查询的内容" style="position:relative;top:30px;left:415px;width:250px;"></el-input>
+        <!--<template >
           <el-select
             v-model="value9"
             style="position:relative;left:650px;top:30px;"
@@ -45,7 +47,7 @@
             </el-option>
           </el-select>
           <div style="position:relative;left:820px;color:#00BFFF;">搜索</div>
-        </template>
+        </template>-->
         <!-- 内容-->
         <div v-for="i in mesdata.length" :key="i">
           <!--<span>{{ i }}</span>
@@ -276,7 +278,7 @@
     padding: 5px;
     position:relative;
     left:100px;
-    top:30px;
+    top:70px;
   }
   .box-card:hover{
     background:#D1EEEE;

@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">Lost && Found -- 正在进行</h2>
+        <h2 class="myspace">信息发布平台 -- 正在进行</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -53,7 +53,7 @@
                   <el-dialog title="确认完成"
                              width="40%"
                              :visible.sync="dialogFormVisible">
-                    <el-form :model="form">
+                    <el-form :model="form" >
                       <el-form-item label="对方用户名" :label-width="formLabelWidth">
                         <el-input v-model="form.name"
                                   style="width:330px;"
@@ -107,7 +107,7 @@
                              width="40%"
                              :visible.sync="dialogFormVisible">
                     <el-form :model="form" >
-                      <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                      <el-form-item label="对方用户名" :label-width="formLabelWidth" prop="name">
                         <el-input v-model="form.name"
                                   style="width:330px;"
                                   auto-complete="off"></el-input>
@@ -144,7 +144,6 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
   import leftInformationbar from "@/components/leftInformationbar.vue"
-
   let dialogFormVisible;
 
   export default {
@@ -177,6 +176,9 @@
         form: {
           name: '',
         },
+        rules:{
+          name:[ {required: true, message: '请输入活动名称', trigger: 'blur'} ]
+        },
         formLabelWidth: '120px',
       }
     },
@@ -184,7 +186,7 @@
       handleClick(tab, event) {
         console.log(tab, event);
       },
-      done :function(vis){
+      done :function(vis,formName){
         console.log(vis);
         vis.state=false;
         console.log('进来了！');
@@ -238,7 +240,6 @@
   position:relative;
   left:300px;
   top:-180px;
-
 }
 
 .picbox{

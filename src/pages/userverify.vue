@@ -347,7 +347,6 @@
   let new_changenum = 0;
   let count;
   let new_count;
-  let tpye = ['证书或证明截图','教务网截图','查找政府公示','学生综合服务平台截图','银行信息截图','图书馆信息截图'];
   let certi = ['每年平均志愿活动时长','学生工作','奖励信息','科研竞赛获奖情况','奖学金'];
   let stu = ['学校分类','所在专业情况','受教育情况','挂科数','学习成绩'];
   let gov = ['是否为失信人员'];
@@ -638,14 +637,6 @@
     created:function(){
       this.test();
     },
-    /*watch:{
-      change:function(){
-        if(change === count){
-          flag = false;
-          console.log(flag);
-        }
-      }
-    },*/
 }
 </script>
 
