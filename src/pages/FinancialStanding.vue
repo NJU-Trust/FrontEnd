@@ -57,10 +57,10 @@
                       <el-radio label="收入" v-bind:title="'顾名思义，收入就是收入'"></el-radio>
                       <el-radio label="支出"></el-radio>
                       <el-radio label="刚性支出" v-bind:title="'你问我什么是刚性支出，我也不造啊QAQ'"></el-radio>
-                      <el-radio label="可调指出"></el-radio>
+                      <el-radio label="可调支出"></el-radio>
                       <el-radio label="投资额结余"></el-radio>
                       <el-radio label="负债"></el-radio>
-                      <el-radio label="净资产 "></el-radio>
+                      <el-radio label="净资产"></el-radio>
                     </el-radio-group>
                   </div>
                 </el-col>
@@ -81,30 +81,34 @@
             </div>
             <div v-show="selectBar=='刚性支出'">
               <div v-if="selectBar=='刚性支出'">
-                刚性支出
+                <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
               </div>
+              <div id="myRigidBar" :style="{width: '400px', height: '300px'}"></div>
             </div>
-            <div v-show="selectBar=='可调指出'">
-              <div v-if="selectBar=='可调指出'">
-                可调指出
+            <div v-show="selectBar=='可调支出'">
+              <div v-if="selectBar=='可调支出'">
+                <h4><b>您这段时间的可调支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
               </div>
+              <div id="myAdjustBar" :style="{width: '400px', height: '300px'}"></div>
             </div>
             <div v-show="selectBar=='投资额结余'">
               <div v-if="selectBar=='投资额结余'">
-                投资额结余
+                <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
               </div>
+              <div id="myInvestBar" :style="{width: '400px', height: '300px'}"></div>
             </div>
             <div v-show="selectBar=='负债'">
               <div v-if="selectBar=='负债'">
-                负债
+                <h4><b>您的负债总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
               </div>
+              <div id="myDebtBar" :style="{width: '400px', height: '300px'}"></div>
             </div>
             <div v-show="selectBar=='净资产'">
               <div v-if="selectBar=='净资产'">
-                净资产
+                <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
               </div>
+              <div id="myNetAssetsBar" :style="{width: '400px', height: '300px'}"></div>
             </div>
-
           </div>
           <div id="line_info" style="display: none">
             <!--恩格尔系数、刚性比率、负债率、偿债能力、杠杆比率、消费比率、储蓄比率-->
@@ -206,8 +210,7 @@
             </div>
           </div>
           <hr/>
-          <p>//以下展现{{ mouth_start.toString()}} 到 {{mouth_end.toString()}}的财务状况</p>
-          <div class="LevelOneIndex" id="leveloneindex" v-if="false"><!--一级指标，收入&&支出和其他-->
+          <div class="LevelOneIndex" id="leveloneindex" style="display: none"><!--一级指标，收入&&支出和其他-->
             <div class="class_outcome" id="id_class_outcome" style="display: inline">
               <h4><b>您本月的支出情况</b></h4>
               <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
@@ -238,7 +241,7 @@
               <h4><b>您本月的饮食支出分布统计图</b></h4>
             </div>
 
-            <div class="class_income" id="id_class_income" style="display:none;">
+            <div class="class_income" id="id_class_income">
               <div id="myIncomeOverview">
                 <!--<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>-->
               </div>
@@ -264,16 +267,6 @@
       </el-tab-pane>
       <el-tab-pane label="财务建议" name="second">
         <div id="loan_id">
-          <!--<div class="LevelTwoIndex" id="leveltwocheck">-->
-            <!--<div>-->
-              <!--<div style="margin-top: 20px">-->
-                <!--<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>-->
-                <!--<el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange">-->
-                  <!--<el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>-->
-                <!--</el-checkbox-group>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
           <h3><b>消费修正建议</b></h3><hr/>
           <div class="LoanPanel">
             <div>
@@ -333,7 +326,7 @@
               </div>
             </div>
             <hr/>
-            <div id="forecast_lines" style="background-color: lightskyblue">
+            <div id="forecast_lines">
               <el-row :gutter="2">
                 <el-col :span="12">
                   <div id="ForecastK" :style="{width: '400px', height: '300px'}"></div>
@@ -498,23 +491,17 @@
       this.drawAdjustOutcomePie();
       this.drawFoodOutcomePie();
       this.drawAntBar();
+      this.drawRigidBar();
+      this.drawAdjustBar();
+      this.drawInvestBar();
+      this.drawDebtBar();
+      this.drawNetAssetsBar();
       this.drawK();
       this.drawA();
     },
     methods: {
       handleClick(tab, event) {
         console.log(tab, event);
-      },
-      handleCheckAllChange(val) {
-        this.checkboxGroup2 = val ? indexAOptions : [];
-        this.isIndeterminate = false;
-        this.showIndexs();
-      },
-      handleCheckedCitiesChange(value) {
-        let checkedCount = value.length;
-        this.checkAll = checkedCount === this.indexAs.length;
-        this.isIndeterminate = checkedCount > 0 && checkedCount < this.indexAs.length;
-        this.showIndexs();
       },
 
       change_bar(){
@@ -621,6 +608,208 @@
           }]
         });
       },
+
+      drawRigidBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myRigidBar = echarts.init(document.getElementById('myRigidBar'))
+        // 绘制图表
+        myRigidBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 50, 60, 5, 36, 36, 10, 4, 20, 60, 5]
+          }]
+        });
+      },
+
+      drawAdjustBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myAdjustBar = echarts.init(document.getElementById('myAdjustBar'))
+        // 绘制图表
+        myAdjustBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 20, 60, 5, 70, 36, 10, 40, 20, 60, 5]
+          }]
+        });
+      },
+
+      drawInvestBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myInvestBar = echarts.init(document.getElementById('myInvestBar'))
+        // 绘制图表
+        myInvestBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 20, 10, 40, 20, 60, 5, 70, 36, 60, 5]
+          }]
+        });
+      },
+
+      drawDebtBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myDebtBar = echarts.init(document.getElementById('myDebtBar'))
+        // 绘制图表
+        myDebtBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [70, 36, 10, 40, 10, 40, 20, 60, 5, 20, 60, 5]
+          }]
+        });
+      },
+
+      drawNetAssetsBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myNetAssetsBar = echarts.init(document.getElementById('myNetAssetsBar'))
+        // 绘制图表
+        myNetAssetsBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [70, 36, 10, 40, 20, 60, 5, 10, 40, 20, 60, 5]
+          }]
+        });
+      },
+
+
 
       drawOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
