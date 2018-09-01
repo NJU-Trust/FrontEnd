@@ -2,38 +2,119 @@
   <personalCenter paneltitle="财务状况">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="财务分析" name="first">
-        <div id="financial_id">
-          <div class="FinDateChoice">
-            <el-row :gutter="2">
-              <el-col :span="6">
-                <div class="block">
-                  <span class="demonstration"></span>
-                  <el-date-picker
-                    v-model="mouth_start"
-                    type="month"
-                    placeholder="请选择起始月份">
-                  </el-date-picker>
-                </div>
-              </el-col>
-              <el-col :span="8">
-                <div class="block">
-                  <span class="demonstration">到&nbsp&nbsp&nbsp&nbsp</span>
-                  <el-date-picker
-                    v-model="mouth_end"
-                    type="month"
-                    placeholder="请选择终止月份">
-                  </el-date-picker>
-                </div>
-              </el-col>
-            </el-row>
-          </div><br/>
+        <div id="financial_id"><br/>
           <div class="chooseButton">
-            <el-radio v-model="inoutcome" label="1" id="outcome_btn" @change="change_outcome">支出</el-radio>
-            <el-radio v-model="inoutcome" label="2" id="income_btn" @change="change_income">收入和其他</el-radio>
+            <el-radio v-model="inoutcome" label="1" id="bar_btn" @change="change_bar" border>数值比较</el-radio>
+            <el-radio v-model="inoutcome" label="2" id="line_btn" @change="change_line" border>趋势分析</el-radio>
+            <el-radio v-model="inoutcome" label="3" id="pie_btn" @change="change_pie" border>比例分析</el-radio>
+          </div><hr/><br/>
+          <div class="FinDateChoice">
+            <div id="dateDouble">
+              <el-row :gutter="2">
+                <el-col :span="6">
+                  <div class="block">
+                    <span class="demonstration"></span>
+                    <el-date-picker
+                      v-model="mouth_start"
+                      type="month"
+                      placeholder="请选择起始月份">
+                    </el-date-picker>
+                  </div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="block">
+                    <span class="demonstration">到&nbsp&nbsp&nbsp&nbsp</span>
+                    <el-date-picker
+                      v-model="mouth_end"
+                      type="month"
+                      placeholder="请选择终止月份">
+                    </el-date-picker>
+                  </div>
+                </el-col>
+              </el-row>
+
+            </div>
+            <div id="dateSingle" style="display: none">
+              <div class="block">
+                <span class="demonstration"></span>
+                <el-date-picker
+                  v-model="mouth_single"
+                  type="month"
+                  placeholder="请选择您要查看的月份">
+                </el-date-picker>
+              </div>
+            </div>
+          </div><br/>
+          <div id="bar_info" style="display: inline">
+            <div>
+              <el-row :gutter="20">
+                <el-col :span="5">
+                  <span>请选择您所要查看的指标</span>
+                </el-col>
+                <el-col :span="19">
+                  <div id="selectBar_id">
+                    <el-radio-group v-model="selectBar" size="mini">
+                      <el-radio label="收入"></el-radio>
+                      <el-radio label="支出"></el-radio>
+                      <el-radio label="刚性支出"></el-radio>
+                      <el-radio label="可调指出"></el-radio>
+                      <el-radio label="投资额结余"></el-radio>
+                      <el-radio label="负债"></el-radio>
+                      <el-radio label="净资产 "></el-radio>
+                    </el-radio-group>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <hr/>
+            <div v-show="selectBar=='收入'">
+              <div v-if="selectBar=='收入'">
+                <h4><b>您这段时间的收入总额为：<i class="el-icon-menu"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='支出'">
+              <div v-if="selectBar=='支出'">
+                <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+            </div>
+
+            <div v-show="selectBar=='刚性支出'">
+              <div v-if="selectBar=='刚性支出'">
+                刚性支出
+              </div>
+            </div>
+            <div v-show="selectBar=='可调指出'">
+              <div v-if="selectBar=='可调指出'">
+                可调指出
+              </div>
+            </div>
+            <div v-show="selectBar=='投资额结余'">
+              <div v-if="selectBar=='投资额结余'">
+                投资额结余
+              </div>
+            </div>
+            <div v-show="selectBar=='负债'">
+              <div v-if="selectBar=='负债'">
+                负债
+              </div>
+            </div>
+            <div v-show="selectBar=='净资产'">
+              <div v-if="selectBar=='净资产'">
+                净资产
+              </div>
+            </div>
+
+          </div>
+          <div id="line_info" style="display: none">
+            <p>折线图</p>
+          </div>
+          <div id="pie_info" style="display: none">
+            <p>饼状图</p>
           </div>
           <hr/>
           <p>以下展现{{ mouth_start.toString()}} 到 {{mouth_end.toString()}}的财务状况</p>
-          <div class="LevelOneIndex" id="leveloneindex"><!--一级指标，收入&&支出和其他-->
+          <div class="LevelOneIndex" id="leveloneindex" v-if="false"><!--一级指标，收入&&支出和其他-->
             <div class="class_outcome" id="id_class_outcome" style="display: inline">
               <h4><b>您本月的支出情况</b></h4>
               <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
@@ -69,11 +150,11 @@
 
             <div class="class_income" id="id_class_income" style="display:none;">
               <div id="myIncomeOverview">
-                <h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>
+                <!--<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>-->
               </div>
               <hr/>
               <h4><b>您本月的收入变化</b></h4>
-              <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+              <!--<div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>-->
               <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
               <hr/>
               <h4><b>您本月的蚂蚁花呗情况</b></h4>
@@ -243,7 +324,9 @@
         activeName: 'first',
         mouth_start: '',
         mouth_end: '',
+        mouth_single: '',
         inoutcome: '1',
+        selectBar: '收入',
         tableData: [{
           month: '1',
           valX: '15%',
@@ -341,15 +424,29 @@
         this.showIndexs();
       },
 
-      change_income(){
-        document.getElementById("id_class_income").style.display = "inline";
-        document.getElementById("mySurplus").style.display = "inline";
-        document.getElementById("id_class_outcome").style.display = "none";
+      change_bar(){
+        document.getElementById("bar_info").style.display = "inline";
+        document.getElementById("line_info").style.display = "none";
+        document.getElementById("pie_info").style.display = "none";
+
+        document.getElementById("dateDouble").style.display = "inline";
+        document.getElementById("dateSingle").style.display = "none";
       },
-      change_outcome(){
-        document.getElementById("id_class_income").style.display = "none";
-        document.getElementById("id_class_outcome").style.display = "inline";
-        document.getElementById("mySurplus").style.display = "inline";
+      change_line(){
+        document.getElementById("bar_info").style.display = "none";
+        document.getElementById("line_info").style.display = "inline";
+        document.getElementById("pie_info").style.display = "none";
+
+        document.getElementById("dateDouble").style.display = "inline";
+        document.getElementById("dateSingle").style.display = "none";
+      },
+      change_pie(){
+        document.getElementById("bar_info").style.display = "none";
+        document.getElementById("line_info").style.display = "none";
+        document.getElementById("pie_info").style.display = "inline";
+
+        document.getElementById("dateDouble").style.display = "none";
+        document.getElementById("dateSingle").style.display = "inline";
       },
 
       drawIncomeBar() {
@@ -855,6 +952,10 @@
 
   .LoanHighLight {
     font-size: 22px;
+  }
+
+  #bar_info i{
+    color: #409EFF
   }
 
 </style>
