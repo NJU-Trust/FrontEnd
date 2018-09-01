@@ -69,8 +69,35 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
-          <div class="userInput" style="margin-left:6%;">
-            <p>标的分类：</p>
+          <div class="userInput" style="margin-left:30px;">
+            <p>项目风险评级：</p>
+            <div class="sort">
+              <div>
+                <div>
+                  <el-checkbox :indeterminate="isIndeterminateC" v-model="checkAllC" @change="handleCheckAllChangeC">全选</el-checkbox>
+                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeC" style="display: inline-block;margin-left:10px;">
+                    <el-checkbox-button v-for="indexC in indexCs" :label="indexC" :key="indexC" >{{indexC}}</el-checkbox-button>
+                  </el-checkbox-group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <div style="margin-left:1%;">
+            <div class="userInput">
+              <p>标的分类：</p>
+              <div class="sort">
+                <div>
+                  <div>
+                    <el-checkbox :indeterminate="isIndeterminateD" v-model="checkAllD" @change="handleCheckAllChangeD">全选</el-checkbox>
+                    <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeD" style="display: inline-block;margin-left:10px;">
+                      <el-checkbox-button v-for="indexD in indexDs" :label="indexD" :key="indexD" >{{indexD}}</el-checkbox-button>
+                    </el-checkbox-group>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-sm-12 col-md-12">
@@ -112,23 +139,6 @@
           <input type="button" class="searchButton searchBack" :style="searchBack"/>
         </div>
         <div class="searchBorder" style="margin-top:80px;">
-          <h3>个性推荐</h3>
-          <div class="userInput">
-            <p>投资金额：</p>
-            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
-          </div><br><br><br>
-          <div class="userInput">
-            <p style="margin-right:30px;">利率：</p>
-            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
-          </div><br><br><br><br>
-          <div class="userInput">
-            <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
-          </div>
-          <div>
-            <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-          </div>
-        </div>
-        <div class="searchBorder">
           <h3>标的比较</h3>
           <div class="userInput">
             <p>请输入需要比较的标的编号：</p><br><br>
@@ -177,6 +187,8 @@
   import personalCenter from "../components/personalCenter";
   const indexAOptions = ['标的金额', '开始时间', '利率', '还款期限','用户信用分数'];
   const indexBOptions = ['AA','A','B','C','D'];
+  const indexCOptions = ['AA ','A ','B ','C ','D '];
+  const indexDOptions = ['交换生', 'GMAT', 'TOEFL', 'IELTS', '大额考证'];
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
@@ -199,10 +211,16 @@
         checkboxGroup2: [],
         indexAs: indexAOptions,
         indexBs: indexBOptions,
+        indexCs:indexCOptions,
+        indexDs:indexDOptions,
         checkAll: false,
         isIndeterminate: true,
         checkAllB:false,
         isIndeterminateB:true,
+        checkAllC:false,
+        isIndeterminateC:true,
+        checkAllD:false,
+        isIndeterminateD:true,
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -242,6 +260,28 @@
         let checkedCount = value.length;
         this.checkAllB = checkedCount === this.indexBs.length;
         this.isIndeterminateB = checkedCount > 0 && checkedCount < this.indexBs.length;
+        this.showIndexs();
+      },
+      handleCheckAllChangeC(val) {
+        this.checkboxGroup2 = val ? indexCOptions : [];
+        this.isIndeterminateC = false;
+        this.showIndexs();
+      },
+      handleCheckedCitiesChangeC(value) {
+        let checkedCount = value.length;
+        this.checkAllC = checkedCount === this.indexCs.length;
+        this.isIndeterminateC = checkedCount > 0 && checkedCount < this.indexCs.length;
+        this.showIndexs();
+      },
+      handleCheckAllChangeD(val) {
+        this.checkboxGroup2 = val ? indexDOptions : [];
+        this.isIndeterminateD = false;
+        this.showIndexs();
+      },
+      handleCheckedCitiesChangeD(value) {
+        let checkedCount = value.length;
+        this.checkAllD = checkedCount === this.indexDs.length;
+        this.isIndeterminateD = checkedCount > 0 && checkedCount < this.indexDs.length;
         this.showIndexs();
       },
       drawRadar() {
@@ -293,6 +333,15 @@
 </script>
 
 <style scoped>
+  .dropdown{
+    border:1px solid transparent;
+    width:80px;
+    height:25px;
+    text-align: center;
+    margin-left:20px;
+    background-color: #59B1F9;
+    color:white;
+  }
   .recommend{
     font-size:14px;
     float: left;
@@ -377,7 +426,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height:280px;
+    height:330px;
     margin-bottom: 20px;
   }
   .userInput{
