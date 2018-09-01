@@ -36,6 +36,10 @@ import notice from '@/pages/notice'
 import recommend from '@/pages/recommend'
 import mesunderway from '@/pages/mesunderway'
 import mesdone from '@/pages/mesdone'
+import trade from '@/pages/trade'
+import tradeMine from '@/pages/tradeMine'
+import tradeGoing from '@/pages/tradeGoing'
+import tradeFinished from '@/pages/tradeFinished'
 
 Vue.use(Router)
 
@@ -219,6 +223,27 @@ export default new Router({
       name:'mesdone',
       component:mesdone
     },
+    {
+      path:'/trade',
+      name:'trade',
+      component: trade
+    },
+    {
+      path:'/trade/mine',
+      name:'tradeMine',
+      component:tradeMine
+    },
+    {
+      path:'/trade/going',
+      name:'tradeGoing',
+      component:tradeGoing
+    },
+    {
+      path:"/trade/finished",
+      name:'tradeFinished',
+      component:tradeFinished
+    }
+
   ],
   mode:"history"
 })
