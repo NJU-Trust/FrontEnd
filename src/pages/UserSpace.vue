@@ -193,8 +193,26 @@
     </div>
     <hr/>
     <div id="user_calendar">
-       <img class="img-responsive" src="../../static/pic/cal_demo.png">
+      <vue-event-calendar :events="demoEvents" @monthChanged="" @dayChanged=""></vue-event-calendar>
     </div>
+    <hr/>
+    <div id="user_remaintodo">
+      <!--<el-row :gutter="36">-->
+        <!--<el-col :span="12">-->
+          <!--<el-card shadow="always" class="mycard card_C">-->
+            <!--<p>待收:0.00 元</p>-->
+            <!--<p>已收:0.00 元</p>-->
+          <!--</el-card>-->
+        <!--</el-col>-->
+        <!--<el-col :span="12">-->
+          <!--<el-card shadow="always" class="mycard card_C">-->
+            <!--<p>待还:0.00 元</p>-->
+            <!--<p>已还:0.00 元</p>-->
+          <!--</el-card>-->
+        <!--</el-col>-->
+      <!--</el-row>-->
+    </div>
+
 
   </personalCenter>
 </template>
@@ -205,11 +223,42 @@
   export default {
     name:"userspace",
     components: {personalCenter},
-    mounted() {
-
+    data () {
+      return {
+        demoEvents: [{
+          date: '2018/9/18',
+          title: '待还款',
+          desc: '您还有一笔还款在9月18号'
+        }, {
+          date: '2018/9/15',
+          title: '待收款',
+          desc: '您还有一笔待收款在9月15号'
+        },{
+          date: '2018/8/30',
+          title: '已收款',
+          desc: '这笔收款您已经于8月30号收到'
+        }, {
+          date: '2018/8/30',
+          title: '已收款',
+          desc: '这笔收款您已经于8月30号收到'
+        }, {
+          date: '2018/8/30',
+          title: '已收款',
+          desc: '这笔收款您已经于8月30号收到'
+        }, {
+          date: '2018/7/12',
+          title: '已还款',
+          desc: '这笔还款您已经于7月12号归还'
+        }, ]
+      }
     },
     methods: {
-
+      monthChange (month) {
+        console.log(month)
+      },
+      dayChange (day) {
+        console.log(day)
+      }
     }
   }
 
@@ -251,6 +300,16 @@
     /*width: 249px;*/
     height: 120px;
     color: #333333;
+  }
+
+  .card_C {
+    height: 100px;
+    color: #333333;
+  }
+
+  .card_C span{
+    font-size: 34px;
+    color: #409EFF;
   }
 
 
@@ -304,7 +363,57 @@
     color: #333333;
   }
 
+</style>
 
+<style>
+  .__vev_calendar-wrapper .events-wrapper {
+    background-color: #ecffff !important;
+  }
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item .is-event {
+    border: 1px solid #409EFF !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.selected-day .is-event{
+    background-color: #409eff !important;
+    color: azure !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.selected-day .is-event>p{
+    color: azure !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item .is-today {
+    background-color: #409eff !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.event p{
+    color: #409eff !important;
+  }
+
+  .__vev_calendar-wrapper .events-wrapper .event-item .time {
+    display: none !important;
+  }
+
+  .__vev_calendar-wrapper .events-wrapper .date {
+    background-color: #409eff !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper {
+    padding: 30px 30px !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .weeks {
+    font-size: 1.5rem !important;
+  }
+
+  .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item .date-num {
+    font-size: 1.5rem !important;
+  }
+
+  .__vev_calendar-wrapper .events-wrapper {
+    padding: 20px 45px !important;
+  }
 
 </style>
+
 

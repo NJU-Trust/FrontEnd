@@ -9,13 +9,15 @@ import axios from './httpConfig/url_config'
 import Vuex from 'vuex'
 import store from './vuex/store'
 import echarts from 'echarts'
-
+import 'vue-event-calendar/dist/style.css' //1.1.10之后的版本，css被放在了单独的文件中，方便替换
+import vueEventCalendar from 'vue-event-calendar'
 
 // import store from './store/index'; //引入store
 
 
 Vue.use(ElementUI)
 Vue.use(Vuex)
+Vue.use(vueEventCalendar, {locale: 'en'}) //可以设置语言，支持中文和英文
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios= axios;
