@@ -1,16 +1,20 @@
 <template>
     <div id="app">
       <navi></navi>
-      <div>
-        <right-bar></right-bar>
-      </div>
+      <!--<img src="/static/pic/Investing.png" class="img-responsive"
+           alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 950px">-->
+
       <el-form class="back">
+
+        <div>
+          <right-bar></right-bar>
+        </div>
 
         <div id="sheet" class="sheet">
 
 
-          <el-steps :active="active"  style="width: 800px">
-            <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
+          <el-steps :active="active" style="width: 800px">
+            <el-step class="test" title="项目信息" icon="el-icon-edit" align-center></el-step>
             <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
             <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
           </el-steps>
@@ -597,11 +601,13 @@
       opacity:0.5;
     }
     .back{
+      margib-top: 10px;
       /*background-color: rgba(173,216,230,0.5);*/
       width: 100%;
      /* height: 1700px;*/
       display:flex;
       margin-bottom: 50px;
+      /*position: absolute;*/
     }
     .left{
       /*border:1px black solid;*/
@@ -614,6 +620,7 @@
     .sheet{
       margin-top: 100px;
       margin-left:27%;
+
     }
     .chooseButton{
       margin-left: 20%;
@@ -671,6 +678,10 @@
       border:2px #d6d6d6 solid;
       border-radius:20px;
       padding:30px 20px 20px 20px;
+    }
+
+    .test{
+      opacity: 0.5;
     }
 
     .row{
