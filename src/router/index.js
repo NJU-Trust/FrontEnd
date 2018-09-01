@@ -40,7 +40,8 @@ import trade from '@/pages/trade'
 import tradeMine from '@/pages/tradeMine'
 import tradeGoing from '@/pages/tradeGoing'
 import tradeFinished from '@/pages/tradeFinished'
-
+import backAdminData from '@/pages/backAdminData'
+import test from '@/pages/test'
 Vue.use(Router)
 
 export default new Router({
@@ -242,7 +243,18 @@ export default new Router({
       path:"/trade/finished",
       name:'tradeFinished',
       component:tradeFinished
+    },
+    {
+      path:'/backAdminData',
+      name:'backAdminData',
+      component:backAdminData
+    },
+    {
+      path:'/test',
+      name:'test',
+      component:test
     }
+
 
   ],
   mode:"history"

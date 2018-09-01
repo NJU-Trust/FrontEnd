@@ -8,7 +8,7 @@
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
             <li><a id="object" href="/objectManage" style="width: 120px">标的管理</a></li>
             <li><a id="user" style="width: 120px" href="/usermanage">用户管理</a></li>
-            <li><a id="statistics" href="/loan" style="width: 120px">数据统计</a></li>
+            <li><a id="statistics" href="/backAdminData" style="width: 120px">数据统计</a></li>
             <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>

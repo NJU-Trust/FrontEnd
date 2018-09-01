@@ -72,8 +72,7 @@
   import navi from '@/components/navi.vue';
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
-  import leftTradeBar from "@/components/leftTradeBar.vue"
-
+  import leftTradeBar from "@/components/leftTradeBar.vue";
   let dialogFormVisible;
 
   export default {
