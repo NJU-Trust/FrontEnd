@@ -5,10 +5,14 @@
         <el-col :span="12">
           <div id="myradar" style="width: 400px;height: 410px"></div>
         </el-col>
-        <el-col :span="11">
+        <el-col :span="9">
+          <br/>
+          <br/>
+          <br/>
+          <br/>
           <p style="font-size: 24px">Trust作为贴心的校园金融助手，将您的在校表现纳入我们的信用评价体系，旨在为您提供全面而精准的服务。</p>
           <p style="font-size: 24px">美好校园生活，Trust伴您成就卓越之旅！</p><br/>
-          <img class="img-responsive" src="../../static/pic/perform.png">
+          <!--<img class="img-responsive" src="../../static/pic/perform.png">-->
         </el-col>
       </el-row>
       <div class="user_credit">
