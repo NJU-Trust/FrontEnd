@@ -1,16 +1,20 @@
 <template>
     <div id="app">
       <navi></navi>
-      <div>
-        <right-bar></right-bar>
-      </div>
+      <!--<img src="/static/pic/Investing.png" class="img-responsive"
+           alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 950px">-->
+
       <el-form class="back">
+
+        <div>
+          <right-bar></right-bar>
+        </div>
 
         <div id="sheet" class="sheet">
 
 
-          <el-steps :active="active"  style="width: 800px">
-            <el-step title="项目信息" icon="el-icon-edit" align-center></el-step>
+          <el-steps :active="active" style="width: 800px">
+            <el-step class="test" title="项目信息" icon="el-icon-edit" align-center></el-step>
             <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
             <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
           </el-steps>
@@ -156,7 +160,7 @@
 
             </el-form>
 
-            <div id="test">
+            <div id="test" style="display: flex">
               <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" style="display: none">
                 <div class="title">关于贷款</div>
                 <el-form-item label="拆借金额">
@@ -178,28 +182,28 @@
                 <el-form-item label="还款方式">
                   <el-collapse v-model="form3.activeName" accordion>
 
-                    <div @click="get_average_capital(1)">
+                    <div @click="get_scheme(1)">
                       <el-collapse-item title="等额本金" name="1" >
                         <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
                         <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
                       </el-collapse-item>
                     </div>
 
-                    <div @click="get_average_capital_plus_interest">
+                    <div @click="get_scheme(2)">
                       <el-collapse-item title="等额本息" name="2">
                         <div>每月偿还等同数额的贷款；</div>
                         <div>还款期限内压力平分，总利息高于等额本金。</div>
                       </el-collapse-item>
                     </div>
 
-                    <div @click="get_one_off">
+                    <div @click="get_scheme(3)">
                       <el-collapse-item title="一次性还本付息" name="3">
                         <div>贷款到期后一次性归还本金和利息；</div>
                         <div>还款期压力大，操作间大，借款人资金调整弹性大，资金利用时间长</div>
                       </el-collapse-item>
                     </div>
 
-                    <div @click="get_interest_first">
+                    <div @click="get_scheme(4)">
                       <el-collapse-item title="先息后本" name="4">
                         <div>每月只需支付利息，期末还清本金；</div>
                         <div>资金利用时间长。</div>
@@ -230,6 +234,9 @@
                 </el-form-item>
 
 
+              </el-form>
+              <el-form id="evaluate" class="evaluate">
+                <evaluate  :scheme="scheme" ></evaluate>
               </el-form>
             </div>
 
@@ -280,11 +287,26 @@
           this.form3.activeName = '';
         },
 
+        get_scheme(num){
+          document.getElementById('small_loan').className+=' animation_left';
+          document.getElementById('small_loan').setAttribute('width','550px');
+          document.getElementById('evaluate').style.display = 'block';
+          this.show_evaluate = true;
+          //this.$refs.form3.style.width = '550px';
+          console.log(num);
+          console.log("等额本金");
+          this.scheme.capital = 20000;
+          this.scheme.interest = 4000;
+          this.scheme.sum = 24000;
+        },
+
         get_average_capital(num){
           document.getElementById('small_loan').className+=' animation_left';
           document.getElementById('small_loan').setAttribute('width','550px');
+          document.getElementById('evaluate').style.display = 'block';
+          this.show_evaluate = true;
           //this.$refs.form3.style.width = '550px';
-          console.log()
+          console.log(num);
           console.log("等额本金");
           this.scheme.capital = 20000;
           this.scheme.interest = 4000;
@@ -294,8 +316,8 @@
         get_average_capital_plus_interest(){
 
           document.getElementById('small_loan').className+=' animation_left';
-          //document.getElementById('small_loan').setAttribute('width','550px');
-          this.$refs.form3.style.width = '550px';
+          document.getElementById('evaluate').style.display = 'block';
+          //this.$refs.form3.style.width = '550px';
           console.log("等额本息");
           this.scheme.capital = 20000;
           this.scheme.interest = 5000;
@@ -319,10 +341,12 @@
            document.getElementById("primary").style.display = "block";
            document.getElementById("information").style.display = "none";
            document.getElementById("small_loan").style.display = "none";
+           document.getElementById("evaluate").style.display = "none";
          }else if(this.active===1){
            document.getElementById("primary").style.display = "none";
            document.getElementById("information").style.display = "block";
            document.getElementById("small_loan").style.display = "none";
+           document.getElementById("evaluate").style.display = "none";
          }else if(this.active===2){
            document.getElementById("primary").style.display = "none";
            document.getElementById("information").style.display = "none";
@@ -350,6 +374,9 @@
             document.getElementById("primary").style.display = "none";
             document.getElementById("information").style.display = "none";
             document.getElementById("small_loan").style.display = "block";
+            if(this.show_evaluate){
+              document.getElementById("evaluate").style.display = "block";
+            }
           }
 
         },
@@ -487,7 +514,8 @@
             }]
           }],
           selectedOptions2: [],
-          scrollReveal:scrollReveal()
+          scrollReveal:scrollReveal(),
+          show_evaluate:false,
 
         };//return
       },
@@ -573,11 +601,13 @@
       opacity:0.5;
     }
     .back{
+      margib-top: 10px;
       /*background-color: rgba(173,216,230,0.5);*/
       width: 100%;
      /* height: 1700px;*/
       display:flex;
       margin-bottom: 50px;
+      /*position: absolute;*/
     }
     .left{
       /*border:1px black solid;*/
@@ -590,6 +620,7 @@
     .sheet{
       margin-top: 100px;
       margin-left:27%;
+
     }
     .chooseButton{
       margin-left: 20%;
@@ -637,6 +668,20 @@
     {
       0%   {left:0px;  width:750px;}
       100% {left:-200px; width:500px;}
+    }
+
+    .evaluate{
+      display: none;
+      border:1px solid black;
+      margin-top: 50px;
+      margin-left: -100px;
+      border:2px #d6d6d6 solid;
+      border-radius:20px;
+      padding:30px 20px 20px 20px;
+    }
+
+    .test{
+      opacity: 0.5;
     }
 
     .row{

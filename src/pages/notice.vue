@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">Lost && Found</h2>
+        <h2 class="myspace">信息发布平台 -- 发布消息</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -17,33 +17,37 @@
     </div>
 
     <!--正文-->
-    <!--用于个人发布消息-->
-    <div class="publishmes" style="position:relative;left:80px;top:-350px;">
-      <el-form ref="form" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:140px;top:60px;">
-          <el-form-item label="消息性质">
-            <el-radio-group v-model="sizeForm.resource" size="small">
+    <div class="back">
+      <div class="publishmes" style="position:relative;left:80px;top:-350px;">
+      <el-form :rules="rules" ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:140px;top:60px;">
+          <el-form-item label="消息性质" prop="type">
+            <el-radio-group v-model="sizeForm.type" size="small">
               <el-radio border label="失物招领"></el-radio>
               <el-radio border label="寻物启事"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="物品类别" style="position:relative;left:400px;top:-55px">
-            <el-select v-model="sizeForm.region" placeholder="请选择物品类别" style="width:200px">
+          <el-form-item label="物品类别" prop="itemtype" style="position:relative;left:400px;top:-55px">
+            <el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">
               <el-option label="校园卡" value="校园卡"></el-option>
               <el-option label="钥匙" value="钥匙"></el-option>
               <el-option label="证件" value="证件"></el-option>
               <el-option label="其他" value="其他"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="物品名称" style="position:relative;top:-55px">
+          <el-form-item label="物品名称" prop="name" style="position:relative;top:-55px">
             <el-input v-model="sizeForm.name"
+                      palceholder="请输入物品名称"
                       style="width:200px;"></el-input>
           </el-form-item>
-          <el-form-item label="联系方式"  style="position:relative;left:400px;top:-107px">
-            <el-input v-model="sizeForm.phone"
+          <el-form-item label="联系方式"
+                        prop="phone"
+                        style="position:relative;left:400px;top:-107px">
+            <el-input v-model.number="sizeForm.phone"
+                      type="phone"
                       style="width:200px;"
-                      placeholder="手机号，QQ号"></el-input>
+                      placeholder="QQ号"></el-input>
           </el-form-item>
-          <el-form-item label="物品图片" style="position:relative;top:-100px;">
+          <el-form-item label="物品图片" prop="pic" style="position:relative;top:-100px;">
             <el-upload class="upload-demo"
                        drag
                        action="https://jsonplaceholder.typicode.com/posts/"
@@ -53,15 +57,20 @@
               <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-form-item>
-          <el-form-item label="物品信息" style="position:relative;top:-100px;">
+          <el-form-item label="物品信息" prop="desc" style="position:relative;top:-100px;">
             <el-input type="textarea"
-                      style="width:380px;"
+                      style="width:360px"
+                      minRows="1"
+                      maxRows="3"
+                      autosize
+                      placeholder="请输物品的详细信息"
                       v-model="sizeForm.desc"></el-input>
           </el-form-item>
-          <el-form-item size="large" style="position:relative;top:-120px;left:500px;">
-            <el-button type="primary" @click="onSubmit">发布</el-button>
+          <el-form-item size="large" style="position:absolute;top:400px;left:500px;">
+            <el-button type="primary" @click="onSubmit()">发布</el-button>
           </el-form-item>
         </el-form>
+    </div>
     </div>
 
     <!--右边栏-->
@@ -84,26 +93,65 @@
   import leftInformationbar from "@/components/leftInformationbar.vue"
 
   export default {
-    name: "InformationSystem",
+    name: "notice",
     components:{leftInformationbar, navi, footerBar, rightBar},
     data() {
       return {
         sizeForm: {
           name: '',
-          region: '',
+          itemtype: '',
+          type:'',
           phone: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
+          pic: '',
+          mestype: [],
           desc: ''
+        },
+        rules: {
+          mestype: [
+            {required: true, message: '请选择消息类型', trigger: 'change' }
+          ],
+          pic: [
+            { required: true, message: '请上传相关图片', trigger: 'blur' }
+          ],
+          name: [
+            { required: true, message: '请输入物品名称', trigger: 'blur' },
+            { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+          ],
+          itemtype: [
+            { required: true, message: '请至少选择一个类别', trigger: 'blur' }
+          ],
+          type: [
+            { required: true, message: '请至少选择一个类别', trigger: 'blur' }
+          ],
+          desc: [
+            { required: true, message: '请填写物品详细信息', trigger: 'blur' },
+            { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
+          ],
+          phone:[
+            { required: true, message: '联系方式不能为空'},
+            { type: 'number', message: '联系方式必须为数字'},
+          ]
         },
       };
     },
     methods: {
       onSubmit() {
-        //提交的跳转函数功能还没写好
-        console.log('submit!');
+        this.$confirm('确认发布这条信息吗', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '发布成功!'
+          });
+          this.$router.push('/notice/mesunderway');
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          });
+        });
       }
     }
 
@@ -111,6 +159,13 @@
 </script>
 
 <style scoped>
+
+  .back{
+    /*background-color: rgba(173,216,230,0.5);*/
+    width: 100%;
+    height: 200px;
+    display:flex;
+  }
 
   div.myspace{
     /*个人中心*/

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navi></navi>
+    <adminNavi></adminNavi>
     <div>
       <right-bar></right-bar>
     </div>
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-  import navi from '@/components/navi.vue';
+  import adminNavi from '@/components/adminNavi.vue';
   import ElCard from "element-ui/packages/card/src/main";
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
@@ -109,7 +109,7 @@
     name: "backAdmin",
     components:{
       ElCard,
-      navi,
+      adminNavi,
       footerBar,
       rightBar,
       evaluate
@@ -126,13 +126,6 @@
         document.getElementById("default_info").style.display = "inline";
         document.getElementById("basic_data").style.display = "none";
       },
-      onSubmit(){
-        console.log("确认贷款："+this.form3.activeName);
-      },
-      clean_form3(){
-        this.form3.activeName = '';
-      }
-
     },
 
     data(){

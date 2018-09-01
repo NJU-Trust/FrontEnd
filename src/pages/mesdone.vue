@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">Lost && Found -- 已经完成</h2>
+        <h2 class="myspace">信息发布平台 -- 已经完成</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -121,7 +121,7 @@
   import leftInformationbar from "@/components/leftInformationbar.vue"
 
   export default {
-    name: "mesunderway",
+    name: "mesdone",
     components:{leftInformationbar, navi, footerBar, rightBar},
     data() {
       return {

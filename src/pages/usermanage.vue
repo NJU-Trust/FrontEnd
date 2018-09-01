@@ -1,7 +1,9 @@
 <template>
   <div class="UserList">
     <adminNavi></adminNavi>
-    <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
+    <img src="/static/pic/Investing.png" class="img-responsive"
+         alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">
+    <!--<div style="height:650px;"></div>-->
     <div class="mytable">
       <div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">
         <label style="font-size: 14px;">筛选条件:</label>
@@ -37,24 +39,24 @@
 
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      <div class="tableBackground" style="background-color:rgba(173,216,230,0.3);">
+      <div class="tableBackground">
       <table class="usertable">
         <tbody class="usertablebody">
         <tr>
-          <th style="border: 1px solid white;text-align:center;">用户名称</th>
-          <th style="border: 1px solid white;text-align:center;">信用评级</th>
-          <th style="border: 1px solid white;text-align:center;">电话</th>
-          <th style="border: 1px solid white;text-align:center;">邮箱</th>
-          <th style="border: 1px solid white;text-align:center;">借款状态</th>
-          <th style="border: 1px solid white;text-align:center;">操作</th>
+          <th style="border: 1px solid black;text-align:center;">用户名称</th>
+          <th style="border: 1px solid black;text-align:center;">信用评级</th>
+          <th style="border: 1px solid black;text-align:center;">电话</th>
+          <th style="border: 1px solid black;text-align:center;">邮箱</th>
+          <th style="border: 1px solid black;text-align:center;">借款状态</th>
+          <th style="border: 1px solid black;text-align:center;">操作</th>
         </tr>
         <tr v-for="user in filteredUsers" @click="showModel" >
-          <td style="border: 1px solid white ;text-align:center;">{{ user.username }}</td>
-          <td style="border: 1px solid white ;text-align:center;">{{ user.level }}</td>
-          <td style="border: 1px solid white ;text-align:center;">{{ user.tel }}</td>
-          <td style="border: 1px solid white ;text-align:center;">{{ user.email }}</td>
-          <td style="border: 1px solid white ;text-align:center;">{{ user.state }}</td>
-          <td style="border: 1px solid white ;text-align:center;">
+          <td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>
+          <td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>
+          <td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>
+          <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
+          <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
+          <td style="border: 1px solid black ;text-align:center;">
             <router-link to="">
               <button class="checkDetailButton">历史投资</button>
             </router-link>
@@ -284,11 +286,11 @@
 <style scoped>
   .mytable{
     min-width: 400px;
-    min-height: 80px;
+    min-height: 500px;
     padding: 0px 0px;
     line-height: 3px;
-    background-color:rgba(173,216,230,0.5);
-    color: white;
+    background-color:transparent;
+    color: black;
     border: none;
     font-size: 16px;
     font-family: "Microsoft YaHei UI";
@@ -299,14 +301,15 @@
     letter-spacing: 2px;
   }
   .tableBackground{
-    background-color:rgba(173,216,230,0.5);
-    min-height: 470px;
+    background-color:transparent;
+    min-height: 480px;
+    padding:20px;
   }
   .usertable{
     min-width: 400px;
     padding: 240px 0px;
     line-height: 40px;
-    color: white;
+    color: black;
     border-collapse: collapse;
     border: none;
     font-size: 16px;
@@ -323,8 +326,8 @@
     min-height: 28px;
     padding: 0px 0px;
     line-height: 18px;
-    background-color:rgba(0,100,200,0.8);
-    color: white;
+    background-color:rgba(173,210,250,0.8);
+    color: black;
     border: none;
     font-size: 14px;
     font-family: "Microsoft YaHei UI";
@@ -350,6 +353,4 @@
   }
 
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" />
 

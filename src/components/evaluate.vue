@@ -1,5 +1,20 @@
 <template>
     <el-form class="main_panel">
+      <div style="display: flex;margin-bottom: 35px">
+        <div class="scheme_type" style="color: #ff6445">
+          等额本金
+          <div style="border: 1px solid #ff6445"></div>
+        </div>
+        <div class="scheme_type">
+          等额本息
+        </div>
+        <div class="scheme_type">
+          一次性还本付息
+        </div>
+        <div class="scheme_type">
+          先息后本
+        </div>
+      </div>
       <div class="top_panel">
         <div>
           <div style="padding-left: 30px">
@@ -28,8 +43,8 @@
           还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.sum}}</span>元
         </div>
       </div>
-      <div>
-        <el-table
+      <div id="myChart" style="min-height: 400px;margin-top: 50px" ref="myEchart">
+        <!--<el-table
           :data="tableData"
           stripe
           style="width: 100%"
@@ -60,9 +75,9 @@
             label="剩余本金"
             >
           </el-table-column>
-        </el-table>
+        </el-table>-->
       </div>
-      <div >
+      <div style="margin-top: 50px">
         <div style="font-size: 22px;margin-top: 20px">贷款建议:</div>
         <p id="enough" style="color: #31d09f" v-if="enough">根据预测，您足以支付每期还款</p>
         <p id="not_enough" v-if="enough==false">在您的还款期内，根据历史消费记录预测，有X个月（a,b,c,d）应还金额超出当月预测结余，如果选择该方案，请酌情调整这些月份的消费</p>
@@ -73,9 +88,104 @@
 </template>
 
 <script>
+
+  import echarts from 'echarts'
     export default {
-        name: "evaluate",
-      props:['scheme'],
+      name: "evaluate",
+      props:['scheme','plan_table'],
+      mounted() {
+        let myChart = echarts.init(document.getElementById('myChart'));
+        myChart.setOption(
+          {
+            title : {
+              text: '未来一周气温变化',
+              subtext: '纯属虚构'
+            },
+            tooltip : {
+              trigger: 'axis'
+            },
+            legend: {
+              data:['最高气温','最低气温']
+            },
+            toolbox: {
+              show : true,
+              feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+              }
+            },
+            calculable : true,
+            xAxis : [
+              {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+              }
+            ],
+            yAxis : [
+              {
+                type : 'value',
+                axisLabel : {
+                  formatter: '{value} °C'
+                }
+              }
+            ],
+            series : [
+              {
+                name:'最高气温',
+                type:'line',
+                data:[11, 11, 15, 13, 12, 13, 10],
+                markPoint : {
+                  data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0],
+                markPoint : {
+                  data : [
+                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name : '平均值'}
+                  ]
+                }
+              }
+            ]
+          }
+          /*{
+          xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
+            name: '产品'
+          },
+          yAxis : {},
+          series: [{
+            name: '销量',
+            type: 'line',
+            data: [10, 20, 36, 10, 10, 20],
+            itemStyle: {
+              normal: {
+                color: 'hotpink'
+              }
+            }
+          }]
+        }*/
+        )
+      },
       data() {
         return {
 
@@ -111,9 +221,89 @@
             capital:'',
             interest:'',
             else:''
-          }]
+          }],
+          myChart: null,
+          option:[]/*{
+            title : {
+              text: '未来一周气温变化',
+              subtext: '纯属虚构'
+            },
+            tooltip : {
+              trigger: 'axis'
+            },
+            legend: {
+              data:['最高气温','最低气温']
+            },
+            toolbox: {
+              show : true,
+              feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+              }
+            },
+            calculable : true,
+            xAxis : [
+              {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+              }
+            ],
+            yAxis : [
+              {
+                type : 'value',
+                axisLabel : {
+                  formatter: '{value} °C'
+                }
+              }
+            ],
+            series : [
+              {
+                name:'最高气温',
+                type:'line',
+                data:[11, 11, 15, 13, 12, 13, 10],
+                markPoint : {
+                  data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0],
+                markPoint : {
+                  data : [
+                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name : '平均值'}
+                  ]
+                }
+              }
+            ]
+          }*/,
+        } //return
+      },
+      methods: {
+        drawLine (option) {
+          this.myChart.setOption({
+
+          })
         }
-      }
+      },
+
     }
 </script>
 
@@ -130,6 +320,11 @@
 
   .pointer:hover{
     cursor:pointer;
+  }
+
+  .scheme_type{
+    margin-left: 30px;
+    font-size: 16px;
   }
 
 </style>

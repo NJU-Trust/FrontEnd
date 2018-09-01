@@ -36,7 +36,15 @@ import notice from '@/pages/notice'
 import recommend from '@/pages/recommend'
 import mesunderway from '@/pages/mesunderway'
 import mesdone from '@/pages/mesdone'
-
+import lost from '@/pages/lost'
+import found from '@/pages/found'
+import trade from '@/pages/trade'
+import tradeMine from '@/pages/tradeMine'
+import tradeGoing from '@/pages/tradeGoing'
+import tradeFinished from '@/pages/tradeFinished'
+import backAdminData from '@/pages/backAdminData'
+import test from '@/pages/test'
+import subjectManage from '@/pages/subjectManage'
 Vue.use(Router)
 
 export default new Router({
@@ -219,6 +227,53 @@ export default new Router({
       name:'mesdone',
       component:mesdone
     },
+    {
+      path:'/notice/lost',
+      name:'lost',
+      component:lost
+    },
+    {
+      path:'/notice/found',
+      name:'found',
+      component:found
+    },
+    {
+      path:'/trade',
+      name:'trade',
+      component: trade
+    },
+    {
+      path:'/trade/mine',
+      name:'tradeMine',
+      component:tradeMine
+    },
+    {
+      path:'/trade/going',
+      name:'tradeGoing',
+      component:tradeGoing
+    },
+    {
+      path:"/trade/finished",
+      name:'tradeFinished',
+      component:tradeFinished
+    },
+    {
+      path:'/backAdminData',
+      name:'backAdminData',
+      component:backAdminData
+    },
+    {
+      path:'/test',
+      name:'test',
+      component:test
+    },
+    {
+      path:'/subjectManage',
+      name:'subjectManage',
+      component:subjectManage
+    }
+
+
   ],
   mode:"history"
 })
