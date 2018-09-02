@@ -1,5 +1,5 @@
 <template>
-  <div class="col-xs-12 col-md-12 back" :style="back" style="padding: 0;margin:0;">
+  <div class="col-xs-9 col-md-12 back" :style="back" style="padding: 0;margin:0;">
     <div style="width: 100%;float: top;">
       <navi></navi>
     </div>
@@ -7,14 +7,17 @@
       <right-bar></right-bar>
     </div>
     <div class="square">
-      <br><br><br>
+
+      <div class="type"></div>
+      <div class="type"></div>
+      <!--<br><br><br>
       <p class="slogan">Trust us, receive fond</p><br><br><br>
       <div class="col-md-3 project">
         <input type="button" value="消费类小额短期借款" class="button" onclick="location.href='/loan'"/>
       </div>
       <div class="col-md-3 project">
         <input type="button" value="学习培训类大额长期借款" class="button" onclick="location.href='/largeLoan'"/>
-      </div>
+      </div>-->
     </div>
     <div style="float:bottom; padding:0;margin-top:200px;">
       <footerBar></footerBar>
@@ -32,9 +35,10 @@
     data(){
       return{
         back:{
-          backgroundImage:"url(" + require("../../static/pic/dahuo.jpg") + ")",
+          backgroundImage:"url(" + require("../../static/pic/loan.jpg") + ")",
           backgroundRepeat:"no-repeat",
-          backgroundSize:"100% auto"
+          backgroundSize:"100% 80%",
+          backgroundPosition: "0% 0%",
         }
       }
     }
@@ -43,11 +47,12 @@
 
 <style scoped>
   .square{
-    margin-top:120px;
+    margin-top:200px;
     margin-left:12.5%;
     width:75%;
     height:500px;
     background-color:rgba(111,109,109,0.6);
+    display: flex;
   }
   .slogan{
     color:white;
@@ -82,5 +87,15 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+  }
+
+  .type{
+    margin-top: 150px;
+    margin-left: 250px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    background-image: url("/static/pic/62.png");
+    /*background-size: 105% 105%;*/
   }
 </style>
