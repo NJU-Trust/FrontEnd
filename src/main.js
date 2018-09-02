@@ -12,19 +12,6 @@ import echarts from 'echarts'
 import 'vue-event-calendar/dist/style.css' //1.1.10之后的版本，css被放在了单独的文件中，方便替换
 import vueEventCalendar from 'vue-event-calendar'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { far } from '@fortawesome/free-regular-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText }
-  from '@fortawesome/vue-fontawesome'
-
-library.add(fas, far, fab)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.component('font-awesome-layers', FontAwesomeLayers)
-Vue.component('font-awesome-layers-text', FontAwesomeLayersText)
-
 
 // import store from './store/index'; //引入store
 
