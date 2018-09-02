@@ -1,8 +1,43 @@
 <template>
-  <personalCenter paneltitle="财务状况">
+  <personalCenter paneltitle="还款">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="财务分析" name="first">
-        <div id="financial_id"><br/>
+      <el-tab-pane label="基本信息" name="first">
+        <div style="display: flex;padding-top: 20px">
+
+          <el-card class="info1" v-model="info1" shadow="always" :class="info1" align="center">
+            <p >发布日期</p>
+            <span>{{info1.date1}}</span>
+            <br><br><br>
+            <p>截止日期</p>
+            <span>{{info1.date2}}</span>
+            <br><br><br>
+            <p>下个还款日</p>
+            <span>{{info1.late_date}}</span>
+          </el-card>
+
+          <el-card class="main_info" v-model="info2" align="center" shadow="always">
+            <div class="content">
+              {{info2.name}}
+            </div>
+            <div class="content">
+              距离下次还款日剩余<span>{{info2.days}}</span>天
+            </div>
+            <div class="content">
+              下次应还： <span>{{info2.money}}</span>元
+            </div>
+          </el-card>
+
+          <el-card shadow="always" class="chart">
+            <div style="margin: 10px;font-size: 18px;color: #6a6a6a">
+              未还款占比：
+            </div>
+
+            <div>
+
+            </div>
+          </el-card>
+        </div>
+        <!--<div id="financial_id"><br/>
           <div class="chooseButton">
             <el-radio v-model="inoutcome" label="1" id="bar_btn" @change="change_bar" border>数值比较</el-radio>
             <el-radio v-model="inoutcome" label="2" id="line_btn" @change="change_line" border>趋势分析</el-radio>
@@ -65,7 +100,7 @@
                   </div>
                 </el-col>
               </el-row>
-            </div><!--Bar选择指标-->
+            </div>&lt;!&ndash;Bar选择指标&ndash;&gt;
             <hr/>
             <div v-show="selectBar=='收入'">
               <div v-if="selectBar=='收入'">
@@ -111,7 +146,7 @@
             </div>
           </div>
           <div id="line_info" style="display: none">
-            <!--恩格尔系数、刚性比率、负债率、偿债能力、杠杆比率、消费比率、储蓄比率-->
+            &lt;!&ndash;恩格尔系数、刚性比率、负债率、偿债能力、杠杆比率、消费比率、储蓄比率&ndash;&gt;
             <div>
               <el-row :gutter="20">
                 <el-col :span="5">
@@ -131,7 +166,7 @@
                   </div>
                 </el-col>
               </el-row>
-            </div><!--Line选择指标-->
+            </div>&lt;!&ndash;Line选择指标&ndash;&gt;
             <hr>
             <div v-show="selectLine=='恩格尔系数'">
               <div v-if="selectLine=='恩格尔系数'">
@@ -192,7 +227,7 @@
                   </div>
                 </el-col>
               </el-row>
-            </div><!--Pie选择指标-->
+            </div>&lt;!&ndash;Pie选择指标&ndash;&gt;
             <hr/>
             <div v-show="selectPie=='支出'">
               <div v-if="selectPie=='支出'">
@@ -217,12 +252,12 @@
             </div>
           </div>
           <hr/>
-          <div class="LevelOneIndex" id="leveloneindex" style="display: none"><!--一级指标，收入&&支出和其他-->
+          <div class="LevelOneIndex" id="leveloneindex" style="display: none">&lt;!&ndash;一级指标，收入&&支出和其他&ndash;&gt;
             <div class="class_outcome" id="id_class_outcome" style="display: inline">
               <h4><b>您本月的支出情况</b></h4>
               <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
                 <table class="table table-bordered">
-                  <!--<caption><b>您的信用评级为：100</b></caption>-->
+                  &lt;!&ndash;<caption><b>您的信用评级为：100</b></caption>&ndash;&gt;
                   <thead>
                   <tr>
                     <th><i class="el-icon-info" style="color: #409EFF"></i>&nbsp支出总额</th>
@@ -241,7 +276,7 @@
               </div>
               <hr/>
               <h4><b>您本月的支出变化</b></h4>
-              <!--<div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>-->
+              &lt;!&ndash;<div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>&ndash;&gt;
               <hr/>
               <h4><b>您本月的支出分布统计图</b></h4>
               <h4><b>您本月的可调整支出统计图</b></h4>
@@ -250,11 +285,11 @@
 
             <div class="class_income" id="id_class_income">
               <div id="myIncomeOverview">
-                <!--<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>-->
+                &lt;!&ndash;<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>&ndash;&gt;
               </div>
               <hr/>
               <h4><b>您本月的收入变化</b></h4>
-              <!--<div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>-->
+              &lt;!&ndash;<div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>&ndash;&gt;
               <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
               <hr/>
               <h4><b>您本月的蚂蚁花呗情况</b></h4>
@@ -270,29 +305,38 @@
               <hr/>
             </div>
           </div>
-        </div>
+        </div>-->
       </el-tab-pane>
-      <el-tab-pane label="财务建议" name="second">
-        <div id="loan_id">
+      <el-tab-pane label="项目概要" name="second">
+        <div style="display: flex">
+          <div class="type">
+
+          </div>
+          <div class="type">
+
+          </div>
+
+        </div>
+        <!--<div id="loan_id">
           <h3><b>消费修正建议</b></h3><hr/>
           <div class="LoanPanel">
             <div>
-              <!--<p>距离最终还款还有<b class="LoanHighLight"> 60 </b>天</p>-->
-              <!--<p v-if=" valueX<1 ">-->
-              <!--在您的还款期内，根据历史消费记录预测，可知扣去现有负债后结余占用率为：{{ valueX }}-->
-              <!--</p>-->
-              <!--<p v-if=" (valueY>0)&&(valueZ==0)">-->
-              <!--在您的还款期内，根据历史消费记录预测，可知扣去现有负债和预测结余后还需还款M-K(N)+Q元。如无兼职、奖学金、相关理财收入等额外收入，可调支出占用率为：Y，建议您酌情调整下图中占比较大的前几项。-->
-              <!--</p>-->
-              <!--<p>-->
-              <!--在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。-->
-              <!--</p>-->
-            </div><!--历史版本修正建议-->
+              &lt;!&ndash;<p>距离最终还款还有<b class="LoanHighLight"> 60 </b>天</p>&ndash;&gt;
+              &lt;!&ndash;<p v-if=" valueX<1 ">&ndash;&gt;
+              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去现有负债后结余占用率为：{{ valueX }}&ndash;&gt;
+              &lt;!&ndash;</p>&ndash;&gt;
+              &lt;!&ndash;<p v-if=" (valueY>0)&&(valueZ==0)">&ndash;&gt;
+              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去现有负债和预测结余后还需还款M-K(N)+Q元。如无兼职、奖学金、相关理财收入等额外收入，可调支出占用率为：Y，建议您酌情调整下图中占比较大的前几项。&ndash;&gt;
+              &lt;!&ndash;</p>&ndash;&gt;
+              &lt;!&ndash;<p>&ndash;&gt;
+              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。&ndash;&gt;
+              &lt;!&ndash;</p>&ndash;&gt;
+            </div>&lt;!&ndash;历史版本修正建议&ndash;&gt;
             <div>
               <h4><b>您目前的还款情况如下</b>(一个假的。暂时不知道这样的表格如何动态构建)</h4>
               <img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">
               <hr/>
-            </div><!--更新版本修正建议-->
+            </div>&lt;!&ndash;更新版本修正建议&ndash;&gt;
           </div>
           <div class="LoanPanel">
             <div class="LevelTwoIndex" id="leveltwoindex">
@@ -380,8 +424,10 @@
             </div>
             <p>因此，在第1、3、7...个月内，建议您酌情调整下图中占比较大的前几项；在第2、3、7...个月内，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。</p>
           </div>
-        </div>
+        </div>-->
       </el-tab-pane>
+      <el-tab-pane label="还款分析" name="third"></el-tab-pane>
+      <el-tab-pane label="还款历史" name="fourth"></el-tab-pane>
     </el-tabs>
   </personalCenter>
 </template>
@@ -389,6 +435,7 @@
 <script>
   import personalCenter from "../components/personalCenter";
   import InvestList from "../components/investList";
+  import ElCard from "element-ui/packages/card/src/main";
   // import FinCharts from  "../../static/js/FinCharts";
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
@@ -409,9 +456,21 @@
 
   export default {
     name:"repay",
-    components: {InvestList, personalCenter},
+    components: {
+      ElCard,
+      InvestList, personalCenter},
     data() {
       return {
+        info1:{
+          date1:'2018-09-02',
+          date2:'2018-09-16',
+          late_date:'2018-09-07',
+        },
+        info2:{
+          name:'项目名称',
+          days:0,
+          money:50
+        },
         activeName: 'first',
         mouth_start: '',
         mouth_end: '',
@@ -1401,6 +1460,48 @@
 </script>
 
 <style>
+
+  .type{
+    width: 300px;
+    height: 400px;
+    border: 2px #d6d6d6 solid;
+    border-radius:10px;
+    /*padding-top: 50px;*/
+  }
+
+  .info1{
+    /*padding-left: 45px;*/
+    width: 200px;
+    align-content: center;
+  }
+
+  .info1 span{
+    color: #409EFF;
+    font-size: 16px;
+  }
+
+  .main_info{
+    width:350px;
+    margin-left: 50px;
+    padding-top: 20px;
+  }
+
+  .content{
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: "Adobe Caslon Pro Bold";
+    color: #6628b0;
+  }
+
+  .content span{
+    font-size: 30px;
+    color: #409EFF;
+  }
+
+  .chart{
+    margin-left: 50px;
+  }
+
   .LevelTwoPanel i{
     color: #409EFF;
   }
@@ -1432,5 +1533,8 @@
   .el-tabs__item{
     font-size: 18px !important;
   }
+
+  #mainpanel { min-height: 500px !important}
+
 
 </style>
