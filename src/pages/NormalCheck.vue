@@ -1,6 +1,6 @@
 <template>
   <personalCenter paneltitle="身份验证">
-    <div>
+    <div style="background-image: url('/static/pic/decoration.png');background-size: 80% 80% ;">
       <div class="MidUsrInstruction" id="mid_info" style="margin-top: 10px;margin-bottom: 10px">
         <h3 style="text-indent: 0px">中级账号校验(校园验证)</h3>
         <p class="lead" style="font-size:18px;">
@@ -83,23 +83,11 @@
         </el-tab-pane>
         <el-tab-pane label="个性信息" style="padding:20px;">
           <el-form ref="selfinfo_form" :rules="selfinfo_rules" :model="selfinfo_form" label-width="100px">
-            <div class="fail_subject">
+            <div class="fail_subject" style="width:100%;">
               <el-form-item class="info_input" label="挂科数目" prop="fail">
                 <el-input v-model.number="selfinfo_form.fail"></el-input>
               </el-form-item>
-              <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :before-remove="beforeRemove"
-                multiple
-                :limit="20"
-                :on-exceed="handleExceed"
-                :file-list="fileList">
-                <el-button size="small" type="primary">点击上传</el-button>
-                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-              </el-upload>
+
             </div>
 
           </el-form>
@@ -176,8 +164,6 @@
         fileList: [
           {name: 'food.jpeg',
             url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'},
-          {name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}
           ]
       }
     },
@@ -194,18 +180,6 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-      },
-      beforeRemove(file, fileList) {
-        return this.$confirm(`确定移除 ${ file.name }？`);
       }
     },
   }
