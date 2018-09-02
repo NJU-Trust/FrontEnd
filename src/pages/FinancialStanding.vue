@@ -288,9 +288,11 @@
                 <!--在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。-->
               <!--</p>-->
             </div><!--历史版本修正建议-->
-            <div>
-              <h4><b>您目前的还款情况如下</b>(一个假的。暂时不知道这样的表格如何动态构建)</h4>
-              <img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">
+            <div id="myNextPay">
+              <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>25</span> 天, 下次还需还款 <span>300</span> 元</b></h4>
+              <nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
+              <nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
+              <!--<img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">-->
               <hr/>
             </div><!--更新版本修正建议-->
           </div>
@@ -389,6 +391,7 @@
 <script>
   import personalCenter from "../components/personalCenter";
   import InvestList from "../components/investList";
+  import Nextpay from "../components/nextPay";
   // import FinCharts from  "../../static/js/FinCharts";
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
@@ -409,7 +412,7 @@
 
   export default {
     name:"FinancialStanding",
-    components: {InvestList, personalCenter},
+    components: {Nextpay, InvestList, personalCenter},
     data() {
       return {
         activeName: 'first',
@@ -1415,15 +1418,20 @@
   }
 
   #bar_info i{
-    color: #409EFF
+    color: #409EFF;
   }
 
   #line_info i{
-    color: #409EFF
+    color: #409EFF;
   }
 
   #pie_info i{
-    color: #409EFF
+    color: #409EFF;
+  }
+
+  #myNextPay b>span{
+    font-size: 30px;
+    color: #409EFF;
   }
 
 </style>
