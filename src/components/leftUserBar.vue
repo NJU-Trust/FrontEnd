@@ -3,7 +3,7 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a id="leftOV" href="/UserSpace" class="active" @click="setA">账户总览</a></li>
+        <li><a id="leftOV" href="/UserSpace" @click="setA">账户总览</a></li>
         <li><a id="leftSP"  href="/UserSpace/SchoolPerformance">校园表现</a></li>
         <li><a id="leftFS"  href="/UserSpace/FinancialStanding">财务状况</a></li>
         <li><a id="leftBI"  href="/UserSpace/BasicInformation" >基本信息</a></li>

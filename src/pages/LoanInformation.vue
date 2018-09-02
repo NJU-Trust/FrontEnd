@@ -452,6 +452,6 @@
 </style>
 
 <style>
-  #leftOV,#leftFS,#leftSP,#leftBI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }
+  /*#leftOV,#leftFS,#leftSP,#leftBI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }*/
   #leftLI { color: dodgerblue !important}
 </style>
