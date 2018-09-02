@@ -36,10 +36,26 @@
 
 
              <el-form-item label="开始日期">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+               <div>
+                 <el-date-picker type="date" placeholder="选择开始日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
+                 <div style="color:red;font-size: 12px;heigth:14px">*标的审核通过后的发布时间</div>
+               </div>
+
               </el-form-item>
               <el-form-item label="截止日期">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
+                <div>
+                  <el-date-picker type="date" placeholder="选择截止日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
+                  <div style="color:red;font-size: 12px;heigth:14px">*标的发布后筹资结束时间</div>
+                </div>
+
+              </el-form-item>
+
+              <el-form-item label="最低达标率">
+                <div>
+                  <el-input placeholder="请填写项目最低达标率" v-model="form1.least_rate"></el-input>
+                  <div style="color:red;font-size: 12px;heigth:14px">*截止日期时，标的已筹金额占目标金额的最低比率</div>
+                </div>
+
               </el-form-item>
 
               <div class="title">资金去向</div>
@@ -423,7 +439,7 @@
             name: '',
             date1: '',
             date2: '',
-
+            least_rate:''
           },
           form2: {
             user: '',

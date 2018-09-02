@@ -81,11 +81,6 @@ export default new Router({
       component: largeLoan
     },
     {
-      path: '/repay',
-      name: 'repay',
-      component: repay
-    },
-    {
       path: '/signup',
       name: 'signup',
       component: signup
@@ -94,6 +89,11 @@ export default new Router({
       path: '/UserSpace',
       name: 'UserSpace',
       component: UserSpace
+    },
+    {
+      path: '/UserSpace/repay',
+      name: 'repay',
+      component: repay
     },
     {
       path: '/UserSpace/SchoolPerformance',
