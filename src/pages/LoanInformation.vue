@@ -20,7 +20,7 @@
               <el-option label="大额长期投资" value="beijing"></el-option>
             </el-select>
           </div>
-          <div style="margin-top:1%;margin-left:1%;">  
+          <div style="margin-top:1%;margin-left:1%;">
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-date-picker
               v-model="value1"
@@ -37,11 +37,11 @@
             </el-date-picker>
             <span><b> 借款名称&nbsp&nbsp</b></span>
             <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="80px">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
           </div>
         </div>
         <div>
-          <template>           
+          <template>
             <el-table
               :data="zz_table"
               style="width: 100%"
@@ -88,8 +88,8 @@
                 width="120">
               </el-table-column>
             </el-table>
-          </template>          
-        </div>          
+          </template>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="完成项目" name="second">
         <div class="col-sm-12 col-md-12">
@@ -110,7 +110,7 @@
               <el-option label="大额长期投资" value="beijing"></el-option>
             </el-select>
           </div>
-          <div style="margin-top:1%;margin-left:1%;">  
+          <div style="margin-top:1%;margin-left:1%;">
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-date-picker
               v-model="value1"
@@ -127,11 +127,11 @@
             </el-date-picker>
             <span><b> 借款名称&nbsp&nbsp</b></span>
             <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="80px">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
           </div>
         </div>
         <div>
-          <template>           
+          <template>
             <el-table
               :data="wc_table"
               style="width: 100%"
@@ -168,8 +168,8 @@
                 width="120">
               </el-table-column>
             </el-table>
-          </template>          
-        </div>  
+          </template>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="已发布项目" name="third">
         <div class="col-sm-12 col-md-12">
@@ -190,7 +190,7 @@
               <el-option label="大额长期投资" value="beijing"></el-option>
             </el-select>
           </div>
-          <div style="margin-top:1%;margin-left:1%;">  
+          <div style="margin-top:1%;margin-left:1%;">
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-date-picker
               v-model="value1"
@@ -207,11 +207,11 @@
             </el-date-picker>
             <span><b> 借款名称&nbsp&nbsp</b></span>
             <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="80px">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
           </div>
         </div>
         <div>
-          <template>           
+          <template>
             <el-table
               :data="yfb_table"
               style="width: 100%"
@@ -248,7 +248,7 @@
                 width="120">
               </el-table-column>
             </el-table>
-          </template>          
+          </template>
         </div>
       </el-tab-pane>
       <el-tab-pane label="违约记录" name="fourth">
@@ -270,7 +270,7 @@
               <el-option label="大额长期投资" value="beijing"></el-option>
             </el-select>
           </div>
-          <div style="margin-top:1%;margin-left:1%;">  
+          <div style="margin-top:1%;margin-left:1%;">
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-date-picker
               v-model="value1"
@@ -287,11 +287,11 @@
             </el-date-picker>
             <span><b> 借款名称&nbsp&nbsp</b></span>
             <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="80px">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
           </div>
         </div>
         <div>
-          <template>           
+          <template>
             <el-table
               :data="wy_table"
               style="width: 100%"
@@ -338,7 +338,7 @@
                 width="120">
               </el-table-column>
             </el-table>
-          </template>          
+          </template>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -449,4 +449,9 @@
   .el-tabs__item{
     font-size: 18px !important;
   }
+</style>
+
+<style>
+  /*#leftOV,#leftFS,#leftSP,#leftBI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }*/
+  #leftLI { color: dodgerblue !important}
 </style>

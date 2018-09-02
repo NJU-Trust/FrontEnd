@@ -262,7 +262,6 @@
     components: {personalCenter},
     data() {
       return {
-        //word
         base_form: {
           name: '',
           gender: '男',
@@ -435,4 +434,9 @@
   .info_input{
     width:400px;
   }
+</style>
+
+<style>
+  /*#leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftII,#leftIE,#leftBI,#leftAC,#leftCC{ color: #777777 !important; }*/
+  #leftNC { color: dodgerblue !important}
 </style>
