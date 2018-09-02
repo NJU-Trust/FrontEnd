@@ -45,7 +45,6 @@ import tradeFinished from '@/pages/tradeFinished'
 import backAdminData from '@/pages/backAdminData'
 import test from '@/pages/test'
 import subjectManage from '@/pages/subjectManage'
-import subjectManageDetail from '@/pages/subjectManageDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -272,12 +271,7 @@ export default new Router({
       path:'/subjectManage',
       name:'subjectManage',
       component:subjectManage
-    },
-    {
-      path:'/subjectManageDetail',
-      name:'subjectManageDetail',
-      component:subjectManageDetail
-    },
+    }
 
 
   ],
