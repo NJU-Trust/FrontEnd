@@ -15,6 +15,7 @@
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.3.4",
+    "font-awesome": "^4.7.0",
     "http-proxy-middleware": "^0.18.0",
     "node-sass": "^4.9.3",
     "scrollreveal": "^4.0.0",
