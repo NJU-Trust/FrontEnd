@@ -8,8 +8,32 @@
     </div>
     <div class="square">
 
-      <div class="type"></div>
-      <div class="type"></div>
+      <br><br>
+
+      <p class="slogan">Trust us, receive fond</p><br><br><br>
+
+      <div style="display: flex;">
+        <div class="btn" onclick="location.href='/loan'">
+          <div class="type">
+            <font-awesome-icon :icon="['fas', 'shopping-cart']" size="4x" style="color: white;margin-left: 0px;margin-top: 50px;" />
+          </div>
+          <div class="name" style="margin-left: 0px">
+            消费类小额短期
+          </div>
+        </div>
+
+        <div class="btn" onclick="location.href='/largeLoan'">
+          <div class="type">
+            <font-awesome-icon :icon="['fas', 'coins']" size="4x" style="color: white;margin-left: 10px;margin-top: 50px;" />
+          </div>
+          <div class="name" style="margin-left: 0px;">
+            学习培训类大额长期
+          </div>
+        </div>
+      </div>
+
+
+
       <!--<br><br><br>
       <p class="slogan">Trust us, receive fond</p><br><br><br>
       <div class="col-md-3 project">
@@ -52,7 +76,6 @@
     width:75%;
     height:500px;
     background-color:rgba(111,109,109,0.6);
-    display: flex;
   }
   .slogan{
     color:white;
@@ -90,12 +113,28 @@
   }
 
   .type{
-    margin-top: 150px;
-    margin-left: 250px;
+
     width: 150px;
     height: 150px;
     /*border: 1px solid black;*/
     background-image: url("/static/pic/62.png");
     /*background-size: 105% 105%;*/
+  }
+
+  .name{
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+  }
+
+  .btn{
+    margin-top: 20px;
+    margin-left: 240px;
+    width: 180px;
+    height: 200px;
+  }
+
+  .btn:hover{
+    cursor: pointer;
   }
 </style>
