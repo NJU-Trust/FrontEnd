@@ -519,3 +519,8 @@
   }
 
 </style>
+
+<style>
+  #leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftBI,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }
+  #leftII { color: dodgerblue !important}
+</style>

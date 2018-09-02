@@ -37,3 +37,8 @@
 
 
 </style>
+
+<style>
+  #leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftBI{ color: #777777 !important; }
+  #leftCC { color: dodgerblue !important}
+</style>

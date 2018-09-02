@@ -1433,4 +1433,7 @@
     font-size: 18px !important;
   }
 
+  #leftOV,#leftSP,#leftBI,#leftLI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }
+  #leftFS{ color: dodgerblue !important}
+
 </style>

@@ -15,4 +15,9 @@
 
 </script>
 
+<style>
+  #leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftII,#leftBI,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }
+  #leftIE { color: dodgerblue !important}
+</style>
+
 

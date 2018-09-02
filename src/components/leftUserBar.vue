@@ -3,35 +3,35 @@
     <div class="left_menus">
       <p class="left_head" style="margin-top: 10px"><b>个人信息</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace" id="leftAA" class="active" @click="setA">账户总览</a></li>
-        <li><a href="/UserSpace/SchoolPerformance">校园表现</a></li>
-        <li><a href="/UserSpace/FinancialStanding">财务状况</a></li>
-        <li><a href="/UserSpace/BasicInformation" >基本信息</a></li>
+        <li><a id="leftOV" href="/UserSpace" class="active" @click="setA">账户总览</a></li>
+        <li><a id="leftSP"  href="/UserSpace/SchoolPerformance">校园表现</a></li>
+        <li><a id="leftFS"  href="/UserSpace/FinancialStanding">财务状况</a></li>
+        <li><a id="leftBI"  href="/UserSpace/BasicInformation" >基本信息</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
       <p class="left_head"><b>借款管理</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/LoanInformation">项目信息</a></li>
-        <li><a href="/UserSpace/LoanStatistics">借款统计</a></li>
+        <li><a id="leftLI" href="/UserSpace/LoanInformation">项目信息</a></li>
+        <li><a id="leftLS" href="/UserSpace/LoanStatistics">借款统计</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
       <p class="left_head"><b>投资管理</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/InvestInformation">项目信息</a></li>
-        <li><a href="/UserSpace/InvestEarnings">投资统计</a></li>
+        <li><a id="leftII" href="/UserSpace/InvestInformation">项目信息</a></li>
+        <li><a id="leftIE" href="/UserSpace/InvestEarnings">投资统计</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/UserSpace/NormalCheck" id="checkA" @click="setB">身份验证</a></li>
-        <li><a href="/UserSpace/AdvancedCheck">财务验证</a></li>
-        <li><a href="/UserSpace/CrossCheck">关系验证</a></li>
+        <li><a id="leftNC" href="/UserSpace/NormalCheck" @click="setB">身份验证</a></li>
+        <li><a id="leftAC" href="/UserSpace/AdvancedCheck">财务验证</a></li>
+        <li><a id="leftCC" href="/UserSpace/CrossCheck">关系验证</a></li>
       </ul>
     </div>
   </div>

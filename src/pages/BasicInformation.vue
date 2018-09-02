@@ -139,3 +139,8 @@
     font-size: 18px !important;
   }
 </style>
+
+<style>
+  #leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }
+  #leftBI { color: dodgerblue !important}
+</style>
