@@ -1,9 +1,8 @@
 <template>
-  <div class="UserList">
-    <adminNavi></adminNavi>
-    <img src="/static/pic/Investing.png" class="img-responsive"
-         alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">
-    <!--<div style="height:650px;"></div>-->
+  <div class="UserList" style="float:left">
+    <div>
+      <adminNavi></adminNavi>
+    </div>
     <div class="mytable">
       <div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">
         <label style="font-size: 14px;">筛选条件:</label>
@@ -40,53 +39,54 @@
       </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <div class="tableBackground">
-      <table class="usertable">
-        <tbody class="usertablebody">
-        <tr>
-          <th style="border: 1px solid black;text-align:center;">用户名称</th>
-          <th style="border: 1px solid black;text-align:center;">信用评级</th>
-          <th style="border: 1px solid black;text-align:center;">电话</th>
-          <th style="border: 1px solid black;text-align:center;">邮箱</th>
-          <th style="border: 1px solid black;text-align:center;">借款状态</th>
-          <th style="border: 1px solid black;text-align:center;">操作</th>
-        </tr>
-        <tr v-for="user in filteredUsers" @click="showModel" >
-          <td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>
-          <td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>
-          <td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>
-          <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
-          <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
-          <td style="border: 1px solid black ;text-align:center;">
-            <router-link to="">
-              <button class="checkDetailButton">历史投资</button>
-            </router-link>
-            <router-link to="">
-              <button class="checkDetailButton">查看标的</button>
-            </router-link>
-            <router-link to="">
-              <button class="checkDetailButton">个人财务</button>
-            </router-link>
-          </td>
-        </tr>
-        </tbody>
-        <tfoot class="full-width">
-        <tr>
-          <th></th>
-          <th colspan="4" style="text-align:center;">
-            <button class="pageButton" @click="turnPage(-1)">Prev</button>
-            <span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>
-            <button class="pageButton" @click="turnPage(1)">Next</button>
-            <span>跳转到第</span>
-            <input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">
-            <span>页</span>
-          </th>
-        </tr>
-        </tfoot>
-      </table>
+        <table class="usertable">
+          <tbody class="usertablebody">
+          <tr>
+            <th style="border: 1px solid black;text-align:center;">用户名称</th>
+            <th style="border: 1px solid black;text-align:center;">信用评级</th>
+            <th style="border: 1px solid black;text-align:center;">电话</th>
+            <th style="border: 1px solid black;text-align:center;">邮箱</th>
+            <th style="border: 1px solid black;text-align:center;">借款状态</th>
+            <th style="border: 1px solid black;text-align:center;">操作</th>
+          </tr>
+          <tr v-for="user in filteredUsers" @click="showModel" >
+            <td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>
+            <td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>
+            <td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>
+            <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
+            <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
+            <td style="border: 1px solid black ;text-align:center;">
+              <router-link to="">
+                <button class="checkDetailButton">历史投资</button>
+              </router-link>
+              <router-link to="">
+                <button class="checkDetailButton">查看标的</button>
+              </router-link>
+              <router-link to="">
+                <button class="checkDetailButton">个人财务</button>
+              </router-link>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="4" style="text-align:center;">
+              <button class="pageButton" @click="turnPage(-1)">Prev</button>
+              <span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>
+              <button class="pageButton" @click="turnPage(1)">Next</button>
+              <span>跳转到第</span>
+              <input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">
+              <span>页</span>
+            </th>
+          </tr>
+          </tfoot>
+        </table>
       </div>
     </div>
-    <footerBar></footerBar>
-
+    <div>
+      <footerBar></footerBar>
+    </div>
   </div>
 
 
@@ -194,7 +194,26 @@
         return this.paginate(fUsers)
       }
     },
+    mounted:function(){
+      this.getData();
+    },
     methods: {
+      getData:function(){
+        this.$axios.get('/AdminUser/manage', {
+          params: {
+            page:1,
+            pageSize:20,
+            keyword: "未",
+            type:"无借款",
+          }
+        }).then(function (response) {
+            alert("success!");
+            console.log(response);
+          }).catch(function (error) {
+            alert("error!")
+            console.log(error);
+          });
+      },
       addUser() {
         this.users.push(this.user)
       },
@@ -286,23 +305,21 @@
 <style scoped>
   .mytable{
     min-width: 400px;
-    min-height: 500px;
-    padding: 0px 0px;
+    min-height: 580px;
+    padding: 50px 0px;
     line-height: 3px;
-    background-color:transparent;
+    background-image: url("/static/pic/Investing.png");
+    background-size: 110% 110% ;
     color: black;
     border: none;
     font-size: 16px;
     font-family: "Microsoft YaHei UI";
-    top: 53px;
     width:100%;
     left: 0%;
-    position: absolute;
     letter-spacing: 2px;
   }
   .tableBackground{
     background-color:transparent;
-    min-height: 480px;
     padding:20px;
   }
   .usertable{
@@ -317,7 +334,7 @@
     width:80%;
     left: 10%;
     height: 70%;
-    position: absolute;
+    position: relative;
     letter-spacing: 2px;
   }
   .sureButton,.checkDetailButton,.pageButton{
