@@ -94,7 +94,7 @@
     margin-left: 250px;
     width: 150px;
     height: 150px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     background-image: url("/static/pic/62.png");
     /*background-size: 105% 105%;*/
   }
