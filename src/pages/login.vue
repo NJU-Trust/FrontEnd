@@ -39,21 +39,20 @@
       components: {footerBar},
       methods: {
         login: function () {
-          alert("here");
           var ac=document.getElementById('account').value;
           var pw=document.getElementById('password').value;
           this.$axios.post('/user/signin', {"username": ac, "password": pw}).then(
-            // res => {
-            // console.log(res.data);
-            // // if(res.data==true){
-            // //   this.$router.replace('/');
-            // // }else{
-            // //   alert("账户或密码错误");
-            // // }
-            // }
             res => {
               store.commit(types.LOGIN, res.data['accessToken']);
-              console.log(res.data)
+              if(res.data.result==true){
+                localStorage.ifLogin=1;
+                localStorage.ifUnread=res.data.ifUnread;
+                localStorage.photoSrc=res.data.photoSrc;
+                localStorage.account=ac;
+                this.$router.replace('/');
+              }else{
+                alert("账户或密码错误");
+              }
             }).catch(err => {
             console.log(err)
           });

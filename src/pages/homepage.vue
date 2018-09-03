@@ -78,8 +78,8 @@
         $(".wholeNav").css("background-color","transparent");
       },
       beforeCreate: function () {
-        localStorage.route="#homepage"
-        localStorage.ifLogin=1;
+        localStorage.route="#homepage";
+        //localStorage.ifLogin=1;
       }
 
     }
