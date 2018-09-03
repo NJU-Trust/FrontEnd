@@ -8,25 +8,6 @@
         </p>
       </div>
       <hr/>
-      <label>start</label>
-
-      <el-upload
-        class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        style="font-size: 10px; color:transparent;"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        multiple
-        :limit="3"
-        :on-exceed="handleExceed"
-        :file-list="fileList">
-        <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-      </el-upload>
-
-
-      <label>end</label>
       <el-tabs type="border-card" style="min-height: 600px;">
         <el-tab-pane label="基本资料" style="padding:20px;">
           <el-form ref="base_form" :rules="base_rules" :model="base_form" label-width="100px">
@@ -102,13 +83,28 @@
         </el-tab-pane>
         <el-tab-pane label="个性信息" style="padding:20px;">
           <el-form ref="selfinfo_form" :rules="selfinfo_rules" :model="selfinfo_form" label-width="130px">
-            <div class="fail_subject" style="width:100%;">
+            <div class="fail_subject" style="display:flex;">
               <el-form-item class="info_input" label="挂科数目" prop="fail">
                 <el-input v-model.number="selfinfo_form.fail"></el-input>
               </el-form-item>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              <el-upload
+                class="upload-demo"
+                action="https://jsonplaceholder.typicode.com/posts/"
+                :on-change="handleChange"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :before-remove="beforeRemove"
+                multiple
+                :limit="16"
+                :on-exceed="handleExceed"
+                :file-list="selfinfo_form.report_cards" prop="fail_img">
+                <el-button size="small" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">仅限jpg/png文件（不超过500kb）</div>
+              </el-upload>
             </div>
             <div class="reward" style="width:600px">
-              <el-form-item class="info_input" label="获奖情况" style="width:640px">
+              <el-form-item class="info_input" label="获奖情况" style="width:650px">
                 <!--school-->
                 <div class="school" style="padding: 0px 0px 10px 0px;">
                   <el-form-item
@@ -119,10 +115,21 @@
                     :rules="{
                   required: true, message: '校级奖项名称不能为空', trigger: 'blur'
                   }" >
-                    <div style="display: flex;width:400px;">
+                    <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
                       <el-input v-model="school_reward.value"></el-input>
-                      <el-label>&nbsp;&nbsp;&nbsp;&nbsp;</el-label>
-                      <el-button @click.prevent="remove_school_reward(school_reward)">删除</el-button>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-change="handleChange"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                      >
+                        <el-button size="small" type="primary">点击上传</el-button>
+                      </el-upload>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-button @click.prevent="remove_school_reward(school_reward)" type="danger" icon="el-icon-delete" circle></el-button>
                     </div>
                   </el-form-item>
                   <el-form-item style="float:left;" >
@@ -141,10 +148,21 @@
                     :rules="{
                   required: true, message: '市级奖项名称不能为空', trigger: 'blur'
                   }" >
-                    <div style="display: flex;width:400px;">
+                    <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
                       <el-input v-model="city_reward.value"></el-input>
-                      <el-label>&nbsp;&nbsp;&nbsp;&nbsp;</el-label>
-                      <el-button @click.prevent="remove_city_reward(city_reward)">删除</el-button>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-change="handleChange"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                      >
+                        <el-button size="small" type="primary">点击上传</el-button>
+                      </el-upload>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-button @click.prevent="remove_city_reward(city_reward)"  type="danger" icon="el-icon-delete" circle></el-button>
                     </div>
                   </el-form-item>
                   <el-form-item style="float:left;">
@@ -163,10 +181,21 @@
                     :rules="{
                   required: true, message: '省级奖项名称不能为空', trigger: 'blur'
                   }" >
-                    <div style="display: flex;width:400px;">
+                    <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
                       <el-input v-model="province_reward.value"></el-input>
-                      <el-label>&nbsp;&nbsp;&nbsp;&nbsp;</el-label>
-                      <el-button @click.prevent="remove_province_reward(province_reward)">删除</el-button>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-change="handleChange"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                      >
+                        <el-button size="small" type="primary">点击上传</el-button>
+                      </el-upload>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-button @click.prevent="remove_province_reward(province_reward)"  type="danger" icon="el-icon-delete" circle></el-button>
                     </div>
                   </el-form-item>
                   <el-form-item style="float:left;">
@@ -185,10 +214,21 @@
                     :rules="{
                   required: true, message: '国家级奖项名称不能为空', trigger: 'blur'
                   }" >
-                    <div style="display: flex;width:400px;">
+                    <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
                       <el-input v-model="country_reward.value"></el-input>
-                      <el-label>&nbsp;&nbsp;&nbsp;&nbsp;</el-label>
-                      <el-button @click.prevent="remove_country_reward(country_reward)">删除</el-button>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-change="handleChange"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                      >
+                        <el-button size="small" type="primary">点击上传</el-button>
+                      </el-upload>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-button @click.prevent="remove_country_reward(country_reward)"  type="danger" icon="el-icon-delete" circle></el-button>
                     </div>
                   </el-form-item>
                   <el-form-item style="float:left;">
@@ -201,21 +241,23 @@
               </el-form-item>
             </div>
             <el-form-item label="收入来源" prop="income">
-              <el-checkbox-group v-model="selfinfo_form.income">
+              <el-checkbox-group v-model="selfinfo_form.income"style="width:600px;">
                 <el-checkbox label="家庭供给" name="type"></el-checkbox>
                 <el-checkbox label="助学贷款" name="type"></el-checkbox>
                 <el-checkbox label="奖学金" name="type"></el-checkbox>
                 <el-checkbox label="兼职收入" name="type"></el-checkbox>
                 <el-checkbox label="投资偶然获得" name="type"></el-checkbox>
+                <div @click="otherway">
+                  <el-checkbox label="其他方式" name="type"></el-checkbox>
+                </div>
               </el-checkbox-group>
-            </el-form-item>
-            <el-form-item class="info_input" label="其他收入来源说明" prop="income_description">
-              <el-input type="textarea" v-model="selfinfo_form.income_description" style="width:400px"></el-input>
+              <el-form-item class="info_input" v-if="count%4!=0" prop="income_description">
+                <el-input type="textarea" v-model="selfinfo_form.income_description" style="width:400px"></el-input>
+              </el-form-item>
             </el-form-item>
             <el-form-item class="info_input" label="志愿时长：小时" prop="volunteer">
               <el-input v-model.number="selfinfo_form.volunteer"></el-input>
             </el-form-item>
-
             <div class="qualifications" >
               <el-form-item class="info_input" label="获得证书" style="width:640px">
                 <!--qualifications-->
@@ -228,10 +270,21 @@
                     :rules="{
                   required: true, message: '证书名称不能为空', trigger: 'blur'
                   }" >
-                    <div style="display: flex;width:400px;">
+                    <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
                       <el-input v-model="self_qualification.value"></el-input>
-                      <el-label>&nbsp;&nbsp;&nbsp;&nbsp;</el-label>
-                      <el-button @click.prevent="remove_self_qualification(self_qualification)">删除</el-button>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :on-change="handleChange"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :before-remove="beforeRemove"
+                        >
+                        <el-button size="small" type="primary">点击上传</el-button>
+                      </el-upload>
+                      <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <el-button @click.prevent="remove_self_qualification(self_qualification)" type="danger" icon="el-icon-delete" circle></el-button>
                     </div>
                   </el-form-item>
                   <el-form-item style="float:left;">
@@ -262,6 +315,7 @@
     components: {personalCenter},
     data() {
       return {
+        count:0,
         base_form: {
           name: '',
           gender: '男',
@@ -302,23 +356,29 @@
         },
         selfinfo_form:{
           fail:'',
-          income:[],
+          report_cards: [],
+          income:[false,false,false,false,false,false],
           income_description:'',
           volunteer:'',
           school_rewards: [{
-            value: ''
+            value: '',
+            file:'',
           }],
           city_rewards: [{
-            value: ''
+            value: '',
+            file:'',
           }],
           province_rewards: [{
-            value: ''
+            value: '',
+            file:'',
           }],
           country_rewards: [{
-            value: ''
+            value: '',
+            file:'',
           }],
           self_qualifications: [{
-            value: ''
+            value: '',
+            file:'',
           }],
         },
         selfinfo_rules:{
@@ -330,13 +390,13 @@
           ],
           income:[
             {required:true, message: '收入来源不能为空'}
+          ],
+          income_description:[
+            {required:true, message: '描述不能为空'}
           ]
         },
         //img
-        fileList: [
-          {name: 'food.jpeg',
-            url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'},
-          ]
+
       }
     },
     methods: {
@@ -349,6 +409,9 @@
             return false;
           }
         });
+      },
+      otherway(){
+        this.count++;
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -420,10 +483,13 @@
         console.log(file);
       },
       handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+        this.$message.warning(`当前限制选择 16 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
       },
       beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${ file.name }？`);
+      },
+      handleChange(file, fileList) {
+        this.selfinfo_form.report_cards = fileList.slice(-3);
       }
     },
   }
@@ -439,4 +505,7 @@
 <style>
   /*#leftOV,#leftFS,#leftSP,#leftLI,#leftLS,#leftII,#leftIE,#leftBI,#leftAC,#leftCC{ color: #777777 !important; }*/
   #leftNC { color: dodgerblue !important}
+  .el-upload__input{
+    display: none !important;
+  }
 </style>
