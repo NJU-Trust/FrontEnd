@@ -4,15 +4,15 @@
       <table class="table table-bordered repaytable">
         <tbody>
         <tr>
-          <th id="titleProject" width="180px" rowspan="6">{{paytitle}}</th>
+          <th id="titleProject" width="180px" rowspan="6">{{paylist.paytitle}}</th>
           <th width="200px">项目时间</th>
           <th width="180px">代还期数</th>
           <th width="180px">代还本息</th>
         </tr>
         <tr>
-          <td>{{projectTime}}</td>
-          <td>{{times}}</td>
-          <td>{{interestPlus}}</td>
+          <td>{{paylist.projectTime}}</td>
+          <td>{{paylist.times}}</td>
+          <td>{{paylist.interestPlus}}</td>
         </tr>
         <tr>
           <th>近3期</th>
@@ -20,19 +20,19 @@
           <th>还款金额</th>
         </tr>
         <tr>
-          <td>{{timesA}}</td>
-          <td>{{timeA}}</td>
-          <td>{{amountA}}</td>
+          <td>{{paylist.timesA}}</td>
+          <td>{{paylist.timeA}}</td>
+          <td>{{paylist.amountA}}</td>
         </tr>
         <tr>
-          <td>{{timesB}}</td>
-          <td>{{timeB}}</td>
-          <td>{{amountB}}</td>
+          <td>{{paylist.timesB}}</td>
+          <td>{{paylist.timeB}}</td>
+          <td>{{paylist.amountB}}</td>
         </tr>
         <tr>
-          <td>{{timesC}}</td>
-          <td>{{timeC}}</td>
-          <td>{{amountC}}</td>
+          <td>{{paylist.timesC}}</td>
+          <td>{{paylist.timeC}}</td>
+          <td>{{paylist.amountC}}</td>
         </tr>
         </tbody>
       </table>
@@ -46,11 +46,12 @@
     data () {
 
     },
-    props:['paytitle','projectTime','times','interestPlus'
-      , 'timesA','timeA','amountA'
-      , 'timesB','timeB','amountB'
-      , 'timesC','timeC','amountC']
+    // props:['paytitle','projectTime','times','interestPlus'
+    //   , 'timesA','timeA','amountA'
+    //   , 'timesB','timeB','amountB'
+    //   , 'timesC','timeC','amountC']
 
+    props:['paylist']
   }
 </script>
 

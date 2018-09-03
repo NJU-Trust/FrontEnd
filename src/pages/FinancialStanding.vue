@@ -290,8 +290,13 @@
             </div><!--历史版本修正建议-->
             <div id="myNextPay">
               <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>25</span> 天, 下次还需还款 <span>300</span> 元</b></h4>
-              <nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
-              <nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
+              <!--<nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
+              <!--<nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
+              <nextpay
+                v-for="item in NextpayList"
+                v-bind:paylist="item"
+                v-bind:key="item.paytitle"
+              ></nextpay>
               <!--<img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">-->
               <hr/>
             </div><!--更新版本修正建议-->
@@ -410,11 +415,18 @@
 
   const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
 
+  // <nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
+
   export default {
     name:"FinancialStanding",
     components: {Nextpay, InvestList, personalCenter},
     data() {
       return {
+        NextpayList: [
+          { paytitle : "托福考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
+          { paytitle : "CPA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
+          { paytitle : "ACCA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeCS:"2018.7.1", amountC:"300" },
+        ],
         activeName: 'first',
         mouth_start: '',
         mouth_end: '',
