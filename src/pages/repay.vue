@@ -27,13 +27,13 @@
             </div>
           </el-card>
 
-          <el-card shadow="always" class="chart">
-            <div style="margin: 10px;font-size: 18px;color: #6a6a6a">
+          <el-card shadow="always" class="chart" align="center">
+            <div style="margin-top: 20px;font-size: 18px;color: #6a6a6a">
               未还款占比：
             </div>
 
-            <div>
-
+            <div style="margin-top: 40px;">
+              <el-progress type="circle" :percentage="25" width="110"></el-progress>
             </div>
           </el-card>
         </div>
@@ -310,7 +310,6 @@
       <el-tab-pane label="项目概要" name="second">
         <div style="display: flex">
           <div class="type">
-
           </div>
           <div class="type">
 
@@ -1500,6 +1499,7 @@
 
   .chart{
     margin-left: 50px;
+    width: 170px;
   }
 
   .LevelTwoPanel i{
