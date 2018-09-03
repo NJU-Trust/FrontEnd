@@ -203,7 +203,7 @@
             {
               type: 'graph',
               layout: 'force',
-              symbolSize: 60,
+              symbolSize: 60,//一般大小
               roam: false, //是否开启鼠标缩放和平移漫游。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
               focusNodeAdjacency: true,
               // symbol: 'pin',
