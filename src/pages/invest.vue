@@ -69,8 +69,66 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
-          <div class="userInput" style="margin-left:6%;">
-            <p>标的分类：</p>
+          <div class="userInput" style="margin-left:30px;">
+            <p>项目风险评级：</p>
+            <div class="sort">
+              <div>
+                <div>
+                  <el-checkbox :indeterminate="isIndeterminateC" v-model="checkAllC" @change="handleCheckAllChangeC">全选</el-checkbox>
+                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeC" style="display: inline-block;margin-left:10px;">
+                    <el-checkbox-button v-for="indexC in indexCs" :label="indexC" :key="indexC" >{{indexC}}</el-checkbox-button>
+                  </el-checkbox-group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <div style="margin-top:1%;margin-left:1%;">
+            <span><b>标的分类&nbsp&nbsp&nbsp</b></span>
+            <el-dropdown class="dropdown">
+              <span class="el-dropdown-link">
+                购 物<i class="el-icon-arrow-down el-icon--left"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>鞋帽服饰</el-dropdown-item>
+                <el-dropdown-item>生活用品</el-dropdown-item>
+                <el-dropdown-item>护肤美妆</el-dropdown-item>
+                <el-dropdown-item>游戏动漫</el-dropdown-item>
+                <el-dropdown-item>电子产品</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown class="dropdown" style="background-color:#36A1F9;">
+              <span class="el-dropdown-link">
+                学 习<i class="el-icon-arrow-down el-icon--left"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>学习用品</el-dropdown-item>
+                <el-dropdown-item>书籍报刊</el-dropdown-item>
+                <el-dropdown-item>培训考证</el-dropdown-item>
+                <el-dropdown-item>校际交换</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown class="dropdown" style="background-color:#0E8FFA;">
+              <span class="el-dropdown-link">
+                娱 乐<i class="el-icon-arrow-down el-icon--left"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>聚餐轰趴</el-dropdown-item>
+                <el-dropdown-item>运动健身</el-dropdown-item>
+                <el-dropdown-item>观看演出</el-dropdown-item>
+                <el-dropdown-item>外出旅游</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown class="dropdown" style="background-color:#0B7AD6;">
+              <span class="el-dropdown-link">
+                医 疗<i class="el-icon-arrow-down el-icon--left"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>诊断治疗</el-dropdown-item>
+                <el-dropdown-item>保健养生</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
         </div>
         <div class="col-sm-12 col-md-12">
@@ -115,11 +173,11 @@
           <h3>个性推荐</h3>
           <div class="userInput">
             <p>投资金额：</p>
-            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
+            <input type="number" value="1000" style="width:30%;"/>
           </div><br><br><br>
           <div class="userInput">
             <p style="margin-right:30px;">利率：</p>
-            <input type="number" value="1000" style="width:30%;"/><p> - </p><input type="number" value="2000" style="width:30%;"/>
+            <input type="number" value="1000" style="width:30%;"/>
           </div><br><br><br><br>
           <div class="userInput">
             <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
@@ -177,6 +235,7 @@
   import personalCenter from "../components/personalCenter";
   const indexAOptions = ['标的金额', '开始时间', '利率', '还款期限','用户信用分数'];
   const indexBOptions = ['AA','A','B','C','D'];
+  const indexCOptions = ['AA ','A ','B ','C ','D '];
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
@@ -199,10 +258,13 @@
         checkboxGroup2: [],
         indexAs: indexAOptions,
         indexBs: indexBOptions,
+        indexCs:indexCOptions,
         checkAll: false,
         isIndeterminate: true,
         checkAllB:false,
         isIndeterminateB:true,
+        checkAllC:false,
+        isIndeterminateC:true,
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -242,6 +304,17 @@
         let checkedCount = value.length;
         this.checkAllB = checkedCount === this.indexBs.length;
         this.isIndeterminateB = checkedCount > 0 && checkedCount < this.indexBs.length;
+        this.showIndexs();
+      },
+      handleCheckAllChangeC(val) {
+        this.checkboxGroup2 = val ? indexCOptions : [];
+        this.isIndeterminateC = false;
+        this.showIndexs();
+      },
+      handleCheckedCitiesChangeC(value) {
+        let checkedCount = value.length;
+        this.checkAllC = checkedCount === this.indexCs.length;
+        this.isIndeterminateC = checkedCount > 0 && checkedCount < this.indexCs.length;
         this.showIndexs();
       },
       drawRadar() {
@@ -293,6 +366,15 @@
 </script>
 
 <style scoped>
+  .dropdown{
+    border:1px solid transparent;
+    width:80px;
+    height:25px;
+    text-align: center;
+    margin-left:20px;
+    background-color: #59B1F9;
+    color:white;
+  }
   .recommend{
     font-size:14px;
     float: left;
@@ -377,7 +459,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height:280px;
+    height:330px;
     margin-bottom: 20px;
   }
   .userInput{

@@ -6,7 +6,7 @@
       <div class="container-fluid" style="width: 100%">
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
-            <li><a id="object" href="/objectManage" style="width: 120px">标的管理</a></li>
+            <li><a id="object" href="/subjectManage" style="width: 120px">标的管理</a></li>
             <li><a id="user" style="width: 120px" href="/usermanage">用户管理</a></li>
             <li><a id="statistics" href="/backAdminData" style="width: 120px">数据统计</a></li>
             <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
@@ -49,7 +49,7 @@
         localStorage.account="test";
 
         $("#manageAccount").css('display','none');
-        if (localStorage.ifLogin==true){
+        if (localStorage.ifLogin==1){
           document.getElementById('last').removeChild(document.getElementById('signup'));
           document.getElementById('secondLast').removeChild(document.getElementById('login'));
           var personalCenter = document.createElement('a');
@@ -64,7 +64,7 @@
           message.className = 'message';
           message.src = '/static/pic/message_white.png';
           document.getElementById('secondLast').appendChild(message);
-          if (localStorage.ifUnread){
+          if (localStorage.ifUnread==1){
             message.src = '/static/pic/message_yellow.png';
           }
 
@@ -93,7 +93,7 @@
               message.src = '/static/pic/message_blue.png';
             },
             function(){
-              if(localStorage.ifUnread){
+              if(localStorage.ifUnread==1){
                 message.src = '/static/pic/message_yellow.png';
               }else{
                 message.src = '/static/pic/message_white.png';
@@ -116,8 +116,11 @@
       },
       methods: {
         logout: function () {
-          this.$axios.get("/logout", {"account": 123}).then(res => {
-            this.$router.replace('/index');
+          localStorage.ifLogin = 0;
+          this.$router.replace("/");
+          this.reload();
+          this.$axios.get("/logout", {"account": localStorage.account}).then(res => {
+
           });
         },
 

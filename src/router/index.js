@@ -44,6 +44,8 @@ import tradeGoing from '@/pages/tradeGoing'
 import tradeFinished from '@/pages/tradeFinished'
 import backAdminData from '@/pages/backAdminData'
 import test from '@/pages/test'
+import subjectManage from '@/pages/subjectManage'
+import subjectManageDetail from '@/pages/subjectManageDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -79,11 +81,6 @@ export default new Router({
       component: largeLoan
     },
     {
-      path: '/repay',
-      name: 'repay',
-      component: repay
-    },
-    {
       path: '/signup',
       name: 'signup',
       component: signup
@@ -92,6 +89,11 @@ export default new Router({
       path: '/UserSpace',
       name: 'UserSpace',
       component: UserSpace
+    },
+    {
+      path: '/UserSpace/repay',
+      name: 'repay',
+      component: repay
     },
     {
       path: '/UserSpace/SchoolPerformance',
@@ -265,7 +267,17 @@ export default new Router({
       path:'/test',
       name:'test',
       component:test
-    }
+    },
+    {
+      path:'/subjectManage',
+      name:'subjectManage',
+      component:subjectManage
+    },
+    {
+      path:'/subjectManageDetail',
+      name:'subjectManageDetail',
+      component:subjectManageDetail
+    },
 
 
   ],

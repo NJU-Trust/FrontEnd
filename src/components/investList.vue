@@ -11,6 +11,8 @@
               <p class="month">Profit : </p>
               <p class="profit">10.9840%</p>
               <p class="month">/ per year</p>
+              <p style="font-size:10px;display: inline-block;">标的编号：</p>
+              <p style="display: inline-block;font-weight:800;">1000</p>
             </div>
           </div>
         </el-col>
@@ -51,7 +53,7 @@
     name: "projectList",
     methods: {
       showDetails(){
-        window.location.href='/userdetail';
+        window.location.href='/DoInvesting';
       }
     }
 

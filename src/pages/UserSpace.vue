@@ -193,7 +193,7 @@
     </div>
     <hr/>
     <div id="user_calendar">
-      <vue-event-calendar :events="demoEvents" @monthChanged="" @dayChanged=""></vue-event-calendar>
+      <vue-event-calendar :events="demoEvents" title="TODO LIST"  @monthChanged="" @dayChanged=""></vue-event-calendar>
     </div>
     <hr/>
     <div id="user_remaintodo">
@@ -414,6 +414,10 @@
     padding: 20px 45px !important;
   }
 
+</style>
+
+<style>
+  #leftOV { color: dodgerblue !important}
 </style>
 
 

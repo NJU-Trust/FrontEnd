@@ -1,39 +1,223 @@
 <template>
   <personalCenter paneltitle="财务状况">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="财务数据" name="first">
-        <div id="financial_id">
-          <div class="FinDateChoice">
-            <el-row :gutter="2">
-              <el-col :span="6">
-                <div class="block">
-                  <span class="demonstration"></span>
-                  <el-date-picker
-                    v-model="mouth_start"
-                    type="month"
-                    placeholder="请选择起始月份">
-                  </el-date-picker>
-                </div>
-              </el-col>
-              <el-col :span="8">
-                <div class="block">
-                  <span class="demonstration">到&nbsp&nbsp&nbsp&nbsp</span>
-                  <el-date-picker
-                    v-model="mouth_end"
-                    type="month"
-                    placeholder="请选择终止月份">
-                  </el-date-picker>
-                </div>
-              </el-col>
-            </el-row>
-          </div><br/>
+      <el-tab-pane label="财务分析" name="first">
+        <div id="financial_id"><br/>
           <div class="chooseButton">
-            <el-radio v-model="inoutcome" label="1" id="outcome_btn" @change="change_outcome">支出</el-radio>
-            <el-radio v-model="inoutcome" label="2" id="income_btn" @change="change_income">收入和其他</el-radio>
+            <el-radio v-model="inoutcome" label="1" id="bar_btn" @change="change_bar" border>数值比较</el-radio>
+            <el-radio v-model="inoutcome" label="2" id="line_btn" @change="change_line" border>趋势分析</el-radio>
+            <el-radio v-model="inoutcome" label="3" id="pie_btn" @change="change_pie" border>比例分析</el-radio>
+          </div><hr/><br/>
+          <div class="FinDateChoice">
+            <div id="dateDouble">
+              <el-row :gutter="2">
+                <el-col :span="6">
+                  <div class="block">
+                    <span class="demonstration"></span>
+                    <el-date-picker
+                      v-model="mouth_start"
+                      type="month"
+                      placeholder="请选择起始月份">
+                    </el-date-picker>
+                  </div>
+                </el-col>
+                <el-col :span="8">
+                  <div class="block">
+                    <span class="demonstration">到&nbsp&nbsp&nbsp&nbsp</span>
+                    <el-date-picker
+                      v-model="mouth_end"
+                      type="month"
+                      placeholder="请选择终止月份">
+                    </el-date-picker>
+                  </div>
+                </el-col>
+              </el-row>
+
+            </div>
+            <div id="dateSingle" style="display: none">
+              <div class="block">
+                <span class="demonstration"></span>
+                <el-date-picker
+                  v-model="mouth_single"
+                  type="month"
+                  placeholder="请选择您要查看的月份">
+                </el-date-picker>
+              </div>
+            </div>
+          </div><br/>
+          <div id="bar_info" style="display: inline">
+            <div>
+              <el-row :gutter="20">
+                <el-col :span="5">
+                  <span>请选择您所要查看的指标</span>
+                </el-col>
+                <el-col :span="19">
+                  <div id="selectBar_id">
+                    <el-radio-group v-model="selectBar" size="mini">
+                      <el-radio label="收入" v-bind:title="'顾名思义，收入就是收入'"></el-radio>
+                      <el-radio label="支出" v-bind:title="'顾名思义，支出就是支出'"></el-radio>
+                      <el-radio label="刚性支出" v-bind:title="'“必需品”性质的支出\n'"></el-radio>
+                      <el-radio label="可调支出" v-bind:title="'可调整的支出'"></el-radio>
+                      <el-radio label="投资额结余" v-bind:title="'顾名思义，结余就是剩下的资金'"></el-radio>
+                      <el-radio label="负债" v-bind:title="'负债'"></el-radio>
+                      <el-radio label="净资产" v-bind:title="'结余—负债\n'"></el-radio>
+                    </el-radio-group>
+                  </div>
+                </el-col>
+              </el-row>
+            </div><!--Bar选择指标-->
+            <hr/>
+            <div v-show="selectBar=='收入'">
+              <div v-if="selectBar=='收入'">
+                <h4><b>您这段时间的收入总额为：<i class="el-icon-goods"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='支出'">
+              <div v-if="selectBar=='支出'">
+                <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='刚性支出'">
+              <div v-if="selectBar=='刚性支出'">
+                <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-sold-out"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myRigidBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='可调支出'">
+              <div v-if="selectBar=='可调支出'">
+                <h4><b>您这段时间的可调支出总额为：<i class="el-icon-document"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myAdjustBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='投资额结余'">
+              <div v-if="selectBar=='投资额结余'">
+                <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-edit"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myInvestBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='负债'">
+              <div v-if="selectBar=='负债'">
+                <h4><b>您的负债总额为：<i class="el-icon-edit-outline"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myDebtBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectBar=='净资产'">
+              <div v-if="selectBar=='净资产'">
+                <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+              </div>
+              <div id="myNetAssetsBar" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+          </div>
+          <div id="line_info" style="display: none">
+            <!--恩格尔系数、刚性比率、负债率、偿债能力、杠杆比率、消费比率、储蓄比率-->
+            <div>
+              <el-row :gutter="20">
+                <el-col :span="5">
+                  <span>请选择您所要查看的指标</span>
+                </el-col>
+                <el-col :span="19">
+                  <div id="selectLine_id">
+                    <el-radio-group v-model="selectLine" size="mini">
+                      <el-radio label="恩格尔系数" v-bind:title="'食品支出/总支出\n'"></el-radio>
+                      <el-radio label="刚性比率" v-bind:title="'刚性支出/总支出'"></el-radio>
+                      <el-radio label="负债率" v-bind:title="'月负债/月结余'"></el-radio>
+                      <el-radio label="偿债能力" v-bind:title="'月结余/月负债\n'"></el-radio>
+                      <el-radio label="杠杆比率" v-bind:title="'净资产/月负债'"></el-radio>
+                      <el-radio label="消费比率" v-bind:title="'支出/收入'"></el-radio>
+                      <el-radio label="储蓄比率" v-bind:title="'（收入-支出）/收入'"></el-radio>
+                    </el-radio-group>
+                  </div>
+                </el-col>
+              </el-row>
+            </div><!--Line选择指标-->
+            <hr>
+            <div v-show="selectLine=='恩格尔系数'">
+              <div v-if="selectLine=='恩格尔系数'">
+                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="myEngelsLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='刚性比率'">
+              <div v-if="selectLine=='刚性比率'">
+                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="myRigidLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='负债率'">
+              <div v-if="selectLine=='负债率'">
+                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="myLiabilityLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='偿债能力'">
+              <div v-if="selectLine=='偿债能力'">
+                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="mySolvencyLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='杠杆比率'">
+              <div v-if="selectLine=='杠杆比率'">
+                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="myLeverageLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='消费比率'">
+              <div v-if="selectLine=='消费比率'">
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="myConsumptionLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+            <div v-show="selectLine=='储蓄比率'">
+              <div v-if="selectLine=='储蓄比率'">
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
+              </div>
+              <div id="mySavingLine" :style="{width: '400px', height: '300px'}"></div>
+            </div>
+          </div>
+          <div id="pie_info" style="display: none">
+            <div>
+              <el-row :gutter="20">
+                <el-col :span="5">
+                  <span>请选择您所要查看的指标</span>
+                </el-col>
+                <el-col :span="19">
+                  <div id="selectPie_id">
+                    <el-radio-group v-model="selectPie" size="mini">
+                      <el-radio label="支出" v-bind:title="'支出'"></el-radio>
+                      <el-radio label="可调支出" v-bind:title="'可调支出'"></el-radio>
+                      <el-radio label="饮食支出" v-bind:title="'饮食支出'"></el-radio>
+                    </el-radio-group>
+                  </div>
+                </el-col>
+              </el-row>
+            </div><!--Pie选择指标-->
+            <hr/>
+            <div v-show="selectPie=='支出'">
+              <div v-if="selectPie=='支出'">
+                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 1000.50元, 具体分布如下</b></h4>
+              </div>
+              <br/>
+              <div id="myOutcomePie" :style="{width: '900px', height: '450px'}"></div>
+            </div>
+            <div v-show="selectPie=='可调支出'">
+              <div v-if="selectPie=='可调支出'">
+                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 100.10元, 具体分布如下</b></h4>
+              </div>
+              <br/>
+              <div id="myAdjustOutcomePie" :style="{width: '900px', height: '450px'}"></div>
+            </div>
+            <div v-show="selectPie=='饮食支出'">
+              <div v-if="selectPie=='饮食支出'">
+                <h4><i class="el-icon-time"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 500.37元, 具体分布如下</b></h4>
+              </div>
+              <br/>
+              <div id="myFoodOutcomePie" :style="{width: '900px', height: '450px'}"></div>
+            </div>
           </div>
           <hr/>
-          <p>以下展现{{ mouth_start.toString()}} 到 {{mouth_end.toString()}}的财务状况</p>
-          <div class="LevelOneIndex" id="leveloneindex"><!--一级指标，收入&&支出和其他-->
+          <div class="LevelOneIndex" id="leveloneindex" style="display: none"><!--一级指标，收入&&支出和其他-->
             <div class="class_outcome" id="id_class_outcome" style="display: inline">
               <h4><b>您本月的支出情况</b></h4>
               <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
@@ -57,23 +241,20 @@
               </div>
               <hr/>
               <h4><b>您本月的支出变化</b></h4>
-              <div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>
+              <!--<div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>-->
               <hr/>
               <h4><b>您本月的支出分布统计图</b></h4>
-              <div id="myOutcomePie" :style="{width: '900px', height: '450px'}"></div>
               <h4><b>您本月的可调整支出统计图</b></h4>
-              <div id="myAdjustOutcomePie" :style="{width: '900px', height: '450px'}"></div>
               <h4><b>您本月的饮食支出分布统计图</b></h4>
-              <div id="myFoodOutcomePie" :style="{width: '900px', height: '450px'}"></div>
             </div>
 
-            <div class="class_income" id="id_class_income" style="display:none;">
+            <div class="class_income" id="id_class_income">
               <div id="myIncomeOverview">
-                <h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>
+                <!--<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>-->
               </div>
               <hr/>
               <h4><b>您本月的收入变化</b></h4>
-              <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+              <!--<div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>-->
               <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
               <hr/>
               <h4><b>您本月的蚂蚁花呗情况</b></h4>
@@ -91,18 +272,8 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="分析建议" name="second">
+      <el-tab-pane label="财务建议" name="second">
         <div id="loan_id">
-          <!--<div class="LevelTwoIndex" id="leveltwocheck">-->
-            <!--<div>-->
-              <!--<div style="margin-top: 20px">-->
-                <!--<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>-->
-                <!--<el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange">-->
-                  <!--<el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>-->
-                <!--</el-checkbox-group>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
           <h3><b>消费修正建议</b></h3><hr/>
           <div class="LoanPanel">
             <div>
@@ -117,9 +288,16 @@
                 <!--在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。-->
               <!--</p>-->
             </div><!--历史版本修正建议-->
-            <div>
-              <h4><b>您目前的还款情况如下</b>(一个假的。暂时不知道这样的表格如何动态构建)</h4>
-              <img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">
+            <div id="myNextPay">
+              <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>25</span> 天, 下次还需还款 <span>300</span> 元</b></h4>
+              <!--<nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
+              <!--<nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
+              <nextpay
+                v-for="item in NextpayList"
+                v-bind:paylist="item"
+                v-bind:key="item.paytitle"
+              ></nextpay>
+              <!--<img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">-->
               <hr/>
             </div><!--更新版本修正建议-->
           </div>
@@ -218,6 +396,8 @@
 <script>
   import personalCenter from "../components/personalCenter";
   import InvestList from "../components/investList";
+  import Nextpay from "../components/nextPay";
+  // import FinCharts from  "../../static/js/FinCharts";
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
@@ -235,15 +415,26 @@
 
   const indexAOptions = ['净资产', '恩格尔系数', '刚性比率', '资产负债率','偿债能力','杠杆比例','月消费比率','月储蓄比例'];
 
+  // <nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>
+
   export default {
-  name:"FinancialStanding",
-    components: {InvestList, personalCenter},
+    name:"FinancialStanding",
+    components: {Nextpay, InvestList, personalCenter},
     data() {
       return {
+        NextpayList: [
+          { paytitle : "托福考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
+          { paytitle : "CPA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
+          { paytitle : "ACCA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeCS:"2018.7.1", amountC:"300" },
+        ],
         activeName: 'first',
         mouth_start: '',
         mouth_end: '',
+        mouth_single: '',
         inoutcome: '1',
+        selectBar: '收入',
+        selectLine:'恩格尔系数',
+        selectPie: '支出',
         tableData: [{
           month: '1',
           valX: '15%',
@@ -322,6 +513,20 @@
       this.drawAdjustOutcomePie();
       this.drawFoodOutcomePie();
       this.drawAntBar();
+      this.drawRigidBar();
+      this.drawAdjustBar();
+      this.drawInvestBar();
+      this.drawDebtBar();
+      this.drawNetAssetsBar();
+
+      this.drawEngelsLine();
+      this.drawRigidLine();
+      this.drawLiabilityLine();
+      this.drawSolvencyLine();
+      this.drawLeverageLine();
+      this.drawConsumptionLine();
+      this.drawSavingLine();
+
       this.drawK();
       this.drawA();
     },
@@ -329,29 +534,33 @@
       handleClick(tab, event) {
         console.log(tab, event);
       },
-      handleCheckAllChange(val) {
-        this.checkboxGroup2 = val ? indexAOptions : [];
-        this.isIndeterminate = false;
-        this.showIndexs();
+
+      change_bar(){
+        document.getElementById("bar_info").style.display = "inline";
+        document.getElementById("line_info").style.display = "none";
+        document.getElementById("pie_info").style.display = "none";
+
+        document.getElementById("dateDouble").style.display = "inline";
+        document.getElementById("dateSingle").style.display = "none";
       },
-      handleCheckedCitiesChange(value) {
-        let checkedCount = value.length;
-        this.checkAll = checkedCount === this.indexAs.length;
-        this.isIndeterminate = checkedCount > 0 && checkedCount < this.indexAs.length;
-        this.showIndexs();
+      change_line(){
+        document.getElementById("bar_info").style.display = "none";
+        document.getElementById("line_info").style.display = "inline";
+        document.getElementById("pie_info").style.display = "none";
+
+        document.getElementById("dateDouble").style.display = "inline";
+        document.getElementById("dateSingle").style.display = "none";
+      },
+      change_pie(){
+        document.getElementById("bar_info").style.display = "none";
+        document.getElementById("line_info").style.display = "none";
+        document.getElementById("pie_info").style.display = "inline";
+
+        document.getElementById("dateDouble").style.display = "none";
+        document.getElementById("dateSingle").style.display = "inline";
       },
 
-      change_income(){
-        document.getElementById("id_class_income").style.display = "inline";
-        document.getElementById("mySurplus").style.display = "inline";
-        document.getElementById("id_class_outcome").style.display = "none";
-      },
-      change_outcome(){
-        document.getElementById("id_class_income").style.display = "none";
-        document.getElementById("id_class_outcome").style.display = "inline";
-        document.getElementById("mySurplus").style.display = "inline";
-      },
-
+      //柱状图集合
       drawIncomeBar() {
         // 基于准备好的dom，初始化echarts实例
         let myIncomeBar = echarts.init(document.getElementById('myIncomeBar'))
@@ -391,7 +600,6 @@
           }]
         });
       },
-
       drawOutcomeBar() {
         // 基于准备好的dom，初始化echarts实例
         let myOutcomeBar = echarts.init(document.getElementById('myOutcomeBar'))
@@ -431,7 +639,265 @@
           }]
         });
       },
+      drawRigidBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myRigidBar = echarts.init(document.getElementById('myRigidBar'))
+        // 绘制图表
+        myRigidBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 50, 60, 5, 36, 36, 10, 4, 20, 60, 5]
+          }]
+        });
+      },
+      drawAdjustBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myAdjustBar = echarts.init(document.getElementById('myAdjustBar'))
+        // 绘制图表
+        myAdjustBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 20, 60, 5, 70, 36, 10, 40, 20, 60, 5]
+          }]
+        });
+      },
+      drawInvestBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myInvestBar = echarts.init(document.getElementById('myInvestBar'))
+        // 绘制图表
+        myInvestBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 40, 20, 10, 40, 20, 60, 5, 70, 36, 60, 5]
+          }]
+        });
+      },
+      drawDebtBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myDebtBar = echarts.init(document.getElementById('myDebtBar'))
+        // 绘制图表
+        myDebtBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [70, 36, 10, 40, 10, 40, 20, 60, 5, 20, 60, 5]
+          }]
+        });
+      },
+      drawNetAssetsBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myNetAssetsBar = echarts.init(document.getElementById('myNetAssetsBar'))
+        // 绘制图表
+        myNetAssetsBar.setOption({
+          // title: { text: '您本月的支出变化' },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+              type : 'shadow'
+            }
+          },
+          grid:{
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            // name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月", "9月", "10月", "11月", "12月"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          },
+          yAxis: {
+            name: '支出',
+            type: 'value'
+          },
+          series: [{
+            color: '#409EFF',
+            name: '支出情况',
+            type: 'bar',
+            barWidth: '60%',
+            data: [70, 36, 10, 40, 20, 60, 5, 10, 40, 20, 60, 5]
+          }]
+        });
+      },
+      drawAntBar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myAntBar = echarts.init(document.getElementById('myAntBar'))
+        // 绘制图表
+        myAntBar.setOption({
+          tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+          },
+          legend: {
+            data:['花呗支出', '花呗还款']
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          yAxis : [
+            {
+              type : 'value'
+            }
+          ],
+          xAxis : [
+            {
+              type : 'category',
+              axisTick : {show: false},
+              data : ["1号", "2号", "3号", "4号", "5号", "6号","7号","8号", "9号", "10号", "11号", "12号", "13号","14号","15号", "16号", "17号", "18号", "19号", "20号","21号","22号", "23号", "24号", "25号", "26号", "27号","28号"]
+            }
+          ],
+          series : [
+            {
+              color: '#0039b3',
+              name:'花呗支出',
+              type:'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true
+                }
+              },
+              data:[20, 36, 10, 40, 20, 60, 5, 20, 36, 10, 40, 20, 60, 5, 20, 36, 10, 40, 20, 60,5, 20, 36, 10, 40, 20, 60, 5]
+            },
+            {
+              color: '#97b7fc',
+              name:'花呗还款',
+              type:'bar',
+              stack: '总量',
+              label: {
+                normal: {
+                  show: true,
+                  position: 'left'
+                }
+              },
+              data:[-5, -20, -36, -10, -40, -20, -80, -5, -20, -36, -10, -40, -20, -60, -5, -20, -36, -10, -40, -20, -60, -5, -20, -36, -10, -40, -20, -60]
+            }
+          ]
+        });
+      },
 
+
+      //饼状图集合
       drawOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
         let myOutcomePie = echarts.init(document.getElementById('myOutcomePie'))
@@ -528,7 +994,6 @@
           ]
         });
       },
-
       drawAdjustOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
         let myOutcomePie = echarts.init(document.getElementById('myAdjustOutcomePie'),'shine')
@@ -624,7 +1089,6 @@
           ]
         });
       },
-
       drawFoodOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
         let myOutcomePie = echarts.init(document.getElementById('myFoodOutcomePie'),'macarons')
@@ -722,68 +1186,7 @@
         });
       },
 
-      drawAntBar() {
-        // 基于准备好的dom，初始化echarts实例
-        let myAntBar = echarts.init(document.getElementById('myAntBar'))
-        // 绘制图表
-        myAntBar.setOption({
-          tooltip : {
-            trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-          },
-          legend: {
-            data:['花呗支出', '花呗还款']
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-          },
-          yAxis : [
-            {
-              type : 'value'
-            }
-          ],
-          xAxis : [
-            {
-              type : 'category',
-              axisTick : {show: false},
-              data : ["1号", "2号", "3号", "4号", "5号", "6号","7号","8号", "9号", "10号", "11号", "12号", "13号","14号","15号", "16号", "17号", "18号", "19号", "20号","21号","22号", "23号", "24号", "25号", "26号", "27号","28号"]
-            }
-          ],
-          series : [
-            {
-              color: '#0039b3',
-              name:'花呗支出',
-              type:'bar',
-              stack: '总量',
-              label: {
-                normal: {
-                  show: true
-                }
-              },
-              data:[20, 36, 10, 40, 20, 60, 5, 20, 36, 10, 40, 20, 60, 5, 20, 36, 10, 40, 20, 60,5, 20, 36, 10, 40, 20, 60, 5]
-            },
-            {
-              color: '#97b7fc',
-              name:'花呗还款',
-              type:'bar',
-              stack: '总量',
-              label: {
-                normal: {
-                  show: true,
-                  position: 'left'
-                }
-              },
-              data:[-5, -20, -36, -10, -40, -20, -80, -5, -20, -36, -10, -40, -20, -60, -5, -20, -36, -10, -40, -20, -60, -5, -20, -36, -10, -40, -20, -60]
-            }
-          ]
-        });
-      },
-
+      //线图集合
       drawK() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = echarts.init(document.getElementById('ForecastK'))
@@ -808,7 +1211,6 @@
           }]
         });
       },
-
       drawA() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = echarts.init(document.getElementById('ForecastA'))
@@ -832,7 +1234,177 @@
             smooth: true
           }]
         });
-      }
+      },
+
+      drawEngelsLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myEngelsLine = echarts.init(document.getElementById('myEngelsLine'))
+        // 绘制图表
+        myEngelsLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '恩格尔系数',
+            type: 'value'
+          },
+          series: [{
+            name: '恩格尔系数',
+            type: 'line',
+            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
+            smooth: true
+          }]
+        });
+      },
+      drawRigidLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myRigidLine = echarts.init(document.getElementById('myRigidLine'))
+        // 绘制图表
+        myRigidLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '刚性比率',
+            type: 'value'
+          },
+          series: [{
+            name: '刚性比率',
+            type: 'line',
+            data: [0.72, 0.52, 0.82, 0.65, 0.52, 0.55, 0.77, 0.40, 0.20, 0.72, 0.38, 0.67 ],
+            smooth: true
+          }]
+        });
+      },
+      drawLiabilityLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myLiabilityLine = echarts.init(document.getElementById('myLiabilityLine'))
+        // 绘制图表
+        myLiabilityLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '负债率',
+            type: 'value'
+          },
+          series: [{
+            name: '负债率',
+            type: 'line',
+            data: [0.02, 0.05, 0.02, 0.07, 0, 0.02, 0.05, 0.02, 0.05, 0.07, 0.03, 0.17 ],
+            smooth: true
+          }]
+        });
+      },
+      drawSolvencyLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let mySolvencyLine = echarts.init(document.getElementById('mySolvencyLine'))
+        // 绘制图表
+        mySolvencyLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '偿债能力',
+            type: 'value'
+          },
+          series: [{
+            name: '偿债能力',
+            type: 'line',
+            data: [0.72, 0.82, 0.82, 0.87, 0.80, 0.82, 0.85, 0.82, 0.75, 0.92, 0.98, 0.87 ],
+            smooth: true
+          }]
+        });
+      },
+      drawLeverageLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myLeverageLine = echarts.init(document.getElementById('myLeverageLine'))
+        // 绘制图表
+        myLeverageLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '杠杆比率',
+            type: 'value'
+          },
+          series: [{
+            name: '杠杆比率',
+            type: 'line',
+            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
+            smooth: true
+          }]
+        });
+      },
+      drawConsumptionLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let myConsumptionLine = echarts.init(document.getElementById('myConsumptionLine'))
+        // 绘制图表
+        myConsumptionLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '消费比率',
+            type: 'value'
+          },
+          series: [{
+            name: '消费比率',
+            type: 'line',
+            data: [0.72, 0.52, 0.82, 0.52, 0.55, 0.72, 0.38, 0.77, 0.40, 0.20, 0.65, 0.67 ],
+            smooth: true
+          }]
+        });
+      },
+      drawSavingLine() {
+        // 基于准备好的dom，初始化echarts实例
+        let mySavingLine = echarts.init(document.getElementById('mySavingLine'))
+        // 绘制图表
+        mySavingLine.setOption({
+          // title: { text: '预测您第n个月内的可调整支出A(n)' },
+          tooltip: {},
+          xAxis: {
+            name: '时间',
+            type: 'category',
+            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+          },
+          yAxis: {
+            name: '储蓄比率',
+            type: 'value'
+          },
+          series: [{
+            name: '储蓄比率',
+            type: 'line',
+            data: [0.32, 0.22, 0.20, 0.65, 0.52, 0.85, 0.82, 0.77, 0.40, 0.32, 0.38, 0.37 ],
+            smooth: true
+          }]
+        });
+      },
+
 
 
 
@@ -857,11 +1429,31 @@
     font-size: 22px;
   }
 
+  #bar_info i{
+    color: #409EFF;
+  }
+
+  #line_info i{
+    color: #409EFF;
+  }
+
+  #pie_info i{
+    color: #409EFF;
+  }
+
+  #myNextPay b>span{
+    font-size: 30px;
+    color: #409EFF;
+  }
+
 </style>
 
 <style>
   .el-tabs__item{
     font-size: 18px !important;
   }
+
+  /*#leftOV,#leftSP,#leftBI,#leftLI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }*/
+  #leftFS{ color: dodgerblue !important}
 
 </style>

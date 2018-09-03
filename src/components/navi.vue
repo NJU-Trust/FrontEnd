@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  inject:['reload'],
   name: 'navi',
   mounted: function () {
     $(localStorage.route).css("color","dodgerblue");
@@ -53,7 +54,7 @@ export default {
     // localStorage.account="test";
 
     $("#manageAccount").css('display','none');
-    if (localStorage.ifLogin){
+    if (localStorage.ifLogin==1){
       document.getElementById('last').removeChild(document.getElementById('signup'));
       document.getElementById('secondLast').removeChild(document.getElementById('login'));
       var personalCenter = document.createElement('a');
@@ -68,7 +69,7 @@ export default {
       message.className = 'message';
       message.src = '/static/pic/message_white.png';
       document.getElementById('secondLast').appendChild(message);
-      if (localStorage.ifUnread){
+      if (localStorage.ifUnread==1){
         message.src = '/static/pic/message_yellow.png';
       }
 
@@ -97,7 +98,7 @@ export default {
           message.src = '/static/pic/message_blue.png';
         },
         function(){
-          if(localStorage.ifUnread){
+          if(localStorage.ifUnread==1){
             message.src = '/static/pic/message_yellow.png';
           }else{
             message.src = '/static/pic/message_white.png';
@@ -121,9 +122,11 @@ export default {
 
   methods: {
     logout: function () {
-      this.$axios.get("/logout", {"account": 123}).then(res => {
-        localStorage.ifLogin = false;
-        this.$router.replace('/');
+      localStorage.ifLogin = 0;
+      this.$router.replace("/");
+      this.reload();
+      this.$axios.get("/logout", {"account": localStorage.account}).then(res => {
+
       });
     },
 
