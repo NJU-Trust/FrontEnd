@@ -56,7 +56,7 @@
     <div style="width: 100%;text-align: center;margin-top: 60px">
       <h2>优质标量身推荐</h2>
       <br>
-      <el-card style="height: 600px;width: 90%;margin-left:5%;overflow-y: auto;overflow-x: hidden">
+      <el-card id="recommend" style="height: 600px;width: 90%;margin-left:5%;overflow-y: auto;overflow-x: hidden">
         <invest-list></invest-list><br>
         <invest-list></invest-list><br>
         <invest-list></invest-list><br>
