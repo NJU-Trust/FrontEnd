@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="pie_template">
     <div>
-      <p>您选中了{{ monthPie }}</p>
+      <!--<p>您选中了{{ monthPie }}</p>-->
     </div>
     <div>
       <el-row :gutter="20">
@@ -65,182 +65,297 @@
       }
     },
     mounted() {
-      this.drawEngelsLine();
-      this.drawRigidLine();
-      this.drawLiabilityLine();
-      this.drawSolvencyLine();
-      this.drawLeverageLine();
-      this.drawConsumptionLine();
-      this.drawSavingLine();
+      this.drawOutcomePie();
+      this.drawAdjustOutcomePie();
+      this.drawFoodOutcomePie();
     },
     methods: {
-      //线图集合
-      drawEngelsLine() {
+      //饼状图集合
+      drawOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
-        let myEngelsLine = echarts.init(document.getElementById('myEngelsLine'))
+        let myOutcomePie = echarts.init(document.getElementById('myOutcomePie'))
         // 绘制图表
-        myEngelsLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+        myOutcomePie.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
           },
-          yAxis: {
-            name: '恩格尔系数',
-            type: 'value'
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['总日常支出','总学习支出','总饮食支出','总出行支出','总娱乐支出']
           },
-          series: [{
-            name: '恩格尔系数',
-            type: 'line',
-            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
-            smooth: true
-          }]
+          series: [
+            // {
+            //   name:'访问来源',
+            //   type:'pie',
+            //   selectedMode: 'single',
+            //   radius: [0, '30%'],
+            //
+            //   label: {
+            //     normal: {
+            //       position: 'inner'
+            //     }
+            //   },
+            //   labelLine: {
+            //     normal: {
+            //       show: false
+            //     }
+            //   },
+            //   data:[
+            //     {value:335, name:'直达', selected:true},
+            //     {value:679, name:'营销广告'},
+            //     {value:1548, name:'搜索引擎'}
+            //   ]
+            // },
+            {
+              name:'支出去向',
+              type:'pie',
+              radius: ['40%', '55%'],
+              label: {
+                normal: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#eee',
+                  borderColor: '#aaa',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  // shadowBlur:3,
+                  // shadowOffsetX: 2,
+                  // shadowOffsetY: 2,
+                  // shadowColor: '#999',
+                  // padding: [0, 7],
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    // abg: {
+                    //     backgroundColor: '#333',
+                    //     width: '100%',
+                    //     align: 'right',
+                    //     height: 22,
+                    //     borderRadius: [4, 4, 0, 0]
+                    // },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              data:[
+                {value:310, name:'总日常支出'},
+                {value:234, name:'总学习支出'},
+                {value:135, name:'总饮食支出'},
+                {value:666, name:'总出行支出'},
+                {value:251, name:'总娱乐支出'},
+              ]
+            }
+          ]
         });
       },
-      drawRigidLine() {
+      drawAdjustOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
-        let myRigidLine = echarts.init(document.getElementById('myRigidLine'))
+        let myOutcomePie = echarts.init(document.getElementById('myAdjustOutcomePie'),'shine')
         // 绘制图表
-        myRigidLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+        myOutcomePie.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
           },
-          yAxis: {
-            name: '刚性比率',
-            type: 'value'
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['衣物饰品等消费性支出','饮食可调整支出','住宿可调整支出','娱乐爱好可调整支出']
           },
-          series: [{
-            name: '刚性比率',
-            type: 'line',
-            data: [0.72, 0.52, 0.82, 0.65, 0.52, 0.55, 0.77, 0.40, 0.20, 0.72, 0.38, 0.67 ],
-            smooth: true
-          }]
+          series: [
+            // {
+            //   name:'访问来源',
+            //   type:'pie',
+            //   selectedMode: 'single',
+            //   radius: [0, '30%'],
+            //
+            //   label: {
+            //     normal: {
+            //       position: 'inner'
+            //     }
+            //   },
+            //   labelLine: {
+            //     normal: {
+            //       show: false
+            //     }
+            //   },
+            //   data:[
+            //     {value:335, name:'直达', selected:true},
+            //     {value:679, name:'营销广告'},
+            //     {value:1548, name:'搜索引擎'}
+            //   ]
+            // },
+            {
+              name:'支出去向',
+              type:'pie',
+              radius: ['40%', '55%'],
+              label: {
+                normal: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#eee',
+                  borderColor: '#aaa',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  // shadowBlur:3,
+                  // shadowOffsetX: 2,
+                  // shadowOffsetY: 2,
+                  // shadowColor: '#999',
+                  // padding: [0, 7],
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    // abg: {
+                    //     backgroundColor: '#333',
+                    //     width: '100%',
+                    //     align: 'right',
+                    //     height: 22,
+                    //     borderRadius: [4, 4, 0, 0]
+                    // },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              data:[
+                {value:310, name:'衣物饰品等消费性支出'},
+                {value:234, name:'饮食可调整支出'},
+                {value:135, name:'住宿可调整支出'},
+                {value:666, name:'娱乐爱好可调整支出'},
+              ]
+            }
+          ]
         });
       },
-      drawLiabilityLine() {
+      drawFoodOutcomePie() {
         // 基于准备好的dom，初始化echarts实例
-        let myLiabilityLine = echarts.init(document.getElementById('myLiabilityLine'))
+        let myOutcomePie = echarts.init(document.getElementById('myFoodOutcomePie'),'macarons')
         // 绘制图表
-        myLiabilityLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
+        myOutcomePie.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
           },
-          yAxis: {
-            name: '负债率',
-            type: 'value'
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['食堂支出','外卖支出','外出就餐支出','零食水果支出（三餐除外）']
           },
-          series: [{
-            name: '负债率',
-            type: 'line',
-            data: [0.02, 0.05, 0.02, 0.07, 0, 0.02, 0.05, 0.02, 0.05, 0.07, 0.03, 0.17 ],
-            smooth: true
-          }]
-        });
-      },
-      drawSolvencyLine() {
-        // 基于准备好的dom，初始化echarts实例
-        let mySolvencyLine = echarts.init(document.getElementById('mySolvencyLine'))
-        // 绘制图表
-        mySolvencyLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
-          },
-          yAxis: {
-            name: '偿债能力',
-            type: 'value'
-          },
-          series: [{
-            name: '偿债能力',
-            type: 'line',
-            data: [0.72, 0.82, 0.82, 0.87, 0.80, 0.82, 0.85, 0.82, 0.75, 0.92, 0.98, 0.87 ],
-            smooth: true
-          }]
-        });
-      },
-      drawLeverageLine() {
-        // 基于准备好的dom，初始化echarts实例
-        let myLeverageLine = echarts.init(document.getElementById('myLeverageLine'))
-        // 绘制图表
-        myLeverageLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
-          },
-          yAxis: {
-            name: '杠杆比率',
-            type: 'value'
-          },
-          series: [{
-            name: '杠杆比率',
-            type: 'line',
-            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
-            smooth: true
-          }]
-        });
-      },
-      drawConsumptionLine() {
-        // 基于准备好的dom，初始化echarts实例
-        let myConsumptionLine = echarts.init(document.getElementById('myConsumptionLine'))
-        // 绘制图表
-        myConsumptionLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
-          },
-          yAxis: {
-            name: '消费比率',
-            type: 'value'
-          },
-          series: [{
-            name: '消费比率',
-            type: 'line',
-            data: [0.72, 0.52, 0.82, 0.52, 0.55, 0.72, 0.38, 0.77, 0.40, 0.20, 0.65, 0.67 ],
-            smooth: true
-          }]
-        });
-      },
-      drawSavingLine() {
-        // 基于准备好的dom，初始化echarts实例
-        let mySavingLine = echarts.init(document.getElementById('mySavingLine'))
-        // 绘制图表
-        mySavingLine.setOption({
-          // title: { text: '预测您第n个月内的可调整支出A(n)' },
-          tooltip: {},
-          xAxis: {
-            name: '时间',
-            type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月","7月","8月","9月","10月","11月","12月"]
-          },
-          yAxis: {
-            name: '储蓄比率',
-            type: 'value'
-          },
-          series: [{
-            name: '储蓄比率',
-            type: 'line',
-            data: [0.32, 0.22, 0.20, 0.65, 0.52, 0.85, 0.82, 0.77, 0.40, 0.32, 0.38, 0.37 ],
-            smooth: true
-          }]
+          series: [
+            {
+              name:'支出条数',
+              type:'pie',
+              selectedMode: 'single',
+              radius: [0, '30%'],
+
+              label: {
+                normal: {
+                  position: 'inner'
+                }
+              },
+              labelLine: {
+                normal: {
+                  show: false
+                }
+              },
+              data:[
+                {value:35, name:'食堂条数'},
+                {value:15, name:'外卖单数'},
+                {value:7, name:'外出次数'},
+                {value:9, name:'零食水果', selected:true}
+              ]
+            },
+            {
+              name:'支出去向',
+              type:'pie',
+              radius: ['40%', '55%'],
+              label: {
+                normal: {
+                  formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                  backgroundColor: '#eee',
+                  borderColor: '#aaa',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  // shadowBlur:3,
+                  // shadowOffsetX: 2,
+                  // shadowOffsetY: 2,
+                  // shadowColor: '#999',
+                  // padding: [0, 7],
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    // abg: {
+                    //     backgroundColor: '#333',
+                    //     width: '100%',
+                    //     align: 'right',
+                    //     height: 22,
+                    //     borderRadius: [4, 4, 0, 0]
+                    // },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 16,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              data:[
+                {value:652, name:'食堂支出'},
+                {value:234, name:'外卖支出'},
+                {value:135, name:'外出就餐支出'},
+                {value:78, name:'零食水果支出（三餐除外）'},
+              ]
+            }
+          ]
         });
       },
 
@@ -250,33 +365,8 @@
 </script>
 
 <style scoped>
-  .LevelTwoPanel i{
-    color: #409EFF;
-  }
 
-  .LoanPanel {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .LoanHighLight {
-    font-size: 22px;
-  }
-
-  #bar_info i{
-    color: #409EFF;
-  }
-
-  #line_info i{
-    color: #409EFF;
-  }
-
-  #pie_info i{
-    color: #409EFF;
-  }
-
-  #myNextPay b>span{
-    font-size: 30px;
+  #pie_template i{
     color: #409EFF;
   }
 
