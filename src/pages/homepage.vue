@@ -55,7 +55,10 @@
 
     <div style="width: 100%;text-align: center;margin-top: 60px">
       <h2>优质标量身推荐</h2>
-      <br>
+      <br><br>
+      <el-button type="plain" id="shiftRecommend"  v-on:click="shiftRecommend()" round>小额/大额推荐</el-button>
+      <a href="/invest"><el-button type="plain" id="goInvest" style="margin-left: 60%" v-on:click="shiftRecommend()" round>进入投资中心</el-button></a>
+      <br><br>
       <el-card id="recommend" style="height: 600px;width: 90%;margin-left:5%;overflow-y: auto;overflow-x: hidden">
         <invest-list></invest-list><br>
         <invest-list></invest-list><br>
