@@ -60,6 +60,7 @@ export default {
       var personalCenter = document.createElement('a');
       personalCenter.innerText = '个人中心';
       personalCenter.href = '/userSpace';
+      personalCenter.id='userSpace';
       var newLi = document.createElement('li');
       newLi.style.cssFloat = 'right';
       $('#nav').append(newLi);
