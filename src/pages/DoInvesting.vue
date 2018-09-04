@@ -62,7 +62,7 @@
 <script>
     import navi from '@/components/navi.vue';
     import rightBar from '@/components/rightBar.vue';
-    import FinStanding from '@/components/FinStanding.vue';
+    import FinStanding from '@/components/finStanding.vue';
     export default {
       name: "DoInvesting",
       components:{navi,rightBar,FinStanding},

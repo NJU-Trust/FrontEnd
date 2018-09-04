@@ -6,7 +6,7 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  import FinStanding from "../components/finstanding";
+  import FinStanding from "../components/finStanding";
 
   export default {
     name:"FinancialStanding",
