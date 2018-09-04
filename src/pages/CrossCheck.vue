@@ -194,24 +194,79 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="待填问卷" name="second">
-        <div>
-  <div class="AluUsrInstruction" id="ad_info" style="display: inline;margin-top: 10px;margin-bottom: 10px">
-    <h3 style="text-indent: 0px">关系网验证</h3>
-    <p class="lead">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;芝麻信用，是蚂蚁金服旗下独立的第三方征信机构，通过云计算、机器学习等技术客观呈现个人的信用状况，已经在信用卡、消费金融、融资租赁、酒店、租房、出行、婚恋、分类信息、学生服务、公共事业服务等上百个场景为用户、商户提供信用服务。
-    </p>
-  </div>
-  <hr/>
-  <div style="min-height: 300px">
-    <h1>未完待续……</h1>
+        <div class="AluUsrInstruction"  style="display: inline;margin-top: 10px;margin-bottom: 10px">
+          <h3 style="text-indent: 0px">待填问卷</h3>
+        </div>
+        <template>
+          <el-table
+            :data="pendingQuestion"
+            max-height="300"
+            style="width: 640px;position:relative;left:120px;">
+            <el-table-column
+              prop="type"
+              label="问卷类型"
+              :filters="[{text:'用户选择',value:'用户选择'},{text:'系统随机',value:'系统随机'}]"
+              :filter-method="filterHandler"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="depart"
+              label="院系"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="num"
+              label="学号"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              label="操作"
+              width="100">
+              <template slot-scope="scope">
+                <el-button @click="handleClick(scope.row)" type="text" size="small">点击填写</el-button>
+              </template>
+            </el-table-column>
 
-  </div>
-  <hr/>
-  <div style="text-align: justify">
-    <el-button type="primary" round>&nbsp;提交&nbsp;</el-button>
-  </div>
+          </el-table>
+        </template>
+        <br/><br/>
+        <div class="AluUsrInstruction"  style="display: inline;margin-top: 10px;margin-bottom: 10px">
+          <h3 style="text-indent: 0px">过期问卷</h3>
+        </div>
+        <template>
+          <el-table
+            :data="delayQuestion"
+            max-height="300"
+            style="width: 640px;position:relative;left:120px;">
+            <el-table-column
+              prop="type"
+              label="问卷类型"
+              :filters="[{text:'用户选择',value:'用户选择'},{text:'系统随机',value:'系统随机'}]"
+              :filter-method="filterHandler"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="depart"
+              label="院系"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="num"
+              label="学号"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              label="操作"
+              width="100">
+              <template slot-scope="scope">
+                <el-button @click="handleClick(scope.row)" type="text" size="small">点击删除</el-button>
+              </template>
+            </el-table-column>
 
-</div>
+          </el-table>
+        </template>
+        <br/><br/>
+
 
       </el-tab-pane>
     </el-tabs>
@@ -244,6 +299,21 @@
         userstate:3,          //这里有四种状态：0 已完成、1 未完成、2 还待填写、3 等待时间过长还没填完
         grade:90,             //总评分
         done:3,
+        pendingQuestion:[
+          {type:'用户选择',depart:'工程管理学院',num:161270000},
+          {type:'用户选择',depart:'计算机科学与技术系',num:161220000},
+          {type:'系统随机',depart:'工程管理学院',num:161270000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
+          {type:'系统随机',depart:'计算机科学与技术系',num:161220000},
+        ],
+        delayQuestion:[
+          {type:'用户选择',depart:'工程管理学院',num:161270000},
+          {type:'用户选择',depart:'计算机科学与技术系',num:161220000},
+          {type:'系统随机',depart:'工程管理学院',num:161270000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
+          {type:'系统随机',depart:'计算机科学与技术系',num:161220000},
+        ],
+
         delaylist:[
           {depart:'计算机科学与技术系',num:161220000,name:'小明'},
           {depart:'工程管理学院',num:161270000,name:'小红'},
@@ -343,8 +413,8 @@
       }
     },
 
-    methods:{
-      send:function(userstate){
+    methods: {
+      send: function (userstate) {
         //这里会将状态改变传给后端，重新加载页面的时候状态就会传过来，自动跳转到状态2的情况
         console.log(userstate);
         this.$confirm('您的用户选择已提交。系统将及时发送问卷至相应用户邮箱。', '提示', {
@@ -370,7 +440,11 @@
         this.$router.push('/UserSpace/CrossCheck');
         console.log(tab, event);
       },
-    },
+      filterHandler(value, row, column) {
+        const property = column['property'];
+        return row[property] === value;
+      },
+    }
   }
 
 </script>

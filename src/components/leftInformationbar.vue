@@ -38,7 +38,7 @@
     height:550px;
     width:200px;
     margin-right: 10%;
-    margin-left: 16%;
+    margin-left: 18%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);

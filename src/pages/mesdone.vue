@@ -17,7 +17,8 @@
     </div>
 
     <!--正文-->
-    <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
+    <div class="back">
+      <div class="mesboxborder">
       <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:90px;width:800px;">
         <el-tab-pane label="失物招领" name="first">
           <div v-for="i in mesdata.length" :key="i">
@@ -101,6 +102,7 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+    </div>
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -160,9 +162,16 @@
 </script>
 
 <style scoped>
+  .back{
+    /*background-color: rgba(173,216,230,0.5);*/
+    width: 100%;
+    height: 400px;
+    display:flex;
+  }
+
   div.myspace{
     /*个人中心*/
-    text-indent: 4.5%;
+    text-indent:6.3%;
     color: black;
     background-color: white;
     margin: 0px;
@@ -184,13 +193,16 @@
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
     height:550px;
-    width:1000px;
+    width:950px;
     margin-right: 10%;
     margin-left: 16%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
+    position:absolute;top:200px;
+    margin-left: 24%;
+
   }
   .text {
     font-size: 14px;

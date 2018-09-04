@@ -18,7 +18,7 @@
 
     <!--正文-->
     <div class="back">
-      <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
+      <div class="mesboxborder">
         <!--图标分隔 -->
         <el-breadcrumb separator-class="el-icon-arrow-right" style="position:relative;top:60px;left:60px;">
           <el-breadcrumb-item :to="{ path: '/' }" style="font-size: 16px;">首页</el-breadcrumb-item>
@@ -197,13 +197,13 @@
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    height: 300px;
+    height: 400px;
     display:flex;
   }
 
   div.myspace{
     /*个人中心*/
-    text-indent: 4.5%;
+    text-indent:6.3%;
     color: black;
     background-color: white;
     margin: 0px;
@@ -219,18 +219,22 @@
     color: #505050;
   }
 
+  /*消息框*/
   .mesboxborder{
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
     height:700px;
-    width:1000px;
+    width:950px;
     margin-right: 10%;
     margin-left: 16%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
+    position:absolute;top:200px;
+    margin-left: 24%;
+
   }
 
   .textitem{

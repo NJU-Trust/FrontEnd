@@ -107,13 +107,12 @@
               </template>
             </el-table-column>
           </el-table>
-          <div style="position:relative;top:20px;left:757px;">
-              <el-button size="mini"
-                         type="primary"
-                         @click="clear()"
-              >审核其他用户
-              </el-button>
-          </div>
+          <el-button size="mini"
+                     type="primary"
+                     style="position:relative;left:700px;top:20px;"
+                     @click="clear()"
+          >审核其他用户
+          </el-button>
         </template>
         <!--旧版-->
         <!--<el-table
