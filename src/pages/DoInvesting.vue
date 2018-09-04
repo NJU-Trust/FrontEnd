@@ -47,7 +47,7 @@
             <p v-html="Abstract"></p>
           </el-tab-pane>
           <el-tab-pane label="借款人信息" style="padding:30px 60px 10px 30px;font-size:18px;line-height: 30px;">
-            <p v-html="borrowerInfo"></p>
+            <FinStanding></FinStanding>
           </el-tab-pane>
           <el-tab-pane label="投标记录" style="padding:30px 60px 10px 30px;font-size:18px;line-height: 30px;">
             <p v-html="InvestInfo"></p>
@@ -62,9 +62,10 @@
 <script>
     import navi from '@/components/navi.vue';
     import rightBar from '@/components/rightBar.vue';
+    import FinStanding from '@/components/FinStanding.vue';
     export default {
       name: "DoInvesting",
-      components:{navi,rightBar},
+      components:{navi,rightBar,FinStanding},
       data(){
         return{
           percentage:70,
