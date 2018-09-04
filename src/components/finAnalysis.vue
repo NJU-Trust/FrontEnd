@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <finpies v-bind:mouthtest= "mouth_single"></finpies>
+    </div>
     <div class="chooseButton">
       <el-radio v-model="inoutcome" label="1" id="bar_btn" @change="change_bar" border>数值比较</el-radio>
       <el-radio v-model="inoutcome" label="2" id="line_btn" @change="change_line" border>趋势分析</el-radio>
@@ -272,6 +275,7 @@
 
 <script>
   // 引入基本模板
+  import Finpies from "./finPies";
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
   require('echarts/lib/chart/bar')
@@ -286,6 +290,7 @@
 
   export default {
     name: 'finAnalysis',
+    components: {Finpies},
     data() {
       return{
         mouth_start: '',
