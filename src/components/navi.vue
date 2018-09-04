@@ -143,15 +143,12 @@ export default {
     background-color: black;
     z-index: 1;
   }
-  .logo{
-    max-width: 9%;
-    display: inline-block;
-    margin-left: 8%;
-    margin-top: -48px;
-  }
+
+
   .wholeNav{
     border-color: transparent;
     display: inline-block;
+    width: 84%;
     min-width: 80%;
     min-height: 30px;
     margin-top: 5px;
@@ -164,6 +161,13 @@ export default {
 </style>
 
 <style>
+  #naviLogo{
+    max-width: 9%;
+    display: inline-block;
+    margin-left: 6%;
+    margin-top: -48px;
+  }
+
   #nav li{
     min-width: 90px;
     text-align: center;
