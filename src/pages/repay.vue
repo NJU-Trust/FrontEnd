@@ -1,7 +1,8 @@
 <template>
   <personalCenter paneltitle="还款">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="基本信息" name="first">
+      <el-tab-pane label="项目信息" name="first">
+        <div>基本信息</div>
         <div style="display: flex;padding-top: 20px">
 
           <el-card class="info1" v-model="info1" shadow="always" :class="info1" align="center">
@@ -36,6 +37,31 @@
               <el-progress type="circle" :percentage="25" width="110"></el-progress>
             </div>
           </el-card>
+        </div>
+        <hr>
+        <div>项目概要</div>
+        <div style="display: flex">
+          <el-card align="center" shadow="always" style="width: 320px;height: 300px;margin-top: 20px">
+            <div class="title">
+              资金用途
+            </div>
+
+            <div class="usage" style="margin-top: 50px">
+              分类：学习/购买学习用品
+            </div>
+            <div class="usage">
+              详述：买了文具和笔
+            </div>
+
+          </el-card>
+
+          <el-card align="center" shadow="always" style="width: 450px;margin-left: 50px;margin-top: 20px">
+            <div class="title">
+              关于贷款
+            </div>
+
+          </el-card>
+
         </div>
         <!--<div id="financial_id"><br/>
           <div class="chooseButton">
@@ -307,14 +333,25 @@
           </div>
         </div>-->
       </el-tab-pane>
-      <el-tab-pane label="项目概要" name="second">
+      <el-tab-pane label="还款分析" name="second">
+        <div>还款方式</div>
         <div style="display: flex">
-          <div class="type">
-          </div>
-          <div class="type">
+          <div align="center" style="margin-left: 170px;font-size: 25px;line-height: 100px" >
+            <div>
+              您当前的还款方式是： <span style="color: #409EFF">{{return_scheme.return_way}}</span>
+            </div>
+            <div>
+              还款难度：<i v-for="n in return_scheme.difficulty" class="el-icon-star-on" style="color:#409EFF"></i>
+            </div>
 
           </div>
+          <div>
 
+          </div>
+        </div>
+        <hr>
+        <div>
+          还款历史
         </div>
         <!--<div id="loan_id">
           <h3><b>消费修正建议</b></h3><hr/>
@@ -427,6 +464,8 @@
       </el-tab-pane>
       <el-tab-pane label="还款分析" name="third"></el-tab-pane>
       <el-tab-pane label="还款历史" name="fourth"></el-tab-pane>
+      <el-tab-pane label="违约情况" name="fifth"></el-tab-pane>
+
     </el-tabs>
   </personalCenter>
 </template>
@@ -469,6 +508,10 @@
           name:'项目名称',
           days:0,
           money:50
+        },
+        return_scheme:{
+          return_way:'等额本金',
+          difficulty:4,
         },
         activeName: 'first',
         mouth_start: '',
@@ -1460,14 +1503,6 @@
 
 <style>
 
-  .type{
-    width: 300px;
-    height: 400px;
-    border: 2px #d6d6d6 solid;
-    border-radius:10px;
-    /*padding-top: 50px;*/
-  }
-
   .info1{
     /*padding-left: 45px;*/
     width: 200px;
@@ -1501,6 +1536,21 @@
     margin-left: 50px;
     width: 170px;
   }
+
+  .title{
+    font-size: 22px;
+    margin-top: 10px;
+    color: #6c9ab7;
+    font-family: "Adobe Caslon Pro";
+    /*font-weight: bold;*/
+  }
+
+  .usage{
+    font-size: 18px;
+    margin-top: 10px;
+
+  }
+
 
   .LevelTwoPanel i{
     color: #409EFF;
