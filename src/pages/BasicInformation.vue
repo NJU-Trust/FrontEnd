@@ -72,7 +72,6 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="修改密码" name="second">
-
       </el-tab-pane>
       <el-tab-pane label="安全验证" name="third">
 
@@ -94,8 +93,17 @@
     },
     methods: {
       handleClick(tab, event) {
+        if(activeName == 'second')
+        {
+          alert('修改密码');
+        }
+        else
+        {
+          alert('hhh');
+        }
         console.log(tab, event);
-      }
+
+      },
     }
   }
 
