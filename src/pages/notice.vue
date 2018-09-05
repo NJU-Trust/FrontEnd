@@ -11,13 +11,9 @@
       </div>
     </div>
 
-    <!--左边栏-->
-    <div>
-      <leftInformationbar></leftInformationbar>
-    </div>
-
     <!--正文-->
     <div class="back">
+      <leftInformationbar></leftInformationbar>
       <div class="publishmes" >
       <el-form :rules="rules"
                :inline="true"
@@ -84,9 +80,13 @@
     </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
+
+    <!-- <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
+       <footerBar></footerBar>
+     </div>-->
 
   </div>
 </template>
@@ -168,7 +168,9 @@
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    height: 200px;
+    background-color: #D9F3FB;
+    min-height:700px;
+    //height: 200px;
     display:flex;
   }
 
@@ -193,8 +195,9 @@
   .publishmes{
     background:white;
     border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
+    //border-top:5px solid dodgerblue;
     height:550px;
+    //width:100%;
     width:950px;
     margin-right: 10%;
     margin-left: 16%;
@@ -202,7 +205,7 @@
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
-    position:absolute;top:200px;
+    position:absolute;top:222px;
     margin-left: 24%;
   }
 
