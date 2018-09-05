@@ -2,7 +2,7 @@
   <div class="container">
     <a href='/'><img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
     <div class="mainbox">
-      <div class="loginbody">
+      <div class="mainbody">
         <h3 style="color: white;float: top;" align="center">注册</h3>
         <input id="phone" type="text" style="margin-top: 20px;" placeholder="请输入手机号码">
         <input id="email" type="text" style="margin-top: 20px" placeholder="请输入邮箱地址">
@@ -105,7 +105,7 @@
             });
           },
           sendEmail: function () {
-            var email=$('email').val();
+            var email=$('#email').val();
             this.$axios.post("http://localhost:8000/api/auth/signup/sendEmail", {"email":email}).then(res => {
               var data=res.data;
               if(data.result==1){
@@ -131,7 +131,7 @@
             });
           },
           sendMessage: function () {
-            var phone=$('phone').val();
+            var phone=$('#phone').val();
             this.$axios.post("http://localhost:8000/api/auth/signup/sendMessage", {"phone":phone}).then(res => {
               var data=res.data;
               if(data.result==1){
@@ -179,7 +179,7 @@
     margin-top: 100px;
   }
 
-  .loginbody{
+  .mainbody{
     width:40%;
     height: 615px;
     position: relative;

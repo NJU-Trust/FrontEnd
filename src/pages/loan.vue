@@ -635,7 +635,7 @@
     }
     .sheet{
       margin-top: 100px;
-      margin-left:27%;
+      margin-left:25%;
 
     }
     .chooseButton{
