@@ -20,7 +20,7 @@
         <el-input id="password" type="password" class="loginInput" style="margin-top: 8%;" align="center" placeholder="请输入密码"></el-input><br>
         <el-checkbox id="remember" style="margin-top: 3%;margin-left: 8%"></el-checkbox>
         <p style="display: inline;">记住密码</p>
-        <a href="./findPassword" style="float: right;margin-right: 8%;display: inline;margin-top: 3%">忘记密码？</a>
+        <a href="/findPassword" style="float: right;margin-right: 8%;display: inline;margin-top: 3%">忘记密码？</a>
         <el-button type="primary" id="login" v-on:click="login()" round>登录</el-button>
         <div style="width: 100%;text-align: center;margin-top: 20px">
           <a href="/signup" style="font-size: 16px;color: lightskyblue;">即刻注册</a>
