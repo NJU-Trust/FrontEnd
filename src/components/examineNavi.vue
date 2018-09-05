@@ -64,7 +64,12 @@
         var message = document.createElement('img');
         message.className = 'message';
         message.src = '/static/pic/message_white.png';
-        document.getElementById('secondLast').appendChild(message);
+        var mes=document.createElement('a');
+        mes.href="/messageList";
+        mes.appendChild(message);
+        mes.style.border="none";
+        document.getElementById('secondLast').appendChild(mes);
+
         if (localStorage.ifUnread==1){
           message.src = '/static/pic/message_yellow.png';
         }
