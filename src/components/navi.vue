@@ -69,7 +69,12 @@ export default {
       var message = document.createElement('img');
       message.className = 'message';
       message.src = '/static/pic/message_white.png';
-      document.getElementById('secondLast').appendChild(message);
+      var mes=document.createElement('a');
+      mes.href="/messageList";
+      mes.appendChild(message);
+      mes.style.border="none";
+      document.getElementById('secondLast').appendChild(mes);
+
       if (localStorage.ifUnread==1){
         message.src = '/static/pic/message_yellow.png';
       }
@@ -188,14 +193,13 @@ export default {
   .message{
     height:25px;
     width: auto;
-    margin-top: 10px;
+    margin-top: 0px;
     cursor: pointer;
   }
 
   .message:hover{
     height:25px;
     width: auto;
-    margin-top: 10px;
   }
 
   .photo{
