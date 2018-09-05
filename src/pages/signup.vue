@@ -105,7 +105,7 @@
             });
           },
           sendEmail: function () {
-            var email=$('email').val();
+            var email=$('#email').val();
             this.$axios.post("http://localhost:8000/api/auth/signup/sendEmail", {"email":email}).then(res => {
               var data=res.data;
               if(data.result==1){
@@ -131,7 +131,7 @@
             });
           },
           sendMessage: function () {
-            var phone=$('phone').val();
+            var phone=$('#phone').val();
             this.$axios.post("http://localhost:8000/api/auth/signup/sendMessage", {"phone":phone}).then(res => {
               var data=res.data;
               if(data.result==1){

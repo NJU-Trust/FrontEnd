@@ -47,6 +47,7 @@ import test from '@/pages/test'
 import subjectManage from '@/pages/subjectManage'
 import subjectManageDetail from '@/pages/subjectManageDetail'
 import findPassword from '@/pages/findPassword'
+import resetPassword from '@/pages/resetPassword'
 
 Vue.use(Router)
 
@@ -284,6 +285,11 @@ export default new Router({
       path:'/findPassword',
       name:'findPassword',
       component:findPassword
+    },
+    {
+      path:'/resetPassword',
+      name:'resetPassword',
+      component:resetPassword
     },
 
 

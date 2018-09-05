@@ -3,11 +3,10 @@
     <a href='/'><img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
     <div class="mainbox">
       <div class="mainbody">
-        <h3 style="color: white;float: top;" align="center">找回密码</h3>
-        <input id="account" type="text" style="margin-top: 40px" placeholder="请输入用户名/手机号/邮箱">
-        <input id="code" type="text" style="width:40%;margin-top: 40px;" placeholder="请输入验证码">
-        <button id="sendCode" style="vertical-align: -3%" v-on:click="sendCode()">获取验证码</button>
-        <button id="signup" class="bigButton" v-on:click="findPW()">下一步</button><br>
+        <h3 style="color: white;float: top;" align="center">重置密码</h3>
+        <input id="password" type="password" style="margin-top: 40px;" align="center" placeholder="请输入新密码，长度在6到20个字符之间"><br>
+        <input id="passwordConfirm" type="password" style="margin-top: 40px;" align="center" placeholder="确认新密码"><br>
+        <button id="signup" class="bigButton" v-on:click="resetPW()">确认重置</button><br>
         <div style="width: 100%;text-align: center;margin-top: 25px">
           <a href="/login" style="font-size: 16px;color: yellow;">返回登录界面</a>
         </div>
@@ -29,49 +28,50 @@
 <script>
   import footerBar from '@/components/footerBar.vue';
     export default {
-        name: "findPassword",
+        name: "resetPassword",
       components: {footerBar},
+      mounted:function(){
+        $("#password").change(function () {
+          if($("#password").val().length<6){
+            alert("密码长度过短");
+            $('#signup').attr("disabled",true);
+            this.focus();
+          }
+          else if($("#password").val().length>20){
+            alert("密码长度过长");
+            $('#signup').attr("disabled",true);
+            this.focus();
+          }
+          else{
+            $('#signup').attr("disabled",false);
+          }
+        });
+        $("#passwordConfirm").change(function () {
+          if($("#passwordConfirm").val()!=$("#password").val()){
+            alert("密码前后不一致");
+            $('#resetPW').attr("disabled",true);
+            this.focus();
+          }
+          else{
+            $('#resetPW').attr("disabled",false);
+          }
+        });
+      },
+
       methods: {
-        sendCode: function () {
-          var account = $('#account').val();
-          this.$axios.post("http://localhost:8000/api/auth/findPW/sendCode", {"account": account}).then(res => {
-            var data = res.data;
-            if (data.result == 1) {
-              $('#sendCode').attr("disabled", true);
-              var time = 60;
-              var myScroll = setInterval(() => {
-                time--;
-                if (time >= 0) {
-                  $('#sendCode').html(time + "s后重发送");
-                } else {
-                  $('#sendCode').html("发送验证码");
-                  $('#sendCode').attr("disabled", false);   //倒计时结束能够重新点击发送的按钮
-                  clearTimeout(timer);    //清除定时器
-                  time = 60;   //设置循环重新开始条件
-                }
-              }, 1000);
-            } else if (data.result == 2) {
-              alert("账户不存在");
-            } else {
-              alert("发送失败");
-            }
-
-          });
-        },
-
-        findPW: function () {
-          var ac = document.getElementById('account').value;
-          var co = document.getElementById('code').value;
-          this.$axios.post('/user/signin', {"username": ac, "code": co}).then(
+        resetPW: function () {
+          var ac = localStorage.accountOfReset;
+          var pw = document.getElementById('password').value;
+          this.$axios.post('/user/resetPW', {"account": ac, "password": pw}).then(
             res => {
               //store.commit(types.LOGIN, res.data['accessToken']);
               var data = res.data;
               if (data.result == 1) {
-                localStorage.accountOfReset=ac;
-                this.$router.replace('/resetPassword');
+                alert("重置成功")
+                this.$router.replace('/login');
               }
               else if (data.result == 0) {
-                alert("验证码错误");
+                alert("重置失败");
               }
             }).catch(err => {
               console.log(err);
@@ -80,6 +80,7 @@
         }
       }
     }
+
 </script>
 
 <style scoped>
