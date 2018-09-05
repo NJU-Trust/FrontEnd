@@ -182,14 +182,12 @@
   .message{
     height:25px;
     width: auto;
-    margin-top: 10px;
     cursor: pointer;
   }
 
   .message:hover{
     height:25px;
     width: auto;
-    margin-top: 10px;
   }
 
   .photo{

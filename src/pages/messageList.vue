@@ -21,5 +21,6 @@
     background-position: center center;
     background-repeat: no-repeat;
     padding: 0;
+    height: 600px;
   }
 </style>
