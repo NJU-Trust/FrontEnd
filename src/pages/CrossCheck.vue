@@ -1,7 +1,8 @@
 <template>
   <personalCenter paneltitle="关系验证">
     <el-tabs v-model="activeName" @tab-click="handleClick" >
-      <el-tab-pane label="我的网络" name="first" >
+      <el-tab-pane  name="first">
+        <span slot="label" style="font-size:19px;">我的网络</span>
         <div v-if="userstate === 0" >
           <br/><br/>
           <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 您已经完成关系网络检验，您的关系检验总评分是：
@@ -193,14 +194,15 @@
           </el-form>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="待填问卷" name="second">
+      <el-tab-pane  name="second">
+        <span slot="label" style="font-size:19px;">待填问卷</span>
         <div class="AluUsrInstruction"  style="display: inline;margin-top: 10px;margin-bottom: 10px">
           <h3 style="text-indent: 0px">待填问卷</h3>
         </div>
         <template>
           <el-table
             :data="pendingQuestion"
-            max-height="300"
+            max-height="400"
             style="width: 640px;position:relative;left:120px;">
             <el-table-column
               prop="type"
@@ -223,20 +225,146 @@
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button @click="handleClick(scope.row)" type="text" size="small">点击填写</el-button>
+                <el-button @click="dialogFormVisible = write(scope.$index)" icon="el-icon-edit" type="primary" size="small"></el-button>
+                <el-dialog title="检验问卷"
+                           :lock-scroll="false"
+                           :visible.sync="dialogFormVisible">
+                  <el-steps :active="active" finfish-status="success">
+                    <el-step title="第一部分"></el-step>
+                    <el-step title="第二部分"></el-step>
+                    <el-step title="第三部分"></el-step>
+                  </el-steps>
+
+                  <el-form :model="form"  v-show="form.form1">
+                    <el-form-item><strong>1.你和小明同学平时关系如何？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.relationship">
+                        <el-radio label="很好"></el-radio>
+                        <el-radio label="有接触过"></el-radio>
+                        <el-radio label="一般同学"></el-radio>
+                        <el-radio label="排斥"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                    <el-form-item><strong>2.你曾经有和小明同学小组合作完成项目/组织活动的经历吗？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.judge1">
+                        <el-radio label="是"></el-radio>
+                        <el-radio label="否"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                    <el-form-item><strong>3.在你眼中，在项目/组织活动的经历中，小明同学扮演了怎样的角色？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.roles">
+                        <el-radio label="组织者"></el-radio>
+                        <el-radio label="积极参与"></el-radio>
+                        <el-radio label="完成本分工作"></el-radio>
+                        <el-radio label="不太愿意承担费力费时的工作"></el-radio>
+                        <el-radio label="不清楚"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                  </el-form>
+                  <el-button style="margin-top: 12px;" v-show="form.form1"@click="next(form)">下一步</el-button>
+                  <el-form :model="form"  v-show="form.form2">
+                    <el-form-item><strong>4.你愿意与小明同学在今后继续合作完成项目/组织活动吗？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.desire">
+                        <el-radio label="愿意"></el-radio>
+                        <el-radio label="无所谓"></el-radio>
+                        <el-radio label="不愿意"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                    <el-form-item><strong>5.小明同学有向你借过东西的经历吗？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.judge2">
+                        <el-radio label="钱"></el-radio>
+                        <el-radio label="学习资料"></el-radio>
+                        <el-radio label="生活用品"></el-radio>
+                        <el-radio label="没借过"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                    <el-form-item><strong>6.借用物品之后的偿还情况？</strong></el-form-item>
+                    <el-form-item label="">
+                      <el-radio-group v-model="form.returntype">
+                        <el-radio label="主动约定偿还日期并及时归还"></el-radio>
+                        <el-radio label="没说清楚偿还日期，但在我需要之前就已偿还"></el-radio>
+                        <br/>
+                        <el-radio label="我询问之后立即偿还"></el-radio>
+                        <el-radio label="我询问之后拖延偿还"></el-radio>
+                        <el-radio label="询问之后到现在都没有偿还"></el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+
+                  </el-form>
+                  <el-button style="margin-top: 12px;" v-show="form.form2"@click="last(form)">上一步</el-button>
+                  <el-button style="margin-top: 12px;" v-show="form.form2"@click="next(form)">下一步</el-button>
+                  <el-form :model="form"  v-show="form.form3">
+                    <el-form-item><strong>7.请客观评价您自己的信用情况。</strong></el-form-item>
+                    <el-form-item label="">
+                      <template>
+                        <div class="block">
+                          <el-slider
+                            v-model="form.value1"
+                            :max="10"
+                            :step="1"
+                            show-stops></el-slider>
+                        </div>
+                      </template>
+                    </el-form-item>
+
+                    <el-form-item><strong>8.请客观评价小明同学的信用情况。</strong></el-form-item>
+                    <el-form-item label="">
+                      <template>
+                        <div class="block">
+                          <el-slider
+                            v-model="form.value2"
+                            :max="10"
+                            :step="1"
+                            show-stops></el-slider>
+                        </div>
+                      </template>
+                    </el-form-item>
+
+                    <el-form-item><strong>9.请客观评价社会平均信用水平。</strong></el-form-item>
+                    <el-form-item label="">
+                      <template>
+                        <div class="block">
+                          <el-slider
+                            v-model="form.value3"
+                            :max="10"
+                            :step="1"
+                            show-stops></el-slider>
+                        </div>
+                      </template>
+                    </el-form-item>
+                  </el-form>
+                  <el-button style="margin-top: 12px;" v-show="form.form3"@click="last(form)">上一步</el-button>
+
+
+                  <div slot="footer" class="dialog-footer">
+                    <el-button
+                     v-show="form.form3" type="primary" @click="dialogFormVisible = send1()">确 定</el-button>
+                  </div>
+                </el-dialog>
               </template>
             </el-table-column>
 
           </el-table>
         </template>
-        <br/><br/>
+      </el-tab-pane>
+      <el-tab-pane  name="third">
+        <span slot="label" style="font-size:19px;">过期问卷</span>
         <div class="AluUsrInstruction"  style="display: inline;margin-top: 10px;margin-bottom: 10px">
           <h3 style="text-indent: 0px">过期问卷</h3>
         </div>
         <template>
           <el-table
             :data="delayQuestion"
-            max-height="300"
+            max-height="400"
             style="width: 640px;position:relative;left:120px;">
             <el-table-column
               prop="type"
@@ -259,15 +387,13 @@
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button @click="handleClick(scope.row)" type="text" size="small">点击删除</el-button>
+                <el-button @click.native.prevent="deleteRow(scope.$index, delayQuestion)" type="danger" icon="el-icon-delete" size="small"></el-button>
               </template>
             </el-table-column>
 
           </el-table>
         </template>
         <br/><br/>
-
-
       </el-tab-pane>
     </el-tabs>
   </personalCenter>
@@ -275,15 +401,31 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  let tempchange = true;
 
   export default {
     name:"crosscheck",
     components: {personalCenter},
     data(){
       return{
+        tempindex:'',
+        active:1,
         dialogVisible: false,
         activeName: 'first',
+        dialogFormVisible: false,
+        form:{
+          form1:true,
+          form2:false,
+          form3:false,
+          relationship:'',
+          judge1:'',
+          roles:'',
+          desire:'',
+          judge2:'',
+          returntype:'',
+          value1:0,
+          value2:0,
+          value3:0,
+        },
         formInline:{
           user1:'',
           user2:'',
@@ -301,6 +443,8 @@
         done:3,
         pendingQuestion:[
           {type:'用户选择',depart:'工程管理学院',num:161270000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
           {type:'用户选择',depart:'计算机科学与技术系',num:161220000},
           {type:'系统随机',depart:'工程管理学院',num:161270000},
           {type:'系统随机',depart:'软件学院',num:161200000},
@@ -308,6 +452,8 @@
         ],
         delayQuestion:[
           {type:'用户选择',depart:'工程管理学院',num:161270000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
+          {type:'系统随机',depart:'软件学院',num:161200000},
           {type:'用户选择',depart:'计算机科学与技术系',num:161220000},
           {type:'系统随机',depart:'工程管理学院',num:161270000},
           {type:'系统随机',depart:'软件学院',num:161200000},
@@ -414,6 +560,32 @@
     },
 
     methods: {
+      last(form){
+        console.log(this.active);
+        if (this.active === 2){
+          this.active = this.active - 1;
+          form.form1 = true;
+          form.form2 = false;
+        }
+        else{
+          this.active = this.active - 1;
+          form.form3 = false;
+          form.form2 = true;
+        }
+      },
+      next(form){
+        if(this.active === 1){
+          form.form1 = false;
+          form.form2 = true;
+        }
+        else if (this.active === 2){
+          form.form2 = false;
+          form.form3 = true;
+        }
+        if(this.active++ > 3) {
+          this.active = 0;
+        }
+      },
       send: function (userstate) {
         //这里会将状态改变传给后端，重新加载页面的时候状态就会传过来，自动跳转到状态2的情况
         console.log(userstate);
@@ -436,13 +608,48 @@
         return false;
 
       },
+      send1: function () {
+        //这里会将状态改变传给后端，重新加载页面的时候状态就会传过来，自动跳转到状态2的情况
+        this.$message({
+          message:'提交成功',
+          type:'success',
+        });
+        this.pendingQuestion.splice(this.tempindex, 1);
+        this.active = 1;
+        this.form.form1=true;
+        this.form.form2=false;
+        this.form.form3=false;
+        this.form.relationship='';
+        this.form.judge1='';
+        this.form.roles='';
+        this.form.desire='';
+        this.form.judge2='';
+        this.form.returntype='';
+        this.form.value1=0;
+        this.form.value2=0;
+        this.form.value3=0;
+        //this.$router.replace('/UserSpace/CrossCheck');
+        return false;
+      },
       handleClick(tab, event) {
-        this.$router.push('/UserSpace/CrossCheck');
+        //this.$router.push('/UserSpace/questionnaires');
         console.log(tab, event);
       },
       filterHandler(value, row, column) {
         const property = column['property'];
         return row[property] === value;
+      },
+      write: function(index){
+        this.tempindex = index;
+        //rows.splice(index, 1);
+        return true;
+      },
+      deleteRow(index, rows) {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+        rows.splice(index, 1);
       },
     }
   }
