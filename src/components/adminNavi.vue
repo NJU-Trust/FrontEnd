@@ -62,11 +62,14 @@
 
           var message = document.createElement('img');
           message.className = 'message';
+          message.id = 'message';
           message.src = '/static/pic/message_white.png';
           var mes=document.createElement('a');
           mes.href="/messageList";
           mes.appendChild(message);
           mes.style.border="none";
+          mes.style.paddingBottom="5px";
+          mes.style.paddingTop="12px";
           document.getElementById('secondLast').appendChild(mes);
 
           if (localStorage.ifUnread==1){
