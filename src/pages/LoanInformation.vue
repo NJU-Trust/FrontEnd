@@ -16,8 +16,9 @@
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
             <el-select v-model="value_radio2" placeholder="请选择活动区域">
-              <el-option label="小额短期投资" value="shanghai"></el-option>
-              <el-option label="大额长期投资" value="beijing"></el-option>
+              <el-option label="不限" value="any"></el-option>
+              <el-option label="小额短期投资" value="small_loan"></el-option>
+              <el-option label="大额长期投资" value="large_loan"></el-option>
             </el-select>
           </div>
           <div style="margin-top:1%;margin-left:1%;">
