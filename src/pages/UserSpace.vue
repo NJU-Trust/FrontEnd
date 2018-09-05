@@ -30,53 +30,90 @@
     <div id="user_overview">
       <h4><b>账户总览</b></h4>
       <br/>
-      <el-row :gutter="36">
-        <el-col :span="5">
-          <el-card shadow="always" class="mycard card_A">
-            <p>投资总额</p>
-            <span>0.00</span> 元
-            <br/><br/><br/>
-            <p>借款总额</p>
-            <span>0.00</span> 元
-          </el-card>
-        </el-col>
-        <el-col :span="14">
-          <el-card shadow="always" class="mycard card_B">
-            <el-row :gutter="2">
-              <el-col :span="8">
-                <el-progress type="circle" :percentage="25" width="81"></el-progress>
-              </el-col>
-              <el-col :span="16">
-                <p>待收回本金<span> 1600.00</span> 元</p>
-                <p>已收回 25%</p>
-              </el-col>
-            </el-row>
-          </el-card>
-          <br/>
-          <el-card shadow="always" class="mycard card_B">
-            <el-row :gutter="2">
-              <el-col :span="8">
-                <el-progress type="circle" :percentage="37" width="81"></el-progress>
-              </el-col>
-              <el-col :span="16">
-                <p>待收回利息<span> 375.40</span> 元</p>
-                <p>已收回 37%</p>
-              </el-col>
-            </el-row>
-          </el-card>
-        </el-col>
-        <el-col :span="5">
-          <el-card shadow="always" class="mycard card_A">
-            <p>信用评分</p>
-            <span>90分</span>
-            <br/><br/><br/>
-            <p>信用等级</p>
-            <span>AA</span> 级
-            <!--<p class="CreditJudge"><b>AA</b>级</p>-->
-          </el-card>
-        </el-col>
-      </el-row>
-      <br/>
+      <div v-if="false"><!--是否校友-->
+        <el-row :gutter="36">
+          <el-col :span="5">
+            <el-card shadow="always" class="mycard card_A">
+              <p>投资总额</p>
+              <span>0.00</span> 元
+              <br/><br/><br/>
+              <p>借款总额</p>
+              <span>0.00</span> 元
+            </el-card>
+          </el-col>
+          <el-col :span="14">
+            <el-card shadow="always" class="mycard card_B">
+              <el-row :gutter="2">
+                <el-col :span="8">
+                  <el-progress type="circle" :percentage="25" width="81"></el-progress>
+                </el-col>
+                <el-col :span="16">
+                  <p>待收回本金<span> 1600.00</span> 元</p>
+                  <p>已收回 25%</p>
+                </el-col>
+              </el-row>
+            </el-card>
+            <br/>
+            <el-card shadow="always" class="mycard card_B">
+              <el-row :gutter="2">
+                <el-col :span="8">
+                  <el-progress type="circle" :percentage="37" width="81"></el-progress>
+                </el-col>
+                <el-col :span="16">
+                  <p>待收回利息<span> 375.40</span> 元</p>
+                  <p>已收回 37%</p>
+                </el-col>
+              </el-row>
+            </el-card>
+          </el-col>
+          <el-col :span="5">
+            <el-card shadow="always" class="mycard card_A">
+              <p>信用评分</p>
+              <span>90分</span>
+              <br/><br/><br/>
+              <p>信用等级</p>
+              <span>AA</span> 级
+              <!--<p class="CreditJudge"><b>AA</b>级</p>-->
+            </el-card>
+          </el-col>
+        </el-row>
+      </div>
+      <div v-if="true"><!--是否校友-->
+        <el-row :gutter="24">
+          <el-col :span="6">
+            <el-card shadow="always" class="mycard card_C">
+              <p>投资总额</p>
+              <span>0.00</span> 元
+            </el-card>
+          </el-col>
+          <el-col :span="9">
+            <el-card shadow="always" class="mycard card_B">
+              <el-row :gutter="2">
+                <el-col :span="8">
+                  <el-progress type="circle" :percentage="25" width="81"></el-progress>
+                </el-col>
+                <el-col :span="16">
+                  <p>待收回本金<span> 1600.00</span> 元</p>
+                  <p>已收回 25%</p>
+                </el-col>
+              </el-row>
+            </el-card>
+          </el-col>
+          <el-col :span="9">
+            <el-card shadow="always" class="mycard card_B">
+              <el-row :gutter="2">
+                <el-col :span="8">
+                  <el-progress type="circle" :percentage="37" width="81"></el-progress>
+                </el-col>
+                <el-col :span="16">
+                  <p>待收回利息<span> 375.40</span> 元</p>
+                  <p>已收回 37%</p>
+                </el-col>
+              </el-row>
+            </el-card>
+          </el-col>
+        </el-row>
+      </div>
       <el-row :gutter="36">
         <!--<el-col :span="12">-->
           <!--<el-card shadow="always" class="mycard card_A">-->
@@ -98,7 +135,6 @@
           <!--</el-card>-->
         <!--</el-col>-->
       </el-row>
-      <br/>
       <el-row :gutter="36">
         <!--<el-col :span="6">-->
           <!--<el-card shadow="always" class="mycard card_B">-->
@@ -136,6 +172,7 @@
         <!--</el-col>-->
       </el-row>
     </div>
+    <br/><br/>
     <div id="user_financial">
       <div style="margin-left: 10px; margin-right: 10px">
         <el-row :gutter="10" id="welcome_down">
@@ -259,7 +296,7 @@
       dayChange (day) {
         console.log(day)
       }
-    }
+    },
   }
 
 </script>
@@ -303,7 +340,7 @@
   }
 
   .card_C {
-    height: 100px;
+    height: 120px;
     color: #333333;
   }
 
