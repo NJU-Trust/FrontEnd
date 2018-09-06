@@ -52,6 +52,26 @@
 
     <announcement></announcement>
 
+
+    <div style="width: 100%;text-align: center;margin-top: 60px">
+      <h2>优质标量身推荐</h2>
+      <br><br>
+      <el-button type="plain" id="shiftRecommend"  v-on:click="shiftRecommend()" round>小额/大额推荐</el-button>
+      <a href="/invest"><el-button type="plain" id="goInvest" style="margin-left: 60%" v-on:click="shiftRecommend()" round>进入投资中心</el-button></a>
+      <br><br>
+      <el-card id="recommend" style="height: 600px;width: 90%;margin-left:5%;overflow-y: auto;overflow-x: hidden">
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+        <invest-list></invest-list><br>
+      </el-card>
+    </div>
+
+
     <div style="width: 100%;text-align: center;margin-top: 60px">
       <h2>校友投资排行榜</h2>
       <top-range></top-range>
@@ -70,16 +90,17 @@
     import announcement from '@/components/announcement.vue'
     import topRange from '@/components/topRange.vue'
     import Login from "./login";
+    import investList from '@/components/investList.vue'
     export default {
       name: "homepage",
-      components:{Login, navi, footerBar, rightBar,announcement,topRange},
+      components:{Login, navi, footerBar, rightBar,announcement,topRange,investList},
       mounted: function () {
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
       },
       beforeCreate: function () {
         localStorage.route="#homepage";
-        //localStorage.ifLogin=1;
+        localStorage.ifLogin=1;
       }
 
     }

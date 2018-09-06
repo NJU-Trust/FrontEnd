@@ -11,13 +11,10 @@
       </div>
     </div>
 
-    <!--左边栏-->
-    <div>
-      <leftInformationbar></leftInformationbar>
-    </div>
-
     <!--正文-->
-    <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
+    <div class="back">
+      <leftInformationbar></leftInformationbar>
+      <div class="mesboxborder">
       <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:90px;width:800px;">
         <el-tab-pane label="失物招领" name="first">
           <div v-for="i in mesdata.length" :key="i">
@@ -101,14 +98,15 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+    </div>
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
     </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
   </div>
@@ -160,9 +158,20 @@
 </script>
 
 <style scoped>
+  .back{
+    /*background-color: rgba(173,216,230,0.5);*/
+    width: 100%;
+    background-color: #D9F3FB;
+  //height:100%;
+    min-height:1000px;
+  //height: 200px;
+    padding-bottom: 20px;
+    display:flex;
+  }
+
   div.myspace{
     /*个人中心*/
-    text-indent: 4.5%;
+    text-indent:6.3%;
     color: black;
     background-color: white;
     margin: 0px;
@@ -180,13 +189,14 @@
 
   /*消息框*/
   .mesboxborder{
+    width:950px;
+    margin-right: 10%;
+    border-radius: 3px;
+    position:absolute;top:222px;
+    margin-left: 24%;
     background:white;
     border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
-    height:550px;
-    width:1000px;
-    margin-right: 10%;
-    margin-left: 16%;
+    height:800px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);

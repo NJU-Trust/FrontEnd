@@ -11,14 +11,10 @@
       </div>
     </div>
 
-    <!--左边栏-->
-    <div>
-      <leftInformationbar></leftInformationbar>
-    </div>
-
     <!--正文-->
     <div class="back">
-      <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
+      <leftInformationbar></leftInformationbar>
+      <div class="mesboxborder">
         <!--图标分隔 -->
         <el-breadcrumb separator-class="el-icon-arrow-right" style="position:relative;top:60px;left:60px;">
           <el-breadcrumb-item :to="{ path: '/' }" style="font-size: 16px;">首页</el-breadcrumb-item>
@@ -97,8 +93,8 @@
     </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
   </div>
@@ -210,17 +206,20 @@
 </script>
 
 <style scoped>
-  /*白色背景*/
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    height: 300px;
+    background-color: #D9F3FB;
+  //height:100%;
+    min-height:1000px;
+  //height: 200px;
+    padding-bottom: 20px;
     display:flex;
   }
 
   div.myspace{
     /*个人中心*/
-    text-indent: 4.5%;
+    text-indent:6.3%;
     color: black;
     background-color: white;
     margin: 0px;
@@ -236,14 +235,16 @@
     color: #505050;
   }
 
+  /*消息框*/
   .mesboxborder{
+    width:950px;
+    margin-right: 10%;
+    border-radius: 3px;
+    position:absolute;top:222px;
+    margin-left: 24%;
     background:white;
     border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
-    height:700px;
-    width:1000px;
-    margin-right: 10%;
-    margin-left: 16%;
+    height:800px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);

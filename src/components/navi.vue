@@ -60,6 +60,7 @@ export default {
       var personalCenter = document.createElement('a');
       personalCenter.innerText = '个人中心';
       personalCenter.href = '/userSpace';
+      personalCenter.id='userSpace';
       var newLi = document.createElement('li');
       newLi.style.cssFloat = 'right';
       $('#nav').append(newLi);
@@ -67,8 +68,16 @@ export default {
 
       var message = document.createElement('img');
       message.className = 'message';
+      message.id = 'message';
       message.src = '/static/pic/message_white.png';
-      document.getElementById('secondLast').appendChild(message);
+      var mes=document.createElement('a');
+      mes.href="/messageList";
+      mes.appendChild(message);
+      mes.style.border="none";
+      mes.style.paddingBottom="5px";
+      mes.style.paddingTop="12px";
+      document.getElementById('secondLast').appendChild(mes);
+
       if (localStorage.ifUnread==1){
         message.src = '/static/pic/message_yellow.png';
       }
@@ -143,15 +152,12 @@ export default {
     background-color: black;
     z-index: 1;
   }
-  .logo{
-    max-width: 9%;
-    display: inline-block;
-    margin-left: 8%;
-    margin-top: -48px;
-  }
+
+
   .wholeNav{
     border-color: transparent;
     display: inline-block;
+    width: 84%;
     min-width: 80%;
     min-height: 30px;
     margin-top: 5px;
@@ -164,6 +170,13 @@ export default {
 </style>
 
 <style>
+  #naviLogo{
+    max-width: 9%;
+    display: inline-block;
+    margin-left: 6%;
+    margin-top: -48px;
+  }
+
   #nav li{
     min-width: 90px;
     text-align: center;
@@ -183,14 +196,13 @@ export default {
   .message{
     height:25px;
     width: auto;
-    margin-top: 10px;
+    margin-top: 0px;
     cursor: pointer;
   }
 
   .message:hover{
     height:25px;
     width: auto;
-    margin-top: 10px;
   }
 
   .photo{

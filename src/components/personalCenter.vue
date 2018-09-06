@@ -4,10 +4,16 @@
       <navi style="position: relative"></navi>
     </div>
 
-    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;">
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;z-index: 1">
       <div class="myspace">
-        <h2 class="myspace">个人中心</h2>
-        <p style="color: #777777;">在此处，你可以查看个人财务统计和收藏情况，并进行信用验证</p>
+        <div v-if="isStudent">
+          <h2 class="myspace">个人中心</h2>
+          <p style="color: #777777;">在此处，你可以查看个人财务统计和收藏情况，并进行信用验证</p>
+        </div>
+        <div v-if="!isStudent">
+          <h2 class="myspace">个人中心</h2>
+          <p style="color: #777777;">在此处，你可以查看个人财务统计并追踪校友投资详情</p>
+        </div>
       </div>
     </div>
     <!--background-color: #D9F3FB-->
@@ -18,7 +24,8 @@
             <!--纯粹占个位置。。-->
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3">
-            <left-user-bar></left-user-bar>
+            <left-user-bar v-if="isStudent"></left-user-bar>
+            <left-alumni-bar v-if="!isStudent"></left-alumni-bar>
           </div>
           <div class="col-xs-12 col-sm-9 col-md-9" id ="mainbody" >
             <div class="panel-group">
@@ -51,13 +58,17 @@
   import navi from "../components/navi";
   import leftUserBar from "../components/leftUserBar";
   import FooterBar from "../components/footerBar";
+  import LeftAlumniBar from "./leftAlumniBar";
   // import userPanel from "../components/userPanel";
-
-
 
   export default {
     name:"personalCenter",
-    components: {FooterBar, leftUserBar, navi},
+    components: {LeftAlumniBar, FooterBar, leftUserBar, navi},
+    data(){
+      return {
+        isStudent : true,
+      }
+    },
     props:['paneltitle']
   }
 

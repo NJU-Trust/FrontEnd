@@ -1,17 +1,31 @@
 <template>
   <div class="container">
-    <a href='/'><img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
+    <a href='/'><img src="/static/pic/logo1_white.png" style="width:12%;position:absolute;top:15px;left: 6%;" align=center></a><br>
     <div class="mainbox">
-      <div class="loginbody">
-        <h3 style="color: white;float: top;" align="center">登录</h3>
-        <input type="text" id="account" style="margin-top: 6%;" placeholder="账户/邮箱">
-        <input id="password" type="password" style="margin-top: 8%;" align="center" placeholder="请输入密码"><br>
-        <input type="checkbox" id="remember" style="display:inline;margin-left: 11%;margin-top: 13px;vertical-align: -3px">
-        <p style="display: inline;color: white">记住密码</p>
-        <a href="./findPassword" style="margin-left: 20%">忘记密码？</a>
-        <a href="./signup" style="margin-left: 3%">立即注册</a>
-        <button id="login" v-on:click="login()">登录</button>
-      </div>
+      <!--<img id="ad" src="/static/pic/advice.png" style="width:32%;display: inline-block;margin-left: 18%" >-->
+      <el-carousel indicator-position="outside" style="width:36%;display: inline-block;margin-left: 15%">
+        <el-carousel-item>
+          <img style="width: 100%;" src="/static/pic/loginBackground1.png">
+        </el-carousel-item>
+        <el-carousel-item>
+          <img style="width: 100%;" src="/static/pic/signupBackground.png">
+        </el-carousel-item>
+        <el-carousel-item>
+          <img style="width: 100%;" src="/static/pic/library.jpg">
+        </el-carousel-item>
+      </el-carousel>
+      <el-card class="box-card loginbody">
+        <h3 style="float: top;" align="center">登录</h3>
+        <el-input id="account" class="loginInput" style="margin-top: 6%;" placeholder="账户/邮箱"></el-input>
+        <el-input id="password" type="password" class="loginInput" style="margin-top: 8%;" align="center" placeholder="请输入密码"></el-input><br>
+        <el-checkbox id="remember" style="margin-top: 3%;margin-left: 8%"></el-checkbox>
+        <p style="display: inline;">记住密码</p>
+        <a href="/findPassword" style="float: right;margin-right: 8%;display: inline;margin-top: 3%">忘记密码？</a>
+        <el-button type="primary" id="login" v-on:click="login()" round>登录</el-button>
+        <div style="width: 100%;text-align: center;margin-top: 20px">
+          <a href="/signup" style="font-size: 16px;color: lightskyblue;">即刻注册</a>
+        </div>
+      </el-card>
 
 
       <!--<div style="text-align: center; color: white;text-align: center;font-size: 20px; margin-top: 2%">-->
@@ -66,7 +80,7 @@
   .container {
     width:100%;
     background: #222;
-    background-image:url('/static/pic/loginBackground.jpg');
+    background-image:url('/static/pic/loginBackground1.png');
     background-size: cover;
     background-attachment:fixed;
     background-position: center center;
@@ -75,55 +89,55 @@
   }
 
   .mainbox{
-    -webkit-box-align: center;
-    align-items: center;
     margin-top: 100px;
+    height: 330px;
   }
 
   .loginbody{
-    width: 36%;
-    height: 330px;
+    width: 32%;
+    height: 360px;
     position: relative;
     margin: auto;
-    padding: 35px 30px;
-    color: black;
-    border-radius: 4px;
-    background: black;
-    box-shadow: 1px 1px 4px #767676;
-    opacity: 0.6;
+    right: 100px;
+    float: right;
   }
 
-  input[type="text"]{
-    width:78%;
-    margin-left: 11%;
-    height:13.5%;
-    min-height: 20px;
-    border-radius: 15px;
-    font-size: 18px;
-  }
-
-  input[type="password"]{
-    width:78%;
-    margin-left: 11%;
-    height:13.5%;
-    min-height: 20px;
-    border-radius: 15px;
-    font-size: 18px;
+  .loginInput{
+    width: 84%;
+    margin-left: 8%;
   }
 
   button{
-    width:78%;
-    height:35px;
-    border-radius: 15px;
-    font-size: 20px;
-    margin-left: 11%;
+    width:84%;
+    height:40px;
+    font-size: 18px;
+    margin-left: 8%;
     margin-top: 3%;
-    background-color: transparent;
-    border-color: white;
-    color:white;
   }
 
   .bott a{
     color: lightyellow;
   }
+
+  .el-carousel__item{
+    background-size: cover;
+    background-attachment:fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .el-carousel__item:nth-child(3) {
+    background-image:url('/static/pic/loginBackground1.png');
+  }
+  .el-carousel__item:nth-child(4) {
+     background-image:url('/static/pic/signupBackground.png');
+   }
+
+  .el-carousel__item:nth-child(5) {
+    background-image:url('/static/pic/library.jpg');
+  }
+
+
+
+
 </style>

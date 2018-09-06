@@ -15,7 +15,6 @@
         <li><a href="/smalltargetcheck">小额标的</a></li>
         <li><a href="/largetargetcheck">大额标的</a></li>
       </ul>
-      <hr/>
     </div>
     </div>
   </div>
@@ -60,26 +59,7 @@
   export default {
     name: "leftCheckBar",
     methods: {
-      setA: function () {
-        this.$store.commit('newAuthor', '基本信息')
-      },
-      setB: function () {
-        this.$store.commit('newAuthor', '普通验证');
-        //document.getElementById("checkA").style.color = "#ffffff";
-        //document.getElementById("temptitle").style.color="#ffffff";
-      },
-      setC: function () {
-        document.getElementById("userinformation").style.display = "none";
-        // document.getElementById("tmptitle").color = "#ffffff";
-        // this.$store.commit('newAuthor','财务统计');
-      },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    },
+  }
   }
 </script>
 
@@ -128,7 +108,7 @@
     color: dodgerblue;
   }
 
-  .left_ul li a.active{
+  .left_ul li a:active{
     color: dodgerblue;
   }
 
