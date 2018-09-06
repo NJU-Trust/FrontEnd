@@ -8,7 +8,7 @@
         <el-radio-button label="500-1000"></el-radio-button>
         <el-radio-button label="1000以上"></el-radio-button>
       </el-radio-group>
-      <el-input-number style="width:130px;"></el-input-number>
+      <el-input-number v-model="num1" @change="handleChange" :min="1" :max="100000000" label="描述文字"></el-input-number>
     </div>
     <div style="margin-top:2%;margin-left:1%;">
       <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
@@ -55,6 +55,7 @@
                 return time.getTime() > Date.now();
               },
             },
+            num1:1,
             value_radio1:'',
             options:[{
               value:'any',
@@ -69,8 +70,14 @@
             value_radio2:'any',
             date1:'',
             date2:'',
+            input:'',
           }//return
+        },
+      methods: {
+        handleChange(value) {
+          console.log(value);
         }
+      }
     }
 </script>
 
