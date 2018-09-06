@@ -49,6 +49,7 @@ import subjectManageDetail from '@/pages/subjectManageDetail'
 import findPassword from '@/pages/findPassword'
 import resetPassword from '@/pages/resetPassword'
 import messageList from '@/pages/messageList'
+import guide from '@/pages/guide'
 
 Vue.use(Router)
 
@@ -296,6 +297,11 @@ export default new Router({
       path:'/messageList',
       name:'messageList',
       component:messageList
+    },
+    {
+      path:'/guide',
+      name:'guide',
+      component:guide
     },
 
 
