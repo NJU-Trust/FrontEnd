@@ -2,45 +2,7 @@
   <personalCenter paneltitle="项目信息">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="正在进行" name="first">
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
-              <el-radio-button label="500-1000"></el-radio-button>
-              <el-radio-button label="1000以上"></el-radio-button>
-            </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
-            <el-select v-model="value_radio2" placeholder="请选择活动区域">
-              <el-option label="不限" value="any"></el-option>
-              <el-option label="小额短期投资" value="small_loan"></el-option>
-              <el-option label="大额长期投资" value="large_loan"></el-option>
-            </el-select>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 结束时间&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 借款名称&nbsp&nbsp</b></span>
-            <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
-          </div>
-        </div>
+        <infoTopBar></infoTopBar>
         <div>
           <template>
             <el-table
@@ -93,44 +55,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="完成项目" name="second">
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
-              <el-radio-button label="500-1000"></el-radio-button>
-              <el-radio-button label="1000以上"></el-radio-button>
-            </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
-            <el-select v-model="value_radio2" placeholder="请选择活动区域">
-              <el-option label="小额短期投资" value="shanghai"></el-option>
-              <el-option label="大额长期投资" value="beijing"></el-option>
-            </el-select>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 结束时间&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 借款名称&nbsp&nbsp</b></span>
-            <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
-          </div>
-        </div>
+        <infoTopBar></infoTopBar>
         <div>
           <template>
             <el-table
@@ -173,44 +98,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="已发布项目" name="third">
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
-              <el-radio-button label="500-1000"></el-radio-button>
-              <el-radio-button label="1000以上"></el-radio-button>
-            </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
-            <el-select v-model="value_radio2" placeholder="请选择活动区域">
-              <el-option label="小额短期投资" value="shanghai"></el-option>
-              <el-option label="大额长期投资" value="beijing"></el-option>
-            </el-select>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 结束时间&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 借款名称&nbsp&nbsp</b></span>
-            <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
-          </div>
-        </div>
+        <infoTopBar></infoTopBar>
         <div>
           <template>
             <el-table
@@ -253,44 +141,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="违约记录" name="fourth">
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
-              <el-radio-button label="500-1000"></el-radio-button>
-              <el-radio-button label="1000以上"></el-radio-button>
-            </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
-            <el-select v-model="value_radio2" placeholder="请选择活动区域">
-              <el-option label="小额短期投资" value="shanghai"></el-option>
-              <el-option label="大额长期投资" value="beijing"></el-option>
-            </el-select>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 结束时间&nbsp&nbsp</b></span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:130px;">
-            </el-date-picker>
-            <span><b> 借款名称&nbsp&nbsp</b></span>
-            <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
-            <el-button type="primary" icon="el-icon-search" style="font-size: 80px">搜索</el-button>
-          </div>
-        </div>
+        <infoTopBar></infoTopBar>
         <div>
           <template>
             <el-table
@@ -369,10 +220,11 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
+  import infoTopBar from "../components/infoTopBar";
 
   export default {
     name:"loaninformation",
-    components: {personalCenter},
+    components: {personalCenter,infoTopBar},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
