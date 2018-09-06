@@ -30,26 +30,26 @@
     <div id="user_overview">
       <h4><b>账户总览</b></h4>
       <br/>
-      <div v-if="false"><!--是否校友-->
+      <div v-if="true"><!--是否校友-->
         <el-row :gutter="36">
-          <el-col :span="5">
+          <el-col :span="6">
             <el-card shadow="always" class="mycard card_A">
               <p>投资总额</p>
-              <span>0.00</span> 元
+              <span>{{ user.investAmount }}</span> 元
               <br/><br/><br/>
               <p>借款总额</p>
-              <span>0.00</span> 元
+              <span>{{ user.loanAmount }}</span> 元
             </el-card>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <el-card shadow="always" class="mycard card_B">
               <el-row :gutter="2">
                 <el-col :span="8">
-                  <el-progress type="circle" :percentage="25" width="81"></el-progress>
+                  <el-progress type="circle" :percentage= user.captial.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回本金<span> 1600.00</span> 元</p>
-                  <p>已收回 25%</p>
+                  <p>待收回本金 <span>{{ user.captial.amountToCover }}</span> 元</p>
+                  <p>已收回 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -57,11 +57,11 @@
             <el-card shadow="always" class="mycard card_B">
               <el-row :gutter="2">
                 <el-col :span="8">
-                  <el-progress type="circle" :percentage="37" width="81"></el-progress>
+                  <el-progress type="circle" :percentage=user.interest.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回利息<span> 375.40</span> 元</p>
-                  <p>已收回 37%</p>
+                  <p>待收回利息 <span>{{ user.interest.amountToCove }}</span> 元</p>
+                  <p>已收回 {{ user.interest.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -69,10 +69,10 @@
           <el-col :span="5">
             <el-card shadow="always" class="mycard card_A">
               <p>信用评分</p>
-              <span>90分</span>
+              <span>{{ user.credit.points }}分</span>
               <br/><br/><br/>
               <p>信用等级</p>
-              <span>AA</span> 级
+              <span>{{ user.credit.level }}</span> 级
               <!--<p class="CreditJudge"><b>AA</b>级</p>-->
             </el-card>
           </el-col>
@@ -83,18 +83,18 @@
           <el-col :span="6">
             <el-card shadow="always" class="mycard card_C">
               <p>投资总额</p>
-              <span>0.00</span> 元
+              <span>{{ user.investAmount }}</span> 元
             </el-card>
           </el-col>
           <el-col :span="9">
             <el-card shadow="always" class="mycard card_B">
               <el-row :gutter="2">
                 <el-col :span="8">
-                  <el-progress type="circle" :percentage="25" width="81"></el-progress>
+                  <el-progress type="circle" :percentage=user.captial.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回本金<span> 1600.00</span> 元</p>
-                  <p>已收回 25%</p>
+                  <p>待收回本金 <span>{{ user.captial.amountToCover }}</span> 元</p>
+                  <p>已收回 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -103,11 +103,11 @@
             <el-card shadow="always" class="mycard card_B">
               <el-row :gutter="2">
                 <el-col :span="8">
-                  <el-progress type="circle" :percentage="37" width="81"></el-progress>
+                  <el-progress type="circle" :percentage=user.interest.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回利息<span> 375.40</span> 元</p>
-                  <p>已收回 37%</p>
+                  <p>待收回利息 <span>{{ user.interest.amountToCove }}</span> 元</p>
+                  <p>已收回 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -179,7 +179,7 @@
           <el-col :span="6">
             <div class="grid-content bg-purple ov-content" style="text-align: center">
               <p>账户总额</p>
-              <p><b style="font-size: 28px">0.00</b></p>
+              <p><b style="font-size: 28px">{{ user.amountAll}}</b></p>
             </div>
           </el-col>
           <el-col :span="3">
@@ -188,7 +188,7 @@
           <el-col :span="2.5">
             <div class="grid-content bg-purple ov-content">
               <p>账户余额&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <p><b style="font-size: 28px">0.00</b> 元</p>
+              <p><b style="font-size: 28px">{{ user.balance }}</b> 元</p>
             </div>
           </el-col>
           <el-col :span="1">
@@ -199,7 +199,7 @@
           <el-col :span="2.5">
           <div class="grid-content bg-purple ov-content">
             <p>冻结金额&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p><b style="font-size: 28px">0.00</b> 元</p>
+            <p><b style="font-size: 28px">{{ user.accountFrozen }}</b> 元</p>
           </div>
         </el-col>
           <el-col :span="1">
@@ -210,7 +210,7 @@
           <el-col :span="2.5">
             <div class="grid-content bg-purple ov-content">
               <p>待回收本息</p>
-              <p><b style="font-size: 28px">0.00</b> 元</p>
+              <p><b style="font-size: 28px">{{ user.interestToRecovered}}</b> 元</p>
             </div>
           </el-col>
           <el-col :span="1">
@@ -221,7 +221,7 @@
           <el-col :span="2.5">
             <div class="grid-content bg-purple ">
               <p>招标中投资</p>
-              <p><b style="font-size: 28px">0.00</b> 元</p>
+              <p><b style="font-size: 28px">{{ user.investmentTender }}</b> 元</p>
             </div>
           </el-col>
 
@@ -262,6 +262,27 @@
     components: {personalCenter},
     data () {
       return {
+        user: {
+          investAmount: 3141.59,
+          loanAmount: 2653.55,
+          captial:{
+            amountToCover: '666.67',
+            progress: '37'
+          },
+          interest:{
+            amountToCove: '31.38',
+            progress: '60'
+          },
+          credit:{
+            points: 90,
+            level: 'AA'
+          },
+          amountAll: 1428.57,
+          balance: 666.67,
+          accountFrozen: 3.01,
+          interestToRecovered: 2.57,
+          investmentTender: 52.70
+        },
         demoEvents: [{
           date: '2018/9/18',
           title: '待还款',
