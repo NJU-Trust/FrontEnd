@@ -4,54 +4,7 @@
       <el-tab-pane label="正在进行" name="first">
         <infoTopBar></infoTopBar>
         <div>
-          <template>
-            <el-table
-              :data="zz_table"
-              style="width: 100%"
-              height="500">
-              <el-table-column
-                fixed
-                prop="pro_name"
-                label="项目名称"
-                width="150">
-              </el-table-column>
-              <el-table-column
-                prop="rele_time"
-                label="发布时间"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="profit_rate"
-                label="年利率"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="repay_times"
-                label="待还期数"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="repay_money"
-                label="待还本息"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="next_repayDay"
-                label="下个还款日"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="money_repayDay"
-                label="还款日应还金额"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="information"
-                label="项目详情"
-                width="120">
-              </el-table-column>
-            </el-table>
-          </template>
+          <loanUnderway></loanUnderway>
         </div>
       </el-tab-pane>
       <el-tab-pane label="完成项目" name="second">
@@ -215,16 +168,18 @@
       </div>
 
     </div>
+
   </personalCenter>
 </template>
 
 <script>
   import personalCenter from "../components/personalCenter";
   import infoTopBar from "../components/infoTopBar";
+  import loanUnderway from "../components/loanUnderway"
 
   export default {
     name:"loaninformation",
-    components: {personalCenter,infoTopBar},
+    components: {personalCenter,infoTopBar,loanUnderway},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
