@@ -1,0 +1,79 @@
+<template>
+  <div class="col-sm-12 col-md-12">
+    <div style="margin-top:1%;margin-left:1%;">
+      <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
+      <el-radio-group v-model="value_radio1">
+        <el-radio-button label="100以下"></el-radio-button>
+        <el-radio-button label="100-500"></el-radio-button>
+        <el-radio-button label="500-1000"></el-radio-button>
+        <el-radio-button label="1000以上"></el-radio-button>
+      </el-radio-group>
+      <el-input-number style="width:130px;"></el-input-number>
+    </div>
+    <div style="margin-top:2%;margin-left:1%;">
+      <span><b>项目类型&nbsp&nbsp&nbsp</b></span>
+      <el-select v-model="value_radio2" style="width:180px;">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <span><b>&nbsp&nbsp借款名称&nbsp&nbsp</b></span>
+      <el-input v-model="input" placeholder="请输入内容" style="width:180px"></el-input>
+    </div>
+    <div style="margin-top:1%;margin-left:1%;">
+      <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
+      <el-date-picker
+        v-model="date1"
+        type="date"
+        placeholder="选择日期"
+        :picker-options="pickerOptions0" style="width:180px;">
+      </el-date-picker>
+      <span><b>&nbsp&nbsp结束时间&nbsp</b></span>
+      <el-date-picker
+        v-model="date2"
+        type="date"
+        placeholder="选择日期"
+        :picker-options="pickerOptions0" style="width:180px;">
+      </el-date-picker>
+      <el-button type="primary" icon="el-icon-search" style="margin-top: 15px;margin-left: 20px">一键搜索</el-button>
+    </div>
+    <br>
+    <hr>
+  </div>
+</template>
+
+<script>
+    export default {
+        name: "info-top-bar",
+        data(){
+          return{
+            pickerOptions0: {
+              disabledDate(time) {
+                return time.getTime() > Date.now();
+              },
+            },
+            value_radio1:'',
+            options:[{
+              value:'any',
+              label:'不限'
+            },{
+              value:'small_loan',
+              label:'小额短期借款'
+            },{
+              value:'large_loan',
+              label:'大额长期借款'
+            }],
+            value_radio2:'any',
+            date1:'',
+            date2:'',
+          }//return
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

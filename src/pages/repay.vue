@@ -63,275 +63,6 @@
           </el-card>
 
         </div>
-        <!--<div id="financial_id"><br/>
-          <div class="chooseButton">
-            <el-radio v-model="inoutcome" label="1" id="bar_btn" @change="change_bar" border>数值比较</el-radio>
-            <el-radio v-model="inoutcome" label="2" id="line_btn" @change="change_line" border>趋势分析</el-radio>
-            <el-radio v-model="inoutcome" label="3" id="pie_btn" @change="change_pie" border>比例分析</el-radio>
-          </div><hr/><br/>
-          <div class="FinDateChoice">
-            <div id="dateDouble">
-              <el-row :gutter="2">
-                <el-col :span="6">
-                  <div class="block">
-                    <span class="demonstration"></span>
-                    <el-date-picker
-                      v-model="mouth_start"
-                      type="month"
-                      placeholder="请选择起始月份">
-                    </el-date-picker>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="block">
-                    <span class="demonstration">到&nbsp&nbsp&nbsp&nbsp</span>
-                    <el-date-picker
-                      v-model="mouth_end"
-                      type="month"
-                      placeholder="请选择终止月份">
-                    </el-date-picker>
-                  </div>
-                </el-col>
-              </el-row>
-
-            </div>
-            <div id="dateSingle" style="display: none">
-              <div class="block">
-                <span class="demonstration"></span>
-                <el-date-picker
-                  v-model="mouth_single"
-                  type="month"
-                  placeholder="请选择您要查看的月份">
-                </el-date-picker>
-              </div>
-            </div>
-          </div><br/>
-          <div id="bar_info" style="display: inline">
-            <div>
-              <el-row :gutter="20">
-                <el-col :span="5">
-                  <span>请选择您所要查看的指标</span>
-                </el-col>
-                <el-col :span="19">
-                  <div id="selectBar_id">
-                    <el-radio-group v-model="selectBar" size="mini">
-                      <el-radio label="收入" v-bind:title="'顾名思义，收入就是收入'"></el-radio>
-                      <el-radio label="支出" v-bind:title="'顾名思义，支出就是支出'"></el-radio>
-                      <el-radio label="刚性支出" v-bind:title="'“必需品”性质的支出\n'"></el-radio>
-                      <el-radio label="可调支出" v-bind:title="'可调整的支出'"></el-radio>
-                      <el-radio label="投资额结余" v-bind:title="'顾名思义，结余就是剩下的资金'"></el-radio>
-                      <el-radio label="负债" v-bind:title="'负债'"></el-radio>
-                      <el-radio label="净资产" v-bind:title="'结余—负债\n'"></el-radio>
-                    </el-radio-group>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>&lt;!&ndash;Bar选择指标&ndash;&gt;
-            <hr/>
-            <div v-show="selectBar=='收入'">
-              <div v-if="selectBar=='收入'">
-                <h4><b>您这段时间的收入总额为：<i class="el-icon-goods"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='支出'">
-              <div v-if="selectBar=='支出'">
-                <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='刚性支出'">
-              <div v-if="selectBar=='刚性支出'">
-                <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-sold-out"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myRigidBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='可调支出'">
-              <div v-if="selectBar=='可调支出'">
-                <h4><b>您这段时间的可调支出总额为：<i class="el-icon-document"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myAdjustBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='投资额结余'">
-              <div v-if="selectBar=='投资额结余'">
-                <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-edit"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myInvestBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='负债'">
-              <div v-if="selectBar=='负债'">
-                <h4><b>您的负债总额为：<i class="el-icon-edit-outline"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myDebtBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectBar=='净资产'">
-              <div v-if="selectBar=='净资产'">
-                <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
-              </div>
-              <div id="myNetAssetsBar" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-          </div>
-          <div id="line_info" style="display: none">
-            &lt;!&ndash;恩格尔系数、刚性比率、负债率、偿债能力、杠杆比率、消费比率、储蓄比率&ndash;&gt;
-            <div>
-              <el-row :gutter="20">
-                <el-col :span="5">
-                  <span>请选择您所要查看的指标</span>
-                </el-col>
-                <el-col :span="19">
-                  <div id="selectLine_id">
-                    <el-radio-group v-model="selectLine" size="mini">
-                      <el-radio label="恩格尔系数" v-bind:title="'食品支出/总支出\n'"></el-radio>
-                      <el-radio label="刚性比率" v-bind:title="'刚性支出/总支出'"></el-radio>
-                      <el-radio label="负债率" v-bind:title="'月负债/月结余'"></el-radio>
-                      <el-radio label="偿债能力" v-bind:title="'月结余/月负债\n'"></el-radio>
-                      <el-radio label="杠杆比率" v-bind:title="'净资产/月负债'"></el-radio>
-                      <el-radio label="消费比率" v-bind:title="'支出/收入'"></el-radio>
-                      <el-radio label="储蓄比率" v-bind:title="'（收入-支出）/收入'"></el-radio>
-                    </el-radio-group>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>&lt;!&ndash;Line选择指标&ndash;&gt;
-            <hr>
-            <div v-show="selectLine=='恩格尔系数'">
-              <div v-if="selectLine=='恩格尔系数'">
-                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="myEngelsLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='刚性比率'">
-              <div v-if="selectLine=='刚性比率'">
-                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="myRigidLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='负债率'">
-              <div v-if="selectLine=='负债率'">
-                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="myLiabilityLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='偿债能力'">
-              <div v-if="selectLine=='偿债能力'">
-                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="mySolvencyLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='杠杆比率'">
-              <div v-if="selectLine=='杠杆比率'">
-                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="myLeverageLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='消费比率'">
-              <div v-if="selectLine=='消费比率'">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="myConsumptionLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-            <div v-show="selectLine=='储蓄比率'">
-              <div v-if="selectLine=='储蓄比率'">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
-              </div>
-              <div id="mySavingLine" :style="{width: '400px', height: '300px'}"></div>
-            </div>
-          </div>
-          <div id="pie_info" style="display: none">
-            <div>
-              <el-row :gutter="20">
-                <el-col :span="5">
-                  <span>请选择您所要查看的指标</span>
-                </el-col>
-                <el-col :span="19">
-                  <div id="selectPie_id">
-                    <el-radio-group v-model="selectPie" size="mini">
-                      <el-radio label="支出" v-bind:title="'支出'"></el-radio>
-                      <el-radio label="可调支出" v-bind:title="'可调支出'"></el-radio>
-                      <el-radio label="饮食支出" v-bind:title="'饮食支出'"></el-radio>
-                    </el-radio-group>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>&lt;!&ndash;Pie选择指标&ndash;&gt;
-            <hr/>
-            <div v-show="selectPie=='支出'">
-              <div v-if="selectPie=='支出'">
-                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 1000.50元, 具体分布如下</b></h4>
-              </div>
-              <br/>
-              <div id="myOutcomePie" :style="{width: '900px', height: '450px'}"></div>
-            </div>
-            <div v-show="selectPie=='可调支出'">
-              <div v-if="selectPie=='可调支出'">
-                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 100.10元, 具体分布如下</b></h4>
-              </div>
-              <br/>
-              <div id="myAdjustOutcomePie" :style="{width: '900px', height: '450px'}"></div>
-            </div>
-            <div v-show="selectPie=='饮食支出'">
-              <div v-if="selectPie=='饮食支出'">
-                <h4><i class="el-icon-time"></i><b>&nbsp&nbsp在此期间, 您的{{selectPie}}总额是 500.37元, 具体分布如下</b></h4>
-              </div>
-              <br/>
-              <div id="myFoodOutcomePie" :style="{width: '900px', height: '450px'}"></div>
-            </div>
-          </div>
-          <hr/>
-          <div class="LevelOneIndex" id="leveloneindex" style="display: none">&lt;!&ndash;一级指标，收入&&支出和其他&ndash;&gt;
-            <div class="class_outcome" id="id_class_outcome" style="display: inline">
-              <h4><b>您本月的支出情况</b></h4>
-              <div class="table-responsive" style="text-indent: 5px;max-width: 700px">
-                <table class="table table-bordered">
-                  &lt;!&ndash;<caption><b>您的信用评级为：100</b></caption>&ndash;&gt;
-                  <thead>
-                  <tr>
-                    <th><i class="el-icon-info" style="color: #409EFF"></i>&nbsp支出总额</th>
-                    <th><i class="el-icon-tickets" style="color: #409EFF"></i>&nbsp刚性支出</th>
-                    <th><i class="el-icon-sold-out" style="color: #409EFF"></i>&nbsp可调指出的总额</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>70</td>
-                    <td>30</td>
-                    <td>100</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr/>
-              <h4><b>您本月的支出变化</b></h4>
-              &lt;!&ndash;<div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>&ndash;&gt;
-              <hr/>
-              <h4><b>您本月的支出分布统计图</b></h4>
-              <h4><b>您本月的可调整支出统计图</b></h4>
-              <h4><b>您本月的饮食支出分布统计图</b></h4>
-            </div>
-
-            <div class="class_income" id="id_class_income">
-              <div id="myIncomeOverview">
-                &lt;!&ndash;<h4><b>您的收入为总额为：<i class="el-icon-menu" style="color: #409EFF"></i>&nbsp 6050 元</b></h4>&ndash;&gt;
-              </div>
-              <hr/>
-              <h4><b>您本月的收入变化</b></h4>
-              &lt;!&ndash;<div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>&ndash;&gt;
-              <h4><b>您的负债总额为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 6632.30 元</b></h4>
-              <hr/>
-              <h4><b>您本月的蚂蚁花呗情况</b></h4>
-              <div id="myAntBar" style="width: 800px; height: 300px; "></div>
-              <h4><b>您各项投资金额和收益为</b></h4>
-              <div id="myInvestLoanPie" style="width: 800px; height: 300px; "></div>
-              <hr/>
-            </div>
-
-            <div id="mySurplus">
-              <hr>
-              <h4><b>您的结余为：<i class="el-icon-success" style="color: #409EFF"></i>&nbsp 3752.30 元</b></h4>
-              <hr/>
-            </div>
-          </div>
-        </div>-->
       </el-tab-pane>
       <el-tab-pane label="还款分析" name="second">
         <div>还款方式</div>
@@ -353,118 +84,76 @@
         <div>
           还款历史
         </div>
-        <!--<div id="loan_id">
-          <h3><b>消费修正建议</b></h3><hr/>
-          <div class="LoanPanel">
-            <div>
-              &lt;!&ndash;<p>距离最终还款还有<b class="LoanHighLight"> 60 </b>天</p>&ndash;&gt;
-              &lt;!&ndash;<p v-if=" valueX<1 ">&ndash;&gt;
-              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去现有负债后结余占用率为：{{ valueX }}&ndash;&gt;
-              &lt;!&ndash;</p>&ndash;&gt;
-              &lt;!&ndash;<p v-if=" (valueY>0)&&(valueZ==0)">&ndash;&gt;
-              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去现有负债和预测结余后还需还款M-K(N)+Q元。如无兼职、奖学金、相关理财收入等额外收入，可调支出占用率为：Y，建议您酌情调整下图中占比较大的前几项。&ndash;&gt;
-              &lt;!&ndash;</p>&ndash;&gt;
-              &lt;!&ndash;<p>&ndash;&gt;
-              &lt;!&ndash;在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。&ndash;&gt;
-              &lt;!&ndash;</p>&ndash;&gt;
-            </div>&lt;!&ndash;历史版本修正建议&ndash;&gt;
-            <div>
-              <h4><b>您目前的还款情况如下</b>(一个假的。暂时不知道这样的表格如何动态构建)</h4>
-              <img src="../../static/pic/loanSuggestion.png" style="width: 600px;height: 450px">
-              <hr/>
-            </div>&lt;!&ndash;更新版本修正建议&ndash;&gt;
-          </div>
-          <div class="LoanPanel">
-            <div class="LevelTwoIndex" id="leveltwoindex">
-              <div class="LevelTwoPanel">
-                <el-row :gutter="2">
-                  <el-col :span="12">
-                    <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp 3752.30 元</b></h4><hr/>
-                    <div id="Index_NetWorth">
-                      <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4><hr/>
-                    </div>
-                    <div id="Index_EngelsCoefficient">
-                      <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
-                    </div>
-                    <div id="Index_RigidRatio">
-                      <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
-                    </div>
-                    <div id="Index_AssetLiabilityRatio">
-                      <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4>
-                    </div>
-                  </el-col>
-                  <el-col :span="12">
-                    <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp 6632.30 元</b></h4><hr/>
-                    <div id="Index_Solvency">
-                      <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4><hr/>
-                    </div>
-                    <div id="Index_Leverage">
-                      <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4><hr/>
-                    </div>
-                    <div id="Index_MonthConsumptionRatio">
-                      <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平</b></h4>
-                      <hr/>
-                    </div>
-                    <div id="Index_MonthlySavingsRatio">
-                      <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
-                    </div>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-            <hr/>
-            <div id="forecast_lines">
-              <el-row :gutter="2">
-                <el-col :span="12">
-                  <div id="ForecastK" :style="{width: '400px', height: '300px'}"></div>
-                </el-col>
-                <el-col :span="12">
-                  <div id="ForecastA" :style="{width: '400px', height: '300px'}"></div>
-                </el-col>
-              </el-row>
-              <hr/>
-            </div>
-          </div>
-          <div class="LoanPanel">
-            <p>在您借款成功后第n个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
-            <div style="width: 640px" id="loanTable">
-              <template>
-                <el-table
-                  :data="tableData"
-                  height="250"
-                  border
-                  style="width: 100%">
-                  <el-table-column
-                    prop="month"
-                    label="月份"
-                    width="80">
-                  </el-table-column>
-                  <el-table-column
-                    prop="valX"
-                    label="结余占用率X"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="valY"
-                    label="可调支出占用率Y"
-                    width="180">
-                  </el-table-column>
-                  <el-table-column
-                    prop="valZ"
-                    label="额外收入金额Z"
-                    width="180">
-                  </el-table-column>
-                </el-table>
-              </template>
-              <br/>
-            </div>
-            <p>因此，在第1、3、7...个月内，建议您酌情调整下图中占比较大的前几项；在第2、3、7...个月内，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。</p>
-          </div>
-        </div>-->
       </el-tab-pane>
-      <el-tab-pane label="还款分析" name="third"></el-tab-pane>
-      <el-tab-pane label="还款历史" name="fourth"></el-tab-pane>
-      <el-tab-pane label="违约情况" name="fifth"></el-tab-pane>
+      <el-tab-pane label="违约情况" name="fifth">
+        <div style="font-size: 30px;margin-top: 140px;margin-left: 160px;display: none">
+          恭喜您，截止目前，您并未出现违约情况！
+        </div>
+
+        <div>
+          <div style="font-size: 20px;margin: 20px">
+            截止目前，您在本款项目中共产生了 <span style="font-size: 24px;color:#409EFF">2</span> 次违约情况.
+          </div>
+          <div style="margin-top: 50px">
+            <el-table
+              :data="tableData"
+              border
+              style="width: 100%"
+             >
+              <el-table-column
+                prop="ID"
+                label=""
+                align="center"
+                width="80"
+                >
+              </el-table-column>
+              <el-table-column
+                prop="return_date"
+                label="应还日期"
+                width="100"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="actual_date"
+                label="实际还款日"
+                width="150"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="return_money"
+                label="当前应还金额"
+                align="center"
+                >
+              </el-table-column>
+              <el-table-column
+                prop="days"
+                label="逾期天数"
+                align="center"
+                >
+              </el-table-column>
+              <el-table-column
+                prop="punish_money"
+                label="违约金"
+                align="center"
+                >
+              </el-table-column>
+              <el-table-column
+                prop="current_state"
+                label="当前状态"
+                align="center"
+              >
+              </el-table-column>
+              <el-table-column label="操作" align="center">
+                <template slot-scope="scope">
+                  <el-button
+                    size="mini"
+                    @click="">查看</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </el-tab-pane>
 
     </el-tabs>
   </personalCenter>
@@ -514,82 +203,23 @@
           difficulty:4,
         },
         activeName: 'first',
-        mouth_start: '',
-        mouth_end: '',
-        mouth_single: '',
-        inoutcome: '1',
-        selectBar: '收入',
-        selectLine:'恩格尔系数',
-        selectPie: '支出',
-        tableData: [{
-          month: '1',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '2',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '3',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '4',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '5',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '6',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '7',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '8',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '9',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '10',
-          valX: '17%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '11',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }, {
-          month: '12',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
-        }
-        ],
-        valueX: '0.5',
-        valueY: '0.7',
-        valueZ: '0',
-        checkboxGroup2: [],
-        indexAs: indexAOptions,
-        checkAll: false,
-        isIndeterminate: true
+        tableData:[{
+          ID:'1',
+          return_date:'xxx',
+          actual_date:'xxx',
+          return_money:'100',
+          days:'3',
+          punish_money:'10',
+          current_state:'结束'
+        },{
+          ID:'2',
+          return_date:'xxx',
+          actual_date:'xxx',
+          return_money:'200',
+          days:'5',
+          punish_money:'20',
+          current_state:'待办'
+      }],
       };
     },
     mounted() {
