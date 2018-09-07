@@ -2,19 +2,19 @@
   <personalCenter paneltitle="项目信息">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="正在进行" name="first">
-        <infoTopBar></infoTopBar>
+        <loanTopBar></loanTopBar>
         <loanUnderway></loanUnderway>
       </el-tab-pane>
       <el-tab-pane label="完成项目" name="second">
-        <infoTopBar></infoTopBar>
+        <loanTopBar></loanTopBar>
         <loanComplete></loanComplete>
       </el-tab-pane>
       <el-tab-pane label="已发布项目" name="third">
-        <infoTopBar></infoTopBar>
+        <loanTopBar></loanTopBar>
         <loanLaunched></loanLaunched>
       </el-tab-pane>
       <el-tab-pane label="违约记录" name="fourth">
-        <infoTopBar></infoTopBar>
+        <loanTopBar></loanTopBar>
         <loanUnbelievable></loanUnbelievable>
       </el-tab-pane>
     </el-tabs>
@@ -45,7 +45,7 @@
 
 <script>
   import personalCenter from "../components/personalCenter";
-  import infoTopBar from "../components/infoTopBar";
+  import loanTopBar from "../components/loanTopBar";
   import loanUnderway from "../components/loanUnderway"
   import loanComplete from "../components/loanComplete"
   import loanLaunched from "../components/loanLaunched"
@@ -53,7 +53,7 @@
 
   export default {
     name:"loaninformation",
-    components: {personalCenter,infoTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
+    components: {personalCenter,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
