@@ -11,99 +11,11 @@
       </el-tab-pane>
       <el-tab-pane label="已发布项目" name="third">
         <infoTopBar></infoTopBar>
-        <div>
-          <template>
-            <el-table
-              :data="yfb_table"
-              style="width: 100%"
-              height="500">
-              <el-table-column
-                fixed
-                prop="pro_name"
-                label="项目名称"
-                width="150">
-              </el-table-column>
-              <el-table-column
-                prop="money_rent"
-                label="借款金额"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="profit_rate"
-                label="年利率"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="time_start"
-                label="发布日期"
-                width="300">
-              </el-table-column>
-              <el-table-column
-                prop="state"
-                label="项目状态"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="information"
-                label="项目详情"
-                width="120">
-              </el-table-column>
-            </el-table>
-          </template>
-        </div>
+        <loanLaunched></loanLaunched>
       </el-tab-pane>
       <el-tab-pane label="违约记录" name="fourth">
         <infoTopBar></infoTopBar>
-        <div>
-          <template>
-            <el-table
-              :data="wy_table"
-              style="width: 100%"
-              height="500">
-              <el-table-column
-                fixed
-                prop="pro_name"
-                label="项目名称"
-                width="150">
-              </el-table-column>
-              <el-table-column
-                prop="money_rent"
-                label="借款金额"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="money_serve"
-                label="违约服务费"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="time_break"
-                label="违约发生日期"
-                width="150">
-              </el-table-column>
-              <el-table-column
-                prop="day_break"
-                label="违约天数"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="information_break"
-                label="违约详情"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="state"
-                label="当前状态"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="information"
-                label="项目详情"
-                width="120">
-              </el-table-column>
-            </el-table>
-          </template>
-        </div>
+        <loanUnbelievable></loanUnbelievable>
       </el-tab-pane>
     </el-tabs>
 
@@ -136,10 +48,12 @@
   import infoTopBar from "../components/infoTopBar";
   import loanUnderway from "../components/loanUnderway"
   import loanComplete from "../components/loanComplete"
+  import loanLaunched from "../components/loanLaunched"
+  import loanUnbelievable from "../components/loanUnbelievable"
 
   export default {
     name:"loaninformation",
-    components: {personalCenter,infoTopBar,loanUnderway,loanComplete},
+    components: {personalCenter,infoTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
@@ -152,42 +66,6 @@
       return {
         currentPage1: 2,
         activeName: 'first',
-        zz_table: [{
-          pro_name: '项目一',
-          rele_time: '2018/2/30',
-          profit_rate: '5%',
-          repay_times: '3',
-          repay_money: '2000￥',
-          next_repayDay: '2018/2/31',
-          money_repayDay:'1000￥',
-          information: ' '
-        }],
-        wc_table: [{
-          pro_name: '项目一',
-          money_rent: '2000￥',
-          profit_rate: '5%',
-          time_span: '2017/11/31————2018/2/31',
-          state:'已完成',
-          information: ' '
-        }],
-        yfb_table: [{
-          pro_name: '项目一',
-          money_rent: '2000￥',
-          profit_rate: '5%',
-          time_start: '2017/11/31————2018/2/31',
-          state:'50%',
-          information: ' '
-        }],
-        wy_table: [{
-          pro_name: '项目一',
-          money_rent: '2000￥',
-          money_serve: '10￥',
-          time_break: '2018/2/31',
-          day_break: '10天',
-          information_break: '50%',
-          state: '逾期未还',
-          information: ' '
-        }]
       };
     },
     methods:{
