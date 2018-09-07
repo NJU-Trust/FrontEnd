@@ -3,52 +3,11 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="正在进行" name="first">
         <infoTopBar></infoTopBar>
-        <div>
-          <loanUnderway></loanUnderway>
-        </div>
+        <loanUnderway></loanUnderway>
       </el-tab-pane>
       <el-tab-pane label="完成项目" name="second">
         <infoTopBar></infoTopBar>
-        <div>
-          <template>
-            <el-table
-              :data="wc_table"
-              style="width: 100%"
-              height="500">
-              <el-table-column
-                fixed
-                prop="pro_name"
-                label="项目名称"
-                width="150">
-              </el-table-column>
-              <el-table-column
-                prop="money_rent"
-                label="借款金额"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="profit_rate"
-                label="年利率"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="time_span"
-                label="起止日期"
-                width="300">
-              </el-table-column>
-              <el-table-column
-                prop="state"
-                label="项目状态"
-                width="120">
-              </el-table-column>
-              <el-table-column
-                prop="information"
-                label="项目详情"
-                width="120">
-              </el-table-column>
-            </el-table>
-          </template>
-        </div>
+        <loanComplete></loanComplete>
       </el-tab-pane>
       <el-tab-pane label="已发布项目" name="third">
         <infoTopBar></infoTopBar>
@@ -176,10 +135,11 @@
   import personalCenter from "../components/personalCenter";
   import infoTopBar from "../components/infoTopBar";
   import loanUnderway from "../components/loanUnderway"
+  import loanComplete from "../components/loanComplete"
 
   export default {
     name:"loaninformation",
-    components: {personalCenter,infoTopBar,loanUnderway},
+    components: {personalCenter,infoTopBar,loanUnderway,loanComplete},
     methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
