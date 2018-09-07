@@ -55,6 +55,12 @@
           </el-card>
         </div>
       </el-tabs>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        style="position:absolute;left:450px;top:480px;"
+        :total=commData.length>
+      </el-pagination>
     </div>
     <!--右边栏-->
     <div>

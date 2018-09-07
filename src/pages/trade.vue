@@ -17,13 +17,17 @@
     </div>
 
     <!--正文-->
+    <div class="back">
 
-    <div class="col-xs-12 col-sm-9 col-md-9" id="mesboxborder" style="position:relative;left:80px;top:-350px;">
+    <div class="mesboxborder">
+      <!-- 搜索 -->
+      <el-button type="primary" icon="el-icon-search" style="position:relative;top:30px;left:750px;">搜索</el-button>
+      <el-input  placeholder="请输入想要查询的内容" style="position:relative;top:30px;left:415px;width:250px;"></el-input>
 
-          <div v-for="i in commData.length" :key="i">
+      <div v-for="i in commData.length" :key="i">
               <el-card class="box-card">
                 <div>
-                  <img v-bind:src=commData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                  <img v-bind:src=commData[i-1].pic style="width:150px;height:150px;position:relative;left:5px;top:-10px;" class="picbox" alt="User_pic">
                 </div>
                 <div class="textitem">
                   <div style="position:relative;top:3px;">
@@ -54,6 +58,13 @@
                 </div>
               </el-card>
           </div>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        style="position:absolute;left:450px;top:630px;"
+        :total=commData.length>
+      </el-pagination>
+    </div>
     </div>
     <!--右边栏-->
     <div>
@@ -73,13 +84,16 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
   import leftTradeBar from "@/components/leftTradeBar.vue";
-  let dialogFormVisible;
 
   export default {
     name: "trade",
     components:{ leftTradeBar, navi, footerBar, rightBar},
     data() {
       return {
+        options4: [],
+        value9: [],
+        list: [],
+        loading: false,
         commData:[{
           num:'000001',
           type:'其他',
@@ -99,19 +113,53 @@
             contact:'123456',
             pic:'https://picsum.photos/600/300/?image=25',
             state: true
-          }
+          },
         ],
 
       }
     },
-
+    mounted() {
+      this.list = this.states.map(item => {
+        return { value: item, label: item };
+      });
+    },
+    methods: {
+      test:function(){
+      },
+      remoteMethod(query) {
+        if (query !== '') {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.options4 = this.list.filter(item => {
+              return item.label.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1;
+            });
+          }, 200);
+        } else {
+          this.options4 = [];
+        }
+      }
+    },
+    created:function(){
+      this.test();
+    },
   }
 </script>
 
 <style scoped>
+  .back{
+    /*background-color: rgba(173,216,230,0.5);*/
+    width: 100%;
+    min-height:1000px;
+
+    padding-bottom: 20px;
+    display:flex;
+  }
+
   div.myspace{
     /*个人中心*/
-    text-indent: 4.5%;
+    text-indent:6.3%;
     color: black;
     background-color: white;
     margin: 0px;
@@ -128,30 +176,25 @@
   }
 
   /*消息框*/
-  #mesboxborder{
+  .mesboxborder{
+    width:950px;
+    margin-right: 10%;
+    border-radius: 3px;
+    position:absolute;top:222px;
+    margin-left: 24%;
     background:white;
     border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
-    height:550px;
-    width:1000px;
-    margin-right: 10%;
-    margin-left: 16%;
+    height:700px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
   }
-  .text {
-    font-size: 14px;
-  }
 
-  .item {
-    margin-bottom: 18px;
-  }
   .textitem{
     position:relative;
-    left:303px;
-    top:-180px;
+    left:180px;
+    top:-150px;
 
   }
 
@@ -165,12 +208,22 @@
 
   /*卡片样式*/
   .box-card {
-    width: 850px;
-    height: 250px;
+    width: 780px;
+    height: 220px;
+    border-top:3px solid dodgerblue;
+    border-radius: 5px;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    margin: 0px;
+    padding: 5px;
+    position:relative;
+    left:100px;
+    top:70px;
+  }
+  .box-card:hover{
+    background:#D1EEEE;
   }
 
-  .label{
-    font-size: 15px;
 
-  }
 </style>
