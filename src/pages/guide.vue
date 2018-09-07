@@ -110,9 +110,9 @@
   }
   .main{
     width: 100%;
-    min-height:700px;
+    min-height:900px;
     height: 200px;
-    display:flex;
+    
 
   }
 
