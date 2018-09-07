@@ -1,53 +1,43 @@
 <template>
-  <!-- <div>
-    <div style="position:fixed;width:100%;">
-      <navi></navi>
-    </div>
-    <div style="margin-top:200px">
-      <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
-      <el-main>
-      </el-main>
-    </div>
-    <div style="width:100%;float:bottom;margin-top:200px">
-      <footer-bar></footer-bar>
-    </div>
-  </div> -->
   <div>
-    <div style="width: 100%;float: top;">
-        <navi></navi>
+    <!--顶栏 -->
+    <div clas="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <navi style="position: relative"></navi>
     </div>
-    <el-container>
-    
-    <el-container>
-      <el-aside width="200px">
-        <el-tree :data="treeData" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
-      </el-aside>
-      <el-container>
-        <el-header>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
+      <div class="title">
+        <h2 class="title">新手教程</h2>
+        <p style="color: #777777;">欢迎来这里，请开始你的学习之旅！</p>
+      </div>
+    </div>
+
+    <!--右边栏 -->
+    <div>
+      <right-bar></right-bar>
+    </div>
+
+    <!--左边栏-->
+    <div>
       
-        </el-header>
-      </el-container>
-      <el-main>
-        <el-card shadow="always" class="sum_repay">
-          <el-row :gutter="2">
-            <el-col :span="8" style="width:50%">
-              <p>已还本息:<span>{{r_money_done}}</span> 元</p>
-              <p>待还项目数:<span>{{r_pro_topay}}</span> 元</p>
-              <p>成功借款项目数:<span>{{r_pro_loanDone}}</span> 元</p>
-              <p>提前还清项目数:<span>{{r_pro_fore}}</span> 元</p>
-            </el-col>
-            <el-col :span="16" style="width:50%">
-              <p>待还本息:<span>{{r_money_topay}}</span> 元</p>
-              <p>发布借款项目数:<span>{{r_pro_rel}}</span> 元</p>
-              <p>正常还清项目数:<span>{{r_pro_repayDone}}</span> 元</p>
-              <p>历史违约项目数:<span>{{r_pro_break}}</span> 元</p>
-            </el-col>
-          </el-row>
-        </el-card>
-      </el-main>
-    </el-container>
-    <el-footer><footer-bar></footer-bar></el-footer>
-  </el-container>
+    </div>
+
+    <!--正文-->    
+    <div class="main" :style="note">
+      <leftGuideBar></leftGuideBar>
+      <div>
+        
+      </div>
+      <div>
+      
+
+      </div>
+    </div>
+
+
+     <!--底栏-->
+    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
+      <footerBar></footerBar>
+    </div>
   </div>
   
 </template>
@@ -56,35 +46,43 @@
   import navi from '@/components/navi.vue';
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
+  import leftGuideBar from '@/components/leftGuideBar.vue';
 
   export default{
     name: "guide",
-    components:{navi,footerBar,rightBar},
+    components:{navi,footerBar,rightBar,leftGuideBar},
     data(){
       return{
-        treeData: [{
-          label: '一级 1',
-          children: [{
-            label: '二级 1-1'
-          }]
-        }, {
-          label: '一级 2',
-          children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
+          note: {
+          backgroundImage: "url(" + require("../../static/pic/guideBackground.jpg") + ") ",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          // filter:"blur(5px)",
         },
-        methods: {
-          handleNodeClick(data) {
-          console.log(data);
-          }
-        }
+        // treeData: [{
+        //   label: '一级 1',
+        //   children: [{
+        //     label: '二级 1-1'
+        //   }]
+        // }, {
+        //   label: '一级 2',
+        //   children: [{
+        //     label: '二级 2-1',
+        //     children: [{
+        //       label: '三级 2-1-1'
+        //     }]
+        //   }]
+        // }],
+        // defaultProps: {
+        //   children: 'children',
+        //   label: 'label'
+        // },
+        // methods: {
+        //   handleNodeClick(data) {
+        //   console.log(data);
+        //   }
+        // }
 
       }
     }
@@ -93,37 +91,29 @@
 </script>
 
 <style>
- .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
+  div.title{
+    /*标题设计*/
+    text-indent: 4.5%;
+    color: black;
+    background-color: white;
+    margin: 0px;
+    border: 0px;
+    padding: 5px;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    border-radius: 3px;
   }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
+  .title p{
+    font-size: 15px;
+    color: #505050;
   }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
+  .main{
+    width: 100%;
+    min-height:700px;
+    height: 200px;
+    display:flex;
+
   }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+
 </style>
