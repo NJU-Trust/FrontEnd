@@ -27,15 +27,15 @@
             <tbody>
             <tr>
               <th width="280px">学校分类</th>
-              <td>985</td>
+              <td>{{ user.schoolClass }}</td>
               <th>专业情况</th>
-              <td>综合</td>
+              <td>{{ user.majorCondition }}</td>
             </tr>
             <tr>
               <th>受教育情况</th>
-              <td>本科</td>
+              <td>{{ user.educationBackground }}</td>
               <th>经济来源</th>
-              <td>家庭供给</td>
+              <td>{{ user.financeSource }}</td>
             </tr>
             </tbody>
             <thead>
@@ -46,17 +46,17 @@
             <tbody>
             <tr>
               <th>学习成绩</th>
-              <td>前20%</td>
+              <td>{{ user.GPA }}</td>
               <th>挂科数目</th>
-              <td>0</td>
+              <td>{{ user.numNoPass }}</td>
             </tr>
             <tr>
               <th>奖学金情况</th>
-              <td colspan="3">校级</td>
+              <td colspan="3">{{ user.scholarship }}</td>
             </tr>
             <tr>
               <th>科研竞赛获奖情况</th>
-              <td colspan="3">校级</td>
+              <td colspan="3">{{ user.reseachCompetition }}</td>
             </tr>
             </tbody>
             <thead>
@@ -67,11 +67,11 @@
             <tbody>
             <tr>
               <th>奖励情况</th>
-              <td colspan="3">国家级 省级 市级 校级 院级 技能证书</td>
+              <td colspan="3">{{ user.awards }}</td>
             </tr>
             <tr>
               <th>违纪或处罚等不良信息</th>
-              <td colspan="3">国家级 省级 市级 校级 院级 技能证书</td>
+              <td colspan="3">{{ user.punishment }}</td>
             </tr>
             </tbody>
             <thead>
@@ -82,15 +82,15 @@
             <tbody>
             <tr>
               <th colspan="1">学费及住宿费缴纳状况</th>
-              <td colspan="3">全交</td>
+              <td colspan="3">{{ user.payment}}</td>
             </tr>
             <tr>
               <th colspan="1">图书馆借阅还书情况</th>
-              <td colspan="3">全归还</td>
+              <td colspan="3">{{ user.library }}</td>
             </tr>
             <tr>
               <th colspan="1">考试作弊的信息</th>
-              <td colspan="3">无作弊记录</td>
+              <td colspan="3">{{ user.cheating }}</td>
             </tr>
             </tbody>
           </table>
@@ -123,6 +123,25 @@
   export default {
     name:"schoolperformance",
     components: {personalCenter},
+    data(){
+      return{
+        user:{
+          schoolClass: '985',
+          majorCondition: '综合',
+          educationBackground: '硕士',
+          financeSource: '家庭供给',
+          GPA: '前20%',
+          numNoPass: 0,
+          scholarship: '人民奖学金，东方奖学金',
+          reseachCompetition: '校级比赛获奖',
+          awards: '国家级 省级 市级 校级 院级 技能证书',
+          punishment: '国家级 省级 市级 校级 院级 技能证书',
+          payment: '全交',
+          library: '全归还',
+          cheating: '无作弊记录'
+        }
+      }
+    },
     mounted() {
       this.drawRadar();
       this.drawGraph();
