@@ -1,20 +1,40 @@
 <template>
   <div>
-    <el-form :label-position="labelPosition" :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" @submit.native.prevent>
-      <el-form-item label="原密码" prop="original">
-        <el-input type="password" v-model="ruleForm2.original" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
-      </el-form-item>
-    </el-form>
+    <el-steps :active="active">
+      <el-step title="输入绑定邮箱"></el-step>
+      <el-step title="输入邮箱验证码"></el-step>
+      <el-step title="输入新手机号"></el-step>
+      <el-step title="输入手机验证码"></el-step>
+    </el-steps>
+
+    <br/><br/>
+    <div style="padding-right: 400px">
+      <el-form :label-position="labelPosition" label-width="80px">
+        <el-form-item label="请输入您绑定的邮箱" v-if="active==0">
+          <el-input v-model="mailAddr"></el-input>
+        </el-form-item>
+        <el-form-item label="请输入您邮箱收到的验证码" v-if="active==1">
+          <el-input v-model="verificationCode"></el-input>
+        </el-form-item>
+        <el-form-item label="请输入您的新手机号码" v-if="active==2">
+          <el-input v-model="phoneNumber"></el-input>
+        </el-form-item>
+        <el-form-item label="请输入您手机收到的验证码" v-if="active==3">
+          <el-input v-model="verificationCode2"></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <br>
+    <div v-if="active==4">
+      <label style="font-size: 18px">您已成功绑定手机号 {{ phoneNumber }}</label>
+    </div>
+    <div v-show="active<4">
+      <el-button style="margin-top: 12px;" @click="last">上一步</el-button>
+      <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+    </div>
+
+
   </div>
 </template>
 
@@ -22,63 +42,21 @@
   export default {
     name: "modifyphone",
     data() {
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        }
-        else if(value.length < 6){
-          callback(new Error('密码长度过短'));
-        }
-        else if(value.length > 20){
-          callback(new Error('密码长度过长'));
-        }
-        else{
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
-        }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm2.pass) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
       return {
-        ruleForm2: {
-          original: '',
-          pass: '',
-          checkPass: '',
-        },
-        rules2: {
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ],
-        },
-        labelPosition: 'left',
-
+        active: 0,
+        labelPosition: 'top',
+        phoneNumber: '',
+        verificationCode: '',
+        mailAddr:'',
+        verificationCode2:''
       };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+      next() {
+        if (this.active++ > 3) this.active = 0;
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      last() {
+        if(this.active > 0) this.active--;
       }
     }
   }

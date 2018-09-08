@@ -74,9 +74,9 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="修改资料" name="second">
-        <div>
+        <div style="padding-left: 60px;padding-right: 200px">
           <br/>
-          <el-form ref="revice" :rules="revice_rules" :model="revice" label-width="80px" :label-position="labelPosition">
+          <el-form ref="revice"  :model="revice" label-width="80px" :label-position="labelPosition">
             <el-form-item label="用户名" prop="name">
               <el-input v-model="revice.name"></el-input>
             </el-form-item>

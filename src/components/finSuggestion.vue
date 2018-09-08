@@ -78,9 +78,9 @@
         <hr/>
       </div>
     </div>
-    <div class="LoanPanel">
-      <p>在您借款成功后第n个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
-      <div style="width: 640px" id="loanTable">
+    <div class="LoanPanel" style="padding-left: 20px">
+      <p>在您借款成功后的{{ loanStart }}个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
+      <div style="width: 700px" id="loanTable">
         <template>
           <el-table
             :data="tableData"
@@ -90,28 +90,29 @@
             <el-table-column
               prop="month"
               label="月份"
-              width="80">
+              width="100">
             </el-table-column>
             <el-table-column
               prop="valX"
               label="结余占用率X"
-              width="180">
+              width="200">
             </el-table-column>
             <el-table-column
               prop="valY"
               label="可调支出占用率Y"
-              width="180">
+              width="200">
             </el-table-column>
             <el-table-column
               prop="valZ"
               label="额外收入金额Z"
-              width="180">
+              width="200">
             </el-table-column>
           </el-table>
         </template>
         <br/>
       </div>
-      <p>因此，在第1、3、7...个月内，建议您酌情调整下图中占比较大的前几项；在第2、3、7...个月内，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。</p>
+      <p>因此，在第1、3、7...个月内，建议您酌情调整下图中占比较大的前几项；</p>
+      <p>在第2、3、7...个月内，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。</p>
     </div>
   </div>
 </template>
@@ -137,7 +138,9 @@
     name: 'finSuggestion',
     components: {Nextpay, InvestList},
     data() {
+
       return {
+        loanStart: 14,
         user:{
           surplus: 6050.30, //结余
           netAssets: 3752.30, //净资产
@@ -299,4 +302,11 @@
     color: #409EFF;
   }
 
+</style>
+
+<style>
+  .el-table thead {
+    color: #606266 !important;
+    font-weight: 500;
+  }
 </style>

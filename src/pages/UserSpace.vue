@@ -6,7 +6,9 @@
         <el-col :span="14">
           <div class="grid-content bg-purple wel_left">
             <br>
-            <p class="wel_words">您好，</p>
+            <p class="wel_words" v-if="morning">早上好，</p>
+            <p class="wel_words" v-if="afternoon">下午好，</p>
+            <p class="wel_words" v-if="evening">晚上好，</p>
             <p class="wel_words wel_texts">欢迎进入个人中心</p>
             <br/>
             <!--<p> 最近回款时间：无</p>-->
@@ -48,7 +50,7 @@
                   <el-progress type="circle" :percentage= user.captial.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回本金 <span>{{ user.captial.amountToCover }}</span> 元</p>
+                  <p>待收回本息 <span>{{ user.captial.amountToCover }}</span> 元</p>
                   <p>已收回 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
@@ -60,8 +62,8 @@
                   <el-progress type="circle" :percentage=user.interest.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回利息 <span>{{ user.interest.amountToCove }}</span> 元</p>
-                  <p>已收回 {{ user.interest.progress }}%</p>
+                  <p>待偿还本息 <span>{{ user.interest.amountToCove }}</span> 元</p>
+                  <p>已偿还 {{ user.interest.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -93,7 +95,7 @@
                   <el-progress type="circle" :percentage=user.captial.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回本金 <span>{{ user.captial.amountToCover }}</span> 元</p>
+                  <p>待收回本息 <span>{{ user.captial.amountToCover }}</span> 元</p>
                   <p>已收回 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
@@ -106,8 +108,8 @@
                   <el-progress type="circle" :percentage=user.interest.progress width="81"></el-progress>
                 </el-col>
                 <el-col :span="16">
-                  <p>待收回利息 <span>{{ user.interest.amountToCove }}</span> 元</p>
-                  <p>已收回 {{ user.captial.progress }}%</p>
+                  <p>待偿还本息 <span>{{ user.interest.amountToCove }}</span> 元</p>
+                  <p>已偿还 {{ user.captial.progress }}%</p>
                 </el-col>
               </el-row>
             </el-card>
@@ -230,7 +232,7 @@
     </div>
     <hr/>
     <div id="user_calendar">
-      <vue-event-calendar :events="demoEvents" title="TODO LIST"  @monthChanged="" @dayChanged=""></vue-event-calendar>
+      <vue-event-calendar :events="demoEvents" title="提示"  @monthChanged="" @dayChanged=""></vue-event-calendar>
     </div>
     <hr/>
     <div id="user_remaintodo">
@@ -261,7 +263,16 @@
     name:"userspace",
     components: {personalCenter},
     data () {
+      var time = new Date();
+      var hours = time.getHours();
+      var morning = (hours<=12) && (hours>=6);
+      var afternoon = (hours>12) && (hours<=18);
+      var evening = (hours>18) || (hours<6);
+
       return {
+        morning,
+        afternoon,
+        evening,
         user: {
           investAmount: 3141.59,
           loanAmount: 2653.55,

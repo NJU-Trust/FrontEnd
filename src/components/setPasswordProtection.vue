@@ -1,20 +1,22 @@
 <template>
   <div>
-    <el-form :label-position="labelPosition" :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" @submit.native.prevent>
-      <el-form-item label="原密码" prop="original">
-        <el-input type="password" v-model="ruleForm2.original" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+    <label style="color: #606266">请选择您的密保问题&nbsp&nbsp&nbsp</label>
+    <el-select v-model="value" placeholder="请选择您的密保问题">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
+    <br/><br/>
+    <el-form :label-position="labelPosition" label-width="80px">
+      <el-form-item label="密保答案">
+        <el-input v-model="answer"></el-input>
       </el-form-item>
     </el-form>
+    <el-button type="primary" round>提交<i class="el-icon-upload el-icon--right"></i></el-button>
+
   </div>
 </template>
 
@@ -22,64 +24,41 @@
   export default {
     name: "setPasswordProtection",
     data() {
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        }
-        else if(value.length < 6){
-          callback(new Error('密码长度过短'));
-        }
-        else if(value.length > 20){
-          callback(new Error('密码长度过长'));
-        }
-        else{
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
-        }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm2.pass) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
       return {
-        ruleForm2: {
-          original: '',
-          pass: '',
-          checkPass: '',
-        },
-        rules2: {
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ],
-        },
-        labelPosition: 'left',
-
-      };
+        answer: '',
+        options: [{
+          value: '选项1',
+          label: '您母亲的姓名是？'
+        }, {
+          value: '选项2',
+          label: '您父亲的姓名是？'
+        }, {
+          value: '选项3',
+          label: '您配偶的姓名是？'
+        }, {
+          value: '选项4',
+          label: '您的出生地是？'
+        }, {
+          value: '选项5',
+          label: '您高中班主任的名字是？'
+        }, {
+          value: '选项6',
+          label: '您父亲的生日是？'
+        }, {
+          value: '选项7',
+          label: '您高中班主任的名字是？'
+        }, {
+          value: '选项8',
+          label: '您母亲的生日是？'
+        }, {
+          value: '选项9',
+          label: '您配偶的生日是？'
+        }],
+        value: ''
+      }
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
+
     }
   }
 </script>
@@ -87,3 +66,11 @@
 <style scoped>
 
 </style>
+
+<style>
+  .el-form-item__label {
+    text-align: left !important;
+    color: #606266;
+  }
+</style>
+

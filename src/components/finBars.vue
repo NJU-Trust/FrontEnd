@@ -28,43 +28,43 @@
       <div v-if="selectBar=='收入'">
         <h4><b>您这段时间的收入总额为：<i class="el-icon-goods"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myIncomeBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='支出'">
       <div v-if="selectBar=='支出'">
         <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myOutcomeBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='刚性支出'">
       <div v-if="selectBar=='刚性支出'">
         <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-sold-out"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myRigidBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myRigidBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='可调支出'">
       <div v-if="selectBar=='可调支出'">
         <h4><b>您这段时间的可调支出总额为：<i class="el-icon-document"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myAdjustBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myAdjustBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='投资额结余'">
       <div v-if="selectBar=='投资额结余'">
         <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-edit"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myInvestBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myInvestBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='负债'">
       <div v-if="selectBar=='负债'">
         <h4><b>您的负债总额为：<i class="el-icon-edit-outline"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myDebtBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myDebtBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
     <div v-show="selectBar=='净资产'">
       <div v-if="selectBar=='净资产'">
         <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myNetAssetsBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myNetAssetsBar" :style="{width: '600px', height: '300px'}"></div>
     </div>
   </div>
 </template>
