@@ -1,12 +1,8 @@
 <template>
   <el-tabs v-model="activeParent" @tab-click="handleClick" >
     <div class="Parent">
-      <el-tab-pane label="财务分析" name="before">
-        <div id="financial_id"><br/>
-          <fin-analysis></fin-analysis>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="项目信息" name="after">
+
+      <el-tab-pane label="项目信息" name="two">
         <div id="loan_id">
           <el-tabs v-model="activeChild" @tab-click="handleClick">
             <el-tab-pane label="正在进行" name="first">
@@ -28,6 +24,17 @@
           </el-tabs>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="基本资料" name="three">
+        <loanerBasicInfo></loanerBasicInfo>
+      </el-tab-pane>
+      <el-tab-pane label="学业表现" name = "four">
+      </el-tab-pane>
+      <div v-if="showGraph">
+        <academicPerformance></academicPerformance>
+      </div>
+      <el-tab-pane label="财务分析" name="one">
+        <fin-analysis></fin-analysis>
+      </el-tab-pane>
     </div>
 
   </el-tabs>
@@ -36,19 +43,22 @@
 <script>
     import FinAnalysis from "./finAnalysis";
     import loanTopBar from "../components/loanTopBar";
-    import loanUnderway from "../components/loanUnderway"
-    import loanComplete from "../components/loanComplete"
-    import loanLaunched from "../components/loanLaunched"
-    import loanUnbelievable from "../components/loanUnbelievable"
+    import loanUnderway from "../components/loanUnderway";
+    import loanComplete from "../components/loanComplete";
+    import loanLaunched from "../components/loanLaunched";
+    import loanUnbelievable from "../components/loanUnbelievable";
+    import loanerBasicInfo from "../components/loanerBasicInfo";
+    import academicPerformance from "../components/academicPerformance";
 
 
     export default {
       name: "doInvestingLoanerInfo",
-      components: {FinAnalysis,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
+      components: {FinAnalysis,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,loanerBasicInfo,academicPerformance},
       data(){
         return{
-          activeParent: 'before',
+          activeParent: 'three',
           activeChild:'first',
+          showGraph:false,
         }
       },
       mounted() {
@@ -56,7 +66,11 @@
       },
       methods: {
         handleClick(tab, event) {
-          console.log(tab, event);
+          if(this.activeParent=="four"){
+            this.showGraph = true;
+          }else{
+            this.showGraph = false;
+          }
         },
       }
     }

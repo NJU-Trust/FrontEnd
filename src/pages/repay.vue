@@ -26,6 +26,7 @@
             <div class="content">
               下次应还： <span>{{info2.money}}</span>元
             </div>
+            <el-button type="primary" style="margin-top: 20px">立即还款</el-button>
           </el-card>
 
           <el-card shadow="always" class="chart" align="center">
@@ -67,7 +68,7 @@
       <el-tab-pane label="还款分析" name="second">
         <div>还款方式</div>
         <div style="display: flex">
-          <div align="center" style="margin-left: 170px;font-size: 25px;line-height: 100px" >
+          <div align="center" style="margin-left: 120px;font-size: 25px;line-height: 100px" >
             <div>
               您当前的还款方式是： <span style="color: #409EFF">{{return_scheme.return_way}}</span>
             </div>
@@ -76,7 +77,7 @@
             </div>
 
           </div>
-          <div>
+          <div class="bubble">
 
           </div>
         </div>
@@ -84,9 +85,6 @@
         <div>
           还款历史
         </div>
-
-        <div v-for="i in 1000"></div>
-
         <div>
           <timeLine :recordList="recordList"></timeLine>
         </div>
@@ -250,12 +248,12 @@
   .main_info{
     width:350px;
     margin-left: 50px;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
   }
 
   .content{
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     font-family: "Adobe Caslon Pro Bold";
     color: #6628b0;
   }
@@ -282,6 +280,15 @@
     font-size: 18px;
     margin-top: 10px;
 
+  }
+
+  .bubble{
+    width: 300px;
+    height: 200px;
+    /*border:1px solid black;*/
+    margin-top: 20px;
+    background-image: url("/static/pic/bubble.png");
+    background-size: 110% 110%;
   }
 
 </style>

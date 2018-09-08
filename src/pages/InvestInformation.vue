@@ -3,41 +3,32 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="正在进行" name="first">
         <div class="ChooseBar">
-          <!--<el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="投资金额">
-              <el-input v-model="formInline.money"  style="width: 600px"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit" icon="el-icon-search">查询</el-button>
-            </el-form-item>
-          </el-form>
-          <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-          <el-input v-model="input" placeholder="请输入内容"></el-input>-->
-
           <el-form v-model="underway_form">
             <el-form-item label="投资金额">
               <el-radio-group v-model="underway_form.money">
+                <el-radio-button label="全部"></el-radio-button>
                 <el-radio-button label="100以下"></el-radio-button>
                 <el-radio-button label="100-500"></el-radio-button>
                 <el-radio-button label="500-1000"></el-radio-button>
                 <el-radio-button label="1000以上"></el-radio-button>
               </el-radio-group>
-              &nbsp&nbsp
-              <el-input v-model="underway_form.input1" style="width: 120px"></el-input>
-              <span>-</span>
-              <el-input v-model="underway_form.input2" style="width: 120px"></el-input>
             </el-form-item>
-            <el-form-item label="项目类型">
-              <el-select v-model="underway_form.value_class">
-                <el-option
-                  v-for="item in underway_form.options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
+            <el-form-item label="项目时间">
+              <el-radio-group v-model="underway_form.date">
+                <el-radio-button label="全部"></el-radio-button>
+                <el-radio-button label="15天之内"></el-radio-button>
+                <el-radio-button label="1个月之内"></el-radio-button>
+                <el-radio-button label="6个月之内"></el-radio-button>
+                <el-radio-button label="6个月以上"></el-radio-button>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="项目状态">
+              <el-radio-group v-model="underway_form.state">
+                <el-radio-button label="全部"></el-radio-button>
+                <el-radio-button label="正在还款"></el-radio-button>
+                <el-radio-button label="转让审核"></el-radio-button>
+              </el-radio-group>
 
-              <el-button type="primary" icon="el-icon-search" style="margin-left: 20px">一键搜索</el-button>
             </el-form-item>
           </el-form>
 
@@ -119,49 +110,32 @@
           <el-form v-model="complete_form">
             <el-form-item label="投资金额">
               <el-radio-group v-model="complete_form.money">
+                <el-radio-button label="全部"></el-radio-button>
                 <el-radio-button label="100以下"></el-radio-button>
                 <el-radio-button label="100-500"></el-radio-button>
                 <el-radio-button label="500-1000"></el-radio-button>
                 <el-radio-button label="1000以上"></el-radio-button>
               </el-radio-group>
-              &nbsp&nbsp
-              <el-input v-model="complete_form.input1" style="width: 120px"></el-input>
-              <span>-</span>
-              <el-input v-model="complete_form.input2" style="width: 120px"></el-input>
             </el-form-item>
 
-            <el-form-item label="开始时间">
+            <el-form-item label="项目时间">
               <el-radio-group v-model="complete_form.date">
                 <el-radio-button label="立刻开始"></el-radio-button>
                 <el-radio-button label="5天之内"></el-radio-button>
                 <el-radio-button label="10天之内"></el-radio-button>
                 <el-radio-button label="10天以上"></el-radio-button>
               </el-radio-group>
-              &nbsp&nbsp
-              <el-date-picker
-                v-model="complete_form.date1"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
             </el-form-item>
 
-            <el-form-item label="排序维度">
-              <el-checkbox :indeterminate="complete_form.isIndeterminateB" v-model="complete_form.checkAllB" @change="handleCheckAllChangeB">全选</el-checkbox>
-              <el-checkbox-group v-model="complete_form.checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeB" style="display: inline-block;margin-left:10px;">
-                <el-checkbox-button v-for="indexB in complete_form.indexBs" :label="indexB" :key="indexB" >{{indexB}}</el-checkbox-button>
-              </el-checkbox-group>
+            <el-form-item label="项目状态">
+              <el-radio-group v-model="complete_form.state">
+                <el-radio-button label="全部"></el-radio-button>
+                <el-radio-button label="正常还款"></el-radio-button>
+                <el-radio-button label="提前还款"></el-radio-button>
+                <el-radio-button label="成功转让"></el-radio-button>
+              </el-radio-group>
             </el-form-item>
           </el-form>
-
-
-          <span><b>标的种类&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio3">
-            <el-radio-button label="日常生活费周转"></el-radio-button>
-            <el-radio-button label="体育娱乐活动"></el-radio-button>
-            <el-radio-button label="旅游"></el-radio-button>
-            <el-radio-button label="游戏影音"></el-radio-button>
-            <el-radio-button label="不限"></el-radio-button>
-          </el-radio-group>
         </div>
         <div class="projectPanel">
           <div class="projectPages">
@@ -222,74 +196,60 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="收藏项目" name="third">
-        <div class="ChooseBar">
-          <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="审批人">
-              <el-input v-model="formInline.user" placeholder="审批人" style="width: 600px"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit" icon="el-icon-search">查询</el-button>
-            </el-form-item>
-          </el-form>
-          <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio1">
-            <el-radio-button label="100以下"></el-radio-button>
-            <el-radio-button label="100-500"></el-radio-button>
-            <el-radio-button label="500-1000"></el-radio-button>
-            <el-radio-button label="1000以上"></el-radio-button>
-          </el-radio-group>
-          <br/>
-          <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio2">
-            <el-radio-button label="立刻开始"></el-radio-button>
-            <el-radio-button label="5天之内"></el-radio-button>
-            <el-radio-button label="10天之内"></el-radio-button>
-            <el-radio-button label="10天以上"></el-radio-button>
-          </el-radio-group>
-          <br/>
-          <span><b>标的种类&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio3">
-            <el-radio-button label="日常生活费周转"></el-radio-button>
-            <el-radio-button label="体育娱乐活动"></el-radio-button>
-            <el-radio-button label="旅游"></el-radio-button>
-            <el-radio-button label="游戏影音"></el-radio-button>
-            <el-radio-button label="不限"></el-radio-button>
-          </el-radio-group>
-        </div>
+        <!--<div class="ChooseBar">
+        </div>-->
         <div class="projectPanel">
           <div class="projectPages">
             <el-table
               :data="tableDataFavorite"
               stripe
+              :default-sort = "{prop: '', order: 'descending'}"
               style="width: 100%">
               <el-table-column
+                sortable
                 prop="projectName"
                 label="项目名称">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="loanFrom"
                 label="借款人">
               </el-table-column>
               <el-table-column
-                prop="startEndDate"
-                label="筹资起始日期"
-                width="160">
+                sortable
+                prop="money"
+                label="标的金额">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="investAmount"
                 label="可投标金额">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="interest"
-                label="预计年收益率">
+                label="年利率">
               </el-table-column>
               <el-table-column
+                sortable
+                prop="startEndDate"
+                label="筹资截止日期"
+                width="160">
+              </el-table-column>
+              <el-table-column
+                sortable
+                prop="months"
+                label="还款期限(月)">
+              </el-table-column>
+              <el-table-column
+                sortable
                 prop="state"
                 label="状态">
               </el-table-column>
               <el-table-column
-                prop="projectIncome"
-                label="项目收益率">
+                sortable
+                prop="trust"
+                label="信用分">
               </el-table-column>
               <el-table-column label="查看详情">
                 <template slot-scope="scope">
@@ -316,38 +276,24 @@
       </el-tab-pane>
       <el-tab-pane label="坏账记录" name="fourth">
         <div class="ChooseBar">
-          <el-form :inline="true" :model="formInline" class="demo-form-inline">
-            <el-form-item label="审批人">
-              <el-input v-model="formInline.user" placeholder="审批人" style="width: 600px"></el-input>
+          <el-form v-model="bad_form">
+            <el-form-item label="损失金额">
+              <el-radio-group v-model="bad_form.money">
+                <el-radio-button label="全部"></el-radio-button>
+                <el-radio-button label="50以下"></el-radio-button>
+                <el-radio-button label="100-500"></el-radio-button>
+                <el-radio-button label="500以上"></el-radio-button>
+              </el-radio-group>
             </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit" icon="el-icon-search">查询</el-button>
+            <el-form-item label="项目状态">
+              <el-radio-group v-model="bad_form.state">
+                <el-radio-button label="全部"></el-radio-button>
+                <el-radio-button label="正在追回"></el-radio-button>
+                <el-radio-button label="已结束"></el-radio-button>
+              </el-radio-group>
             </el-form-item>
           </el-form>
-          <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio1">
-            <el-radio-button label="100以下"></el-radio-button>
-            <el-radio-button label="100-500"></el-radio-button>
-            <el-radio-button label="500-1000"></el-radio-button>
-            <el-radio-button label="1000以上"></el-radio-button>
-          </el-radio-group>
-          <br/>
-          <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio2">
-            <el-radio-button label="立刻开始"></el-radio-button>
-            <el-radio-button label="5天之内"></el-radio-button>
-            <el-radio-button label="10天之内"></el-radio-button>
-            <el-radio-button label="10天以上"></el-radio-button>
-          </el-radio-group>
-          <br/>
-          <span><b>标的种类&nbsp&nbsp&nbsp</b></span>
-          <el-radio-group v-model="value_radio3">
-            <el-radio-button label="日常生活费周转"></el-radio-button>
-            <el-radio-button label="体育娱乐活动"></el-radio-button>
-            <el-radio-button label="旅游"></el-radio-button>
-            <el-radio-button label="游戏影音"></el-radio-button>
-            <el-radio-button label="不限"></el-radio-button>
-          </el-radio-group>
+          <hr>
         </div>
         <div class="projectPanel">
           <div class="projectPages">
@@ -410,12 +356,11 @@
 <script>
   import personalCenter from "../components/personalCenter";
   import investList from "../components/investList";
-
-  const indexBOptions = ['AA','A','B','C','D'];
+  import loanTopBar from "../components/loanTopBar";
 
   export default {
     name:"investinformation",
-    components: {investList, personalCenter},
+    components: {investList, personalCenter,loanTopBar},
     data() {
       return {
         currentPage1: 1,
@@ -434,17 +379,18 @@
             label:'大额长期借款'
           }],
           value_class:'any',
+          date:'',
+          state:''
         },
         complete_form:{
           money:'',
           date:'',
-          date1:'',
-          checkAllB:false,
-          isIndeterminateB:true,
-          indexBs: indexBOptions,
-          checkboxGroup2: [],
+          state:''
         },
-
+        bad_form:{
+          money:'',
+          state:''
+        },
 
 
         formInline: {
@@ -512,7 +458,7 @@
 
         tableDataFavorite: [{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
-        },{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
+        },{projectName: '要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
         },{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
@@ -543,17 +489,6 @@
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
-      },
-      handleCheckAllChangeB(val) {
-        this.complete_form.checkboxGroup2 = val ? indexBOptions : [];
-        this.complete_form.isIndeterminateB = false;
-        this.showIndexs();
-      },
-      handleCheckedCitiesChangeB(value) {
-        let checkedCount = value.length;
-        this.complete_form.checkAllB = checkedCount === this.complete_form.indexBs.length;
-        this.complete_form.isIndeterminateB = checkedCount > 0 && checkedCount < this.complete_form.indexBs.length;
-        this.showIndexs();
       },
     }
   }

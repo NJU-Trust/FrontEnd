@@ -2,9 +2,9 @@
 
   <el-tabs type="border-card" style="min-height: 600px;">
     <el-tab-pane label="基本资料" style="padding:20px;">
-      <el-form ref="base_form" :rules="base_rules" :model="base_form" label-width="100px">
+      <el-form ref="base_form" :rules="base_rules" :model="base_form" label-width="100px" style="padding:15px;">
         <el-form-item label="姓名" prop="name">
-          <el-input v-model="base_form.name"></el-input>
+          <el-input style="width:267px;" v-model="base_form.name"></el-input>
         </el-form-item>
         <el-form-item label="性别" prop="gender">
           <template>
@@ -18,19 +18,19 @@
           </el-col>
         </el-form-item>
         <el-form-item label="身份证号" prop="id_card">
-          <el-input v-model="base_form.id_card"></el-input>
+          <el-input class="inputs" v-model="base_form.id_card"></el-input>
         </el-form-item>
         <el-form-item label="学校" prop="university">
-          <el-input v-model="base_form.university"></el-input>
+          <el-input class="inputs" v-model="base_form.university"></el-input>
         </el-form-item>
         <el-form-item label="学院" prop="institution">
-          <el-input v-model="base_form.institution"></el-input>
+          <el-input class="inputs" v-model="base_form.institution"></el-input>
         </el-form-item>
         <el-form-item label="专业" prop="major">
-          <el-input v-model="base_form.major"></el-input>
+          <el-input class="inputs" v-model="base_form.major"></el-input>
         </el-form-item>
         <el-form-item label="支付宝账号" prop="alipay">
-          <el-input v-model="base_form.alipay"></el-input>
+          <el-input class="inputs" v-model="base_form.alipay"></el-input>
         </el-form-item>
 
         <div style="min-height: 300px;padding:40px 0px 10px 0px;">
@@ -79,7 +79,7 @@
       <el-form ref="selfinfo_form" :rules="selfinfo_rules" :model="selfinfo_form" label-width="130px">
         <div class="fail_subject" style="display:flex;">
           <el-form-item class="info_input" label="挂科数目" prop="fail">
-            <el-input v-model.number="selfinfo_form.fail"></el-input>
+            <el-input class="inputs" v-model.number="selfinfo_form.fail"></el-input>
           </el-form-item>
           <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <el-upload
@@ -103,14 +103,14 @@
             <div class="school" style="padding: 0px 0px 10px 0px;">
               <el-form-item
                 v-for="(school_reward, index) in selfinfo_form.school_rewards"
-                :label="'校级奖项名称' + index"
+                :label="'校级奖项名称'"
                 :key="school_reward.key"
                 :prop="'school_rewards.' + index + '.value'"
                 :rules="{
                   required: true, message: '校级奖项名称不能为空', trigger: 'blur'
                   }" >
                 <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
-                  <el-input v-model="school_reward.value"></el-input>
+                  <el-input class="inputs" v-model="school_reward.value"></el-input>
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <el-upload
                     class="upload-demo"
@@ -136,14 +136,14 @@
             <div class="city" style="padding: 0px 0px 10px 0px;">
               <el-form-item
                 v-for="(city_reward, index) in selfinfo_form.city_rewards"
-                :label="'市级奖项名称' + index"
+                :label="'市级奖项名称'"
                 :key="city_reward.key"
                 :prop="'city_rewards.' + index + '.value'"
                 :rules="{
                   required: true, message: '市级奖项名称不能为空', trigger: 'blur'
                   }" >
                 <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
-                  <el-input v-model="city_reward.value"></el-input>
+                  <el-input class="inputs" v-model="city_reward.value"></el-input>
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <el-upload
                     class="upload-demo"
@@ -169,14 +169,14 @@
             <div class="province" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(province_reward, index) in selfinfo_form.province_rewards"
-                :label="'省级奖项名称' + index"
+                :label="'省级奖项名称'"
                 :key="province_reward.key"
                 :prop="'province_rewards.' + index + '.value'"
                 :rules="{
                   required: true, message: '省级奖项名称不能为空', trigger: 'blur'
                   }" >
                 <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
-                  <el-input v-model="province_reward.value"></el-input>
+                  <el-input class="inputs" v-model="province_reward.value"></el-input>
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <el-upload
                     class="upload-demo"
@@ -202,14 +202,14 @@
             <div class="country" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(country_reward, index) in selfinfo_form.country_rewards"
-                :label="'国家级奖项名称' + index"
+                :label="'国家级奖项名称'"
                 :key="country_reward.key"
                 :prop="'country_rewards.' + index + '.value'"
                 :rules="{
                   required: true, message: '国家级奖项名称不能为空', trigger: 'blur'
                   }" >
                 <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
-                  <el-input v-model="country_reward.value"></el-input>
+                  <el-input class="inputs" v-model="country_reward.value"></el-input>
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <el-upload
                     class="upload-demo"
@@ -246,11 +246,11 @@
             </div>
           </el-checkbox-group>
           <el-form-item class="info_input" v-if="count%4!=0" prop="income_description">
-            <el-input type="textarea" v-model="selfinfo_form.income_description" style="width:400px"></el-input>
+            <el-input class="inputs" type="textarea" v-model="selfinfo_form.income_description" style="width:400px"></el-input>
           </el-form-item>
         </el-form-item>
         <el-form-item class="info_input" label="志愿时长：小时" prop="volunteer">
-          <el-input v-model.number="selfinfo_form.volunteer"></el-input>
+          <el-input class="inputs" v-model.number="selfinfo_form.volunteer"></el-input>
         </el-form-item>
         <div class="qualifications" >
           <el-form-item class="info_input" label="获得证书" style="width:640px">
@@ -258,14 +258,14 @@
             <div class="qualifications" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(self_qualification, index) in selfinfo_form.self_qualifications"
-                :label="'获得证书名称' + index"
+                :label="'获得证书名称'"
                 :key="self_qualification.key"
                 :prop="'self_qualifications.' + index + '.value'"
                 :rules="{
                   required: true, message: '证书名称不能为空', trigger: 'blur'
                   }" >
                 <div style="display: flex;width:400px;padding:0px 0px 10px 0px">
-                  <el-input v-model="self_qualification.value"></el-input>
+                  <el-input class="inputs" v-model="self_qualification.value"></el-input>
                   <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <el-upload
                     class="upload-demo"
@@ -484,5 +484,8 @@
 <style scoped>
   .info_input{
     width:400px;
+  }
+  .inputs{
+    width:520px;
   }
 </style>

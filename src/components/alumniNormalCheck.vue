@@ -1,10 +1,10 @@
 <template>
 
   <el-tabs type="border-card" style="min-height: 600px;">
-    <el-tab-pane label="基本资料" style="padding:20px;">
+    <el-tab-pane label="基本资料" style="padding:20px">
       <el-form ref="base_form" :rules="base_rules" :model="base_form" label-width="100px">
         <el-form-item label="姓名" prop="name">
-          <el-input v-model="base_form.name"></el-input>
+          <el-input style="width:267px;" v-model="base_form.name"></el-input>
         </el-form-item>
         <el-form-item label="性别" prop="gender">
           <template>
@@ -18,11 +18,11 @@
           </el-col>
         </el-form-item>
         <el-form-item label="身份证号" prop="id_card">
-          <el-input v-model="base_form.id_card"></el-input>
+          <el-input class="inputs" v-model="base_form.id_card"></el-input>
         </el-form-item>
         <div style="display:flex;">
           <el-form-item label="学历" prop="university">
-            <el-input v-model="base_form.university"></el-input>
+            <el-input class="inputs" v-model="base_form.university"></el-input>
           </el-form-item>
           <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <el-upload
@@ -39,11 +39,11 @@
           </el-upload>
         </div>
         <el-form-item label="工作单位" prop="institution">
-          <el-input v-model="base_form.institution"></el-input>
+          <el-input class="inputs" v-model="base_form.institution"></el-input>
         </el-form-item>
         <div style="display:flex;">
           <el-form-item label="职务" prop="major">
-            <el-input v-model="base_form.major"></el-input>
+            <el-input class="inputs" v-model="base_form.major"></el-input>
           </el-form-item>
           <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <el-upload
@@ -61,7 +61,7 @@
         </div>
         <div style="display:flex;">
           <el-form-item label="年收入" prop="year_income">
-            <el-input v-model="base_form.year_income"></el-input>
+            <el-input class="inputs" v-model="base_form.year_income"></el-input>
           </el-form-item>
           <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
           <el-upload
@@ -78,7 +78,7 @@
           </el-upload>
         </div>
         <el-form-item label="现居住地" prop="living_place">
-          <el-input v-model="base_form.living_place"></el-input>
+          <el-input class="inputs" v-model="base_form.living_place"></el-input>
         </el-form-item>
 
         <el-form-item style="float:right;">
@@ -287,4 +287,8 @@
   .info_input{
     width:400px;
   }
+  .inputs{
+    width:520px;
+  }
+
 </style>
