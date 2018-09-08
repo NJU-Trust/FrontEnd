@@ -1,12 +1,10 @@
 <template>
   <el-tabs v-model="activeParent" @tab-click="handleClick" >
     <div class="Parent">
-      <el-tab-pane label="财务分析" name="before">
-        <div id="financial_id"><br/>
+      <el-tab-pane label="财务分析" name="one">
           <fin-analysis></fin-analysis>
-        </div>
       </el-tab-pane>
-      <el-tab-pane label="项目信息" name="after">
+      <el-tab-pane label="项目信息" name="two">
         <div id="loan_id">
           <el-tabs v-model="activeChild" @tab-click="handleClick">
             <el-tab-pane label="正在进行" name="first">
@@ -28,6 +26,9 @@
           </el-tabs>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="基本资料" name="three">
+        <loanerBasicInfo></loanerBasicInfo>
+      </el-tab-pane>
     </div>
 
   </el-tabs>
@@ -40,14 +41,15 @@
     import loanComplete from "../components/loanComplete"
     import loanLaunched from "../components/loanLaunched"
     import loanUnbelievable from "../components/loanUnbelievable"
+    import loanerBasicInfo from "../components/loanerBasicInfo"
 
 
     export default {
       name: "doInvestingLoanerInfo",
-      components: {FinAnalysis,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
+      components: {FinAnalysis,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,loanerBasicInfo},
       data(){
         return{
-          activeParent: 'before',
+          activeParent: 'one',
           activeChild:'first',
         }
       },

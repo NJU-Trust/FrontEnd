@@ -52,7 +52,7 @@
           <el-tab-pane label="投标记录" style="padding:80px 60px 10px 30px;font-size:18px;line-height: 30px;">
             <el-table
               :data="tableData"
-              height="250"
+              height="290"
               border
               style="width: 100%">
               <el-table-column
@@ -90,36 +90,44 @@
           tableData:[
             {date: '2018-05-03',
             name: '陈文博',
-            money: '960'
+            money: '5000'
             },
-            {date: '2018-09-03',
+            {date: '2018-06-13',
               name: '罗子俊',
+              money: '500'
+            },
+            {date: '2018-08-08',
+              name: '付贺然',
               money: '100'
             },
-            {date: '2018-09-03',
-              name: '付贺然',
-              money: '200'
+            {date: '2018-08-20',
+              name: '吴欣怡',
+              money: '400'
+            },
+            {date: '2018-08-29',
+              name: '王刚',
+              money: '400'
             },
           ],
-          target_id:"921912",
-          percentage:70,
-          leftTime:"1天2小时59分11秒",
-          revenueRate:5.0,
-          lifeOfLoan:"3个月",
-          totalLoan:1800,
-          leftNeeds:540,
-          userMoney:100,
+          target_id:"723972",
+          percentage:80,
+          leftTime:"31天9小时50分04秒",
+          revenueRate:8.0,
+          lifeOfLoan:"2年",
+          totalLoan:8000,
+          leftNeeds:1600,
+          userMoney:1000,
           num1: 100,
           tabPostion:"left",
           DoInvest:"确认投资",
           Abstract:"借款项目简介<br/><br/>" +
             "还款方式：付息还本" +
             "<br/><br/>" +
-            "借款用途：买鞋<br/>" +
+            "借款用途：托福培训<br/>" +
             "<br/>" +
-            "月还本息：99.954<br/><br/>"+
-            "到期需还本金：1800<br/><br/>"+
-            "说明：在投资期限届满前，投资人可以转让，但不可以赎回<br/><br/>"+
+            "月还本息：180.32<br/><br/>"+
+            "到期需还本金：8000<br/><br/>"+
+            "说明：在投资期限届满前，投资人不可以转让或赎回<br/><br/>"+
             "信用说明：信用等级排序：AA>A>B>C>D<br/><br/>"
 
           ,//产品概要
