@@ -15,12 +15,6 @@
     <div class="back">
       <leftInformationbar></leftInformationbar>
       <div class="mesboxborder">
-        <!--图标分隔 -->
-        <el-breadcrumb separator-class="el-icon-arrow-right" style="position:relative;top:60px;left:60px;">
-          <el-breadcrumb-item :to="{ path: '/' }" style="font-size: 16px;">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/notice' }" style="font-size: 16px;">发布</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/notice/lost' }" style="font-size: 16px;">寻物启事</el-breadcrumb-item>
-        </el-breadcrumb>
         <!-- 搜索 -->
         <el-button type="primary" icon="el-icon-search" style="position:relative;top:30px;left:750px;">搜索</el-button>
         <el-input  placeholder="请输入想要查询的内容" style="position:relative;top:30px;left:415px;width:250px;"></el-input>
@@ -135,22 +129,15 @@
           "Wyoming"],
         mesdata:[
           {
-            mestype:'失物招领',
-            itemtype:'校园卡',
-            name:'杯子',
-            phone:'7148461',
-            dec:'捡到了一个杯子，如图。我也不知道该说什么，就是想测试一下，如果描述信息过长会不会分行，会不会很丑！可是到底是多少呢，我也不知道，也许应该在输入的时候限制一下？',
-            pic:'传上来的图片',
-            state:true,
-          },
-          {
             mestype:'寻物启事',
             itemtype:'其他',
-            name:'杯子',
-            phone:'7148461',
-            dec:'捡到了一个杯子，如图。我也不知道该说什么，就是想测试一下，如果描述信息过长会不会分行，会不会很丑！',
-            pic:'../../static/pic/mestest.png',
+            name:'雨伞',
+            phone:'13834712391',
+            dec:'啊啊啊啊啊已经是今年丢的第四把伞了，大概长左边酱……中午骑小蓝去九食，应该是落在车筐里面了。捡到的童鞋可以联系我一下嘛，我可以请你喝奶茶啊~',
+            pic:'传上来的图片',
+            time:'2018-09-04',
             state:true,
+            username:'徐忘',
           },
           {
             mestype:'寻物启事',

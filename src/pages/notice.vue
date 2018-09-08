@@ -17,7 +17,7 @@
       <div class="publishmes" >
       <el-form :rules="rules"
                :inline="true"
-               ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:120px;top:60px;">
+               ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">
         <el-form-item label="消息性质" prop="type">
           <el-radio-group v-model="sizeForm.type" size="small">
             <el-radio border label="失物招领"></el-radio>
@@ -68,7 +68,7 @@
                     v-model="sizeForm.desc"></el-input>
         </el-form-item>
         <br/>
-        <el-form-item size="large" style="position:absolute;left:500px;">
+        <el-form-item size="large" style="position:absolute;left:550px;">
           <el-button type="primary" @click="onSubmit()">发布</el-button>
         </el-form-item>
       </el-form>
@@ -169,7 +169,7 @@
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
     background-color: #D9F3FB;
-    min-height:700px;
+    min-height:750px;
     //height: 200px;
     display:flex;
   }
@@ -196,7 +196,7 @@
     background:white;
     border:1px solid #e4e4e4;
     //border-top:5px solid dodgerblue;
-    height:550px;
+    height:630px;
     //width:100%;
     width:950px;
     margin-right: 10%;

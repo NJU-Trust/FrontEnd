@@ -15,7 +15,7 @@
     <div class="back">
       <leftInformationbar></leftInformationbar>
       <div class="mesboxborder" >
-      <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:90px;width:800px;">
+      <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:77px;width:800px;">
         <el-tab-pane label="失物招领" name="first">
           <div v-for="i in mesdata.length" :key="i">
             <!--<span>{{ i }}</span>
@@ -30,10 +30,12 @@
                   <div>
                     <strong style="font-size: 15px;">物品类别</strong>
                     <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                    <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
+                    <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
                   </div>
                   <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">物品名称</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].name}}</span>
+                    <strong style="font-size: 15px;">发布时间</strong>
+                    <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
                   </div>
                   <div style="position:relative;top:3px;">
                     <strong style="font-size: 15px;">联系方式</strong>
@@ -77,16 +79,18 @@
                  v-show="mesdata[i-1].state">
               <el-card class="box-card">
                 <div>
-                  <img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                  <img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
                 </div>
                 <div class="textitem">
                   <div>
                     <strong style="font-size: 15px;">物品类别</strong>
                     <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                    <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
+                    <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
                   </div>
                   <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">物品名称</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].name}}</span>
+                    <strong style="font-size: 15px;">发布时间</strong>
+                    <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
                   </div>
                   <div style="position:relative;top:3px;">
                     <strong style="font-size: 15px;">联系方式</strong>
@@ -153,21 +157,23 @@
         mesdata:[
           {
             mestype:'失物招领',
-            itemtype:'校园卡',
+            itemtype:'其他',
             name:'杯子',
-            phone:'7148461',
-            dec:'捡到了一个杯子，如图。我也不知道该说什么，就是想测试一下，如果描述信息过长会不会分行，会不会很丑！可是到底是多少呢，我也不知道，也许应该在输入的时候限制一下？',
+            phone:'13834712391',
+            dec:'下午在仙I-221上课的时候捡到的一个杯子，放到仙I的保卫处了。（P.s.竟然和我的杯子是同款）',
             pic:'传上来的图片',
             state:true,
+            time:'2018-08-24',
           },
           {
             mestype:'寻物启事',
             itemtype:'其他',
-            name:'杯子',
-            phone:'7148461',
-            dec:'捡到了一个杯子，如图。我也不知道该说什么，就是想测试一下，如果描述信息过长会不会分行，会不会很丑！可是到底是多少呢，我也不知道，也许应该在输入的时候限制一下？',
+            name:'雨伞',
+            phone:'13834712391',
+            dec:'啊啊啊啊啊已经是今年丢的第四把伞了，大概长左边酱……中午骑小蓝去九食，应该是落在车筐里面了。捡到的童鞋可以联系我一下嘛，我可以请你喝奶茶啊~',
             pic:'传上来的图片',
             state:true,
+            time:'2018-09-04',
           }
         ],
         activeName2: 'first',
