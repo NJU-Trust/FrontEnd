@@ -78,7 +78,7 @@
           </el-col>
         </el-row>
       </div>
-      <div v-if="true"><!--是否校友-->
+      <div v-if="false"><!--是否校友-->
         <el-row :gutter="24">
           <el-col :span="6">
             <el-card shadow="always" class="mycard card_C">

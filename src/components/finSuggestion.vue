@@ -32,34 +32,34 @@
         <div class="LevelTwoPanel">
           <el-row :gutter="2">
             <el-col :span="12">
-              <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp 3752.30 元</b></h4><hr/>
+              <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp {{ user.surplus }} 元</b></h4><hr/>
               <div id="Index_NetWorth">
-                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4><hr/>
+                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp {{ user.netAssets }} 元</b></h4><hr/>
               </div>
               <div id="Index_EngelsCoefficient">
-                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
+                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp {{ user.engel }}%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
               </div>
               <div id="Index_RigidRatio">
-                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
+                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp {{ user.rigid }}%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
               </div>
               <div id="Index_AssetLiabilityRatio">
-                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4>
+                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp {{ user.assetLiabilityRatio }}%</b></h4>
               </div>
             </el-col>
             <el-col :span="12">
-              <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp 6632.30 元</b></h4><hr/>
+              <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp {{ user.totalLiabilities }} 元</b></h4><hr/>
               <div id="Index_Solvency">
-                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4><hr/>
+                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp {{ user.solvency }}%</b></h4><hr/>
               </div>
               <div id="Index_Leverage">
-                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4><hr/>
+                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp {{ user.leverage }}%</b></h4><hr/>
               </div>
               <div id="Index_MonthConsumptionRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平</b></h4>
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp {{ user.monthCusumptionRatio }}%，在同学中处于中等水平</b></h4>
                 <hr/>
               </div>
               <div id="Index_MonthlySavingsRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp {{ user.monthSavingRatio }}%</b></h4>
               </div>
             </el-col>
           </el-row>
@@ -138,6 +138,18 @@
     components: {Nextpay, InvestList},
     data() {
       return {
+        user:{
+          surplus: 6050.30, //结余
+          netAssets: 3752.30, //净资产
+          engel:55,
+          rigid:60,
+          assetLiabilityRatio:25, //资产负债率
+          totalLiabilities: 6632.3,
+          solvency: 100,
+          leverage: 35,
+          monthCusumptionRatio:31.4,
+          monthSavingRatio:23.9,
+        },
         NextpayList: [
           { paytitle : "托福考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
           { paytitle : "CPA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
@@ -200,6 +212,11 @@
           valZ: '27%'
         }, {
           month: '12',
+          valX: '15%',
+          valY: '16%',
+          valZ: '27%'
+        }, {
+          month: '1',
           valX: '15%',
           valY: '16%',
           valZ: '27%'

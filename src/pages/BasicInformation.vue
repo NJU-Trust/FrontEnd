@@ -114,6 +114,15 @@
           <div v-show="secService=='1'">
             <changepassword></changepassword>
           </div>
+          <div v-show="secService=='2'">
+            <modifymailbox></modifymailbox>
+          </div>
+          <div v-show="secService=='3'">
+            <modifyphone></modifyphone>
+          </div>
+          <div v-show="secService=='4'">
+            <set-password-protection></set-password-protection>
+          </div>
         </div>
 
       </el-tab-pane>
@@ -125,10 +134,13 @@
   import personalCenter from "../components/personalCenter";
   import Changepassword from "../components/changePassword";
   import OrdinaryNormalCheck from "../components/ordinaryNormalCheck";
+  import Modifymailbox from "../components/modifyMailBox";
+  import Modifyphone from "../components/modifyPhone";
+  import SetPasswordProtection from "../components/setPasswordProtection";
 
   export default {
     name:"basicinformation",
-    components: {OrdinaryNormalCheck, Changepassword, personalCenter},
+    components: {SetPasswordProtection, Modifyphone, Modifymailbox, OrdinaryNormalCheck, Changepassword, personalCenter},
     data() {
       return {
         activeName: 'first',
