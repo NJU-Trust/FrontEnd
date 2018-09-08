@@ -103,7 +103,7 @@
             <div class="school" style="padding: 0px 0px 10px 0px;">
               <el-form-item
                 v-for="(school_reward, index) in selfinfo_form.school_rewards"
-                :label="'校级奖项名称' + index"
+                :label="'校级奖项名称'"
                 :key="school_reward.key"
                 :prop="'school_rewards.' + index + '.value'"
                 :rules="{
@@ -136,7 +136,7 @@
             <div class="city" style="padding: 0px 0px 10px 0px;">
               <el-form-item
                 v-for="(city_reward, index) in selfinfo_form.city_rewards"
-                :label="'市级奖项名称' + index"
+                :label="'市级奖项名称'"
                 :key="city_reward.key"
                 :prop="'city_rewards.' + index + '.value'"
                 :rules="{
@@ -169,7 +169,7 @@
             <div class="province" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(province_reward, index) in selfinfo_form.province_rewards"
-                :label="'省级奖项名称' + index"
+                :label="'省级奖项名称'"
                 :key="province_reward.key"
                 :prop="'province_rewards.' + index + '.value'"
                 :rules="{
@@ -202,7 +202,7 @@
             <div class="country" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(country_reward, index) in selfinfo_form.country_rewards"
-                :label="'国家级奖项名称' + index"
+                :label="'国家级奖项名称'"
                 :key="country_reward.key"
                 :prop="'country_rewards.' + index + '.value'"
                 :rules="{
@@ -258,7 +258,7 @@
             <div class="qualifications" style="padding:0px 0px 10px 0px;">
               <el-form-item
                 v-for="(self_qualification, index) in selfinfo_form.self_qualifications"
-                :label="'获得证书名称' + index"
+                :label="'获得证书名称'"
                 :key="self_qualification.key"
                 :prop="'self_qualifications.' + index + '.value'"
                 :rules="{
