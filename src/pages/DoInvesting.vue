@@ -40,8 +40,8 @@
         </div>
       </div>
     </div>
-    <div style="display:flex;height:800px;">
-      <div class="market_out" style="border: 1px solid lightgrey;height:100%;width:100%;">
+    <div style="display:flex;min-height:800px;border: 1px solid lightgrey;">
+      <div class="market_out" style="height:100%;width:100%;">
         <el-tabs :tab-position="tabPostion" style="height:100%;">
           <el-tab-pane label="产品概要" style="padding:60px 60px 10px 30px;font-size:18px;line-height: 30px;">
             <p v-html="Abstract"></p>

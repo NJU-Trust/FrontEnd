@@ -1,5 +1,5 @@
 <template>
-  <div id="userinformation">
+  <div id="userinformation" style="padding:30px 0px 0px 0px;">
     <el-row :gutter="2">
       <el-col :span="12">
         <div id="myradar" style="width: 400px;height: 410px"></div>
@@ -97,17 +97,401 @@
     </div>
     <hr/>
     <div id="interGraph">
-      <div id="myGraph" style="height: 600px;width: 88%;"></div>
+      <div id="myGraph" style="height: 600px;width:88%;"></div>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "academicPerformance"
+  // 引入基本模板
+  let echarts = require('echarts/lib/echarts')
+  // 引入柱状图组件
+  require('echarts/lib/chart/radar')
+  require('echarts/lib/chart/graph')
+  // 引入提示框和title组件
+  require('echarts/lib/component/tooltip')
+  require('echarts/lib/component/title')
+
+  //引入主题
+  require('echarts/theme/infographic')
+
+  export default {
+    name: "academicPerformance",
+    data(){
+      return{
+        user:{
+          schoolClass: '985',
+          majorCondition: '综合',
+          educationBackground: '硕士',
+          financeSource: '家庭供给',
+          GPA: '前20%',
+          numNoPass: 0,
+          scholarship: '人民奖学金，东方奖学金',
+          reseachCompetition: '校级比赛获奖',
+          awards: '国家级 省级 市级 校级 院级 技能证书',
+          punishment: '国家级 省级 市级 校级 院级 技能证书',
+          payment: '全交',
+          library: '全归还',
+          cheating: '无作弊记录'
+        }
+      }
+    },
+    mounted() {
+      this.drawRadar();
+      this.drawGraph();
+    },
+    methods: {
+      drawRadar() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('myradar'), 'infographic')
+        // 绘制图表
+        myChart.setOption({
+          title: {
+            text: '校园表现'
+          },
+          tooltip: {},
+          legend: {
+            data: ['您的表现', '注册用户平均表现']
+          },
+          radar: {
+            // shape: 'circle',
+            name: {
+              textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5]
+              }
+            },
+            indicator: [
+              {name: '学校', max: 100},
+              {name: '学历', max: 100},
+              {name: '社交情况', max: 100},
+              {name: '获奖情况', max: 100},
+              {name: '成绩', max: 100}
+            ]
+          },
+          series: [{
+            name: '您的表现 VS 平均表现',
+            type: 'radar',
+            // areaStyle: {normal: {}},
+            data: [
+              {
+                value: [80, 76, 65, 89, 77, 66],
+                name: '您的表现'
+              },
+              {
+                value: [60, 70, 45, 80, 85, 27],
+                name: '注册用户平均表现'
+              }
+            ]
+          }]
+        });
+      },
+      drawGraph() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('myGraph'), 'infographic')
+        // 绘制图表
+        myChart.setOption({
+          title: {text: '您的校园关系图如下'},
+          legend: {
+            data: ['您的表现', '注册用户平均表现']
+          },
+          tooltip: {
+            formatter: function (x) {
+              if (typeof(x.data.creditPts) == "undefined") {
+                return x.data.relation;
+              }
+              else {
+                var br = ' <br/>';
+                var a = '信用分数 ' + x.data.creditPts + br;
+                var b = '财务分数 ' + x.data.financialPts + br;
+                var c = '校园表现 ' + x.data.schoolPts;
+                return a + b + c;
+              }
+
+            }
+          },
+          series: [
+            {
+              type: 'graph',
+              layout: 'force',
+              symbolSize: 60,//一般大小
+              roam: false, //是否开启鼠标缩放和平移漫游。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+              focusNodeAdjacency: true,
+              // symbol: 'pin',
+              edgeSymbol: ['circle', 'none'],
+              edgeSymbolSize: [4, 10],
+              edgeLabel: {
+                normal: {
+                  textStyle: {
+                    fontSize: 20
+                  }
+                }
+              },
+              force: {
+                repulsion: 2500,
+                edgeLength: [10, 50]
+              },
+              draggable: true,
+              itemStyle: {
+                normal: {
+                  color: '#409EFF',
+                  // color: {
+                  //   type: 'linear',
+                  //   x: 0,
+                  //   y: 0,
+                  //   x2: 0,
+                  //   y2: 1,
+                  //   colorStops: [{
+                  //     offset: 0, color: '#b04ade' // 0% 处的颜色
+                  //   }, {
+                  //     offset: 1, color: '#409EFF' // 100% 处的颜色
+                  //   }],
+                  //   globalCoord: true // 缺省为 false
+                  // }
+                }
+              },
+              lineStyle: {
+                normal: {
+                  width: 3,
+                  type: 'dotted',
+                  // color: '#b04ade'
+                  color: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                      offset: 0, color: '#409EFF' // 0% 处的颜色
+                    }, {
+                      offset: 1, color: 'blue' // 100% 处的颜色
+                    }],
+                    globalCoord: false // 缺省为 false
+                  }
+                }
+              },
+              edgeLabel: {
+                normal: {
+                  show: true,
+                  formatter: function (x) {
+                    return x.data.name;
+                  }
+                }
+              },
+              label: {
+                normal: {
+                  show: true,
+                  textStyle: {}
+                }
+              },
+              data: [{
+                name: 'UserName',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67,
+                symbolSize: 100,
+                itemStyle: {
+                  normal: {
+                    // color : '#409EFF'
+                    color: {
+                      type: 'linear',
+                      x: 0,
+                      y: 0,
+                      x2: 0,
+                      y2: 1,
+                      colorStops: [{
+                        offset: 0, color: '#7853de' // 0% 处的颜色
+                      }, {
+                        offset: 1, color: '#409EFF' // 100% 处的颜色
+                      }],
+                      globalCoord: false, // 缺省为 false
+                    }
+                  }
+                },
+              }, {
+                name: '张三',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '李四',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '王五',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '赵六',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '武藏',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '小次郎',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '张伟',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '吕子乔',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '曾小贤',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }, {
+                name: '胡一菲',
+                creditPts: 97,
+                financialPts: 85,
+                schoolPts: 67
+              }],
+              // links: [],
+              links: [{
+                source: 'UserName',
+                target: '张三',
+                name: '同学',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '李四',
+                name: '同学',
+                relation: '您最近的关系超级好',
+                lineStyle: {
+                  normal: {
+                    width: 4,
+                    type: 'solid',
+                  }
+                },
+              }, {
+                source: 'UserName',
+                target: '王五',
+                name: '校友',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '赵六',
+                name: '校友',
+                lineStyle: {
+                  normal: {
+                    type: 'dashed',
+                  }
+                },
+                relation: '您最近的关系减淡了'
+              }, {
+                source: 'UserName',
+                target: '武藏',
+                name: '同学',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '张伟',
+                name: '同学',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '胡一菲',
+                name: '工作伙伴',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '曾小贤',
+                name: '工作伙伴',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '吕子乔',
+                name: '工作伙伴',
+                relation: '您最近的关系没什么变化'
+              }, {
+                source: 'UserName',
+                target: '小次郎',
+                name: '同学',
+                relation: '您最近的关系超级好',
+                lineStyle: {
+                  normal: {
+                    type: 'solid',
+                  }
+                },
+              }],
+            }
+          ]
+        });
+      }
     }
+  }
 </script>
 
 <style scoped>
 
+  /*----------用户信息查看-------------*/
+  div.user_info{
+    margin-top: 2%;
+    margin-left: 6%;
+    margin-right: 6%;
+    text-align: left;
+    font-size: 16px;
+    color: #505050;
+    min-height: 550px;
+  }
+
+  div.user_credit{
+    margin-top: 2%;
+    margin-left: 6%;
+    margin-right: 6%;
+    text-align: left;
+    font-size: 16px;
+    color: #505050;
+    min-height: 250px;
+  }
+
+  .user_info .table>tbody>tr>td{
+    border:0px;
+  }
+
+  .user_info .table>tbody>tr>th{
+    border:0px;
+    min-width: 110px;
+  }
+
+  .user_credit caption>b{
+    color: #333333;
+    font-size: large;
+  }
+
+  .user_info_title{
+    color: #505050;
+  }
+
+  #myGraph{
+    margin-left: 6%;
+    margin-right: 6%;
+    text-indent: 5px;
+    text-align: left;
+    /*background-image: url("../../static/pic/CrossLines.png");*/
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+  }
+
 </style>
+
+<style>
+  /*#leftOV,#leftFS,#leftBI,#leftLI,#leftLS,#leftII,#leftIE,#leftNC,#leftAC,#leftCC{ color: #777777 !important; }*/
+  #leftSP { color: dodgerblue !important}
+</style>
+
