@@ -203,35 +203,53 @@
             <el-table
               :data="tableDataFavorite"
               stripe
+              :default-sort = "{prop: '', order: 'descending'}"
               style="width: 100%">
               <el-table-column
+                sortable
                 prop="projectName"
                 label="项目名称">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="loanFrom"
                 label="借款人">
               </el-table-column>
               <el-table-column
-                prop="startEndDate"
-                label="筹资起始日期"
-                width="160">
+                sortable
+                prop="money"
+                label="标的金额">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="investAmount"
                 label="可投标金额">
               </el-table-column>
               <el-table-column
+                sortable
                 prop="interest"
-                label="预计年收益率">
+                label="年利率">
               </el-table-column>
               <el-table-column
+                sortable
+                prop="startEndDate"
+                label="筹资截止日期"
+                width="160">
+              </el-table-column>
+              <el-table-column
+                sortable
+                prop="months"
+                label="还款期限(月)">
+              </el-table-column>
+              <el-table-column
+                sortable
                 prop="state"
                 label="状态">
               </el-table-column>
               <el-table-column
-                prop="projectIncome"
-                label="项目收益率">
+                sortable
+                prop="trust"
+                label="信用分">
               </el-table-column>
               <el-table-column label="查看详情">
                 <template slot-scope="scope">
@@ -440,7 +458,7 @@
 
         tableDataFavorite: [{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
-        },{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
+        },{projectName: '要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
         },{projectName: '我要考托福', loanFrom: '王小虎', startEndDate: '2018/1/1-2018/3/1',
           investAmount: '300.00元', interest: '1.03%', state:'投标成功', projectIncome:'0元'
