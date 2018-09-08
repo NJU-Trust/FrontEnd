@@ -4,7 +4,7 @@
     <el-tab-pane label="基本资料" style="padding:20px;">
       <el-form ref="base_form" :rules="base_rules" :model="base_form" label-width="100px" style="padding:15px;">
         <el-form-item label="姓名" prop="name">
-          <el-input class="inputs"  v-model="base_form.name"></el-input>
+          <el-input style="width:267px;" v-model="base_form.name"></el-input>
         </el-form-item>
         <el-form-item label="性别" prop="gender">
           <template>
