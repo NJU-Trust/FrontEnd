@@ -14,6 +14,7 @@
           <h2 class="myspace">个人中心</h2>
           <!--<p style="color: #777777;">在此处，你可以查看个人财务统计并追踪校友投资详情</p>-->
         </div>
+        <br/>
       </div>
     </div>
     <!--background-color: #D9F3FB-->

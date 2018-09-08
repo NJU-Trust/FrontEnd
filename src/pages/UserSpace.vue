@@ -16,6 +16,10 @@
         </el-col>
         <el-col :span="10">
           <div class="grid-content bg-purple wel_right">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <el-row>
               <el-button type="primary" plain class="wel_right_btn">充值</el-button>
               <el-button type="primary" plain class="wel_right_btn">提现</el-button>

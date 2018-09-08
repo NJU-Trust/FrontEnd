@@ -29,43 +29,43 @@
       <div v-if="selectLine=='恩格尔系数'">
         <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myEngelsLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="myEngelsLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='刚性比率'">
       <div v-if="selectLine=='刚性比率'">
         <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myRigidLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="myRigidLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='负债率'">
       <div v-if="selectLine=='负债率'">
         <h4><i class="el-icon-document"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myLiabilityLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="myLiabilityLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='偿债能力'">
       <div v-if="selectLine=='偿债能力'">
         <h4><i class="el-icon-info"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="mySolvencyLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="mySolvencyLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='杠杆比率'">
       <div v-if="selectLine=='杠杆比率'">
         <h4><i class="el-icon-news"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myLeverageLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="myLeverageLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='消费比率'">
       <div v-if="selectLine=='消费比率'">
         <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myConsumptionLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="myConsumptionLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='储蓄比率'">
       <div v-if="selectLine=='储蓄比率'">
         <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="mySavingLine" :style="{width: '600px', height: '300px'}"></div>
+      <div id="mySavingLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
   </div>
 </template>
