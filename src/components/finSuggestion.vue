@@ -138,7 +138,6 @@
     name: 'finSuggestion',
     components: {Nextpay, InvestList},
     data() {
-
       return {
         loanStart: 14,
         user:{
