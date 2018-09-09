@@ -106,7 +106,7 @@
             </div>
           </div>
           <div style="display: flex">
-            <div>
+            <div style="padding:40px;">
               <label style="font-weight: normal;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南大未来广场支行作为南京工行着力打造的创新平台，今后还将逐步完善各类功能，成为真正的“未来银行”。而Trust与未来广场的合作与日常交流，也将是我们平台不断进步的原动力。
               </label>
@@ -203,8 +203,18 @@
           </label>
         </div>
       </div>
-      <div>
-
+      <div class="detail" v-if="item12">
+        <div class="content">
+          <label style="font-weight: normal;">隐私保护</label><hr/>
+          <label style="font-weight: normal;font-size: 16px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust致力于打造和谐、安全的校园金融互助交易平台，我们有以下措施可以保障您的隐私安全：<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）平台提供的金融借贷均严格遵守我国相关法律法规，同时严格保护您的隐私信息，对于您拒绝披露的信息，平台承诺不会予以公开。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）平台具有严格、可靠的安全系统，未经允许的管理员不可获取您的相关信息。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）平台承诺绝不会将您的银行信息、个人隐私以任何方式透露给第三方。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）平台通过先机的加密技术，对您的注册信息、收支情况、交易记录都进行了高强度的加密，保证您在平台的足迹不会被不法分子窃取利用。<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外，平台仍需提醒您，trust是一个实名认证平台，您在其上进行浏览和交易时，也要有防范意识，时刻注意保护个人隐私。截图注意覆盖个人信息，除特殊情况外，不要轻易透露电话、住址等隐私信息，以防信息窃取造成不必要的损失。<br/>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -432,6 +442,7 @@
     width:900px;
     background-color:rgba(255,255,255,0.6);
     border-radius:10%;
+    left:25%;
   }
 
 </style>
