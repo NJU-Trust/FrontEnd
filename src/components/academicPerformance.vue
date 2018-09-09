@@ -4,14 +4,16 @@
       <el-col :span="12">
         <div id="myradar" style="width: 400px;height: 410px"></div>
       </el-col>
-      <el-col :span="9">
+      <el-col :span="11">
         <br/>
         <br/>
-        <br/>
-        <br/>
-        <p style="font-size: 24px">Trust作为贴心的校园金融助手，将您的在校表现纳入我们的信用评价体系，旨在为您提供全面而精准的服务。</p>
-        <p style="font-size: 24px">美好校园生活，Trust伴您成就卓越之旅！</p><br/>
-        <!--<img class="img-responsive" src="../../static/pic/perform.png">-->
+        <div style="font-size: 24px">
+          <p>Trust作为贴心的校园金融助手，将您的在校表现纳入我们的信用评价体系，旨在为您提供全面而精准的服务。</p>
+          <p>美好校园生活，Trust伴您成就卓越之旅！</p><br/>
+          <!--<img class="img-responsive" src="../../static/pic/perform.png">-->
+          <p>从雷达图中可以看出</p>
+          <p>您的校园表现评分高于用户平均水平</p>
+        </div>
       </el-col>
     </el-row>
     <div class="user_credit">
@@ -26,15 +28,15 @@
           <tbody>
           <tr>
             <th width="280px">学校分类</th>
-            <td>985</td>
+            <td>{{ user.schoolClass }}</td>
             <th>专业情况</th>
-            <td>综合</td>
+            <td>{{ user.majorCondition }}</td>
           </tr>
           <tr>
             <th>受教育情况</th>
-            <td>本科</td>
+            <td>{{ user.educationBackground }}</td>
             <th>经济来源</th>
-            <td>家庭供给</td>
+            <td>{{ user.financeSource }}</td>
           </tr>
           </tbody>
           <thead>
@@ -45,17 +47,43 @@
           <tbody>
           <tr>
             <th>学习成绩</th>
-            <td>前20%</td>
+            <td>{{ user.GPA }}</td>
             <th>挂科数目</th>
-            <td>0</td>
+            <td>{{ user.numNoPass }}</td>
           </tr>
           <tr>
             <th>奖学金情况</th>
-            <td colspan="3">校级</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.scholarship==null">
+                  无奖学金情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.scholarship">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>科研竞赛获奖情况</th>
-            <td colspan="3">校级</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.reseachCompetition==null">
+                  无获奖情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.reseachCompetition">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           </tbody>
           <thead>
@@ -66,11 +94,37 @@
           <tbody>
           <tr>
             <th>奖励情况</th>
-            <td colspan="3">国家级 省级 市级 校级 院级 技能证书</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.awards==null">
+                  无奖励情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.awards">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>违纪或处罚等不良信息</th>
-            <td colspan="3">国家级 省级 市级 校级 院级 技能证书</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.punishment==null">
+                  无不良信息
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.punishment">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           </tbody>
           <thead>
@@ -81,15 +135,53 @@
           <tbody>
           <tr>
             <th colspan="1">学费及住宿费缴纳状况</th>
-            <td colspan="3">全交</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.payment==null">
+                  全按时缴纳
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.payment">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <th colspan="1">图书馆借阅还书情况</th>
-            <td colspan="3">全归还</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.library==null">
+                  无超时还书记录
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.library">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>            </td>
           </tr>
           <tr>
             <th colspan="1">考试作弊的信息</th>
-            <td colspan="3">无作弊记录</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.cheating==null">
+                  无作弊记录
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.cheating">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -126,13 +218,27 @@
           financeSource: '家庭供给',
           GPA: '前20%',
           numNoPass: 0,
-          scholarship: '人民奖学金，东方奖学金',
-          reseachCompetition: '校级比赛获奖',
-          awards: '国家级 省级 市级 校级 院级 技能证书',
-          punishment: '国家级 省级 市级 校级 院级 技能证书',
-          payment: '全交',
-          library: '全归还',
-          cheating: '无作弊记录'
+          scholarship: [
+            { text: '2017年人民奖学金一等奖' },
+            { text: '南大联创学生领袖奖学金' }
+          ],
+          reseachCompetition: [
+            { text: '2017花旗杯金融创新应用大赛一等奖' },
+            { text: '“悦诗风吟”营销大赛三等奖' },
+            { text: '银星杯论文比赛二等奖' },
+            { text: '贝恩杯中国赛区二等奖' }
+          ],
+          awards: [
+            { text: '江苏省优秀学生干部' },
+            { text: '江苏省社会实践先进个人' },
+            { text: '2017-2018年度南京大学优秀共青团员' },
+            { text: '全国计算机等级考试二级证书' },
+            { text: '证券从业资格证' }
+          ],
+          punishment: null,
+          payment: null,
+          library: null,
+          cheating: null
         }
       }
     },
@@ -203,7 +309,7 @@
                 return x.data.relation;
               }
               else {
-                var br = ' <br/>';
+                var br = '<br/>';
                 var a = '信用分数 ' + x.data.creditPts + br;
                 var b = '财务分数 ' + x.data.financialPts + br;
                 var c = '校园表现 ' + x.data.schoolPts;
@@ -237,19 +343,6 @@
               itemStyle: {
                 normal: {
                   color: '#409EFF',
-                  // color: {
-                  //   type: 'linear',
-                  //   x: 0,
-                  //   y: 0,
-                  //   x2: 0,
-                  //   y2: 1,
-                  //   colorStops: [{
-                  //     offset: 0, color: '#b04ade' // 0% 处的颜色
-                  //   }, {
-                  //     offset: 1, color: '#409EFF' // 100% 处的颜色
-                  //   }],
-                  //   globalCoord: true // 缺省为 false
-                  // }
                 }
               },
               lineStyle: {
@@ -276,6 +369,7 @@
                 normal: {
                   show: true,
                   formatter: function (x) {
+                    //同学，工作伙伴啥的
                     return x.data.name;
                   }
                 }
@@ -287,7 +381,7 @@
                 }
               },
               data: [{
-                name: 'UserName',
+                name: '南小紫',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67,
@@ -363,28 +457,27 @@
               }],
               // links: [],
               links: [{
-                source: 'UserName',
+                source: '南小紫',
                 target: '张三',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '李四',
                 name: '同学',
                 relation: '您最近的关系超级好',
                 lineStyle: {
                   normal: {
-                    width: 4,
                     type: 'solid',
                   }
                 },
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '王五',
                 name: '校友',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '赵六',
                 name: '校友',
                 lineStyle: {
@@ -394,32 +487,32 @@
                 },
                 relation: '您最近的关系减淡了'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '武藏',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '张伟',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '胡一菲',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '曾小贤',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '吕子乔',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
-                source: 'UserName',
+                source: '南小紫',
                 target: '小次郎',
                 name: '同学',
                 relation: '您最近的关系超级好',

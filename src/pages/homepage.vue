@@ -2,9 +2,9 @@
   <div class="col-xs-12 col-md-12" style="padding: 0;">
     <navi></navi>
     <div id="mainPic">
-      <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="padding-top: 15%;z-index: 0;width: 50%;margin-left: 25%;">
+      <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="padding-top: 15%;z-index: 0;width: 56%;margin-left: 22%;">
       <button type="button" class="mainButton" v-on:click="trustNow()">即刻trust</button>
-      <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="margin-top:2%;z-index: 0;width: 40%;margin-left: 30%;">
+      <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="margin-top:4%;z-index: 0;width: 40%;margin-left: 30%;">
     </div>
     <rightBar></rightBar>
 
@@ -165,7 +165,7 @@
     border: none;
     font-size: 22px;
     font-family: "Microsoft YaHei UI";
-    margin-top: 5%;
+    margin-top: 6%;
     width: 14%;
     margin-left: 43%;
     letter-spacing: 2px;
