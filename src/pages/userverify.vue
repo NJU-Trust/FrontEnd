@@ -606,7 +606,7 @@
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
     background-color: #D9F3FB;
-    min-height:700px;
+    //min-height:700px;
   //height: 2000px;
     display:flex;
   }
