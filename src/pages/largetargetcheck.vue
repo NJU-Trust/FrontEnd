@@ -88,7 +88,7 @@
                     <el-form-item label="资金用途详述">{{ tableData[tempindex].desc }}</el-form-item>
                     <el-form-item label="凭证">
                       <template >
-                        <img v-bind:src=tableData[tempindex].pics alt="user" class="pics"/>
+                        <img v-bind:src=tableData[tempindex].pic alt="user" class="pics"/>
                       </template>
                     </el-form-item>
                   </el-form>
