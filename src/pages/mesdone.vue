@@ -160,6 +160,9 @@
         console.log(tab, event);
       }
     },
+    beforeCreate:function(){
+      localStorage.route="#notice";
+    },
   }
 </script>
 

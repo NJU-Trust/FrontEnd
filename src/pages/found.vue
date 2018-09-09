@@ -471,6 +471,9 @@
     created:function(){
       this.test();
     },
+    beforeCreate:function(){
+      localStorage.route="#notice";
+    },
 
   }
 </script>
