@@ -369,6 +369,7 @@
                 normal: {
                   show: true,
                   formatter: function (x) {
+                    //同学，工作伙伴啥的
                     return x.data.name;
                   }
                 }
