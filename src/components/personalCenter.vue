@@ -50,8 +50,8 @@
       </div>
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
-      <footer-bar></footer-bar>
-    </div>
+    <footer-bar></footer-bar>
+  </div>
   </div>
 </template>
 

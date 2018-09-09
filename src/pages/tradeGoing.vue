@@ -58,6 +58,13 @@
             <el-dialog title="确认完成"
                        width="40%"
                        :visible.sync="dialogFormVisible">
+              <el-form :model="form" >
+                <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                  <el-input v-model="form.name"
+                            style="width:330px;"
+                            auto-complete="off"></el-input>
+                </el-form-item>
+              </el-form>
               <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible=false">取 消</el-button>
                 <el-button type="primary" @click="dialogFormVisible=done(commData[i-1])">确 定</el-button>
@@ -66,14 +73,19 @@
           </div>
         </el-card>
       </div>
+      <br/><br/>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        style="position:relative;left:350px;"
+        :total="30">
+      </el-pagination>
     </el-tabs>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      style="position:absolute;left:450px;top:480px;"
-      :total=commData.length>
-    </el-pagination>
+    <br/>
+    <br/>
+
   </div>
+
   <!--右边栏-->
   <div>
     <right-bar></right-bar>
@@ -100,24 +112,34 @@
     data() {
       return {
         commData:[{
-          num:'000001',
-          type:'其他',
-          name:'花',
-          description:'好看的花，这里好像会超出卡片耶，这样怎么办呢，需要分一些页面吗？',
-          price:'100',
-          contact:'28382794',
-          pic:'https://picsum.photos/600/300/?image=25',
+          num:'000000',
+          type:'鞋服配饰',
+          name:'名创优品粉红顽皮帽子',
+          description:'名创优品39.9入 带过一次 可小刀',
+          price:'35',
+          contact:'13323389923',
+          pic:"../../static/pic/hat.jpg",
           state: true
         },
           {
-            num:'000002',
-            type:'其他',
-            name:'花花花',
-            description:'卖出去了的花花',
-            price:'120',
+            num:'000001',
+            type:'化妆洗漱',
+            name:'DHC橄榄润唇膏',
+            description:'日本 大国药妆店购入 全新未拆封',
+            price:'50',
             contact:'123456',
-            pic:'https://picsum.photos/600/300/?image=25',
-            state: false
+            pic:"../../static/pic/dhc.jpeg",
+            state: true
+          },
+          {
+            num:'000002',
+            type:'化妆洗漱',
+            name:'无印良品卸妆啫喱',
+            description:'日本 大国药妆店购入 全新未拆封',
+            price:'70',
+            contact:'13329048392',
+            pic:'../../static/pic/wylp.jpeg',
+            state: true
           }
         ],
         dialogFormVisible: false,
@@ -158,7 +180,7 @@
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
-    height:550px;
+
     width:1000px;
     margin-right: 10%;
     margin-left: 16%;

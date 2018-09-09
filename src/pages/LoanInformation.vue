@@ -19,13 +19,13 @@
       </el-tab-pane>
     </el-tabs>
 
-    <div class="projectPanel">
+   <!-- <div class="projectPanel">
       <div class="projectPages">
 
       </div>
       <div id="poj_pagination">
         <div class="block">
-          <!--<span class="demonstration">完整功能</span>-->
+          &lt;!&ndash;<span class="demonstration">完整功能</span>&ndash;&gt;
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-    </div>
+    </div>-->
 
   </personalCenter>
 </template>
@@ -54,14 +54,14 @@
   export default {
     name:"loaninformation",
     components: {personalCenter,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable},
-    methods: {
+   /* methods: {
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
       }
-    },
+    },*/
     data() {
       return {
         currentPage1: 2,
@@ -78,11 +78,11 @@
 </script>
 
 <style scoped>
-  #poj_pagination{
+  /*#poj_pagination{
     text-align: center;
     margin-top: 30px;
     margin-bottom: 20px;
-  }
+  }*/
 
   .type_choose_btn{
     padding-left: 50px;

@@ -158,7 +158,10 @@
           });
         });
       }
-    }
+    },
+    beforeCreate:function(){
+      localStorage.route="#notice";
+    },
 
   }
 </script>

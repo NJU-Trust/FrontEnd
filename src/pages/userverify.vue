@@ -81,7 +81,7 @@
               width="200"
               label="条目证明">
               <template slot-scope="scope">
-                <img v-bind:src=scope.row.pics alt="pics"/>
+                <img v-bind:src=scope.row.pics alt="pics" style="width:200px;height:200px;"/>
               </template>
             </el-table-column>
             <el-table-column
@@ -104,13 +104,20 @@
               </template>
             </el-table-column>
           </el-table>
+        </template>
+        <br/>
+        <br/>
+        <br/>
+        <div>
           <el-button size="mini"
                      type="primary"
-                     style="position:relative;left:700px;top:20px;"
+                     style="position:relative;left:700px;"
                      @click="clear()"
           >审核其他用户
           </el-button>
-        </template>
+        </div>
+        <br/>
+
         <!--旧版-->
         <!--<el-table
           :data="tableData5"
@@ -327,15 +334,16 @@
     </div>
     </div>
 
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
+    </div>
+
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
     </div>
 
     <!--底栏-->
-    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
-      <footer-bar></footer-bar>
-    </div>
 
   </div>
 </template>
@@ -598,8 +606,8 @@
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
     background-color: #D9F3FB;
-    min-height:700px;
-  //height: 200px;
+    //min-height:700px;
+  //height: 2000px;
     display:flex;
   }
 
@@ -624,7 +632,7 @@
     background:white;
     border:1px solid #e4e4e4;
   //border-top:5px solid dodgerblue;
-    height:550px;
+    //height:550px;
   //width:100%;
     width:950px;
     margin-right: 10%;
