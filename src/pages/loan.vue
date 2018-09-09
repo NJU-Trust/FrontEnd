@@ -33,8 +33,6 @@
 
               </el-form-item>
 
-
-
              <el-form-item label="开始日期">
                <div>
                  <el-date-picker type="date" placeholder="选择开始日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
@@ -60,14 +58,6 @@
 
               <div class="title">资金去向</div>
               <el-form-item label="资金用途分类">
-                <!--<el-select v-model="form2.region" placeholder="资金用途分类">
-                  <el-option label="日常生活周转" value="daily"></el-option>
-                  <el-option label="演唱会看比赛看剧音乐会等" value="entertain"></el-option>
-                  <el-option label="游戏娱乐电影音乐" value="game"></el-option>
-                  <el-option label="旅游" value="travel"></el-option>
-                  <el-option label="购买电子产品" value="shop"></el-option>
-                  <el-option label="其他购买项如化妆品衣服鞋等等" value="others"></el-option>
-                </el-select>-->
                 <el-cascader
                   expand-trigger="hover"
                   :options="options"
@@ -182,7 +172,7 @@
                 <el-form-item label="拆借金额">
                   <div>
                     <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
-                    <div style="color:red;font-size: 12px;heigth:14px">*借款额度剩余{{this.limit}}</div>
+                    <div style="color:red;font-size: 12px;heigth:14px">*借款额度剩余{{limit}}</div>
                   </div>
                 </el-form-item>
                 <el-form-item label="还款日期">
