@@ -54,21 +54,35 @@
           <tr>
             <th>奖学金情况</th>
             <td colspan="3">
-              <ol>
-                <li v-for="a in user.scholarship">
-                  {{ a.text }}
-                </li>
-              </ol>
+              <div>
+                <div v-if="user.scholarship==null">
+                  无奖学金情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.scholarship">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
             </td>
           </tr>
           <tr>
             <th>科研竞赛获奖情况</th>
             <td colspan="3">
-              <ol>
-                <li v-for="a in user.reseachCompetition">
-                  {{ a.text }}
-                </li>
-              </ol>
+              <div>
+                <div v-if="user.reseachCompetition==null">
+                  无获奖情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.reseachCompetition">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
             </td>
           </tr>
           </tbody>
@@ -81,21 +95,36 @@
           <tr>
             <th>奖励情况</th>
             <td colspan="3">
-              <ol>
-                <li v-for="a in user.awards">
-                  {{ a.text }}
-                </li>
-              </ol>
+              <div>
+                <div v-if="user.awards==null">
+                  无奖励情况
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.awards">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
             </td>
           </tr>
           <tr>
             <th>违纪或处罚等不良信息</th>
             <td colspan="3">
-              <ol>
-                <li v-for="a in user.punishment">
-                  {{ a.text }}
-                </li>
-              </ol>            </td>
+              <div>
+                <div v-if="user.punishment==null">
+                  无不良信息
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.punishment">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           </tbody>
           <thead>
@@ -106,15 +135,53 @@
           <tbody>
           <tr>
             <th colspan="1">学费及住宿费缴纳状况</th>
-            <td colspan="3">{{ user.payment }}</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.payment==null">
+                  全按时缴纳
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.payment">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <th colspan="1">图书馆借阅还书情况</th>
-            <td colspan="3">{{ user.library }}</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.library==null">
+                  无超时还书记录
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.library">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>            </td>
           </tr>
           <tr>
             <th colspan="1">考试作弊的信息</th>
-            <td colspan="3">{{ user.cheating }}</td>
+            <td colspan="3">
+              <div>
+                <div v-if="user.cheating==null">
+                  无作弊记录
+                </div>
+                <div v-else>
+                  <ol>
+                    <li v-for="a in user.cheating">
+                      {{ a.text }}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -168,11 +235,10 @@
             { text: '全国计算机等级考试二级证书' },
             { text: '证券从业资格证' }
           ],
-          punishment: [
-          ],
-          payment: '全交',
-          library: '全归还',
-          cheating: '无作弊记录'
+          punishment: null,
+          payment: null,
+          library: null,
+          cheating: null
         }
       }
     },
@@ -401,7 +467,6 @@
                 relation: '您最近的关系超级好',
                 lineStyle: {
                   normal: {
-                    width: 4,
                     type: 'solid',
                   }
                 },
