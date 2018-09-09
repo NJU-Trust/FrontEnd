@@ -136,17 +136,17 @@
           <hr style="border:1px solid #e4e4e4;"/>
         </div>
         <div class="col-sm-12 col-md-12">
-          <div class="userInput" style="margin-top:1%;">
+          <div class="userInput" style="margin-top:0%;">
             <p>排序维度：</p>
             <div class="sort">
-              <div>
-                <div>
-                  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange" style="display: inline-block;margin-left:10px;">
-                    <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
-                  </el-checkbox-group>
-                </div>
-              </div>
+              <el-radio-group v-model="value_radio5">
+                <el-radio-button label="标的金额" ></el-radio-button>
+                <el-radio-button label="开始时间"></el-radio-button>
+                <el-radio-button label="利率"></el-radio-button>
+                <el-radio-button label="还款期限"></el-radio-button>
+                <el-radio-button label="用户信用分数"></el-radio-button>
+                <el-radio-button label="项目风险评级"></el-radio-button>
+              </el-radio-group>
             </div>
           </div>
         </div>
@@ -284,6 +284,7 @@
         value_radio2: '上海',
         value_radio3: '上海',
         value_radio4: '上海',
+        value_radio5: '上海',
       };
     },
     methods:{
@@ -469,7 +470,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height:330px;
+    height:300px;
     margin-bottom: 20px;
   }
   .userInput{
