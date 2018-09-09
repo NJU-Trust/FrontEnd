@@ -25,8 +25,8 @@
           <h4>自动分析，财务无忧</h4>
           <hr>
           <h5>信息获取自动化</h5>
-          <p>自动生成个人财务报表，节省精力</p>
-          <p>减少信息不对称，便于客观比较</p>
+          <p>获取财务数据，分析财务状况</p>
+          <p>提供直观信息，梳理消费结构</p>
         </div>
         <div class="el-card is-always-shadow advantage-card">
           <img src="/static/pic/safety.png"/>
@@ -36,13 +36,30 @@
           <p>硬性软性指标，综合评估信用额度</p>
           <p>打击欺诈拖欠，打造诚信氛围</p>
         </div>
+        <br>
         <div class="el-card is-always-shadow advantage-card">
           <img src="/static/pic/chooseFree.png"/>
           <h4>精准推荐，自主选择</h4>
           <hr>
           <h5>交易对象可自选</h5>
-          <p>分析投资偏好,个性化优质标推荐</p>
+          <p>分析投资偏好，个性化优质标推荐</p>
           <p>展示融资信息，支持条件筛选</p>
+        </div>
+        <div class="el-card is-always-shadow advantage-card">
+          <img src="/static/pic/repay.png"/>
+          <h4>个性定制，舒心还款</h4>
+          <hr>
+          <h5>还款方案个性化</h5>
+          <p>提供还款选择，减轻还款压力</p>
+          <p>建议调整消费，实现顺利交易</p>
+        </div>
+        <div class="el-card is-always-shadow advantage-card">
+          <img src="/static/pic/mutualAid.png"/>
+          <h4>放心二手，轻松交流</h4>
+          <hr>
+          <h5>互助互惠生态化</h5>
+          <p>交易闲置物品，避免资源浪费</p>
+          <p>发布失物信息，提升寻回几率</p>
         </div>
       </div>
     </div>
@@ -166,8 +183,9 @@
     text-align: center;
     padding-bottom: 20px;
     display: inline-block;
-    margin-left: 0.5%;
+    margin-left: 2.5%;
     margin-right: 0.5%;
+    margin-bottom: 30px;
   }
 
   .advantage-card img{

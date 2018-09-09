@@ -1,5 +1,5 @@
 <template>
-  <div class="col-xs-12 col-md-12" style="padding: 0;background-color: #D9F3FB;">
+  <div class="col-xs-12 col-md-12 back" :style="back" style="padding: 0;background-color: #D9F3FB;">
     <div style="width: 100%;float: top;">
       <navi></navi>
     </div>
@@ -268,6 +268,13 @@
           {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:0.86,range:"C"},
           {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:0.6,range:"C"},
           ],
+        back:{
+          backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
+          backgroundRepeat:"no-repeat",
+          backgroundAttachment:"fixed",
+          backgroundSize:"150% 150%",
+          backgroundPosition: "0% 0%",
+        },
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -286,6 +293,9 @@
         value_radio4: '上海',
         value_radio5: '上海',
       };
+    },
+    beforeCreate:function(){
+      localStorage.route = "#invest";
     },
     methods:{
       handleCheckAllChange(val) {
