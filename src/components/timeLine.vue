@@ -7,9 +7,9 @@
 
             <div v-for="(record,index) in recordList">
               <div v-if="record.right">
-                <!--<span class="timeline-label">
+                <span class="timeline-label">
                   <span class="label label-primary">17.03.2016</span>
-                </span>-->
+                </span>
                 <div class="timeline-item" style="margin-top: 20px">
                   <div class="timeline-point timeline-point-success">
                     <i class="fa fa-money"></i>

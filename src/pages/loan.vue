@@ -180,9 +180,10 @@
               <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" style="display: none">
                 <div class="title">关于贷款</div>
                 <el-form-item label="拆借金额">
-                  <el-tooltip class="item" effect="dark" content="可借额度剩余XXXX元" placement="top-start">
+                  <div>
                     <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
-                  </el-tooltip>
+                    <div style="color:red;font-size: 12px;heigth:14px">*借款额度剩余{{this.limit}}</div>
+                  </div>
                 </el-form-item>
                 <el-form-item label="还款日期">
                   <el-tooltip class="item" effect="dark" content="小额贷款最长期限为1年，建议范围为[N1,N2]" placement="top-start">
@@ -463,6 +464,8 @@
             interest:0,
             sum:0,
           },
+
+          limit:3000,
 
           usage_radio: 3,
           textarea2:'',
