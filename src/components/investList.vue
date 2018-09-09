@@ -22,8 +22,8 @@
             <p class="money">￥{{investList.remainMoney}}</p><p class="moneyName"> / 剩余金额</p>
             <p>借款总金额：￥{{investList.money}}</p>
             <div class="progress round-conner">
-              <div class="curRate round-conner">
-                <p>{{investList.finishProgress}}</p>
+              <div class="curRate round-conner" :style="'width:'+ investList.finishProgress * 100 +'%;'">
+                <p>{{investList.finishProgress * 100}}%</p>
               </div>
               <div style="display:inline;"></div>
             </div>
@@ -68,7 +68,7 @@
     margin-right:5%;
   }
   .curRate {
-    width: 62.5%;
+    width: 60%;
     background: #409EFF;
     color:white;
   }
