@@ -43,10 +43,9 @@
             </div>
           </div>
           <hr/>
-          <div style="text-align: justify">
+          <div style="text-align: justify;float:right;">
             <el-button type="primary" round>&nbsp;提交&nbsp;</el-button>
           </div>
-          <hr/>
         </div>
       </el-tab-pane>
       <el-tab-pane label="个性信息" style="padding:20px;">
@@ -262,7 +261,9 @@
               </div>
             </el-form-item>
           </div>
-
+          <div style="text-align: justify;float:right;">
+            <el-button type="primary" round>提交</el-button>
+          </div>
 
         </el-form>
       </el-tab-pane>

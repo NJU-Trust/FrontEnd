@@ -71,9 +71,6 @@
           <el-button @click="resetForm('base_form')">重置</el-button>
         </el-form-item>
       </el-form>
-
-
-
     </el-tab-pane>
   </el-tabs>
 
