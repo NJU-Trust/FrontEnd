@@ -33,7 +33,7 @@
             <el-form-item label="项目名称">
               <div>
                 <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
-                <div style="color:red;font-size: 12px;heigth:14px">*项目名称不超过20字 例：考托福</div>
+                <div style="color:red;font-size: 12px;">*项目名称不超过20字 例：2018年9月16号Jessie J演唱会</div>
               </div>
 
             </el-form-item>
@@ -41,14 +41,14 @@
             <el-form-item label="开始日期">
               <div>
                 <el-date-picker type="date" placeholder="选择开始日期" v-model="form1.date1" style="width: 100%;"></el-date-picker>
-                <div style="color:red;font-size: 12px;heigth:14px">*标的审核通过后的发布时间</div>
+                <div style="color:red;font-size: 12px;">*标的审核通过后的发布时间</div>
               </div>
 
             </el-form-item>
             <el-form-item label="截止日期">
               <div>
                 <el-date-picker type="date" placeholder="选择截止日期" v-model="form1.date2" style="width: 100%;"></el-date-picker>
-                <div style="color:red;font-size: 12px;heigth:14px">*标的发布后筹资结束时间</div>
+                <div style="color:red;font-size: 12px;">*标的发布后筹资结束时间</div>
               </div>
 
             </el-form-item>
@@ -56,10 +56,12 @@
             <el-form-item label="最低达标率">
               <div>
                 <el-input placeholder="请填写项目最低达标率" v-model="form1.least_rate"></el-input>
-                <div style="color:red;font-size: 12px;heigth:14px">*截止日期时，标的已筹金额占目标金额的最低比率</div>
+                <div style="color:red;font-size: 12px;">*截止日期时，标的已筹金额占目标金额的最低比率</div>
               </div>
 
             </el-form-item>
+
+            <hr>
 
             <div class="title">资金去向</div>
             <el-form-item label="资金用途分类">
@@ -80,7 +82,7 @@
                   placeholder="请输入内容"
                   v-model="form2.textarea1">
                 </el-input>
-                <div style="color:red;font-size: 12px;heigth:14px">*不超过100字</div>
+                <div style="color:red;font-size: 12px;">*不超过100字</div>
                 <div>
                   <el-button type="primary" size="small" style="margin-top: -10px">上传凭证<i class="el-icon-upload el-icon--right"></i></el-button>
                 </div>
@@ -177,20 +179,20 @@
               <el-form-item label="拆借金额">
                 <div>
                   <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
-                  <div style="color:red;font-size: 12px;heigth:14px">*借款额度剩余{{limit}}</div>
+                  <div style="color:red;font-size: 12px;">*借款额度剩余{{limit}}</div>
                 </div>
               </el-form-item>
               <el-form-item label="还款期数">
                 <div>
                   <el-input placeholder="请填写还款期数" v-model="form3.period"></el-input>
-                  <div style="color:red;font-size: 12px;heigth:14px">*小额贷款最长期限为1年，建议范围为[N1,N2]</div>
+                  <div style="color:red;font-size: 12px;">*小额贷款最长期限为1年，建议范围为[N1,N2]</div>
                 </div>
 
               </el-form-item>
               <el-form-item label="基准还款利率">
                 <div>
                   <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
-                  <div style="color:red;font-size: 12px;heigth:14px">*利率上下限为[M1,M2],建议设置为M0</div>
+                  <div style="color:red;font-size: 12px;">*利率上下限为[M1,M2],建议设置为M0</div>
                 </div>
               </el-form-item>
 
@@ -402,7 +404,7 @@
 
       },
       get_layer(num){
-        console.log(num)
+        console.log(num);
         if(num===1){
           this.form2.layer1 = true;
           this.form2.layer2 = true;
@@ -571,62 +573,8 @@
 
 <style scoped>
 
-  .left_label{
-    width:200px;
-    height:50px;
-    /*margin-top: 20px;*/
-    /* border: 1px black solid;*/
-    text-align:center;
-    padding-top: 15px;
-    font-size: 16px;
-  }
-
-  .left_label:hover{
-    box-shadow: 2px 4px 6px #6a6a6a;
-    /*color: black;*/
-  }
-
-  .look_label{
-    background-color: lightskyblue;
-    opacity:0.5;
-  }
-
-  .ask_label{
-    background-color: rgba(17, 17, 17, 0.17);
-    opacity:0.5;
-  }
-
-  .choose_panel{
-    display: flex;
-  }
-
-  .choose_label{
-    width:200px;
-    height:50px;
-    /*border: 1px black solid;*/
-    margin-left: 20px;
-    text-align:center;
-    padding-top: 17px;
-  }
-
-  .choose_label:hover{
-    box-shadow: 2px 4px 6px #6a6a6a;
-    /*color: black;*/
-  }
-
-  .consume_label{
-    color: black;
-    background-color: lightskyblue;
-    opacity:0.5;
-  }
-
-  .learn_label{
-    color: white;
-    background-color: rgba(17, 17, 17, 0.17);
-    opacity:0.5;
-  }
   .back{
-    margib-top: 10px;
+    margin-top: 10px;
     background-image:url("/static/pic/loanBack.jpg");
     background-size: 105% 105%;
     width: 100%;
@@ -635,34 +583,25 @@
     padding-bottom: 50px;
     /*position: absolute;*/
   }
-  .left{
-    /*border:1px black solid;*/
-    width:200px;
-    height: 150px;
-    margin-top: 120px;
-    padding-top: 20px;
-    position: fixed;
-  }
+
   .sheet{
     margin-top: 100px;
     margin-left:18%;
 
   }
-  .chooseButton{
-    margin-left: 20%;
-  }
-  .return{
-    display: flex;
-    /*border:1px black solid;*/
-    width: 500px;
-    height: 200px;
-  }
-  .return_label{
+
+  /* .return{
+     display: flex;
+     !*border:1px black solid;*!
+     width: 500px;
+     height: 200px;
+   }*/
+  /*.return_label{
     width:100px;
     height: 150px;
     border: 1px black solid;
     margin-right:40px;
-  }
+  }*/
 
   .primary_info{
     width:750px;
@@ -680,12 +619,12 @@
     padding-bottom: 20px;
   }
 
-  .choose{
+  /*.choose{
     display: flex;
     margin-left: 30%;
     width:1000px;
   }
-
+*/
   .animation_left{
     -webkit-animation:move_left 0.5s;
     -webkit-animation-iteration-count:1;
@@ -694,13 +633,12 @@
 
   @-webkit-keyframes move_left /* Safari and Chrome */
   {
-    0%   {left:0px;  width:750px;}
+    0%   {left:0;  width:750px;}
     100% {left:-150px; width:500px;}
   }
 
   .evaluate{
     display: none;
-    border:1px solid black;
     margin-top: 50px;
     margin-left: -80px;
     border:2px #d6d6d6 solid;
@@ -710,11 +648,6 @@
 
   .test{
     opacity: 0.5;
-  }
-
-  .row{
-    width:400px;
-    padding: 10px;
   }
 
 

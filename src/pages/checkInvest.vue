@@ -232,18 +232,42 @@
           current_state:'结束'
         }],
 
-        recordList:[{
-          right:true,
+        recordList:[{//A:刻度;B:左边;C:右边
+          state:'B',
+          date:'2018/3/27',
+          money:100,
+          period:1
+
         },{
-          right:false,
+          state:'A',
+          date:'2018/4/1',
+          money:0,
+          period:0
         },{
-          right:true,
+          state:'A',
+          date:'2018/5/1',
+          money:0,
+          period:0
         },{
-          right:true,
+          state:'C',
+          date:'2018/5/1',
+          money:'100',
+          period:1
         },{
-          right:false,
+          state:'B',
+          date:'2018/5/7',
+          money:200,
+          period:2
         },{
-          right:true,
+          state:'A',
+          date:'2018/6/1',
+          money:0,
+          period:0
+        },{
+          state:'B',
+          date:'2018/6/1',
+          money:100,
+          period:3
         }],
       }// end return
     },

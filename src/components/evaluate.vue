@@ -238,7 +238,7 @@
             series : [
               {
                 name:'偿还本息',
-                type:'bar',
+                type:'line',
                 data:[654.4, 654.4, 654.4, 654.4, 654.4],
                 markPoint : {
                   data : [
@@ -254,7 +254,7 @@
               },
               {
                 name:'偿还利息',
-                type:'bar',
+                type:'line',
                 data:[408.33,407.33,406.32,405.31,404.29],
                 markPoint : {
                   data : [
