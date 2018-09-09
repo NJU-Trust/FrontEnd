@@ -148,7 +148,7 @@ export default {
 <style scoped>
   .whole{
     padding: 0;
-    position: absolute;
+    position: relative;
     background-color: black;
     z-index: 1;
   }
