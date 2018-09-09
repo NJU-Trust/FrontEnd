@@ -58,18 +58,32 @@
             <el-dialog title="确认完成"
                        width="40%"
                        :visible.sync="dialogFormVisible">
+              <el-form :model="form" >
+                <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                  <el-input v-model="form.name"
+                            style="width:330px;"
+                            auto-complete="off"></el-input>
+                </el-form-item>
+              </el-form>
               <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible=false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible=done(commData[i-1])">确 定</el-button>
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
               </div>
             </el-dialog>
           </div>
         </el-card>
       </div>
+      <br/><br/>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        style="position:relative;left:350px;"
+        :total="30">
+      </el-pagination>
     </el-tabs>
     <br/>
     <br/>
-    
+
   </div>
 
   <!--右边栏-->
