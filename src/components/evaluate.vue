@@ -49,11 +49,11 @@
       <el-card id="myChart" align="center" style="width: 500px;height: 300px;margin-top: 20px"></el-card>
       <!--<div id="myChart" style="width: 450px;height: 300px;margin-top: 50px;margin-left: 40px">
       </div>-->
-      <el-card style="margin-top: 20px">
+      <el-card style="margin-top: 20px;font-size: 15px">
         <div style="font-size: 22px;margin-top: 5px;margin-bottom: 10px">贷款建议:</div>
         <p id="enough" style="color: #31d09f" v-if="enough">根据预测，您足以支付每期还款</p>
-        <p id="not_enough" v-if="enough==false">在您的还款期内，根据历史消费记录预测，有X个月（a,b,c,d）应还金额超出当月预测结余，如果选择该方案，请酌情调整这些月份的消费</p>
-        <p id="can_change" v-if="change">对于上述需调整的月份，根据您的历史消费数据预测，您额可调整支出分类占比为：衣物饰品a% 饮食b% 住宿c% 娱乐消费d%.您可以根据自身需求调整这些消费</p>
+        <p id="not_enough" v-if="enough==false">在您的还款期内，根据历史消费记录预测，有 <span style="color:#409EFF;font-size: 20px">{{scheme.count}}</span>个月（<span v-for="month in scheme.months"><span style="color:#409EFF;font-size: 20px" >{{month}}</span>,</span>）应还金额超出当月预测结余，如果选择该方案，请<span style="color: #ffa5a4;font-size: 18px">酌情调整</span>这些月份的消费</p>
+        <p id="can_change" v-if="change" style="padding-top: 10px">对于上述需调整的月份，根据您的历史消费数据预测，您额可调整支出分类占比为：衣物饰品 <span style="color: #409EFF;font-size: 20px">56.60%</span> 饮食<span style="color: #409EFF;font-size: 20px">27.30%</span> 住宿<span style="color: #409EFF;font-size: 20px">14.30%</span> 娱乐消费<span style="color: #409EFF;font-size: 20px">5.40%</span>.您可以<span style="color: #ffa5a4;font-size: 18px">根据自身需求</span>调整这些消费</p>
         <p id="cannot_change" v-if="change==false">根据您的历史消费，有X月（a,b,c,d)应还金额还需要其他资金收入，您可以考虑还款期内是否有以下的收入：奖学金、到期理财产品、兼职等，<span style="color: red">如果没有，请酌情调整所选贷款方案</span></p>
       </el-card>
     </el-form>
