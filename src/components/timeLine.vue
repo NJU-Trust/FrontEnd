@@ -6,47 +6,45 @@
           <div>
 
             <div v-for="(record,index) in recordList">
-              <div v-if="record.right">
-                <span class="timeline-label">
-                  <div class="label label-primary">还款日17.03.2016</div>
-                  <!--<div class="label label-primary"></div>-->
+              <div v-if="record.state==='A'">
+                <span class="timeline-label" style="padding-top: 80px;">
+                  <div class="label label-primary">还款日{{record.date}}</div>
                 </span>
-                <div class="timeline-item" style="margin-top: 20px">
+              </div>
+              <div v-if="record.state==='B'">
+                <div class="timeline-item" style="margin-top: 20px;">
                   <div class="timeline-point timeline-point-success">
                     <i class="fa fa-money"></i>
                   </div>
                   <div class="timeline-event">
                     <div class="timeline-heading">
-                      <h4>MoneyService Transfer</h4>
+                      <h4>第{{record.period}}期还款</h4>
                     </div>
                     <div class="timeline-body">
-                      <p>Money transfer. By Alex, Wallet ID: 1234567890, Amount: 10$</p>
+                      <p>实际还款{{record.money}}元</p>
                     </div>
                     <div class="timeline-footer">
-                      <p class="text-right">17.03.2016 10:00</p>
+                      <p class="text-right">{{record.date}}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div v-if="record.right === false">
-                <span class="timeline-label">
-                  <span class="label label-primary">还款17.03.2016</span>
-                </span>
-                <div v-for="i in 1" class="timeline-item" style="margin-top: 80px"></div>
-                <div class="timeline-item">
+              <div v-if="record.state === 'C'">
+                <div v-for="i in 1" class="timeline-item" style="margin-top: 200px;"></div>
+                <div class="timeline-item" style="">
                   <div class="timeline-point timeline-point-danger">
                     <i class="fa fa-times"></i>
                   </div>
-                  <div class="timeline-event">
+                  <div class="timeline-event" >
                     <div class="timeline-heading">
-                      <h4>MoneyService Transfer</h4>
+                      <h4>未按时还款</h4>
                     </div>
                     <div class="timeline-body">
-                      <p>Money transfer. By Tom, Wallet ID: 1234567890, Amount: 10$</p>
+                      <p>应还款{{record.money}}元</p>
                     </div>
                     <div class="timeline-footer">
-                      <p class="text-right">08.02.2016 11:30</p>
+                      <p class="text-right">{{record.date}}</p>
                     </div>
                   </div>
                 </div>
