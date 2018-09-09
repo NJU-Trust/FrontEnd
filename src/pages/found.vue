@@ -23,7 +23,6 @@
                 <template>
                   <el-carousel :interval="3000" type="card" height="200px">
                     <el-carousel-item v-for="i in latestmes.length" :key="i">
-                      <div v-if="i === 1">
                         <el-popover
                           placement="left"
                           style="background-color: #DCDFE6;"
@@ -39,15 +38,15 @@
                                 </div>
                             <hr/>
                                 <div style="margin-top:-10%;width:150px;">
-                                  <img src="../../static/pic/testuserpic1.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                                  <img v-bind:src=latestmes[i-1].headpic style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
                                   <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
                                 </div>
                               </div>
                           <el-button slot="reference">
-                            <img src="../../static/pic/testkey.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
+                            <img v-bind:src=latestmes[i-1].pic style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
                           </el-button>
                         </el-popover>
-                      </div>
+                      <!--
                       <div v-if="i === 2">
                         <el-popover
                           placement="left"
@@ -122,7 +121,7 @@
                             <img src="../../static/pic/testcup.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
                           </el-button>
                         </el-popover>
-                      </div>
+                      </div>-->
                       <!--<div class="textitem">
                         <el-tag type="info"
                                 :disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>
@@ -182,7 +181,7 @@
                     <el-card class="box-card">
                         <div class="grid-content bg-purple">
                           <div style="margin-top:-3%;">
-                          <img src="../../static/pic/testuserpic1.png" style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >
+                          <img v-bind:src=mesdata[j-1][i-1].headpic style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >
                           <span style="position:relative;left:20px;">{{ mesdata[j-1][i-1].username}}</span>
                           <span style="position:relative;left:135px;">{{ mesdata[j-1][i-1].time}}</span>
                           </div>
@@ -348,6 +347,7 @@
             name:'钥匙',
             phone:'13834712391',
             dec:'跑步机旁边捡到的，交给体育馆门口的叔叔了',
+            headpic:"../../static/pic/testuserpic1.png",
             pic:"../../static/pic/testkey.png",
             time:'2018-08-24 18:50:35',
             state:true,
@@ -359,7 +359,8 @@
             name:'雨伞',
             phone:'15589210472',
             dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
-            pic:'../../static/pic/mestest.png',
+            headpic:"../../static/pic/testuserpic4.png",
+            pic:'../../static/pic/testcup.png',
             time:'2018-09-06 09:45:14',
             state:true,
             username:'徐忘',
@@ -370,7 +371,8 @@
             name:'校园卡',
             phone:'15837196710',
             dec:'就在教超阿姨那里',
-            pic:'../../static/pic/mestest.png',
+            headpic:"../../static/pic/testuserpic3.png",
+            pic:'../../static/pic/testcard.png',
             time:'2018-09-05 21:59:24',
             state:true,
             username:'孟哲宁',
@@ -381,7 +383,8 @@
             name:'U盘',
             phone:'18842957391',
             dec:'明天机房有考试呀，今天落在机房的U盘都收到119了哦',
-            pic:'../../static/pic/mestest.png',
+            headpic:"../../static/pic/testuserpic2.png",
+            pic:'../../static/pic/testusb.png',
             time:'2018-09-07 12:34:40',
             state:true,
             username:'唐月',
@@ -392,6 +395,7 @@
             name:'杯子',
             phone:'13878916391',
             dec:'下午在仙I-221上课的时候捡到的一个杯子，放到仙I的保卫处了。（P.s.竟然和我的杯子是同款）',
+            headpic:"../../static/pic/testuserpic1.png",
             pic:'../../static/pic/mestest.png',
             time:'2018-09-04 00:12:39',
             state:true,
@@ -403,7 +407,8 @@
             name:'校园卡',
             phone:'18852197520',
             dec:'落在食堂的餐盘里面了！食堂阿姨说差点扔掉，在哪里放的盘子去哪里拿吧！',
-            pic:'../../static/pic/mestest.png',
+            headpic:"../../static/pic/testuserpic1.png",
+            pic:'../../static/pic/mestest3.png',
             time:'2018-09-06 12:50:21',
             state:true,
             username:'成帆洁',
@@ -412,21 +417,29 @@
         activeName: '1',
         latestmes:[
           {
-          phone:'13834712391',
-          dec:'跑步机旁边捡到的，交给体育馆门口的叔叔了',
-          loc:'方肇周体育馆',
-          time:'2018-08-24'
+            headpic:"../../static/pic/testuserpic1.png",
+            pic:"../../static/pic/testkey.png",
+            phone:'13834712391',
+            dec:'跑步机旁边捡到的，交给体育馆门口的叔叔了',
+            loc:'方肇周体育馆',
+            time:'2018-08-24',
           },{
-          phone:'18842957391',
+            headpic:"../../static/pic/testuserpic2.png",
+            pic:"../../static/pic/testusb.png",
+            phone:'18842957391',
           dec:'明天机房有考试呀，今天落在机房的U盘都收到119了哦',
           loc:'基础实验楼乙124',
           time:'2018-09-07'
           },{
+            headpic:"../../static/pic/testuserpic3.png",
+            pic:"../../static/pic/testcard.png",
             phone:'15837196710',
             dec:'就在教超阿姨那里',
             loc:'教超',
             time:'2018-09-05'
           },{
+            headpic:"../../static/pic/testuserpic4.png",
+            pic:"../../static/pic/testcup.png",
             phone:'15589210472',
             dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
             loc:'共享单车',

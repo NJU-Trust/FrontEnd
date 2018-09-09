@@ -78,11 +78,10 @@
               label="条目信息">
             </el-table-column>
             <el-table-column
-              props="pics"
               width="200"
               label="条目证明">
               <template slot-scope="scope">
-                <img :src="scope.row.pics"  class="pics"/>
+                <img v-bind:src=scope.row.pics alt="pics"/>
               </template>
             </el-table-column>
             <el-table-column
@@ -566,25 +565,25 @@
           name: '每年平均志愿活动时长',
           state: 0,
           mess: '志愿时长超过100小时',
-          pics: "static/pic/mestest.png"
+          pics: '../../static/pic/志愿时长.png',
         }, {
           classify: 0,
           name: '所在专业情况',
           state: 1,
           mess: '所在院系：工程管理学院',
-          pics: '../../static/pic/志愿时长.png',
+          pics: '../../static/pic/所在专业.png',
         }, {
           classify: 0,
           name: '图书馆借阅还书情况',
           state: 1,
           mess: '无逾期未还书情况',
-          pics: '/static/pic/notice.jpg'
+          pics: '../../static/pic/图书借阅.png',
         }, {
           classify: 0,
           name: '学费及住宿费缴纳情况',
           state: 1,
           mess: '正常缴纳，没有逾期情况发生',
-          pics: 'static/pic/mestest.png'
+          pics: '../../static/pic/费用缴纳.png',
         }],
       }
     },
