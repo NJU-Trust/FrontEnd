@@ -43,39 +43,7 @@
           还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.sum}}</span>元
         </div>
       </div>
-      <div id="myChart" style="min-height: 400px;margin-top: 50px" ref="myEchart">
-        <!--<el-table
-          :data="tableData"
-          stripe
-          style="width: 100%"
-          height="250">
-          <el-table-column
-            prop="id"
-            label="期数"
-            width="95"
-            align="center">
-          </el-table-column>
-          <el-table-column
-            prop="sum"
-            label="偿还本息"
-            width="95">
-          </el-table-column>
-          <el-table-column
-            prop="capital"
-            label="偿还本金"
-            width="95">
-          </el-table-column>
-          <el-table-column
-            prop="interest"
-            label="偿还利息"
-            width="95">
-          </el-table-column>
-          <el-table-column
-            prop="else"
-            label="剩余本金"
-            >
-          </el-table-column>
-        </el-table>-->
+      <div id="myChart" style="width: 450px;height: 300px;margin-top: 50px;margin-left: 40px">
       </div>
       <div style="margin-top: 50px">
         <div style="font-size: 22px;margin-top: 20px">贷款建议:</div>
@@ -89,102 +57,24 @@
 
 <script>
 
-  import echarts from 'echarts'
+  // 引入基本模板
+  let echarts = require('echarts/lib/echarts')
+  // 引入柱状图组件
+  require('echarts/lib/chart/bar')
+  require('echarts/lib/chart/line')
+  require('echarts/lib/chart/pie')
+  // 引入提示框和title组件
+  require('echarts/lib/component/tooltip')
+  require('echarts/lib/component/title')
+  //
+  require('echarts/theme/macarons')
+  /*require('echarts/theme/shine')*/
+
     export default {
       name: "evaluate",
       props:['scheme','plan_table'],
       mounted() {
-        let myChart = echarts.init(document.getElementById('myChart'));
-        myChart.setOption(
-          {
-            title : {
-              text: '未来一周气温变化',
-              subtext: '纯属虚构'
-            },
-            tooltip : {
-              trigger: 'axis'
-            },
-            legend: {
-              data:['最高气温','最低气温']
-            },
-            toolbox: {
-              show : true,
-              feature : {
-                mark : {show: true},
-                dataView : {show: true, readOnly: false},
-                magicType : {show: true, type: ['line', 'bar']},
-                restore : {show: true},
-                saveAsImage : {show: true}
-              }
-            },
-            calculable : true,
-            xAxis : [
-              {
-                type : 'category',
-                boundaryGap : false,
-                data : ['周一','周二','周三','周四','周五','周六','周日']
-              }
-            ],
-            yAxis : [
-              {
-                type : 'value',
-                axisLabel : {
-                  formatter: '{value} °C'
-                }
-              }
-            ],
-            series : [
-              {
-                name:'最高气温',
-                type:'line',
-                data:[11, 11, 15, 13, 12, 13, 10],
-                markPoint : {
-                  data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                  ]
-                },
-                markLine : {
-                  data : [
-                    {type : 'average', name: '平均值'}
-                  ]
-                }
-              },
-              {
-                name:'最低气温',
-                type:'line',
-                data:[1, -2, 2, 5, 3, 2, 0],
-                markPoint : {
-                  data : [
-                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-                  ]
-                },
-                markLine : {
-                  data : [
-                    {type : 'average', name : '平均值'}
-                  ]
-                }
-              }
-            ]
-          }
-          /*{
-          xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
-            name: '产品'
-          },
-          yAxis : {},
-          series: [{
-            name: '销量',
-            type: 'line',
-            data: [10, 20, 36, 10, 10, 20],
-            itemStyle: {
-              normal: {
-                color: 'hotpink'
-              }
-            }
-          }]
-        }*/
-        )
+        this.drawLine();
       },
       data() {
         return {
@@ -294,13 +184,84 @@
               }
             ]
           }*/,
-        } //return
+        } //end return
       },
       methods: {
-        drawLine (option) {
-          this.myChart.setOption({
-
-          })
+        drawLine () {
+          // 基于准备好的dom，初始化echarts实例
+          let myChart = echarts.init(document.getElementById('myChart'));
+          // 绘制图表
+          myChart.setOption({
+            title : {
+              text: '未来一周气温变化',
+              subtext: '纯属虚构'
+            },
+            tooltip : {
+              trigger: 'axis'
+            },
+            legend: {
+              data:['最高气温','最低气温']
+            },
+            toolbox: {
+              show : true,
+              feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+              }
+            },
+            calculable : true,
+            xAxis : [
+              {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+              }
+            ],
+            yAxis : [
+              {
+                type : 'value',
+                axisLabel : {
+                  formatter: '{value} °C'
+                }
+              }
+            ],
+            series : [
+              {
+                name:'最高气温',
+                type:'line',
+                data:[11, 11, 15, 13, 12, 13, 10],
+                markPoint : {
+                  data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0],
+                markPoint : {
+                  data : [
+                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                  ]
+                },
+                markLine : {
+                  data : [
+                    {type : 'average', name : '平均值'}
+                  ]
+                }
+              }
+            ]
+          });
         }
       },
 
