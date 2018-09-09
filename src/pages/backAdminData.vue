@@ -137,28 +137,28 @@
         },
         tableData: [{
           total: '交易总额',
-          total_num: '1',
+          total_num: '25600',
           average: '人均累计借贷额度',
-          average_num:'2',
+          average_num:'610',
           other:'最大单客户借款余额占比',
-          other_num:'3'
+          other_num:'12%'
         }, {
           total: '交易总笔数',
-          total_num: '1',
+          total_num: '42',
           average: '笔均借款额度',
-          average_num:'2',
+          average_num:'610',
           other:'最大10户借款余额占比',
-          other_num:'3'
+          other_num:'57%'
         }, {
           total: '借款人数量',
-          total_num: '1',
+          total_num: '42',
           average: '人均累计投资额度',
-          average_num:'2',
+          average_num:'406',
           other:'平均满标时间',
-          other_num:'3'
+          other_num:'21天'
         },{
           total: '投资人数量',
-          total_num: '1',
+          total_num: '63',
           average: '',
           average_num:'',
           other:'',
@@ -167,27 +167,27 @@
 
         tableData2: [{
           default_name1: '累计违约率',
-          default_num1: '1',
+          default_num1: '4.76%',
           default_name2: '逾期项目数',
           default_num2:'2',
           default_name3:'项目逾期率',
-          default_num3:'3'
+          default_num3:'0'
         },
           {
             default_name1: '近三月项目逾期率',
-            default_num1: '1',
+            default_num1: '4.76%',
             default_name2: '借款逾期金额',
-            default_num2:'2',
+            default_num2:'800',
             default_name3:'待偿金额',
-            default_num3:'3'
+            default_num3:'0'
           },
           {
             default_name1: '借贷金额逾期率',
-            default_num1: '1',
+            default_num1: '4.76%',
             default_name2: '借贷坏账率',
-            default_num2:'2',
+            default_num2:'930',
             default_name3:'客户投诉情况',
-            default_num3:'3'
+            default_num3:'0'
           }],
 
         formInline:{

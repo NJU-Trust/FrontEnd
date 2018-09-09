@@ -272,7 +272,7 @@
           backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
           backgroundRepeat:"no-repeat",
           backgroundAttachment:"fixed",
-          backgroundSize:"100% auto",
+          backgroundSize:"150% 150%",
           backgroundPosition: "0% 0%",
         },
         backPic:{
