@@ -47,6 +47,27 @@
       </el-table-column>
 
     </el-table>
+
+    <div class="projectPanel">
+      <div class="projectPages">
+
+      </div>
+      <div id="poj_pagination" class="poj_pagination">
+        <div class="block">
+          <!--<span class="demonstration">完整功能</span>-->
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage1"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="10"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="40">
+          </el-pagination>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -55,6 +76,7 @@
         name: "loan-complete",
         data(){
           return{
+            currentPage1: 2,
             tableData:[{
               name:'创新创业项目经费',
               money:2000,
@@ -75,10 +97,24 @@
               state:"已结束"
             }],
           }//end return
+        },
+      methods: {
+        handleSizeChange(val) {
+          console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+          console.log(`当前页: ${val}`);
         }
+      },
     }
 </script>
 
 <style scoped>
+
+  .poj_pagination{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
 
 </style>

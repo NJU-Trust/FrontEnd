@@ -2,77 +2,134 @@
   <div id="Investing">
     <navi></navi>
     <rightBar></rightBar>
-    <img src="http://bigwords-books.com/wp-content/uploads/2016/03/open-book-on-table-red-ml.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px">
-    <div class="overview">
-      <div class="total" style="position:absolute;left:8%;top:20%;font-size:18px;width:300px;text-align:left;">
-        <!--<el-progress type="circle" :percentage="percentage" color="#67C23A" ></el-progress>-->
-        <!--<div style="color: white;">-->
-          <!--{{percentage}}%-->
-        <!--</div>-->
-        <!--<el-progress :stroke-width="20" :percentage="percentage" ></el-progress>-->
-        <div style="color: white;text-align: center">
-          <span style="color: aquamarine;font-size: 60px">{{percentage}}</span><label>%已完成</label>
-          <br/>
-          <vm-progress :percentage="percentage" :text-inside="true" :stroke-width="18" strokeColor="info" :striped="true">.</vm-progress>
-        </div>
+    <img src="http://bigwords-books.com/wp-content/uploads/2016/03/open-book-on-table-red-ml.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px;position: absolute">
+    <div class="overview" style="padding: 100px 60px 40px 40px;font-size:18px;height: 400px">
+      <el-row>
+        <el-col :span="12">
+          <div style="padding-left: 70px;padding-right: 70px">
+          <div style="color: white;text-align: center">
+            <span style="color: aquamarine;font-size: 60px">{{percentage}}</span><label>%已完成</label>
+            <br/>
+            <vm-progress :percentage="percentage" :text-inside="true" :stroke-width="18" strokeColor="info" :striped="true">.</vm-progress>
+          </div>
+            <br/>
+            <br/>
+          <el-row>
+            <el-col :span="8">
+              <div style="padding:0px 40px 0px 0px;text-align: center">
+              <span class="keypoint">{{revenueRate}}</span><label class="small"> %</label><br/>
+              <label class="small">预期年化收益率</label>
+            </div></el-col>
+            <el-col :span="8"> <div style="padding:0px 40px 0px 0px;text-align: center">
+              <span class="keypoint">{{lifeOfLoan}}</span><br/>
+              <label class="small">借款期限</label>
+            </div></el-col>
+            <el-col :span="8">   <div style="padding:0px 40px 0px 0px;text-align: center">
+              <span class="keypoint">{{totalLoan}}</span><label class="small"> 元</label><br/>
+              <label class="small">总额度</label>
+            </div></el-col>
+          </el-row>
+          </div>
+        </el-col>
+        <el-col :span="12">
+            <div style="color: white; ">
+              <countdown :time="2 * 24 * 60 * 60 * 1000">
+                <template slot-scope="props">剩余时间：<span class="keypoint">{{ props.days }}</span> 天 <span class="keypoint">{{ props.hours }}</span> 小时 <span class="keypoint">{{ props.minutes }}</span> 分钟 <span class="keypoint">{{ props.seconds }}</span> 秒</template>
+              </countdown>
+              <!--<label>剩余时间：{{leftTime}}</label>-->
+              <br>
+              <label>还需投资：{{leftNeeds}} 元</label>
+              <br/>
+              <label>您的余额为：{{userMoney}} 元</label>
+              <br/>
+              <br/>
+              <label>投资金额： </label>
+              <div class="block">
+                <el-slider
+                  v-model="num1"
+                  :format-tooltip="formatTooltip"
+                  show-input>
+                </el-slider>
+              </div>
+              <br/>
+              <el-button type="primary" round="true">我要投资</el-button>
+            </div>
+            <!--<div style="padding:10px 40px 0px 0px">-->
+            <!--<el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>-->
+            <!--</div>-->
+            <!--<div style="padding:10px 40px 0px 0px">-->
+            <!--&lt;!&ndash;<el-button type="primary" round>{{DoInvest}}</el-button>&ndash;&gt;-->
+            <!---->
+            <!--</div>-->
+        </el-col>
+      </el-row>
 
-      </div>
-      <div class="selfmoney" style="position:absolute;padding: 20px 20px 0px 600px; top:15%;font-size:20px;">
-        <div style="padding:0px 30px 0px 0px;color: white;float: left; ">
-          <countdown :time="2 * 24 * 60 * 60 * 1000">
-            <template slot-scope="props">剩余时间：<span class="keypoint">{{ props.days }}</span> 天 <span class="keypoint">{{ props.hours }}</span> 小时 <span class="keypoint">{{ props.minutes }}</span> 分钟 <span class="keypoint">{{ props.seconds }}</span> 秒</template>
-          </countdown>
-          <!--<label>剩余时间：{{leftTime}}</label>-->
-          <br>
-          <label>还需投资：{{leftNeeds}} 元</label>
-          <br/>
-          <label>您的余额为：{{userMoney}} 元</label>
-          <br/>
-          <br/>
-          <label>投资金额： </label>
-        </div>
-        <!--<div style="padding:10px 40px 0px 0px">-->
-        <!--<el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>-->
-        <!--</div>-->
-        <!--<div style="padding:10px 40px 0px 0px">-->
-        <!--&lt;!&ndash;<el-button type="primary" round>{{DoInvest}}</el-button>&ndash;&gt;-->
-        <!---->
+
+
+      <!--<div class="total" style="position:absolute;left:8%;top:20%;font-size:18px;width:300px;text-align:left;">-->
+        <!--<div style="color: white;text-align: center">-->
+          <!--<span style="color: aquamarine;font-size: 60px">{{percentage}}</span><label>%已完成</label>-->
+          <!--<br/>-->
+          <!--<vm-progress :percentage="percentage" :text-inside="true" :stroke-width="18" strokeColor="info" :striped="true">.</vm-progress>-->
         <!--</div>-->
 
-      </div>
-      <div style="position: absolute;left: 48%;width: 600px; top: 50%;">
-        <div class="block">
-          <el-slider
-            v-model="num1"
-            :format-tooltip="formatTooltip"
-            show-input>
-          </el-slider>
-        </div>
-        <br/>
-        <el-button type="primary" round="true">我要投资</el-button>
-
-      </div>
-      <!--<div  style="position: absolute;left: 70%;width: 600px; top: 65%;">-->
-      <!--<div class="wrapper">-->
-        <!--<a href="#" class="button">我要投资</a>-->
       <!--</div>-->
+      <!--<div class="selfmoney" style="position:absolute;padding: 20px 20px 0px 600px; top:15%;font-size:20px;">-->
+        <!--<div style="padding:0px 30px 0px 0px;color: white;float: left; ">-->
+          <!--<countdown :time="2 * 24 * 60 * 60 * 1000">-->
+            <!--<template slot-scope="props">剩余时间：<span class="keypoint">{{ props.days }}</span> 天 <span class="keypoint">{{ props.hours }}</span> 小时 <span class="keypoint">{{ props.minutes }}</span> 分钟 <span class="keypoint">{{ props.seconds }}</span> 秒</template>-->
+          <!--</countdown>-->
+          <!--&lt;!&ndash;<label>剩余时间：{{leftTime}}</label>&ndash;&gt;-->
+          <!--<br>-->
+          <!--<label>还需投资：{{leftNeeds}} 元</label>-->
+          <!--<br/>-->
+          <!--<label>您的余额为：{{userMoney}} 元</label>-->
+          <!--<br/>-->
+          <!--<br/>-->
+          <!--<label>投资金额： </label>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div style="padding:10px 40px 0px 0px">&ndash;&gt;-->
+        <!--&lt;!&ndash;<el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div style="padding:10px 40px 0px 0px">&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;<el-button type="primary" round>{{DoInvest}}</el-button>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
       <!--</div>-->
-      <div style="height:120px;width:100%;position:absolute;top:43%;">
-        <div style="position:absolute;left:5%;padding:15px 0px 0px 0px;display: flex;text-align: center">
-          <div style="padding:0px 40px 0px 0px">
-            <span class="keypoint">{{revenueRate}}</span><label class="small"> %</label><br/>
-            <label class="small">预期年化收益率</label>
-          </div>
-          <div style="padding:0px 40px 0px 0px">
-            <span class="keypoint">{{lifeOfLoan}}</span><br/>
-            <label class="small">借款期限</label>
-          </div>
-          <div style="padding:0px 40px 0px 0px">
-            <span class="keypoint">{{totalLoan}}</span><label class="small"> 元</label><br/>
-            <label class="small">总额度</label>
-          </div>
-        </div>
-      </div>
+      <!--<div style="position: absolute;left: 48%;width: 600px; top: 50%;">-->
+        <!--<div class="block">-->
+          <!--<el-slider-->
+            <!--v-model="num1"-->
+            <!--:format-tooltip="formatTooltip"-->
+            <!--show-input>-->
+          <!--</el-slider>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<el-button type="primary" round="true">我要投资</el-button>-->
+
+      <!--</div>-->
+      <!--&lt;!&ndash;<div  style="position: absolute;left: 70%;width: 600px; top: 65%;">&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a href="#" class="button">我要投资</a>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--<div style="height:120px;width:100%;position:absolute;top:43%;">-->
+        <!--<div style="position:absolute;left:5%;padding:15px 0px 0px 0px;display: flex;text-align: center">-->
+          <!--<div style="padding:0px 40px 0px 0px">-->
+            <!--<span class="keypoint">{{revenueRate}}</span><label class="small"> %</label><br/>-->
+            <!--<label class="small">预期年化收益率</label>-->
+          <!--</div>-->
+          <!--<div style="padding:0px 40px 0px 0px">-->
+            <!--<span class="keypoint">{{lifeOfLoan}}</span><br/>-->
+            <!--<label class="small">借款期限</label>-->
+          <!--</div>-->
+          <!--<div style="padding:0px 40px 0px 0px">-->
+            <!--<span class="keypoint">{{totalLoan}}</span><label class="small"> 元</label><br/>-->
+            <!--<label class="small">总额度</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
     <div style="display:flex;min-height:800px;border: 1px solid lightgrey;">
       <div class="market_out" style="height:100%;width:100%;">
@@ -250,6 +307,7 @@
     color: white;
     font-size: 15px
   }
+
 
 
 
