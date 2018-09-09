@@ -2,11 +2,11 @@
     <el-form class="main_panel">
       <div style="display: flex;padding-bottom: 20px">
         <div class="scheme_type" style="color: #ff6445">
-          等额本金
+          等额本息
           <div style="border: 1px solid #ff6445"></div>
         </div>
         <div class="scheme_type">
-          等额本息
+          等额本金
         </div>
         <div class="scheme_type">
           一次性还本付息
@@ -238,7 +238,7 @@
             series : [
               {
                 name:'偿还本息',
-                type:'line',
+                type:'bar',
                 data:[654.4, 654.4, 654.4, 654.4, 654.4],
                 markPoint : {
                   data : [
@@ -254,13 +254,14 @@
               },
               {
                 name:'偿还利息',
-                type:'line',
+                type:'bar',
                 data:[408.33,407.33,406.32,405.31,404.29],
-                /*markPoint : {
+                markPoint : {
                   data : [
-                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
                   ]
-                },*/
+                },
                 markLine : {
                   data : [
                     {type : 'average', name : '平均值'}

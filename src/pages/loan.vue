@@ -198,16 +198,16 @@
                   <el-collapse v-model="form3.activeName" accordion>
 
                     <div @click="get_scheme(1)">
-                      <el-collapse-item title="等额本金" name="1" >
-                        <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
-                        <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                      <el-collapse-item title="等额本息" name="1">
+                        <div>每月偿还等同数额的贷款；</div>
+                        <div>还款期限内压力平分，总利息高于等额本金。</div>
                       </el-collapse-item>
                     </div>
 
                     <div @click="get_scheme(2)">
-                      <el-collapse-item title="等额本息" name="2">
-                        <div>每月偿还等同数额的贷款；</div>
-                        <div>还款期限内压力平分，总利息高于等额本金。</div>
+                      <el-collapse-item title="等额本金" name="2" >
+                        <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
+                        <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
                       </el-collapse-item>
                     </div>
 
