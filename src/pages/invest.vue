@@ -136,17 +136,17 @@
           <hr style="border:1px solid #e4e4e4;"/>
         </div>
         <div class="col-sm-12 col-md-12">
-          <div class="userInput" style="margin-top:1%;">
+          <div class="userInput" style="margin-top:0%;">
             <p>排序维度：</p>
             <div class="sort">
-              <div>
-                <div>
-                  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange" style="display: inline-block;margin-left:10px;">
-                    <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
-                  </el-checkbox-group>
-                </div>
-              </div>
+              <el-radio-group v-model="value_radio5">
+                <el-radio-button label="标的金额" ></el-radio-button>
+                <el-radio-button label="开始时间"></el-radio-button>
+                <el-radio-button label="利率"></el-radio-button>
+                <el-radio-button label="还款期限"></el-radio-button>
+                <el-radio-button label="用户信用分数"></el-radio-button>
+                <el-radio-button label="项目风险评级"></el-radio-button>
+              </el-radio-group>
             </div>
           </div>
         </div>
@@ -258,15 +258,15 @@
         checkAllC:false,
         isIndeterminateC:true,
         investInformation: [
-          {id:"0001", beginTime:"2018.09.01", endTime:"2018.10.08", name:"AJ13熊猫", type:"SHOES", profit:"5.55%", money:"1800", remainMoney:"360", finishProgress:"80%"},
-          {id:"0002", beginTime:"2018.09.14", endTime:"2018.10.03", name:"炉石砰砰计划", type:"GAME", profit:"9.99%", money:"388", remainMoney:"88", finishProgress:"77.31%"},
-          {id:"0003", beginTime:"2018.09.17", endTime:"2018.10.28", name:"国庆省内", type:"TRAVEL", profit:"6.73%", money:"2000", remainMoney:"400", finishProgress:"80%"},
-          {id:"0004", beginTime:"2018.10.12", endTime:"2018.10.25", name:"托福考试", type:"EXAM", profit:"5.85%", money:"1800", remainMoney:"360", finishProgress:"80%"},
-          {id:"0005", beginTime:"2018.10.15", endTime:"2018.11.20", name:"方大同演唱会", type:"CONCERT", profit:"7.67%", money:"1000", remainMoney:"470", finishProgress:"53%"},
-          {id:"0006", beginTime:"2018.10.22", endTime:"2018.11.21", name:"d'zzit地素连衣裙", type:"CLOTH", profit:"7.06%", money:"1300", remainMoney:"741", finishProgress:"43%"},
-          {id:"0007", beginTime:"2018.10.26", endTime:"2018.11.22", name:"预购", type:"GAME", profit:"6.45%", money:"1800", remainMoney:"1116", finishProgress:"38%"},
-          {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:"86%"},
-          {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:"60%"},
+          {id:"0001", beginTime:"2018.09.01", endTime:"2018.10.08", name:"AJ13熊猫", type:"SHOES", profit:"5.55%", money:"1800", remainMoney:"360", finishProgress:0.8,range:"AA"},
+          {id:"0002", beginTime:"2018.09.14", endTime:"2018.10.03", name:"炉石砰砰计划", type:"GAME", profit:"9.99%", money:"388", remainMoney:"88", finishProgress:0.7731,range:"AA"},
+          {id:"0003", beginTime:"2018.09.17", endTime:"2018.10.28", name:"国庆省内", type:"TRAVEL", profit:"6.73%", money:"2000", remainMoney:"400", finishProgress:0.8,range:"A"},
+          {id:"0004", beginTime:"2018.10.12", endTime:"2018.10.25", name:"托福考试", type:"EXAM", profit:"5.85%", money:"1800", remainMoney:"360", finishProgress:0.8,range:"A"},
+          {id:"0005", beginTime:"2018.10.15", endTime:"2018.11.20", name:"方大同演唱会", type:"CONCERT", profit:"7.67%", money:"1000", remainMoney:"470", finishProgress:0.53,range:"A"},
+          {id:"0006", beginTime:"2018.10.22", endTime:"2018.11.21", name:"d'zzit地素连衣裙", type:"CLOTH", profit:"7.06%", money:"1300", remainMoney:"741", finishProgress:0.43,range:"B"},
+          {id:"0007", beginTime:"2018.10.26", endTime:"2018.11.22", name:"预购", type:"GAME", profit:"6.45%", money:"1800", remainMoney:"1116", finishProgress:0.38,range:"B"},
+          {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:0.86,range:"C"},
+          {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:0.6,range:"C"},
           ],
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
@@ -284,6 +284,7 @@
         value_radio2: '上海',
         value_radio3: '上海',
         value_radio4: '上海',
+        value_radio5: '上海',
       };
     },
     methods:{
@@ -469,7 +470,7 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height:330px;
+    height:300px;
     margin-bottom: 20px;
   }
   .userInput{

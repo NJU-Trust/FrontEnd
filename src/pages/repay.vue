@@ -78,6 +78,10 @@
 
           </div>
           <div class="bubble">
+            <div style="font-size: 15px;">
+              <p style="margin-top: 45px;margin-left: 70px">贷款数总额等分，每月的<br>还款本金额固定利息越来越少；</p>
+              <p style="margin-left: 70px"> 起初还款压力较大，但是随着<br>时间的推移每月的还款数也越来<br> <span style="margin-left: 10px">越少</span>。</p>
+            </div>
 
           </div>
         </div>
@@ -146,13 +150,6 @@
                 label="当前状态"
                 align="center"
               >
-              </el-table-column>
-              <el-table-column label="操作" align="center">
-                <template slot-scope="scope">
-                  <el-button
-                    size="mini"
-                    @click="">查看</el-button>
-                </template>
               </el-table-column>
             </el-table>
           </div>
@@ -286,6 +283,7 @@
     width: 300px;
     height: 200px;
     /*border:1px solid black;*/
+    margin-left: -20px;
     margin-top: 20px;
     background-image: url("/static/pic/bubble.png");
     background-size: 110% 110%;

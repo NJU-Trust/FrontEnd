@@ -29,7 +29,7 @@
       </el-table-column>
       <el-table-column
         prop="principal_and_interest"
-        label="待还本息"
+        label="待还本息(元)"
         align="center"
       >
       </el-table-column>
@@ -41,7 +41,7 @@
       </el-table-column>
       <el-table-column
         prop="money"
-        label="还款日应还金额"
+        label="还款日应还金额(元)"
         align="center"
       >
       </el-table-column>
@@ -66,34 +66,30 @@
         data(){
           return{
             tableData:[{
-              name:'',
-              date:'',
-              year_rate:'',
-              num:0,
-              principal_and_interest:0,
-              money:0,
+              name:'托福考试借款项目',
+              date:'2018/9/1',
+              year_rate:'8%',
+              num:9,
+              principal_and_interest:2862,
+              next_return:'2018/10/1',
+              money:318,
             }, {
-              name:'',
-              date:'',
-              year_rate:'',
-              num:0,
-              principal_and_interest:0,
-              money:0,
+              name:'CPA考试借款项目',
+              date:'2018/6/5',
+              year_rate:'8%',
+              num:9,
+              principal_and_interest:513.33,
+              next_return:'2018/10/1',
+              money:513.33,
             }, {
-              name:'',
-              date:'',
-              year_rate:'',
-              num:0,
-              principal_and_interest:0,
-              money:0,
-            }, {
-              name:'',
-              date:'',
-              year_rate:'',
-              num:0,
-              principal_and_interest:0,
-              money:0,
-            }],
+              name:'ACCA考试借款项目',
+              date:'2018/9/7',
+              year_rate:'8%',
+              num:12,
+              principal_and_interest:3888,
+              next_return:'2018/10/7',
+              money:324,
+            }, ],
           }
         },
     }

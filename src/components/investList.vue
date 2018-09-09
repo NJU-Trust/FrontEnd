@@ -1,16 +1,21 @@
 <template>
   <div class="investList">
-    <div class="type">
+    <div style="display: inline;">
+      <p class="text">{{investList.range}}</p>
+      <div class="triangle-topleft">
+    </div>
+    </div>
+    <div class="type" style="text-align: center;">
       <p class="center">{{investList.type}}</p>
     </div>
-    <div style="height:130px;">
+    <div style="height:130px;text-align: center;">
       <el-row :gutter="20">
         <el-col :span="6">
-          <div class="grid-content bg-purple">
-            <div>
-              <p class="month">Profit : </p>
-              <p class="profit">{{investList.profit}}</p>
-              <p class="month">/ per year</p>
+          <div class="grid-content bg-purple" style="margin-left:20%;">
+            <div style="margin-top:10%;">
+              <p class="month" style="display: inline;">Profit : </p>
+              <p class="profit" style="display: inline;">{{investList.profit}}</p>
+              <p class="month" >/ per year</p>
               <p style="font-size:10px;display: inline-block;">标的编号：</p>
               <p style="display: inline-block;font-weight:800;">{{investList.id}}</p>
             </div>
@@ -22,8 +27,8 @@
             <p class="money">￥{{investList.remainMoney}}</p><p class="moneyName"> / 剩余金额</p>
             <p>借款总金额：￥{{investList.money}}</p>
             <div class="progress round-conner">
-              <div class="curRate round-conner">
-                <p>{{investList.finishProgress}}</p>
+              <div class="curRate round-conner" :style="'width:'+ investList.finishProgress * 100 +'%;'">
+                <p>{{investList.finishProgress * 100}}%</p>
               </div>
               <div style="display:inline;"></div>
             </div>
@@ -62,13 +67,32 @@
 </script>
 
 <style scoped>
+  .text{
+    color: white;
+    margin-left:1%;
+    font-size:35px;
+    text-align: left;
+    display: inline;
+    position:absolute;
+    z-index:100;
+  }
+  .triangle-topleft{
+    width: 0;
+    height: 0;
+    border-top: 80px solid #F37B55;
+    border-right: 110px solid transparent;
+    display: inline;
+    position:absolute;
+    left:11%;
+    z-index:10;
+  }
   .progress {
     background: #A6A3A3;
     margin-left:5%;
     margin-right:5%;
   }
   .curRate {
-    width: 62.5%;
+    width: 60%;
     background: #409EFF;
     color:white;
   }
@@ -83,7 +107,7 @@
     -moz-border-radius: 20px;
     border-radius: 20px;
     max-height: 170px;
-    text-align: center;
+    /*text-align: center;*/
     margin-top:10px;
   }
   .investList:hover{
