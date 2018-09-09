@@ -14,7 +14,9 @@
               <el-date-picker
                 v-model="month_start"
                 type="month"
-                placeholder="请选择起始月份">
+                placeholder="请选择起始月份"
+                value-format="yyyy-MM"
+              >
               </el-date-picker>
             </div>
           </el-col>
@@ -24,7 +26,9 @@
               <el-date-picker
                 v-model="month_end"
                 type="month"
-                placeholder="请选择终止月份">
+                placeholder="请选择终止月份"
+                value-format="yyyy-MM"
+              >
               </el-date-picker>
             </div>
           </el-col>
@@ -37,7 +41,9 @@
           <el-date-picker
             v-model="month_single"
             type="month"
-            placeholder="请选择您要查看的月份">
+            placeholder="请选择您要查看的月份"
+            value-format="yyyy-MM"
+          >
           </el-date-picker>
         </div>
       </div>
@@ -133,6 +139,9 @@
   require('echarts/theme/macarons')
   require('echarts/theme/shine')
 
+  var date = this.month_start;
+
+
   export default {
     name: 'finAnalysis',
     components: {Finbars, Finlines, Finpies},
@@ -172,6 +181,11 @@
         document.getElementById("dateDouble").style.display = "none";
         document.getElementById("dateSingle").style.display = "inline";
       },
+
+      getSTime(val){
+        this.month_start = val;
+      },
+
 
       drawAntBar() {
         // 基于准备好的dom，初始化echarts实例

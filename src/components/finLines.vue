@@ -29,43 +29,43 @@
       <div v-if="selectLine=='恩格尔系数'">
         <h4><i class="el-icon-success"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myEngelsLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myEngelsLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='刚性比率'">
       <div v-if="selectLine=='刚性比率'">
         <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myRigidLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myRigidLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='负债率'">
       <div v-if="selectLine=='负债率'">
         <h4><i class="el-icon-document"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myLiabilityLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myLiabilityLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='偿债能力'">
       <div v-if="selectLine=='偿债能力'">
         <h4><i class="el-icon-info"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="mySolvencyLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="mySolvencyLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='杠杆比率'">
       <div v-if="selectLine=='杠杆比率'">
         <h4><i class="el-icon-news"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myLeverageLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myLeverageLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='消费比率'">
       <div v-if="selectLine=='消费比率'">
         <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="myConsumptionLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myConsumptionLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectLine=='储蓄比率'">
       <div v-if="selectLine=='储蓄比率'">
         <h4><i class="el-icon-date"></i><b>&nbsp&nbsp在此期间, 您的{{selectLine}}每月变化情况如下</b></h4>
       </div>
-      <div id="mySavingLine" :style="{width: '400px', height: '300px'}"></div>
+      <div id="mySavingLine" :style="{width: '600px', height: '450px'}"></div>
     </div>
   </div>
 </template>
@@ -120,7 +120,7 @@
           series: [{
             name: '恩格尔系数',
             type: 'line',
-            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
+            data: [0.52, 0.48, 0.12, 0.27, 0.27, 0.28, 0.46, 0.52, 0.11, 0.29, 0.28, 0.26 ],
             smooth: true
           }]
         });
@@ -144,7 +144,7 @@
           series: [{
             name: '刚性比率',
             type: 'line',
-            data: [0.72, 0.52, 0.82, 0.65, 0.52, 0.55, 0.77, 0.40, 0.20, 0.72, 0.38, 0.67 ],
+            data: [0.60, 0.56, 0.91, 0.73, 0.71, 0.74, 0.54, 0.60, 0.91, 0.78, 0.74, 0.69 ],
             smooth: true
           }]
         });
@@ -168,7 +168,7 @@
           series: [{
             name: '负债率',
             type: 'line',
-            data: [0.02, 0.05, 0.02, 0.07, 0, 0.02, 0.05, 0.02, 0.05, 0.07, 0.03, 0.17 ],
+            data: [0.50, 0.67, 0.25, 9.00, 1.00, 2.00, 1.00, 0.34, 0.12, 0.56, 0.67, 1.00 ],
             smooth: true
           }]
         });
@@ -192,7 +192,7 @@
           series: [{
             name: '偿债能力',
             type: 'line',
-            data: [0.72, 0.82, 0.82, 0.87, 0.80, 0.82, 0.85, 0.82, 0.75, 0.92, 0.98, 0.87 ],
+            data: [2.00, 1.50, 4.00, 0.11, 1.00, 0.50, 1.00, 2.90, 8.60, 1.80, 1.50, 1.00 ],
             smooth: true
           }]
         });
@@ -216,7 +216,7 @@
           series: [{
             name: '杠杆比率',
             type: 'line',
-            data: [0.72, 0.52, 0.82, 0.77, 0.40, 0.20, 0.65, 0.52, 0.55, 0.72, 0.38, 0.67 ],
+            data: [1.00, 0.50, 3.00, -0.89, 0.00, -0.50, 0.00, 1.90, 7.60, 0.80, 0.50, 0.00 ],
             smooth: true
           }]
         });
@@ -240,7 +240,7 @@
           series: [{
             name: '消费比率',
             type: 'line',
-            data: [0.72, 0.52, 0.82, 0.52, 0.55, 0.72, 0.38, 0.77, 0.40, 0.20, 0.65, 0.67 ],
+            data: [0.83, 0.87, 0.92, 0.98, 0.96, 0.98, 0.93, 0.81, 0.93, 0.94, 0.94, 0.96 ],
             smooth: true
           }]
         });
@@ -264,7 +264,7 @@
           series: [{
             name: '储蓄比率',
             type: 'line',
-            data: [0.32, 0.22, 0.20, 0.65, 0.52, 0.85, 0.82, 0.77, 0.40, 0.32, 0.38, 0.37 ],
+            data: [0.07, 0.10, 0.07, 0.00, 0.02, 0.01, 0.03, 0.09, 0.07, 0.04, 0.03, 0.02 ],
             smooth: true
           }]
         });

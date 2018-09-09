@@ -1,7 +1,7 @@
 <template>
   <div class="investList">
     <div class="type">
-      <p class="center">STUDY</p>
+      <p class="center">{{investList.type}}</p>
     </div>
     <div style="height:130px;">
       <el-row :gutter="20">
@@ -9,21 +9,21 @@
           <div class="grid-content bg-purple">
             <div>
               <p class="month">Profit : </p>
-              <p class="profit">10.9840%</p>
+              <p class="profit">{{investList.profit}}</p>
               <p class="month">/ per year</p>
               <p style="font-size:10px;display: inline-block;">标的编号：</p>
-              <p style="display: inline-block;font-weight:800;">1000</p>
+              <p style="display: inline-block;font-weight:800;">{{investList.id}}</p>
             </div>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="grid-content bg-purple">
-            <p class="itemName">托福补课学费</p>
-            <p class="money">￥3 000  </p><p class="moneyName"> / 剩余金额</p>
-            <p>借款总金额：￥8 000</p>
+            <p class="itemName">{{investList.name}}</p>
+            <p class="money">￥{{investList.remainMoney}}</p><p class="moneyName"> / 剩余金额</p>
+            <p>借款总金额：￥{{investList.money}}</p>
             <div class="progress round-conner">
               <div class="curRate round-conner">
-                <p>62.5%</p>
+                <p>{{investList.finishProgress}}</p>
               </div>
               <div style="display:inline;"></div>
             </div>
@@ -37,8 +37,8 @@
                   <el-button type="primary" round @click="showDetails">查看详情</el-button>
                 </el-row>
                 <br/>
-                <p style="font-size:10px;">借款截止：2018.9.10</p>
-                <p style="font-size:10px;">还款日期：2019.9.10</p>
+                <p style="font-size:10px;">借款截止：{{investList.beginTime}}</p>
+                <p style="font-size:10px;">还款日期：{{investList.endTime}}</p>
               </div>
             </div>
           </div>
@@ -55,7 +55,8 @@
       showDetails(){
         window.location.href='/DoInvesting';
       }
-    }
+    },
+    props:['investList'],
 
   }
 </script>
@@ -83,6 +84,7 @@
     border-radius: 20px;
     max-height: 170px;
     text-align: center;
+    margin-top:10px;
   }
   .investList:hover{
     border:2px solid #7CADDB;

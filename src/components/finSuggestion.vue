@@ -32,34 +32,34 @@
         <div class="LevelTwoPanel">
           <el-row :gutter="2">
             <el-col :span="12">
-              <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp 3752.30 元</b></h4><hr/>
+              <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的结余为：&nbsp {{ user.surplus }} 元</b></h4><hr/>
               <div id="Index_NetWorth">
-                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp 6050 元</b></h4><hr/>
+                <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的净资产为：&nbsp {{ user.netAssets }} 元</b></h4><hr/>
               </div>
               <div id="Index_EngelsCoefficient">
-                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp 55%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
+                <h4><i class="el-icon-success"></i><b>&nbsp&nbsp您的恩格尔系数为：&nbsp {{ user.engel }}%,&nbsp&nbsp在同学中处于中等水平</b></h4><hr/>
               </div>
               <div id="Index_RigidRatio">
-                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp 60%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
+                <h4><i class="el-icon-goods"></i><b>&nbsp&nbsp您的刚性比率是:&nbsp {{ user.rigid }}%,&nbsp&nbsp当前可支配收入较多</b></h4><hr/>
               </div>
               <div id="Index_AssetLiabilityRatio">
-                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp 25%</b></h4>
+                <h4><i class="el-icon-document"></i><b>&nbsp&nbsp您的资产负债率为：&nbsp {{ user.assetLiabilityRatio }}%</b></h4>
               </div>
             </el-col>
             <el-col :span="12">
-              <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp 6632.30 元</b></h4><hr/>
+              <h4><i class="el-icon-info"></i><b>&nbsp&nbsp您的负债总额为：&nbsp {{ user.totalLiabilities }} 元</b></h4><hr/>
               <div id="Index_Solvency">
-                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp 100%</b></h4><hr/>
+                <h4><i class="el-icon-tickets"></i><b>&nbsp&nbsp您的偿债能力为：&nbsp {{ user.solvency }}%</b></h4><hr/>
               </div>
               <div id="Index_Leverage">
-                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp 35%</b></h4><hr/>
+                <h4><i class="el-icon-news"></i><b>&nbsp&nbsp您的杠杆比例为：&nbsp {{ user.leverage }}%</b></h4><hr/>
               </div>
               <div id="Index_MonthConsumptionRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp 31.4%，在同学中处于中等水平</b></h4>
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月消费比率为：&nbsp {{ user.monthCusumptionRatio }}%，在同学中处于中等水平</b></h4>
                 <hr/>
               </div>
               <div id="Index_MonthlySavingsRatio">
-                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp 23.9%</b></h4>
+                <h4><i class="el-icon-date"></i><b>&nbsp&nbsp您的月储蓄比例为：&nbsp {{ user.monthSavingRatio }}%</b></h4>
               </div>
             </el-col>
           </el-row>
@@ -78,9 +78,9 @@
         <hr/>
       </div>
     </div>
-    <div class="LoanPanel">
-      <p>在您借款成功后第n个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
-      <div style="width: 640px" id="loanTable">
+    <div class="LoanPanel" style="padding-left: 20px">
+      <p>在您借款成功后的{{ loanStart }}个月内，根据历史消费记录预测，可知结余占用率、可调支出占用率、需要的额外收入金额如下：</p>
+      <div style="width: 700px" id="loanTable">
         <template>
           <el-table
             :data="tableData"
@@ -90,28 +90,29 @@
             <el-table-column
               prop="month"
               label="月份"
-              width="80">
+              width="100">
             </el-table-column>
             <el-table-column
               prop="valX"
               label="结余占用率X"
-              width="180">
+              width="200">
             </el-table-column>
             <el-table-column
               prop="valY"
               label="可调支出占用率Y"
-              width="180">
+              width="200">
             </el-table-column>
             <el-table-column
               prop="valZ"
               label="额外收入金额Z"
-              width="180">
+              width="200">
             </el-table-column>
           </el-table>
         </template>
         <br/>
       </div>
-      <p>因此，在第1、3、7...个月内，建议您酌情调整下图中占比较大的前几项；在第2、3、7...个月内，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。</p>
+      <p>因此，在第1、2、4、5、6、7、8、10、11、12个月内，建议您酌情调整下各项支出中占比较大的几项。</p>
+      <p>暂无需考虑额外收入。</p>
     </div>
   </div>
 </template>
@@ -138,71 +139,84 @@
     components: {Nextpay, InvestList},
     data() {
       return {
+        loanStart: 12,
+        user:{
+          surplus: 3140, //结余
+          netAssets: 1750, //净资产
+          engel:32,
+          rigid:71,
+          assetLiabilityRatio:142, //资产负债率
+          totalLiabilities: 1390,
+          solvency: 216,
+          leverage: 116,
+          monthCusumptionRatio: 92,
+          monthSavingRatio: 5,
+        },
         NextpayList: [
-          { paytitle : "托福考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
-          { paytitle : "CPA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeC:"2018.7.1", amountC:"300" },
-          { paytitle : "ACCA考试借款项目", projectTime :"2017.9.1-2018.11.1", times:"7", interestPlus:"2100", timesA:"8", timeA:"2018.5.1", amountA:"300", timesB:"9",  timeB:"2018.6.1", amountB:"300", timesC:"10", timeCS:"2018.7.1", amountC:"300" },
+          { paytitle : "托福考试借款项目", projectTime :"2018.9.1-2019.6.1", times:"9", interestPlus:"2862", timesA:"1", timeA:"2018.10.1", amountA:"318", timesB:"2",  timeB:"2018.11.1", amountB:"318", timesC:"3", timeC:"2018.12.1", amountC:"318" },
+          { paytitle : "CPA考试借款项目", projectTime :"2018.6.5-2018.10.5", times:"1", interestPlus:"513.33", timesA:"1", timeA:"2018.10.5", amountA:"513.33", timesB:"",  timeB:"", amountB:"", timesC:"", timeC:"", amountC:"" },
+          { paytitle : "ACCA考试借款项目", projectTime :"2018.9.7-2018.9.7", times:"12", interestPlus:"3888", timesA:"1", timeA:"2018.10.7", amountA:"324", timesB:"2",  timeB:"2018.11.7", amountB:"324", timesC:"3", timeC:"2018.12.7", amountC:"324" },
         ],
         tableData: [{
           month: '1',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '95.53%',
+          valZ: '---'
         }, {
           month: '2',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '28.50%',
+          valZ: '---'
         }, {
           month: '3',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '80.25%',
+          valY: '---',
+          valZ: '---'
         }, {
           month: '4',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '48.99%',
+          valZ: '---'
         }, {
           month: '5',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '38.71%',
+          valZ: '---'
         }, {
           month: '6',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '49.33%',
+          valZ: '---'
         }, {
           month: '7',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '41.69%',
+          valZ: '---'
         }, {
           month: '8',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '35.20%',
+          valZ: '---'
         }, {
           month: '9',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '74.65%',
+          valY: '---',
+          valZ: '---'
         }, {
           month: '10',
-          valX: '17%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '14.40%',
+          valZ: '---'
         }, {
           month: '11',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '14.50%',
+          valZ: '---'
         }, {
           month: '12',
-          valX: '15%',
-          valY: '16%',
-          valZ: '27%'
+          valX: '100%',
+          valY: '14.09%',
+          valZ: '---'
         }
         ],
       };
@@ -222,7 +236,7 @@
           xAxis: {
             name: '时间',
             type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
+            data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
           },
           yAxis: {
             name: '结余K(n)',
@@ -231,7 +245,7 @@
           series: [{
             name: '结余',
             type: 'line',
-            data: [5, 20, 36, 10, 40,60],
+            data: [200, 300, 800, 10, 100, 50, 100, 290, 860, 180, 150, 100],
             smooth: true
           }]
         });
@@ -246,8 +260,7 @@
           xAxis: {
             name: '时间',
             type: 'category',
-            data: ["1月", "2月", "3月", "4月", "5月", "6月"]
-          },
+            data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]          },
           yAxis: {
             name: '可调整支出A(n)',
             type: 'value'
@@ -255,7 +268,7 @@
           series: [{
             name: '可调整支出',
             type: 'line',
-            data: [5, 20, 69, 77, 40, 20],
+            data: [1000, 1200, 1000, 1290, 1400, 1200, 1300, 1000, 1040, 1000, 1200, 1590],
             smooth: true
           }]
         });
@@ -282,4 +295,11 @@
     color: #409EFF;
   }
 
+</style>
+
+<style>
+  .el-table thead {
+    color: #606266 !important;
+    font-weight: 500;
+  }
 </style>

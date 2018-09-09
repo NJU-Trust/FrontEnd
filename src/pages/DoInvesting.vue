@@ -5,7 +5,7 @@
     <img src="/static/pic/Investing.png" class="img-responsive" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px">
     <div class="overview">
       <div class="total" style="position:absolute;left:8%;top:20%;font-size:18px;width:300px;text-align:left;">
-        <label>标的编号XX</label>
+        <label>标的编号 {{target_id}}</label>
         <label>剩余时间：{{leftTime}}</label>
         <br/>
         <el-progress :stroke-width="20" :percentage="percentage" ></el-progress>
@@ -40,17 +40,80 @@
         </div>
       </div>
     </div>
-    <div style="display:flex;height:800px;">
-      <div class="market_out" style="border: 1px solid lightgrey;height:100%;width:100%;">
+    <div style="display:flex;min-height:800px;border: 1px solid lightgrey;">
+      <div class="market_out" style="height:100%;width:100%;">
         <el-tabs :tab-position="tabPostion" style="height:100%;">
-          <el-tab-pane label="产品概要" style="padding:30px 60px 10px 30px;font-size:18px;line-height: 30px;">
-            <p v-html="Abstract"></p>
+          <el-tab-pane label="产品概要"
+                        style="padding:60px 60px 10px 30px;font-size:18px;line-height: 30px;">
+            <div style="display: flex;">
+                <div style="padding:5px;">
+                  <img src="../../static/pic/TOEFL.jpg" style="width:400px;"/>
+                  <label style="font-size:16px;font-style: oblique;text-align: center;font-weight: normal;color:grey">此图为用户上传的项目说明</label>
+                </div>
+                <div style="padding:5px;width:500px;">
+                  <el-card class="box-card" style="width:430px;">
+                    <div slot="header" class="clearfix">
+                      <strong><span style="font-size: 20px;">借款项目简介</span></strong>
+                    </div>
+                    <div>
+                      <div>{{payWay}}</div>
+                      <div>{{useWay}}</div>
+                      <div>{{monthInterest}}</div>
+                      <div>{{payAll}}</div>
+                      <div>{{PS}}</div>
+                    </div>
+                    <hr/>
+                    <div>
+                      <label>用户信用评级：</label>
+                      <label class="level">A</label>
+                      <br/>
+                      <label>项目风险评级:</label>
+                      <label class="level">AA</label>
+                      <br/>
+                      <label>信用等级排序说明：</label>
+                      <label class="level">AA</label>
+                      <label>></label>
+                      <label class="level">A</label>
+                      <label >></label>
+                      <label class="level">B</label>
+                      <label>></label>
+                      <label class="level">C</label>
+                      <label>></label>
+                      <label class="level">D</label>
+                    </div>
+                  </el-card>
+
+                </div>
+
+              </div>
+
+
+
           </el-tab-pane>
-          <el-tab-pane label="借款人信息" style="padding:30px 60px 10px 30px;font-size:18px;line-height: 30px;">
-            <FinStanding></FinStanding>
+          <el-tab-pane label="借款人信息" style="padding:60px 60px 10px 30px;font-size:18px;line-height: 30px;">
+            <doInvestingLoanerInfo></doInvestingLoanerInfo>
           </el-tab-pane>
-          <el-tab-pane label="投标记录" style="padding:30px 60px 10px 30px;font-size:18px;line-height: 30px;">
-            <p v-html="InvestInfo"></p>
+          <el-tab-pane label="投标记录" style="padding:80px 60px 10px 30px;font-size:18px;line-height: 30px;">
+            <el-table
+              :data="tableData"
+              height="290"
+              border
+              style="width: 100%">
+              <el-table-column
+                prop="date"
+                label="日期"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="姓名"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="money"
+                label="金额">
+              </el-table-column>
+            </el-table>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -62,48 +125,53 @@
 <script>
     import navi from '@/components/navi.vue';
     import rightBar from '@/components/rightBar.vue';
-    import FinStanding from '@/components/finStanding.vue';
+    import doInvestingLoanerInfo from '@/components/doInvestingLoanerInfo.vue';
     export default {
       name: "DoInvesting",
-      components:{navi,rightBar,FinStanding},
+      components:{navi,rightBar,doInvestingLoanerInfo},
       data(){
         return{
-          percentage:70,
-          leftTime:"1天2小时59分11秒",
-          revenueRate:10.0,
-          lifeOfLoan:"3个月",
-          totalLoan:100000,
-          leftNeeds:3000,
-          userMoney:100,
+          tableData:[
+            {date: '2018-05-03',
+            name: '陈文博',
+            money: '5000'
+            },
+            {date: '2018-06-13',
+              name: '罗子俊',
+              money: '500'
+            },
+            {date: '2018-08-08',
+              name: '付贺然',
+              money: '100'
+            },
+            {date: '2018-08-20',
+              name: '吴欣怡',
+              money: '400'
+            },
+            {date: '2018-08-29',
+              name: '王刚',
+              money: '400'
+            },
+          ],
+          target_id:"723972",
+          percentage:80,
+          leftTime:"31天9小时50分04秒",
+          revenueRate:8.0,
+          lifeOfLoan:"2年",
+          totalLoan:8000,
+          leftNeeds:1600,
+          userMoney:1000,
           num1: 100,
           tabPostion:"left",
           DoInvest:"确认投资",
-          Abstract:"借款项目简介<br/><br/>" +
-            "● 融资人简介：借款主体：某文化传媒（惠州）有限公司，经营范围为制作、复制、发行：电视剧、动画片，专题、专栏（不含时政新闻类），综艺；设计、代理、制作、发布国内外各类广告；大型活动策划、企业管理咨询；国内贸易。 担保人：吴学长，本科毕业于武汉大学1989级汉语言文学专业，从事传媒行业，是此次借款公司的控股大股东、总经理、法定代表人，年收入80万元。名下主要资产有惠州市惠城区后所街某号房产，市值人民币320万元；惠州市惠城区后所街某号房产，市值人民币650万元；宝马汽车，市值人民币90万元。吴学长任武汉大学校友企业家联谊会泛珠联理事。此次借款有房产作为抵押。" +
-            "<br/>" +
-            "● 资金用途：资金周转<br/>" +
-            "<br/>" +
-            "● 收益说明： 融资总额176,473元。 每月付息：￥ 1,470.61 元",//产品概要
-          borrowerInfo:"借款人信息<br/><br/>" +
-            "●性别：男<br/>" +
-            "<br/>" +
-            "●年龄：56<br/>" +
-            "<br/>" +
-            "●是否结婚：已婚<br/>" +
-            "<br/>" +
-            "●工作城市：广东 惠州<br/>" +
-            "<br/>" +
-            "●学历：硕士<br/>" +
-            "<br/>" +
-            "●入学年份：1989-09-01<br/>" +
-            "<br/>" +
-            "●所在行业：媒体/广告<br/>" +
-            "<br/>" +
-            "●个人月收入：50000元以上<br/>" +
-            "<br/>" +
-            "●有无购房： 有<br/>" +
-            "<br/>" +
-            "●有无购车：有",
+
+          payWay:"还款方式：付息还本",
+          useWay:"借款用途：托福培训",
+          monthInterest:  "月还本息：180.32",
+          payAll: "到期需还本金：8000",
+          PS: "说明：在投资期限届满前，投资人不可以转让或赎回",
+
+          //产品概要
           InvestInfo:"XXXXXXXXXXXX",
         }
       },
@@ -124,11 +192,18 @@
     word-wrap: break-word;
     word-break: normal;
   }
+  .level{
+    font-size: 30px;color:deepskyblue;
+    font-style:oblique;
+    font-family:"Times New Roman";
+  }
 </style>
 <style scoped>
   .market_out >>> .el-tabs__item{
     font-size: 20px;
-    padding: 26px 20px 30px 20px;
+    padding: 40px 20px 30px 20px;
+    width:250px;
+    text-align: left;
   }
 
 </style>

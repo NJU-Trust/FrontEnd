@@ -1,13 +1,10 @@
 <template>
   <div class="col-xs-12 col-md-12" style="padding: 0;">
-    <div style="width: 100%;float: top;">
-      <navi></navi>
-      <div>
-        <img src="/static/pic/background1.png" class="img-responsive" alt="Cinque Terre" style="top: 0;z-index: -1;">
-        <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 180px;z-index: 0;position: absolute;width: 50%;left: 25%;">
-        <button type="button" class="mainButton">即刻trust</button>
-        <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="text-align:center;top: 490px;z-index: 0;position: absolute;width: 40%;left: 30%;">
-      </div>
+    <navi></navi>
+    <div id="mainPic">
+      <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="padding-top: 15%;z-index: 0;width: 50%;margin-left: 25%;">
+      <button type="button" class="mainButton" v-on:click="trustNow()">即刻trust</button>
+      <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="margin-top:2%;z-index: 0;width: 40%;margin-left: 30%;">
     </div>
     <rightBar></rightBar>
 
@@ -41,7 +38,7 @@
         </div>
         <div class="el-card is-always-shadow advantage-card">
           <img src="/static/pic/chooseFree.png"/>
-          <h4>贴心推荐，自主选择</h4>
+          <h4>精准推荐，自主选择</h4>
           <hr>
           <h5>交易对象可自选</h5>
           <p>分析投资偏好,个性化优质标推荐</p>
@@ -97,16 +94,48 @@
       mounted: function () {
         $(".whole").css("background-color","transparent");
         $(".wholeNav").css("background-color","transparent");
+        var winHeight=0;
+        if (window.innerHeight)
+          winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+          winHeight = document.body.clientHeight;
+        if (document.documentElement && document.documentElement.clientHeight)
+          winHeight = document.documentElement.clientHeight;
+        document.getElementById("mainPic").style.height= winHeight +"px";
+
       },
       beforeCreate: function () {
         localStorage.route="#homepage";
         localStorage.ifLogin=1;
+      },
+      methods: {
+        trustNow:function () {
+          if(localStorage.ifLogin==1){
+            this.$router.push('/userSpace');
+          }else{
+            this.$router.push('/signup')
+          }
+
+        }
+
       }
 
     }
 </script>
 
 <style scoped>
+  #mainPic{
+    width:100%;
+    height: 610px;
+    background-image:url('/static/pic/background1.png');
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+    top:0;
+  }
+
   .mainButton{
     border-radius: 30px;
     height: 50px;
@@ -119,10 +148,9 @@
     border: none;
     font-size: 22px;
     font-family: "Microsoft YaHei UI";
-    top: 390px;
-    position: absolute;
+    margin-top: 5%;
     width: 14%;
-    left: 43%;
+    margin-left: 43%;
     letter-spacing: 2px;
   }
 

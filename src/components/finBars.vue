@@ -26,45 +26,45 @@
     <hr/>
     <div v-show="selectBar=='收入'">
       <div v-if="selectBar=='收入'">
-        <h4><b>您这段时间的收入总额为：<i class="el-icon-goods"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您这段时间的收入总额为：<i class="el-icon-goods"></i>&nbsp {{ user.income }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myIncomeBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myIncomeBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='支出'">
       <div v-if="selectBar=='支出'">
-        <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您这段时间的支出总额为：<i class="el-icon-tickets"></i>&nbsp {{ user.outcome }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myOutcomeBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myOutcomeBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='刚性支出'">
       <div v-if="selectBar=='刚性支出'">
-        <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-sold-out"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您这段时间的刚性支出总额为：<i class="el-icon-sold-out"></i>&nbsp {{ user.rigid }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myRigidBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myRigidBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='可调支出'">
       <div v-if="selectBar=='可调支出'">
-        <h4><b>您这段时间的可调支出总额为：<i class="el-icon-document"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您这段时间的可调支出总额为：<i class="el-icon-document"></i>&nbsp {{ user.adjust }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myAdjustBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myAdjustBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='投资额结余'">
       <div v-if="selectBar=='投资额结余'">
-        <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-edit"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您这段时间的投资额结余总额为：<i class="el-icon-edit"></i>&nbsp {{ user.surplus }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myInvestBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myInvestBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='负债'">
       <div v-if="selectBar=='负债'">
-        <h4><b>您的负债总额为：<i class="el-icon-edit-outline"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您的负债总额为：<i class="el-icon-edit-outline"></i>&nbsp {{ user.debt }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myDebtBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myDebtBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
     <div v-show="selectBar=='净资产'">
       <div v-if="selectBar=='净资产'">
-        <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp 6050 元, 每月变化情况如下</b></h4>
+        <h4><b>您的净资产总额为：<i class="el-icon-tickets"></i>&nbsp {{ user.asset }} 元, 每月变化情况如下</b></h4>
       </div>
-      <div id="myNetAssetsBar" :style="{width: '400px', height: '300px'}"></div>
+      <div id="myNetAssetsBar" :style="{width: '600px', height: '450px'}"></div>
     </div>
   </div>
 </template>
@@ -86,6 +86,15 @@
     name: 'finbars',
     data() {
       return{
+        user:{
+          income: 67070, //结余
+          outcome: 62220,
+          rigid: 48000,
+          adjust: 14220,
+          surplus: 3140,
+          debt: 1390,
+          asset: 1750
+        },
         selectBar:'收入',
       }
     },
@@ -135,7 +144,7 @@
             name: '收入情况',
             type: 'bar',
             barWidth: '60%',
-            data: [5, 20, 36, 10, 40, 20, 80, 5, 20, 36, 10, 40]
+            data: [3000, 3100, 12000, 4900, 5100, 4800, 3000, 3090, 13000, 4780, 5000, 5300]
           }]
         });
       },
@@ -174,7 +183,7 @@
             name: '支出情况',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 40, 20, 60, 5, 20, 36, 10, 40, 20, 60, 5]
+            data: [2500, 2700, 11000, 4790, 4900, 4700, 2800, 2500, 12040, 4500, 4700, 5090]
           }]
         });
       },
@@ -205,15 +214,15 @@
             }
           },
           yAxis: {
-            name: '支出',
+            name: '刚性支出',
             type: 'value'
           },
           series: [{
             color: '#409EFF',
-            name: '支出情况',
+            name: '刚性支出',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 40, 50, 60, 5, 36, 36, 10, 4, 20, 60, 5]
+            data: [1500, 1500, 10000, 3500, 3500, 3500, 1500, 1500, 11000, 3500, 3500, 3500]
           }]
         });
       },
@@ -249,10 +258,10 @@
           },
           series: [{
             color: '#409EFF',
-            name: '支出情况',
+            name: '可调支出',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 40, 20, 60, 5, 70, 36, 10, 40, 20, 60, 5]
+            data: [1000, 1200, 1000, 1290, 1400, 1200, 1300, 1000, 1040, 1000, 1200, 1590]
           }]
         });
       },
@@ -283,15 +292,15 @@
             }
           },
           yAxis: {
-            name: '支出',
+            name: '结余',
             type: 'value'
           },
           series: [{
             color: '#409EFF',
-            name: '支出情况',
+            name: '每月结余',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 40, 20, 10, 40, 20, 60, 5, 70, 36, 60, 5]
+            data: [300, 100, 200, 100, 100, 50, 100, 300, 100, 100, 150, 110]
           }]
         });
       },
@@ -322,15 +331,15 @@
             }
           },
           yAxis: {
-            name: '支出',
+            name: '负债',
             type: 'value'
           },
           series: [{
             color: '#409EFF',
-            name: '支出情况',
+            name: '负债情况',
             type: 'bar',
             barWidth: '60%',
-            data: [70, 36, 10, 40, 10, 40, 20, 60, 5, 20, 60, 5]
+            data: [100, 200, 200, 90, 100, 100, 100, 100, 100, 100, 100, 100]
           }]
         });
       },
@@ -361,15 +370,15 @@
             }
           },
           yAxis: {
-            name: '支出',
+            name: '净资产',
             type: 'value'
           },
           series: [{
             color: '#409EFF',
-            name: '支出情况',
+            name: '净资产情况',
             type: 'bar',
             barWidth: '60%',
-            data: [70, 36, 10, 40, 20, 60, 5, 10, 40, 20, 60, 5]
+            data: [100, 100, 600, -80, 0, -50, 0, 190, 760, 80, 50, 0]
           }]
         });
       },

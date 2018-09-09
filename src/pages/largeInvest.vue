@@ -12,45 +12,46 @@
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
+              <el-radio-button label="500以下" ></el-radio-button>
               <el-radio-button label="500-1000"></el-radio-button>
               <el-radio-button label="1000以上"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-            <div style="display: inline-block;margin-left:15px;"></div>
+            <input type="number" class="selectInput" value="2000"/>
+            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
+            <input type="number" class="selectInput" value="3000"/>
+            <div style="display: inline-block;margin-left:30px;"></div>
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio2">
               <el-radio-button label="立即开始"></el-radio-button>
-              <el-radio-button label="5天之内"></el-radio-button>
               <el-radio-button label="10天之内"></el-radio-button>
             </el-radio-group>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:150px;">
-            </el-date-picker>
+            <input type="date" class="selectInput" style="width:110px;"/>
+            <p style="display: inline;margin-left:5px;margin-right:5px;">-</p>
+            <input type="date" class="selectInput" style="width:110px;"/>
           </div>
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>利率&nbsp&nbsp&nbsp</b></span>
             <div style="display: inline-block;margin-left:23px;"></div>
             <el-radio-group v-model="value_radio3">
               <el-radio-button label="1%以下"></el-radio-button>
-              <el-radio-button label="1%-1.5%"></el-radio-button>
-              <el-radio-button label="1.5%-2%"></el-radio-button>
+              <el-radio-button label="1%-2%"></el-radio-button>
               <el-radio-button label="2%以上"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-            <div style="display: inline-block;margin-left:30px;"></div>
+            <input type="number" class="selectInput" value="2.5"/>
+            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
+            <input type="number" class="selectInput" value="3"/>
+            <p style="display: inline;margin-left:5px;">%</p>
+            <div style="display: inline-block;margin-left:40px;"></div>
             <span><b>还款期限&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio4">
               <el-radio-button label="10天"></el-radio-button>
               <el-radio-button label="30天"></el-radio-button>
               <el-radio-button label="60天"></el-radio-button>
-              <el-radio-button label="90天"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:150px;"></el-input-number>
+            <input type="number" class="selectInput" value="90"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <input type="number" class="selectInput" value="100"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">天</p>
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
@@ -69,7 +70,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
-          <div class="userInput" style="margin-left:30px;">
+          <div class="userInput" style="margin-left:10px;">
             <p>项目风险评级：</p>
             <div class="sort">
               <div>
@@ -84,8 +85,8 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-12">
-          <div style="margin-left:1%;">
-            <div class="userInput">
+          <div>
+            <div class="userInput" style="margin-left:0%;">
               <p>标的分类：</p>
               <div class="sort">
                 <div>
@@ -122,15 +123,12 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;">
       <div class="col-sm-8 col-md-8">
-        <div style="margin-left:9%;width:91%;">
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
+        <div style="margin-left:10%;width:91%;">
+          <invest-list
+            v-for="item in investInformation"
+            v-bind:investList="item"
+            v-bind:key="item.id"
+          ></invest-list><br/><br/>
         </div>
       </div>
       <div class="col-xs-4 col-md-4">
@@ -138,19 +136,13 @@
           <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
           <input type="button" class="searchButton searchBack" :style="searchBack"/>
         </div>
-        <div class="searchBorder" style="margin-top:80px;">
+        <div class="searchBorder" style="height:500px;margin-top:20%;">
           <h3>标的比较</h3>
           <div class="userInput">
             <p>请输入需要比较的标的编号：</p><br><br>
             <p>A: </p><input type="number" value="0000" style="width:100px;"/>
             <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-            <div id="myradar" style="width: 350px;height: 380px"></div>
-          </div>
-        </div>
-        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:300px;">
-          <div style="padding-top:36%;">
-            <h1 style="font-size:19px;text-align: center;">小贴士</h1>
-            <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+            <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
           </div>
         </div>
       </div>
@@ -188,7 +180,7 @@
   const indexAOptions = ['标的金额', '开始时间', '利率', '还款期限','用户信用分数'];
   const indexBOptions = ['AA','A','B','C','D'];
   const indexCOptions = ['AA ','A ','B ','C ','D '];
-  const indexDOptions = ['交换生', 'GMAT', 'TOEFL', 'IELTS', '大额考证'];
+  const indexDOptions = ['交换生','GMAT','TOFEL','IELTS','大额考证']
   // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
@@ -221,6 +213,15 @@
         isIndeterminateC:true,
         checkAllD:false,
         isIndeterminateD:true,
+        investInformation: [
+          {id:"0001", beginTime:"2018.09.17", endTime:"2018.10.17", name:"托福培训", type:"TOEFL", profit:"2.25%", money:"8000", remainMoney:"1600", finishProgress:"80%"},
+          {id:"0002", beginTime:"2018.10.12", endTime:"2018.11.12", name:"CFA培训及考试", type:"大额考证", profit:"2.16%", money:"10000", remainMoney:"2000", finishProgress:"80%"},
+          {id:"0003", beginTime:"2018.10.15", endTime:"2018.11.15", name:"雅思培训", type:"IELTS", profit:"3.15%", money:"9000", remainMoney:"2880", finishProgress:"68%"},
+          {id:"0004", beginTime:"2018.10.22", endTime:"2018.11.22", name:"AFP培训及考试", type:"大额考证", profit:"1.69%", money:"8000", remainMoney:"2160", finishProgress:"73%"},
+          {id:"0005", beginTime:"2018.10.26", endTime:"2018.11.26", name:"寒假交换", type:"交换生", profit:"0.00%", money:"13000", remainMoney:"5590", finishProgress:"57%"},
+          {id:"0006", beginTime:"2018.10.30", endTime:"2018.11.39", name:"寒假交换", type:"交换生", profit:"1.65%", money:"10000", remainMoney:"1900", finishProgress:"81%"},
+          {id:"0007", beginTime:"2018.11.03", endTime:"2018.12.03", name:"寒假交换", type:"交换生", profit:"3.22%", money:"15000", remainMoney:"4350", finishProgress:"71%"},
+          ],
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -273,17 +274,6 @@
         this.isIndeterminateC = checkedCount > 0 && checkedCount < this.indexCs.length;
         this.showIndexs();
       },
-      handleCheckAllChangeD(val) {
-        this.checkboxGroup2 = val ? indexDOptions : [];
-        this.isIndeterminateD = false;
-        this.showIndexs();
-      },
-      handleCheckedCitiesChangeD(value) {
-        let checkedCount = value.length;
-        this.checkAllD = checkedCount === this.indexDs.length;
-        this.isIndeterminateD = checkedCount > 0 && checkedCount < this.indexDs.length;
-        this.showIndexs();
-      },
       drawRadar() {
         let myChart = echarts.init(document.getElementById('myradar'),'infographic')
         myChart.setOption({
@@ -333,6 +323,17 @@
 </script>
 
 <style scoped>
+  .selectInput{
+    display: inline;
+    width:70px;
+    height:40px;
+    border:1px solid #DCDEE0;
+    color:#B6B7B8;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+  }
   .dropdown{
     border:1px solid transparent;
     width:80px;
@@ -354,17 +355,13 @@
   .sort{
     display: inline-block;
   }
-  .investNotice{
-    height:310px;
-    width:310px;
-  }
   .searchBorder{
     text-align: center;
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid #4285F4;
-    height:500px;
-    margin-right:10%;
+    height:400px;
+    margin-right:22%;
     margin-top:30px;
   }
   .searchButton{
@@ -384,13 +381,13 @@
     border:2px solid lightblue;
     display: inline;
     float:right;
-    margin-right:12%;
+    margin-right:22%;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
     margin-top:5%;
     height:32px;
-    width:85%;
+    width:75%;
     background: white;
   }
   .userSearch input {
@@ -420,8 +417,8 @@
   }
   .inputBorder{
     border: 1px solid #DEDDDD;
-    margin-left:5%;
-    margin-right:5%;
+    margin-left:7%;
+    margin-right:7%;
     background-color:white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

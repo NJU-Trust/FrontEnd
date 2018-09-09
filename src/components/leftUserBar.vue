@@ -29,7 +29,7 @@
     <div class="left_menus">
       <p class="left_head"><b>信用验证</b></p><hr/>
       <ul class="left_ul">
-        <li><a id="leftNC" href="/UserSpace/NormalCheck" @click="setB">身份验证</a></li>
+        <li><a id="leftNC" href="/UserSpace/NormalCheck" @click="setB">校园验证</a></li>
         <li><a id="leftAC" href="/UserSpace/AdvancedCheck">财务验证</a></li>
         <li><a id="leftCC" href="/UserSpace/CrossCheck">关系验证</a></li>
       </ul>

@@ -10,25 +10,20 @@
         <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
       </div>
     </div>
-    <!--右边栏-->
-    <div>
-      <right-bar></right-bar>
-    </div>
-
-    <!--左边栏-->
-    <div style="position:relative;top:200px;">
-      <leftCheckBar></leftCheckBar>
-    </div>
 
     <!--正文内容 -->
     <div class="back">
-      <div id="check" class="sheet" style="position:relative;top:-400px;left:200px">
+      <leftCheckBar></leftCheckBar>
+      <div class="publishmes" >
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;<strong>非结构化信息</strong></h4>
+        <hr/><br/>
+      <div id="check" class="sheet">
         <!--新版-->
         <template>
           <el-table
             :data="tableData6"
             border
-            style="width: 100%">
+            style="width: 95.6%">
             <!--<el-table-column type="expand">
               <template slot-scope="props">
                 <el-form label-position="left" inline class="demo-table-expand">
@@ -83,9 +78,12 @@
               label="条目信息">
             </el-table-column>
             <el-table-column
-              prop="pics"
+              props="pics"
               width="200"
               label="条目证明">
+              <template slot-scope="scope">
+                <img :src="scope.row.pics"  class="pics"/>
+              </template>
             </el-table-column>
             <el-table-column
               label="操作"
@@ -328,10 +326,16 @@
         </el-table>-->
       </div>
     </div>
+    </div>
+
+    <!--右边栏-->
+    <div>
+      <right-bar></right-bar>
+    </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
   </div>
@@ -476,7 +480,7 @@
         count = 0;
         changenum = 0;
         if(new_count !== new_changenum){
-          this.$confirm('当前用户相关信息还没有审核完成，是否跳转?', '提示', {
+          this.$confirm('当前用户相关信息还没有审核完成，是否跳转?(已完成的数据会保留)', '提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -541,96 +545,47 @@
     },
     data() {
       return {
-        tableData5:[{
+        tableData5: [{
           username: '小红',
           state: 1,
           desc: '暂无',
           certi_pic: '好多张图片',
-          stu_pic:0,
+          stu_pic: 0,
           gov_pic: 1,
-          ser_pic:'图片',
-          bank_pic:'图片',
+          ser_pic: '图片',
+          bank_pic: '图片',
           lib_pic: 0,
         }],
-        tempData:{
-          count:0,
-          flag:false,
+        tempData: {
+          count: 0,
+          flag: false,
         },
         //状态栏，0表示未审核，1表示已审核，2表示需要审核
-        tableData6:[{
-          classify:0,
-          name:'每年平均志愿活动时长',
-          state:0,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'学生工作',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'奖励信息',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'学校分类',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'所在专业情况',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'受教育情况',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'奖学金',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'科研竞赛获奖情况',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'学费及住宿费缴纳情况',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'图书馆借阅还书情况',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'贷款偿还',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        },{
-          classify:0,
-          name:'是否为失信人员',
-          state:1,
-          mess:'自己填写的信息',
-          pics:'好多证明图片'
-        }
-        ],
+        tableData6: [{
+          classify: 0,
+          name: '每年平均志愿活动时长',
+          state: 0,
+          mess: '志愿时长超过100小时',
+          pics: "static/pic/mestest.png"
+        }, {
+          classify: 0,
+          name: '所在专业情况',
+          state: 1,
+          mess: '所在院系：工程管理学院',
+          pics: '../../static/pic/志愿时长.png',
+        }, {
+          classify: 0,
+          name: '图书馆借阅还书情况',
+          state: 1,
+          mess: '无逾期未还书情况',
+          pics: '/static/pic/notice.jpg'
+        }, {
+          classify: 0,
+          name: '学费及住宿费缴纳情况',
+          state: 1,
+          mess: '正常缴纳，没有逾期情况发生',
+          pics: 'static/pic/mestest.png'
+        }],
       }
     },
     created:function(){
@@ -640,18 +595,52 @@
 </script>
 
 <style scoped>
-
-  /*白色背景*/
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
-    //height: 500px;
+    background-color: #D9F3FB;
+    min-height:700px;
+  //height: 200px;
     display:flex;
   }
 
+  div.myspace{
+    /*个人中心*/
+    text-indent:6.3%;
+    color: black;
+    background-color: white;
+    margin: 0px;
+    border: 0px;
+    padding: 5px;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    border-radius: 3px;
+  }
+  .myspace p{
+    font-size: 15px;
+    color: #505050;
+  }
+  .publishmes{
+    background:white;
+    border:1px solid #e4e4e4;
+  //border-top:5px solid dodgerblue;
+    height:550px;
+  //width:100%;
+    width:950px;
+    margin-right: 10%;
+    margin-left: 16%;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    border-radius: 3px;
+    position:absolute;top:222px;
+    margin-left: 24%;
+  }
+
   .sheet{
-    margin-top: 200px;
-    margin-left:10%;
+    margin-top: 20px;
+    margin-left:5%;
 
   }
 

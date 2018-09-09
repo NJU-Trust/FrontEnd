@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-right: 400px">
     <el-form :label-position="labelPosition" :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" @submit.native.prevent>
       <el-form-item label="原密码" prop="original">
         <el-input type="password" v-model="ruleForm2.original" auto-complete="off"></el-input>

@@ -7,42 +7,36 @@
         prop="name"
         label="项目名称"
         align="center"
-        width="100"
       >
       </el-table-column>
       <el-table-column
         prop="date"
         label="发布时间"
         align="center"
-        width="100"
       >
       </el-table-column>
       <el-table-column
         prop="year_rate"
         label="年利率"
         align="center"
-        width="70"
       >
       </el-table-column>
       <el-table-column
         prop="num"
         label="待还期数"
         align="center"
-        width="100"
       >
       </el-table-column>
       <el-table-column
         prop="principal_and_interest"
         label="待还本息"
         align="center"
-        width="100"
       >
       </el-table-column>
       <el-table-column
         prop="next_return"
         label="下个还款日"
         align="center"
-        width="100"
       >
       </el-table-column>
       <el-table-column
@@ -59,7 +53,7 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="">点击查看</el-button>
+            @click="">查看</el-button>
         </template>
       </el-table-column>
 

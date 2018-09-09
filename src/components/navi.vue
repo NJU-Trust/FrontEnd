@@ -1,16 +1,16 @@
 <template>
   <div class="whole" id="navi" style="width:100%;">
-    <a href="./"><img src="/static/pic/logo1_silver.png" id="naviLogo" class="img-responsive logo" alt="Cinque Terre"></a>
+    <a href="/"><img src="/static/pic/logo1_silver.png" id="naviLogo" class="img-responsive logo" alt="Cinque Terre"></a>
 
     <nav class="navbar navbar-inverse wholeNav">
       <div class="container-fluid" style="width: 100%">
         <div class="collapse navbar-collapse" id="myNavbar" style="display: inline-block;font-size: 16px;width: 100%">
           <ul class="nav navbar-nav" id="nav" style="width: 100%">
-            <li><a id="invest" href="/enterInvest">投资</a></li>
-            <li><a id="loan" href="/enterLoan">借款</a></li>
-            <li><a id="trade" href="/trade">交易</a></li>
-            <li><a id="notice" href="/notice">发布</a></li>
-            <li><a id="guide" href="/guide">教程</a></li>
+            <li><a id="invest" href="/enterInvest">投资大厅</a></li>
+            <li><a id="loan" href="/enterLoan">我要借款</a></li>
+            <li><a id="trade" href="/trade">南大鱼塘</a></li>
+            <li><a id="notice" href="/notice">失物/寻物</a></li>
+            <li><a id="guide" href="/guide">平台指南</a></li>
             <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
           </ul>
@@ -178,7 +178,7 @@ export default {
   }
 
   #nav li{
-    min-width: 90px;
+    min-width: 10%;
     text-align: center;
     border-top:3px solid transparent;
     border-bottom:3px solid transparent;
