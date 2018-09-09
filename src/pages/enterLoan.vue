@@ -71,7 +71,7 @@
 
 <style scoped>
   .square{
-    margin-top:200px;
+    margin-top:120px;
     margin-left:12.5%;
     width:75%;
     height:500px;

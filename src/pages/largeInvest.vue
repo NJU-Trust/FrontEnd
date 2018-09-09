@@ -1,5 +1,5 @@
 <template>
-  <div class="col-xs-12 col-md-12" style="padding: 0;background-color: #D9F3FB;">
+  <div class="col-xs-12 col-md-12 back" :style="back" style="padding: 0;background-color: #D9F3FB;">
     <div style="width: 100%;float: top;">
       <navi></navi>
     </div>
@@ -222,6 +222,13 @@
           {id:"0006", beginTime:"2018.10.30", endTime:"2018.11.39", name:"寒假交换", type:"交换生", profit:"1.65%", money:"10000", remainMoney:"1900", finishProgress:0.81,range:"B"},
           {id:"0007", beginTime:"2018.11.03", endTime:"2018.12.03", name:"寒假交换", type:"交换生", profit:"3.22%", money:"15000", remainMoney:"4350", finishProgress:0.71,range:"B"},
           ],
+        back:{
+          backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
+          backgroundRepeat:"no-repeat",
+          backgroundAttachment:"fixed",
+          backgroundSize:"100% auto",
+          backgroundPosition: "0% 0%",
+        },
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
