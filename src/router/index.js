@@ -7,6 +7,7 @@ import checkMyLoan from '@/pages/checkMyLoan'
 import loan from '@/pages/loan'
 import largeLoan from '@/pages/largeLoan'
 import repay from '@/pages/repay'
+import checkInvest from '@/pages/checkInvest'
 import signup from '@/pages/signup'
 import UserSpace from '@/pages/UserSpace'
 import NormalCheck from '@/pages/NormalCheck'
@@ -99,6 +100,11 @@ export default new Router({
       path: '/UserSpace/repay',
       name: 'repay',
       component: repay
+    },
+    {
+      path: '/UserSpace/checkInvest',
+      name: 'checkInvest',
+      component: checkInvest
     },
     {
       path: '/UserSpace/SchoolPerformance',

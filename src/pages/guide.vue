@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <guidePanel paneltitle="平台定位">
     <!--顶栏 -->
     <div clas="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
       <navi style="position: relative"></navi>
     </div>
+    
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="title">
         <h2 class="title">新手教程</h2>
@@ -16,16 +17,13 @@
       <right-bar></right-bar>
     </div>
 
-    <!--左边栏-->
-    <div>
-      
-    </div>
-
     <!--正文-->    
     <div class="main" :style="note">
       <leftGuideBar></leftGuideBar>
-      <div>
-        
+      <div class="inform">
+        <h1 class="panel-title" id="tmptitle">
+          {{ paneltitle }}
+        </h1>
       </div>
       <div>
       
@@ -38,82 +36,26 @@
     <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
       <footerBar></footerBar>
     </div>
-  </div>
+  </guidePanel>
   
 </template>
 
 <script>
-  import navi from '@/components/navi.vue';
-  import footerBar from '@/components/footerBar.vue';
-  import rightBar from '@/components/rightBar.vue';
-  import leftGuideBar from '@/components/leftGuideBar.vue';
+  import guidePanel from "../components/guidePanel";
 
   export default{
     name: "guide",
-    components:{navi,footerBar,rightBar,leftGuideBar},
+    components:{guidePanel},
     data(){
       return{
-          note: {
-          backgroundImage: "url(" + require("../../static/pic/guideBackground.jpg") + ") ",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          // filter:"blur(5px)",
-        },
-        // treeData: [{
-        //   label: '一级 1',
-        //   children: [{
-        //     label: '二级 1-1'
-        //   }]
-        // }, {
-        //   label: '一级 2',
-        //   children: [{
-        //     label: '二级 2-1',
-        //     children: [{
-        //       label: '三级 2-1-1'
-        //     }]
-        //   }]
-        // }],
-        // defaultProps: {
-        //   children: 'children',
-        //   label: 'label'
-        // },
-        // methods: {
-        //   handleNodeClick(data) {
-        //   console.log(data);
-        //   }
-        // }
-
+          
       }
-    }
+    },
   }
 
 </script>
 
 <style>
-  div.title{
-    /*标题设计*/
-    text-indent: 4.5%;
-    color: black;
-    background-color: white;
-    margin: 0px;
-    border: 0px;
-    padding: 5px;
-    box-shadow:
-      0 1px 6px 0 rgba(0,0,0, .12),
-      0 1px 6px 0 rgba(0,0,0, .12);
-    border-radius: 3px;
-  }
-  .title p{
-    font-size: 15px;
-    color: #505050;
-  }
-  .main{
-    width: 100%;
-    min-height:900px;
-    height: 200px;
-    
-
-  }
+  
 
 </style>
