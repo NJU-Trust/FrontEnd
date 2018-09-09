@@ -41,6 +41,9 @@
   export default {
     name: "enterInvest",
     components:{navi, footerBar, rightBar},
+    beforeCreate:function(){
+      localStorage.route = "#invest";
+    },
     data(){
       return{
         back:{
