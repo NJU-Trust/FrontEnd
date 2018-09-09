@@ -405,52 +405,52 @@
                   }
                 },
               }, {
-                name: '张三',
+                name: '张秀英',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '李四',
+                name: '王桐',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '王五',
+                name: '罗子俊',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '赵六',
+                name: '付贺然',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '武藏',
+                name: '陈文博',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '小次郎',
+                name: '吴欣怡',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '张伟',
+                name: '刘浩',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '吕子乔',
+                name: '张一帆',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '曾小贤',
+                name: '李艺璇',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
               }, {
-                name: '胡一菲',
+                name: '王刚',
                 creditPts: 97,
                 financialPts: 85,
                 schoolPts: 67
@@ -458,12 +458,12 @@
               // links: [],
               links: [{
                 source: '南小紫',
-                target: '张三',
+                target: '张秀英',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '李四',
+                target: '王桐',
                 name: '同学',
                 relation: '您最近的关系超级好',
                 lineStyle: {
@@ -473,12 +473,12 @@
                 },
               }, {
                 source: '南小紫',
-                target: '王五',
+                target: '罗子俊',
                 name: '校友',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '赵六',
+                target: '付贺然',
                 name: '校友',
                 lineStyle: {
                   normal: {
@@ -488,32 +488,32 @@
                 relation: '您最近的关系减淡了'
               }, {
                 source: '南小紫',
-                target: '武藏',
+                target: '陈文博',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '张伟',
+                target: '刘浩',
                 name: '同学',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '胡一菲',
+                target: '王刚',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '曾小贤',
+                target: '李艺璇',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '吕子乔',
+                target: '张一帆',
                 name: '工作伙伴',
                 relation: '您最近的关系没什么变化'
               }, {
                 source: '南小紫',
-                target: '小次郎',
+                target: '吴欣怡',
                 name: '同学',
                 relation: '您最近的关系超级好',
                 lineStyle: {

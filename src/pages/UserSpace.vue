@@ -359,6 +359,9 @@
         console.log(day)
       }
     },
+    beforeCreate: function () {
+      localStorage.route="#userSpace";
+    },
   }
 
 </script>
