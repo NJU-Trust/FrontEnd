@@ -17,7 +17,7 @@
               <el-radio-button label="1000以上"></el-radio-button>
             </el-radio-group>
             <input type="number" class="selectInput" value="2000"/>
-            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
             <input type="number" class="selectInput" value="3000"/>
             <div style="display: inline-block;margin-left:30px;"></div>
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
@@ -25,9 +25,9 @@
               <el-radio-button label="立即开始"></el-radio-button>
               <el-radio-button label="10天之内"></el-radio-button>
             </el-radio-group>
-            <input type="date" class="selectInput" style="width:115px;"/>
-            <p style="display: inline;margin-left:10px;margin-right:10px;">-</p>
-            <input type="date" class="selectInput" style="width:115px;"/>
+            <input type="date" class="selectInput" style="width:110px;"/>
+            <p style="display: inline;margin-left:5px;margin-right:5px;">-</p>
+            <input type="date" class="selectInput" style="width:110px;"/>
           </div>
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>利率&nbsp&nbsp&nbsp</b></span>
@@ -38,10 +38,10 @@
               <el-radio-button label="2%以上"></el-radio-button>
             </el-radio-group>
             <input type="number" class="selectInput" value="2.5"/>
-            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
             <input type="number" class="selectInput" value="3"/>
-            <p style="display: inline;margin-left:10px;">%</p>
-            <div style="display: inline-block;margin-left:35px;"></div>
+            <p style="display: inline;margin-left:5px;">%</p>
+            <div style="display: inline-block;margin-left:40px;"></div>
             <span><b>还款期限&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio4">
               <el-radio-button label="10天"></el-radio-button>
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
-          <div class="userInput" style="margin-left:30px;">
+          <div class="userInput" style="margin-left:10px;">
             <p>项目风险评级：</p>
             <div class="sort">
               <div>
@@ -154,15 +154,12 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;">
       <div class="col-sm-8 col-md-8">
-        <div style="margin-left:9%;width:91%;">
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
-          <invest-list></invest-list><br/>
+        <div style="margin-left:10%;width:91%;">
+          <invest-list
+            v-for="item in investInformation"
+            v-bind:investList="item"
+            v-bind:key="item.id"
+          ></invest-list><br/><br/>
         </div>
       </div>
       <div class="col-xs-4 col-md-4">
@@ -187,19 +184,13 @@
             <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
           </div>
         </div>
-        <div class="searchBorder">
+        <div class="searchBorder" style="height:500px;">
           <h3>标的比较</h3>
           <div class="userInput">
             <p>请输入需要比较的标的编号：</p><br><br>
             <p>A: </p><input type="number" value="0000" style="width:100px;"/>
             <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-            <div id="myradar" style="width: 350px;height: 380px"></div>
-          </div>
-        </div>
-        <div class="investNotice backPic" :style="backPic" style="margin-left:10%;margin-top:300px;">
-          <div style="padding-top:36%;">
-            <h1 style="font-size:19px;text-align: center;">小贴士</h1>
-            <p style="padding-left:22%;padding-right:15%;">利息计算从发放金额的时间开始，并不是按满标的时间算，所以早投早收益哦~</p>
+            <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
           </div>
         </div>
       </div>
@@ -266,6 +257,17 @@
         isIndeterminateB:true,
         checkAllC:false,
         isIndeterminateC:true,
+        investInformation: [
+          {id:"0001", beginTime:"2018.09.01", endTime:"2018.10.08", name:"AJ13熊猫", type:"SHOES", profit:"5.55%", money:"1800", remainMoney:"360", finishProgress:"80%"},
+          {id:"0002", beginTime:"2018.09.14", endTime:"2018.10.03", name:"炉石砰砰计划", type:"GAME", profit:"9.99%", money:"388", remainMoney:"88", finishProgress:"77.31%"},
+          {id:"0003", beginTime:"2018.09.17", endTime:"2018.10.28", name:"国庆省内", type:"TRAVEL", profit:"6.73%", money:"2000", remainMoney:"400", finishProgress:"80%"},
+          {id:"0004", beginTime:"2018.10.12", endTime:"2018.10.25", name:"托福考试", type:"EXAM", profit:"5.85%", money:"1800", remainMoney:"360", finishProgress:"80%"},
+          {id:"0005", beginTime:"2018.10.15", endTime:"2018.11.20", name:"方大同演唱会", type:"CONCERT", profit:"7.67%", money:"1000", remainMoney:"470", finishProgress:"53%"},
+          {id:"0006", beginTime:"2018.10.22", endTime:"2018.11.21", name:"d'zzit地素连衣裙", type:"CLOTH", profit:"7.06%", money:"1300", remainMoney:"741", finishProgress:"43%"},
+          {id:"0007", beginTime:"2018.10.26", endTime:"2018.11.22", name:"预购", type:"GAME", profit:"6.45%", money:"1800", remainMoney:"1116", finishProgress:"38%"},
+          {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:"86%"},
+          {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:"60%"},
+          ],
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -369,7 +371,7 @@
 <style scoped>
   .selectInput{
     display: inline;
-    width:80px;
+    width:70px;
     height:40px;
     border:1px solid #DCDEE0;
     color:#B6B7B8;
@@ -399,17 +401,13 @@
   .sort{
     display: inline-block;
   }
-  .investNotice{
-    height:310px;
-    width:310px;
-  }
   .searchBorder{
     text-align: center;
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid #4285F4;
-    height:500px;
-    margin-right:10%;
+    height:400px;
+    margin-right:22%;
     margin-top:30px;
   }
   .searchButton{
@@ -429,13 +427,13 @@
     border:2px solid lightblue;
     display: inline;
     float:right;
-    margin-right:12%;
+    margin-right:22%;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
     margin-top:5%;
     height:32px;
-    width:85%;
+    width:75%;
     background: white;
   }
   .userSearch input {
@@ -465,8 +463,8 @@
   }
   .inputBorder{
     border: 1px solid #DEDDDD;
-    margin-left:5%;
-    margin-right:5%;
+    margin-left:7%;
+    margin-right:7%;
     background-color:white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
