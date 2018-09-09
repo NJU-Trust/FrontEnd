@@ -1,5 +1,5 @@
 <template>
-  <personalCenter paneltitle="身份验证">
+  <personalCenter paneltitle="校园验证">
     <div style="background-image: url('/static/pic/decoration.png');">
       <div class="MidUsrInstruction" id="mid_info" style="margin-top: 10px;margin-bottom: 10px">
         <h3 style="text-indent: 0px">校园验证</h3>

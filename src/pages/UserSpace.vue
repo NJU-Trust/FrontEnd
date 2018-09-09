@@ -6,6 +6,7 @@
         <el-col :span="14">
           <div class="grid-content bg-purple wel_left">
             <br>
+            <!--{{ hours }}-->
             <p class="wel_words" v-if="morning">早上好，</p>
             <p class="wel_words" v-if="afternoon">下午好，</p>
             <p class="wel_words" v-if="evening">晚上好，</p>
@@ -185,7 +186,7 @@
           <el-col :span="6">
             <div class="grid-content bg-purple ov-content" style="text-align: center">
               <p>账户总额</p>
-              <p><b style="font-size: 28px">{{ user.amountAll}}</b></p>
+              <p><b style="font-size: 28px">{{ user.amountAll}}</b> 元</p>
             </div>
           </el-col>
           <el-col :span="3">
@@ -269,59 +270,84 @@
     data () {
       var time = new Date();
       var hours = time.getHours();
-      var morning = (hours<=12) && (hours>=6);
-      var afternoon = (hours>12) && (hours<=18);
-      var evening = (hours>18) || (hours<6);
+      var morning = (hours<12) && (hours>=6);
+      var afternoon = (hours>=12) && (hours<18);
+      var evening = (hours>=18) || (hours<6);
 
       return {
+        hours,
         morning,
         afternoon,
         evening,
         user: {
-          investAmount: 3141.59,
-          loanAmount: 2653.55,
+          investAmount: 12869,
+          loanAmount: 19857,
           captial:{
-            amountToCover: '666.67',
+            amountToCover: '856',
             progress: '37'
           },
           interest:{
-            amountToCove: '31.38',
-            progress: '60'
+            amountToCove: '7263.33',
+            progress: '21'
           },
           credit:{
-            points: 90,
+            points: 91,
             level: 'AA'
           },
-          amountAll: 1428.57,
-          balance: 666.67,
-          accountFrozen: 3.01,
-          interestToRecovered: 2.57,
-          investmentTender: 52.70
+          amountAll: 4356,
+          balance: 3500,
+          accountFrozen: 0,
+          interestToRecovered: 856,
+          investmentTender: 0
         },
         demoEvents: [{
-          date: '2018/9/18',
+          date: '2018/10/1',
           title: '待还款',
-          desc: '您还有一笔还款在9月18号'
+          desc: '您还有一笔还款在10月1号'
         }, {
-          date: '2018/9/15',
-          title: '待收款',
-          desc: '您还有一笔待收款在9月15号'
+          date: '2018/10/4',
+          title: '待还款',
+          desc: '您还有一笔还款在10月4号'
         },{
-          date: '2018/8/30',
-          title: '已收款',
-          desc: '这笔收款您已经于8月30号收到'
+          date: '2018/10/5',
+          title: '待还款',
+          desc: '您还有一笔还款在10月5号'
         }, {
-          date: '2018/8/30',
-          title: '已收款',
-          desc: '这笔收款您已经于8月30号收到'
+          date: '2018/10/7',
+          title: '待还款',
+          desc: '您还有一笔还款在10月7号'
         }, {
-          date: '2018/8/30',
-          title: '已收款',
-          desc: '这笔收款您已经于8月30号收到'
+          date: '2018/10/9',
+          title: '待还款',
+          desc: '您还有一笔还款在10月9号'
         }, {
-          date: '2018/7/12',
-          title: '已还款',
-          desc: '这笔还款您已经于7月12号归还'
+          date: '2018/10/11',
+          title: '待还款',
+          desc: '您还有一笔还款在10月11号'
+        }, {
+          date: '2018/9/11',
+          title: '已收款',
+          desc: '您已在9月11日收款'
+        }, {
+          date: '2018/9/9',
+          title: '已收款',
+          desc: '您已在9月9日收款'
+        }, {
+          date: '2018/9/4',
+          title: '已收款',
+          desc: '您已在9月4日收款'
+        }, {
+          date: '2018/9/5',
+          title: '已收款',
+          desc: '您已在9月5日收款'
+        }, {
+          date: '2018/8/5',
+          title: '已收款',
+          desc: '您已在8月5日收款'
+        }, {
+          date: '2018/7/5',
+          title: '已收款',
+          desc: '您已在7月5日收款'
         }, ]
       }
     },
