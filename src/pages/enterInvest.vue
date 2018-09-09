@@ -9,11 +9,23 @@
     <div class="square">
       <br><br><br>
       <p class="slogan">Trust us, receive fond</p><br><br><br>
-      <div class="col-md-3 project">
-        <input type="button" value="小额短期投资" class="button" onclick="location.href='/invest'"/>
-      </div>
-      <div class="col-md-3 project">
-        <input type="button" value="大额长期投资" class="button" onclick="location.href='/largeInvest'"/>
+      <div style="display: flex;">
+        <div class="btn" onclick="location.href='/invest'">
+          <div class="type">
+            <font-awesome-icon :icon="['fas', 'coins']" size="4x" style="color: white;margin-left: 0px;margin-top: 50px;" />
+          </div>
+          <div class="name" style="margin-left: 0px">
+            小额短期项目
+          </div>
+        </div>
+        <div class="btn" onclick="location.href='/largeInvest'">
+          <div class="type">
+            <font-awesome-icon :icon="['fas', 'credit-card']" size="4x" style="color: white;margin-left: 3px;margin-top: 50px;" />
+          </div>
+          <div class="name" style="margin-left: 0px;">
+            大额长期项目
+          </div>
+        </div>
       </div>
     </div>
     <div style="float:bottom; padding:0;margin-top:200px;">
@@ -32,7 +44,7 @@
     data(){
       return{
         back:{
-          backgroundImage:"url(" + require("../../static/pic/dahuo.jpg") + ")",
+          backgroundImage:"url(" + require("../../static/pic/investPage.jpg") + ")",
           backgroundRepeat:"no-repeat",
           backgroundSize:"100% auto"
         }
@@ -82,5 +94,31 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+  }
+
+  .type{
+
+    width: 150px;
+    height: 150px;
+    /*border: 1px solid black;*/
+    background-image: url("/static/pic/62.png");
+    /*background-size: 105% 105%;*/
+  }
+
+  .name{
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+  }
+
+  .btn{
+    margin-top: 20px;
+    margin-left: 240px;
+    width: 180px;
+    height: 200px;
+  }
+
+  .btn:hover{
+    cursor: pointer;
   }
 </style>
