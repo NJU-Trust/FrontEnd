@@ -243,7 +243,7 @@
                 return x.data.relation;
               }
               else {
-                var br = ' <br/>';
+                var br = '<br/>';
                 var a = '信用分数 ' + x.data.creditPts + br;
                 var b = '财务分数 ' + x.data.financialPts + br;
                 var c = '校园表现 ' + x.data.schoolPts;
