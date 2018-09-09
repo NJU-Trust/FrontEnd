@@ -76,24 +76,24 @@
       <el-tab-pane label="修改资料" name="second">
         <div style="padding-left: 60px;padding-right: 200px">
           <br/>
-          <el-form ref="revice"  :model="revice" label-width="80px" :label-position="labelPosition">
+          <el-form ref="userName"  :model="userName" label-width="80px" :label-position="labelPosition">
             <el-form-item label="用户名" prop="name">
-              <el-input v-model="revice.name"></el-input>
+              <el-input v-model="userName.name"></el-input>
             </el-form-item>
             <el-form-item label="性别" prop="sex">
               <template>
-                <el-radio v-model="revice.sex" label="男">男</el-radio>
-                <el-radio v-model="revice.sex" label="女">女</el-radio>
+                <el-radio v-model="userName.sex" label="男">男</el-radio>
+                <el-radio v-model="userName.sex" label="女">女</el-radio>
               </template>
             </el-form-item>
             <el-form-item label="年龄" prop="age">
-              <el-input v-model="revice.age"></el-input>
+              <el-input v-model="userName.age"></el-input>
             </el-form-item>
             <el-form-item label="工作单位" prop="workaddr">
-              <el-input v-model="revice.workaddr"></el-input>
+              <el-input v-model="userName.workaddr"></el-input>
             </el-form-item>
             <el-form-item label="现居地" prop="address">
-              <el-input v-model="revice.address"></el-input>
+              <el-input v-model="userName.address"></el-input>
             </el-form-item>
             <el-form-item style="float:right;">
               <el-button type="primary" @click="submitForm('revice')">提交</el-button>
@@ -145,35 +145,35 @@
       return {
         activeName: 'first',
         userName: {
-          name: '李世民',
-          sex: '男',
-          age: '18',
+          name: '南小紫',
+          sex: '女',
+          age: '20',
           level: '高级账户',
-          stuNum: '161220000',
+          stuNum: '161090000',
           grade: '大二',
-          major: '临床医学',
+          major: '金融学',
           phone: '13055644123',
-          alipay: '13175050438',
-          email: '135782468@126.com',
-          workaddr: '华为技术有限公司',
-          address: '江苏省南京市栖霞区仙林大道163号'
+          alipay: '13055644123',
+          email: 'lovetrust@trust.com',
+          workaddr: '南京大学',
+          address: '江苏省南京市栖霞区仙林大道163号南京大学仙林校区'
         },
         secService: '1',
         labelPosition: 'right',
-        revice: {
-          name: '李世民',
-          sex: '男',
-          age: '18',
-          level: '高级账户',
-          stuNum: '161220000',
-          grade: '大二',
-          major: '临床医学',
-          phone: '13055644123',
-          alipay: '13175050438',
-          email: '135782468@126.com',
-          workaddr: '华为技术有限公司',
-          address: '江苏省南京市栖霞区仙林大道163号'
-        }
+        // revice: {
+        //   name: '李世民',
+        //   sex: '男',
+        //   age: '18',
+        //   level: '高级账户',
+        //   stuNum: '161220000',
+        //   grade: '大二',
+        //   major: '临床医学',
+        //   phone: '13055644123',
+        //   alipay: '13175050438',
+        //   email: '135782468@126.com',
+        //   workaddr: '华为技术有限公司',
+        //   address: '江苏省南京市栖霞区仙林大道163号'
+        // }
       };
     },
     methods: {
