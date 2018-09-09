@@ -12,45 +12,46 @@
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio1">
-              <el-radio-button label="100以下"></el-radio-button>
-              <el-radio-button label="100-500"></el-radio-button>
+              <el-radio-button label="500以下" ></el-radio-button>
               <el-radio-button label="500-1000"></el-radio-button>
               <el-radio-button label="1000以上"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-            <div style="display: inline-block;margin-left:15px;"></div>
+            <input type="number" class="selectInput" value="2000"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <input type="number" class="selectInput" value="3000"/>
+            <div style="display: inline-block;margin-left:30px;"></div>
             <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio2">
               <el-radio-button label="立即开始"></el-radio-button>
-              <el-radio-button label="5天之内"></el-radio-button>
               <el-radio-button label="10天之内"></el-radio-button>
             </el-radio-group>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期"
-              :picker-options="pickerOptions0" style="width:150px;">
-            </el-date-picker>
+            <input type="date" class="selectInput" style="width:115px;"/>
+            <p style="display: inline;margin-left:10px;margin-right:10px;">-</p>
+            <input type="date" class="selectInput" style="width:115px;"/>
           </div>
           <div style="margin-top:1%;margin-left:1%;">
             <span><b>利率&nbsp&nbsp&nbsp</b></span>
             <div style="display: inline-block;margin-left:23px;"></div>
             <el-radio-group v-model="value_radio3">
               <el-radio-button label="1%以下"></el-radio-button>
-              <el-radio-button label="1%-1.5%"></el-radio-button>
-              <el-radio-button label="1.5%-2%"></el-radio-button>
+              <el-radio-button label="1%-2%"></el-radio-button>
               <el-radio-button label="2%以上"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:130px;"></el-input-number>
-            <div style="display: inline-block;margin-left:30px;"></div>
+            <input type="number" class="selectInput" value="2.5"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <input type="number" class="selectInput" value="3"/>
+            <p style="display: inline;margin-left:10px;">%</p>
+            <div style="display: inline-block;margin-left:35px;"></div>
             <span><b>还款期限&nbsp&nbsp&nbsp</b></span>
             <el-radio-group v-model="value_radio4">
               <el-radio-button label="10天"></el-radio-button>
               <el-radio-button label="30天"></el-radio-button>
               <el-radio-button label="60天"></el-radio-button>
-              <el-radio-button label="90天"></el-radio-button>
             </el-radio-group>
-            <el-input-number style="width:150px;"></el-input-number>
+            <input type="number" class="selectInput" value="90"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
+            <input type="number" class="selectInput" value="100"/>
+            <p style="display: inline;margin-left:10px; margin-right:10px;">天</p>
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
@@ -366,6 +367,17 @@
 </script>
 
 <style scoped>
+  .selectInput{
+    display: inline;
+    width:80px;
+    height:40px;
+    border:1px solid #DCDEE0;
+    color:#B6B7B8;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+  }
   .dropdown{
     border:1px solid transparent;
     width:80px;
