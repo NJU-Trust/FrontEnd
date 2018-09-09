@@ -1,8 +1,8 @@
 <template>
-  <personalCenter paneltitle="还款">
+  <personalCenter paneltitle="投资">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目信息" name="first">
-        <div>基本信息</div>
+        <div class="title2">基本信息</div>
         <div style="display: flex;padding-top: 20px">
 
           <el-card class="info1" v-model="info1" shadow="always" :class="info1" align="center">
@@ -26,7 +26,7 @@
             <div class="content">
               下次应还： <span>{{info2.money}}</span>元
             </div>
-            <el-button type="primary" style="margin-top: 20px">立即还款</el-button>
+            <el-button type="primary" style="margin-top: 20px">转让</el-button>
           </el-card>
 
           <el-card shadow="always" class="chart" align="center">
@@ -40,7 +40,7 @@
           </el-card>
         </div>
         <hr>
-        <div>项目概要</div>
+        <div class="title2">项目概要</div>
         <div style="display: flex">
           <el-card align="center" shadow="always" style="width: 320px;height: 300px;margin-top: 20px">
             <div class="title">
@@ -61,42 +61,64 @@
               关于贷款
             </div>
 
+            <div class="usage" style="margin-top: 30px">拆借类型：小额</div>
+            <div class="usage">年利率：5%</div>
+            <div class="usage">待还款期数：3</div>
+            <div class="usage">待还本息：300元</div>
+            <div class="usage">披露层级：2</div>
+
+
           </el-card>
 
         </div>
       </el-tab-pane>
-      <el-tab-pane label="还款分析" name="second">
-        <div>还款方式</div>
-        <div style="display: flex">
-          <div align="center" style="margin-left: 120px;font-size: 25px;line-height: 100px" >
-            <div>
-              您当前的还款方式是： <span style="color: #409EFF">{{return_scheme.return_way}}</span>
-            </div>
-            <div>
-              还款难度：<i v-for="n in return_scheme.difficulty" class="el-icon-star-on" style="color:#409EFF"></i>
-            </div>
-
-          </div>
-          <div class="bubble">
-
-          </div>
-        </div>
-        <hr>
+      <el-tab-pane label="借款人信息" name="second">
+        <div class="title2">基本信息</div>
+        <loanerBasicInfo></loanerBasicInfo>
+        <div class="title2">学业表现</div>
+      </el-tab-pane>
+      <div v-if="showGraph">
+        <academicPerformance></academicPerformance>
+        <div class="title2">财务分析</div>
+        <fin-analysis></fin-analysis>
+        <div class="title2">项目信息</div>
         <div>
+          <el-tabs v-model="activeChild" @tab-click="handleClick">
+            <el-tab-pane label="正在进行" name="first">
+              <loanTopBar></loanTopBar>
+              <loanUnderway></loanUnderway>
+            </el-tab-pane>
+            <el-tab-pane label="完成项目" name="second">
+              <loanTopBar></loanTopBar>
+              <loanComplete></loanComplete>
+            </el-tab-pane>
+            <el-tab-pane label="已发布项目" name="third">
+              <loanTopBar></loanTopBar>
+              <loanLaunched></loanLaunched>
+            </el-tab-pane>
+            <el-tab-pane label="违约记录" name="fourth">
+              <loanTopBar></loanTopBar>
+              <loanUnbelievable></loanUnbelievable>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+      </div>
+      <el-tab-pane label="还款历史" name="third">
+        <div class="title2">
           还款历史
         </div>
         <div>
           <timeLine :recordList="recordList"></timeLine>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="违约情况" name="fifth">
+      <el-tab-pane label="违约情况" name="fourth">
         <div style="font-size: 30px;margin-top: 140px;margin-left: 160px;display: none">
-          恭喜您，截止目前，您并未出现违约情况！
+          截止目前，该借款人并未出现违约情况！
         </div>
 
         <div>
           <div style="font-size: 20px;margin: 20px">
-            截止目前，您在本款项目中共产生了 <span style="font-size: 24px;color:#409EFF">2</span> 次违约情况.
+            截止目前，该借款人在本款项目中共产生了 <span style="font-size: 24px;color:#409EFF">2</span> 次违约情况.
           </div>
           <div style="margin-top: 50px">
             <el-table
@@ -147,13 +169,6 @@
                 align="center"
               >
               </el-table-column>
-              <el-table-column label="操作" align="center">
-                <template slot-scope="scope">
-                  <el-button
-                    size="mini"
-                    @click="">查看</el-button>
-                </template>
-              </el-table-column>
             </el-table>
           </div>
         </div>
@@ -168,12 +183,22 @@
   import InvestList from "../components/investList";
   import timeLine from "../components/timeLine";
   import ElCard from "element-ui/packages/card/src/main";
+  import loanerBasicInfo from "../components/loanerBasicInfo";
+  import academicPerformance from "../components/academicPerformance";
+  import FinAnalysis from "../components/finAnalysis";
+  import loanTopBar from "../components/loanTopBar";
+  import loanUnderway from "../components/loanUnderway";
+  import loanComplete from "../components/loanComplete";
+  import loanLaunched from "../components/loanLaunched";
+  import loanUnbelievable from "../components/loanUnbelievable";
 
   export default {
     name:"check-invest",
-    components: {ElCard, InvestList, personalCenter,timeLine},
+    components: {ElCard, InvestList, loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,personalCenter,timeLine,loanerBasicInfo,academicPerformance,FinAnalysis},
     data() {
       return {
+        showGraph:false,
+        activeChild:'first',
         info1:{
           date1:'2018-09-02',
           date2:'2018-09-16',
@@ -191,20 +216,20 @@
         activeName: 'first',
         tableData:[{
           ID:'1',
-          return_date:'xxx',
-          actual_date:'xxx',
+          return_date:'2018/8/1',
+          actual_date:'2018/8/4',
           return_money:'100',
           days:'3',
           punish_money:'10',
           current_state:'结束'
         },{
           ID:'2',
-          return_date:'xxx',
-          actual_date:'xxx',
+          return_date:'2018/7/1',
+          actual_date:'2018/7/6',
           return_money:'200',
           days:'5',
           punish_money:'20',
-          current_state:'待办'
+          current_state:'结束'
         }],
 
         recordList:[{
@@ -225,6 +250,12 @@
     methods: {
       handleClick(tab, event) {
         console.log(tab, event);
+        console.log(this.activeName)
+        if(this.activeName=="second"){
+          this.showGraph = true;
+        }else{
+          this.showGraph = false;
+        }
       },
     }
   }
@@ -291,9 +322,17 @@
     background-size: 110% 110%;
   }
 
+  .title2{
+    padding-top: 10px;
+    font-size: 23px;
+    color: #6a6a6a;
+    padding-bottom: 10px;
+  }
+
 </style>
 
 <style>
+
   .el-tabs__item{
     font-size: 18px !important;
   }

@@ -2,7 +2,7 @@
   <personalCenter paneltitle="还款">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目信息" name="first">
-        <div>基本信息</div>
+        <div class="title2">基本信息</div>
         <div style="display: flex;padding-top: 20px">
 
           <el-card class="info1" v-model="info1" shadow="always" :class="info1" align="center">
@@ -40,7 +40,7 @@
           </el-card>
         </div>
         <hr>
-        <div>项目概要</div>
+        <div class="title2">项目概要</div>
         <div style="display: flex">
           <el-card align="center" shadow="always" style="width: 320px;height: 300px;margin-top: 20px">
             <div class="title">
@@ -72,7 +72,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="还款分析" name="second">
-        <div>还款方式</div>
+        <div class="title2">还款方式</div>
         <div style="display: flex">
           <div align="center" style="margin-left: 120px;font-size: 25px;line-height: 100px" >
             <div>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <hr>
-        <div>
+        <div class="title2">
           还款历史
         </div>
         <div>
@@ -194,16 +194,16 @@
         activeName: 'first',
         tableData:[{
           ID:'1',
-          return_date:'xxx',
-          actual_date:'xxx',
+          return_date:'2018/8/1',
+          actual_date:'2018/8/4',
           return_money:'100',
           days:'3',
           punish_money:'10',
           current_state:'结束'
         },{
           ID:'2',
-          return_date:'xxx',
-          actual_date:'xxx',
+          return_date:'2018/7/1',
+          actual_date:'2018/7/6',
           return_money:'200',
           days:'5',
           punish_money:'20',
@@ -293,6 +293,13 @@
     margin-top: 20px;
     background-image: url("/static/pic/bubble.png");
     background-size: 110% 110%;
+  }
+
+  .title2{
+    padding-top: 10px;
+    font-size: 23px;
+    color: #6a6a6a;
+    padding-bottom: 10px;
   }
 
 </style>
