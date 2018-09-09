@@ -207,7 +207,6 @@
               trigger: 'axis'
             },
             legend: {
-              /*data:['最高气温','最低气温']*/
               data:['偿还本息','偿还利息']
             },
             toolbox: {
@@ -225,7 +224,7 @@
               {
                 type : 'category',
                 boundaryGap : false,
-                data : ['第一期','第二期','第三期','第四期','第五期','第六期','第七期']
+                data : ['第一期','第二期','第三期','第四期','第五期']
               }
             ],
             yAxis : [
@@ -240,7 +239,7 @@
               {
                 name:'偿还本息',
                 type:'line',
-                data:[11, 11, 15, 13, 12, 13, 10],
+                data:[654.4, 654.4, 654.4, 654.4, 654.4],
                 markPoint : {
                   data : [
                     {type : 'max', name: '最大值'},
@@ -256,12 +255,12 @@
               {
                 name:'偿还利息',
                 type:'line',
-                data:[1, -2, 2, 5, 3, 2, 0],
-                markPoint : {
+                data:[408.33,407.33,406.32,405.31,404.29],
+                /*markPoint : {
                   data : [
                     {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
                   ]
-                },
+                },*/
                 markLine : {
                   data : [
                     {type : 'average', name : '平均值'}

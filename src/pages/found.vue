@@ -359,7 +359,7 @@
             name:'雨伞',
             phone:'15589210472',
             dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
-            headpic:"../../static/pic/testuserpic4.png",
+            headpic:"../../static/pic/photo.jpg",
             pic:'../../static/pic/testcup.png',
             time:'2018-09-06 09:45:14',
             state:true,
@@ -395,7 +395,7 @@
             name:'杯子',
             phone:'13878916391',
             dec:'下午在仙I-221上课的时候捡到的一个杯子，放到仙I的保卫处了。（P.s.竟然和我的杯子是同款）',
-            headpic:"../../static/pic/testuserpic1.png",
+            headpic:"../../static/pic/testuserpic5.png",
             pic:'../../static/pic/mestest.png',
             time:'2018-09-04 00:12:39',
             state:true,
@@ -407,7 +407,7 @@
             name:'校园卡',
             phone:'18852197520',
             dec:'落在食堂的餐盘里面了！食堂阿姨说差点扔掉，在哪里放的盘子去哪里拿吧！',
-            headpic:"../../static/pic/testuserpic1.png",
+            headpic:"../../static/pic/testuserpic6.png",
             pic:'../../static/pic/mestest3.png',
             time:'2018-09-06 12:50:21',
             state:true,
@@ -438,7 +438,7 @@
             loc:'教超',
             time:'2018-09-05'
           },{
-            headpic:"../../static/pic/testuserpic4.png",
+            headpic:"../../static/pic/photo.jpg",
             pic:"../../static/pic/testcup.png",
             phone:'15589210472',
             dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
@@ -470,6 +470,9 @@
     },
     created:function(){
       this.test();
+    },
+    beforeCreate:function(){
+      localStorage.route="#notice";
     },
 
   }
