@@ -12,7 +12,7 @@
         </el-table-column>
         <el-table-column
           prop="money"
-          label="借款金额"
+          label="借款金额(元)"
           align="center"
         >
         </el-table-column>
@@ -56,29 +56,29 @@
         data(){
           return{
             tableData:[{
-              name:'',
-              money:0,
-              year_rate:'',
-              launch_date:'',
-              state:''
+              name:'购买天文望远镜',
+              money:2000,
+              year_rate:'4.9%',
+              launch_date:'2018/6/23',
+              state:'审核通过待处理'
             }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              launch_date:'',
-              state:''
+              name:'日常生活费',
+              money:1500,
+              year_rate:'3.0%',
+              launch_date:'2018/8/17',
+              state:'已取消'
             }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              launch_date:'',
-              state:''
+              name:'钢琴课程费',
+              money:1000,
+              year_rate:'2.6%',
+              launch_date:'2018/9/11',
+              state:'正在融资'
             }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              launch_date:'',
-              state:''
+              name:'伯克利交换',
+              money:20000,
+              year_rate:'5.12',
+              launch_date:'2018/9/15',
+              state:'审核通过待处理'
             }],
           }// end return
         }

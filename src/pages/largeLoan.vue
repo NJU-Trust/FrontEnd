@@ -10,15 +10,20 @@
         <right-bar></right-bar>
       </div>
 
+      <!-- <div style="width: 100%;" align="center">
+
+       </div>-->
+
+
       <div id="sheet" class="sheet">
 
-
-        <el-steps :active="active" style="width: 800px">
-          <el-step class="test" title="项目信息" icon="el-icon-edit" align-center></el-step>
-          <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
-          <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
-        </el-steps>
-
+        <div style="border:2px #d6d6d6 solid;border-radius:10px;background-color: white;margin-top: 20px;padding-top:15px;padding-left:30px;width: 860px">
+          <el-steps :active="active" style="width: 800px">
+            <el-step class="test" title="项目信息" icon="el-icon-edit" align-center></el-step>
+            <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
+            <el-step title="关于贷款" icon="el-icon-success" align-center></el-step>
+          </el-steps>
+        </div>
 
         <div class="primary_panel" style="margin-top: 20px">
 
@@ -235,23 +240,26 @@
                 </div>
               </el-form-item>-->
 
-              <el-form-item style="padding-left: 20%">
+              <el-form-item style="padding-left: 20%;">
                 <el-button type="primary" @click="onSubmit">确定贷款</el-button>
                 <el-button @click="clean_form3">清空重写</el-button>
               </el-form-item>
 
 
             </el-form>
-            <el-form id="evaluate" class="evaluate">
+            <el-form id="evaluate" class="evaluate" style="background-color: white">
               <evaluate  :scheme="scheme" ></evaluate>
             </el-form>
           </div>
+        </div>
 
-          <el-button-group style="margin-left: 35%;margin-top: 50px">
+        <div style="padding-top: 40px;padding-bottom: 20px">
+          <el-button-group style="position:absolute;left: 43%;">
             <el-button type="primary" icon="el-icon-arrow-left" @click="last">上一步</el-button>
             <el-button type="primary" @click="next">下一步<i class="el-icon-arrow-right el-icon--right"></i></el-button>
           </el-button-group>
         </div>
+
 
         <div>
 
@@ -611,11 +619,12 @@
   }
   .back{
     margib-top: 10px;
-    /*background-color: rgba(173,216,230,0.5);*/
+    background-image:url("/static/pic/investListBack.jpg");
+    background-size: 105% 105%;
     width: 100%;
     /* height: 1700px;*/
     display:flex;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     /*position: absolute;*/
   }
   .left{
@@ -628,7 +637,7 @@
   }
   .sheet{
     margin-top: 100px;
-    margin-left:25%;
+    margin-left:18%;
 
   }
   .chooseButton{
@@ -650,10 +659,12 @@
   .primary_info{
     width:750px;
     margin-top: 50px;
+    margin-left: 50px;
     border:2px #d6d6d6 solid;
     border-radius:20px;
     padding:10px 50px 20px 40px;
     position: relative;
+    background-color: white;
   }
   .title{
     font-size: 23px;
@@ -676,14 +687,14 @@
   @-webkit-keyframes move_left /* Safari and Chrome */
   {
     0%   {left:0px;  width:750px;}
-    100% {left:-200px; width:500px;}
+    100% {left:-150px; width:500px;}
   }
 
   .evaluate{
     display: none;
     border:1px solid black;
     margin-top: 50px;
-    margin-left: -100px;
+    margin-left: -80px;
     border:2px #d6d6d6 solid;
     border-radius:20px;
     padding:30px 20px 20px 20px;

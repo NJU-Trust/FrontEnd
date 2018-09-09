@@ -64,14 +64,17 @@
           backgroundSize:"100% 80%",
           backgroundPosition: "0% 0%",
         }
-      }
-    }
+      }// end return
+    },
+    beforeCreate:function(){
+      localStorage.route = "#loan";
+    },
   }
 </script>
 
 <style scoped>
   .square{
-    margin-top:200px;
+    margin-top:120px;
     margin-left:12.5%;
     width:75%;
     height:500px;

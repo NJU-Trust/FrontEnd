@@ -18,7 +18,7 @@
         </el-table-column>
         <el-table-column
           prop="service_money"
-          label="违约服务费"
+          label="违约服务费(元)"
           align="center"
         >
         </el-table-column>
@@ -64,7 +64,20 @@
 
 <script>
     export default {
-        name: "loan-unbelievable"
+        name: "loan-unbelievable",
+        data(){
+          return{
+            tableData:[{
+              name:'ACCA考试借款项目',
+              money:3600,
+              service_money:0.144,
+              occurrence_date:'2018/9/27',
+              days:2,
+              details:'逾期',
+              state:'已处理'
+            }]
+          }
+        }
     }
 </script>
 
