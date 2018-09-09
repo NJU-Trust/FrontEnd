@@ -61,6 +61,12 @@
               关于贷款
             </div>
 
+            <div class="usage" style="margin-top: 30px">拆借类型：小额</div>
+            <div class="usage">年利率：5%</div>
+            <div class="usage">待还款期数：3</div>
+            <div class="usage">待还本息：300元</div>
+            <div class="usage">披露层级：2</div>
+
           </el-card>
 
         </div>

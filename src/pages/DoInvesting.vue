@@ -2,40 +2,74 @@
   <div id="Investing">
     <navi></navi>
     <rightBar></rightBar>
-    <img src="/static/pic/Investing.png" class="img-responsive" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px">
+    <img src="http://bigwords-books.com/wp-content/uploads/2016/03/open-book-on-table-red-ml.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px">
     <div class="overview">
       <div class="total" style="position:absolute;left:8%;top:20%;font-size:18px;width:300px;text-align:left;">
-        <label>标的编号 {{target_id}}</label>
-        <label>剩余时间：{{leftTime}}</label>
-        <br/>
-        <el-progress :stroke-width="20" :percentage="percentage" ></el-progress>
+        <!--<el-progress type="circle" :percentage="percentage" color="#67C23A" ></el-progress>-->
+        <!--<div style="color: white;">-->
+          <!--{{percentage}}%-->
+        <!--</div>-->
+        <!--<el-progress :stroke-width="20" :percentage="percentage" ></el-progress>-->
+        <div style="color: white;text-align: center">
+          <span style="color: aquamarine;font-size: 60px">{{percentage}}</span><label>%已完成</label>
+          <br/>
+          <vm-progress :percentage="percentage" :text-inside="true" :stroke-width="18" strokeColor="info" :striped="true">.</vm-progress>
+        </div>
+
       </div>
-      <div style="border: 1px solid lightgrey;height:120px;width:100%;position:absolute;top:40%;">
-        <div style="position:absolute;left:8%;padding:15px 0px 0px 0px;display: flex;text-align: center">
+      <div class="selfmoney" style="position:absolute;padding: 20px 20px 0px 600px; top:15%;font-size:20px;">
+        <div style="padding:0px 30px 0px 0px;color: white;float: left; ">
+          <countdown :time="2 * 24 * 60 * 60 * 1000">
+            <template slot-scope="props">剩余时间：<span class="keypoint">{{ props.days }}</span> 天 <span class="keypoint">{{ props.hours }}</span> 小时 <span class="keypoint">{{ props.minutes }}</span> 分钟 <span class="keypoint">{{ props.seconds }}</span> 秒</template>
+          </countdown>
+          <!--<label>剩余时间：{{leftTime}}</label>-->
+          <br>
+          <label>还需投资：{{leftNeeds}} 元</label>
+          <br/>
+          <label>您的余额为：{{userMoney}} 元</label>
+          <br/>
+          <br/>
+          <label>投资金额： </label>
+        </div>
+        <!--<div style="padding:10px 40px 0px 0px">-->
+        <!--<el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>-->
+        <!--</div>-->
+        <!--<div style="padding:10px 40px 0px 0px">-->
+        <!--&lt;!&ndash;<el-button type="primary" round>{{DoInvest}}</el-button>&ndash;&gt;-->
+        <!---->
+        <!--</div>-->
+
+      </div>
+      <div style="position: absolute;left: 48%;width: 600px; top: 50%;">
+        <div class="block">
+          <el-slider
+            v-model="num1"
+            :format-tooltip="formatTooltip"
+            show-input>
+          </el-slider>
+        </div>
+        <br/>
+        <el-button type="primary" round="true">我要投资</el-button>
+
+      </div>
+      <!--<div  style="position: absolute;left: 70%;width: 600px; top: 65%;">-->
+      <!--<div class="wrapper">-->
+        <!--<a href="#" class="button">我要投资</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div style="height:120px;width:100%;position:absolute;top:43%;">
+        <div style="position:absolute;left:5%;padding:15px 0px 0px 0px;display: flex;text-align: center">
           <div style="padding:0px 40px 0px 0px">
-            <span class="keypoint">{{revenueRate}}</span><label>%</label><br/>
-            <label>预期年化收益率</label>
+            <span class="keypoint">{{revenueRate}}</span><label class="small"> %</label><br/>
+            <label class="small">预期年化收益率</label>
           </div>
           <div style="padding:0px 40px 0px 0px">
             <span class="keypoint">{{lifeOfLoan}}</span><br/>
-            <label>借款期限</label>
+            <label class="small">借款期限</label>
           </div>
           <div style="padding:0px 40px 0px 0px">
-            <span class="keypoint">{{totalLoan}}</span><label>元</label><br/>
-            <label>总额度</label>
-          </div>
-          <div class="selfmoney" style="padding: 10px 20px 0px 100px;font-size:20px;display:flex;">
-            <div style="padding:0px 30px 0px 0px">
-              <label>还需投资：{{leftNeeds}}元</label>
-              <br/>
-              <label>您的余额为：{{userMoney}}元</label>
-            </div>
-            <div style="padding:10px 40px 0px 0px">
-              <el-input-number v-model="num1" @change="handleChange" :min="1"label="描述文字"></el-input-number>
-            </div>
-            <div style="padding:10px 40px 0px 0px">
-              <el-button type="primary" round>{{DoInvest}}</el-button>
-            </div>
+            <span class="keypoint">{{totalLoan}}</span><label class="small"> 元</label><br/>
+            <label class="small">总额度</label>
           </div>
         </div>
       </div>
@@ -176,6 +210,9 @@
         }
       },
       methods: {
+        formatTooltip(val) {
+          return val;
+        },
         handleChange(value) {
           console.log(value);
         }
@@ -186,7 +223,7 @@
 <style scoped>
   .keypoint{
     font-size:40px;
-    color:deepskyblue;
+    color: aquamarine;
   }
   .market_out{
     word-wrap: break-word;
@@ -205,6 +242,84 @@
     width:250px;
     text-align: left;
   }
+  .gray {
+    -webkit-filter: brightness(80%);
+    filter: brightness(80%);
+  }
+  .small {
+    color: white;
+    font-size: 15px
+  }
+
+
+
+
+
+  @-webkit-keyframes sheen {
+    0% {
+      -webkit-transform: skewY(-45deg) translateX(0);
+      transform: skewY(-45deg) translateX(0);
+    }
+    100% {
+      -webkit-transform: skewY(-45deg) translateX(12.5em);
+      transform: skewY(-45deg) translateX(12.5em);
+    }
+  }
+  @keyframes sheen {
+    0% {
+      -webkit-transform: skewY(-45deg) translateX(0);
+      transform: skewY(-45deg) translateX(0);
+    }
+    100% {
+      -webkit-transform: skewY(-45deg) translateX(12.5em);
+      transform: skewY(-45deg) translateX(12.5em);
+    }
+  }
+  .wrapper {
+    display: block;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .button {
+    padding: 0.5em 1.5em;
+    text-align: center;
+    text-decoration: none;
+    color: #2194E0;
+    border: 2px solid #2194E0;
+    font-size: 18px;
+    display: inline-block;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+  .button:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    -webkit-transform: skewX(-45deg) translateX(0);
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+  }
+  .button:hover {
+    background-color: #2194E0;
+    color: #fff;
+    border-bottom: 4px solid #1977b5;
+  }
+  .button:hover:before {
+    -webkit-transform: skewX(-45deg) translateX(13.5em);
+    transform: skewX(-45deg) translateX(13.5em);
+    transition: all 0.5s ease-in-out;
+  }
+
 
 </style>
 <!--<style lang="scss" scoped>

@@ -152,7 +152,60 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-12" style="padding: 0;">
+    <div>
+      <div class="change">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="一级平台" name="first">
+            <div class="col-xs-12 col-md-12" style="padding: 0;">
+              <div class="col-sm-8 col-md-8">
+                <div style="margin-left:10%;width:91%;">
+                  <invest-list
+                    v-for="item in investInformation"
+                    v-bind:investList="item"
+                    v-bind:key="item.id"
+                  ></invest-list><br/><br/>
+                </div>
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <div class="userSearch">
+                  <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
+                  <input type="button" class="searchButton searchBack" :style="searchBack"/>
+                </div>
+                <div class="searchBorder" style="margin-top:80px;">
+                  <h3>个性推荐</h3>
+                  <div class="userInput">
+                    <p>投资金额：</p>
+                    <input type="number" value="1000" style="width:30%;"/>
+                  </div><br><br><br>
+                  <div class="userInput">
+                    <p style="margin-right:30px;">利率：</p>
+                    <input type="number" value="1000" style="width:30%;"/>
+                  </div><br><br><br><br>
+                  <div class="userInput">
+                    <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
+                  </div>
+                  <div>
+                    <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+                  </div>
+                </div>
+                <div class="searchBorder" style="height:500px;">
+                  <h3>标的比较</h3>
+                  <div class="userInput">
+                    <p>请输入需要比较的标的编号：</p><br><br>
+                    <p>A: </p><input type="number" value="0000" style="width:100px;"/>
+                    <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
+                    <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="二级平台" name="second">
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+    </div>
+    <!--<div class="col-xs-12 col-md-12" style="padding: 0;">
       <div class="col-sm-8 col-md-8">
         <div style="margin-left:10%;width:91%;">
           <invest-list
@@ -194,7 +247,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="col-sm-12 col-md-12" style="padding:0">
       <div class="center">
         <ul class="pagination model">
@@ -246,6 +299,7 @@
     },
     data(){
       return{
+        activeName: 'first',
         date_value_choose: '',
         checkboxGroup2: [],
         indexAs: indexAOptions,
@@ -272,7 +326,8 @@
           backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
           backgroundRepeat:"no-repeat",
           backgroundAttachment:"fixed",
-          backgroundSize:"150% 150%",
+          backgroundSize:"100% auto",
+          /*backgroundSize:"150% 150%",*/
           backgroundPosition: "0% 0%",
         },
         backPic:{
@@ -298,6 +353,13 @@
       localStorage.route = "#invest";
     },
     methods:{
+      handleClick(tab, event) {
+        if(activeName == 'second')
+        {
+          alert('修改密码');
+        }
+        console.log(tab, event);
+      },
       handleCheckAllChange(val) {
         this.checkboxGroup2 = val ? indexAOptions : [];
         this.isIndeterminate = false;
@@ -380,6 +442,10 @@
 </script>
 
 <style scoped>
+  .change{
+    float:right;
+    margin-right:5%;
+  }
   .selectInput{
     display: inline;
     width:70px;
