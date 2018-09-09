@@ -86,7 +86,11 @@
                              style="margin-left:5%;margin-right:5%">
                     <el-form-item label="资金用途分类"><span>{{ tableData[tempindex].classify}}</span></el-form-item>
                     <el-form-item label="资金用途详述">{{ tableData[tempindex].desc }}</el-form-item>
-                    <el-form-item label="凭证">{{ tableData[tempindex].pics }}</el-form-item>
+                    <el-form-item label="凭证">
+                      <template >
+                        <img v-bind:src=tableData[tempindex].pics alt="user" class="pics"/>
+                      </template>
+                    </el-form-item>
                   </el-form>
                   <el-button style="margin-top: 12px;margin-left:35%;" type="primary" size="mini"v-show="control.part3"@click="last(control)">上一步</el-button>
                   <el-button style="margin-top: 12px;margin-left:5%;"type="primary" size="mini" v-show="control.part3"@click="next(control)">下一步</el-button>
@@ -278,7 +282,7 @@
           rate: '10%',
           repayDate:'2018-9-25',
           returntype: '等额本息',
-          pics:'',
+          pic:"../../static/pic/大额1.png",
         }, {
           time:'2018-09-08',
           name: '考托福',

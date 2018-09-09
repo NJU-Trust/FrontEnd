@@ -13,9 +13,9 @@
       <div class="left_menus">
         <p class="left_head"><b>消息集散</b></p><hr/>
         <ul class="left_ul">
-          <li><a href="/notice/found">失物招领</a></li>
-          <li><a href="/notice/lost">寻物启事</a></li>
-          <li><a href="/notice/#">其他</a></li>
+          <li><a id="leftSX" href="/notice/found">失物/寻物</a></li>
+          <!--<li><a href="/notice/lost">寻物启事</a></li>-->
+          <li><a id="leftQT" href="/notice/#">其他</a></li>
         </ul>
       </div>
     </div>
