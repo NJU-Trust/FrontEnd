@@ -33,7 +33,7 @@
             <el-form-item label="项目名称">
               <div>
                 <el-input placeholder="请填写项目名称" v-model="form1.name"></el-input>
-                <div style="color:red;font-size: 12px;heigth:14px">*项目名称不超过20字 例：2018年9月16号Jessie J演唱会</div>
+                <div style="color:red;font-size: 12px;heigth:14px">*项目名称不超过20字 例：考托福</div>
               </div>
 
             </el-form-item>
@@ -180,31 +180,34 @@
                   <div style="color:red;font-size: 12px;heigth:14px">*借款额度剩余{{limit}}</div>
                 </div>
               </el-form-item>
-              <el-form-item label="还款日期">
-                <el-tooltip class="item" effect="dark" content="小额贷款最长期限为1年，建议范围为[N1,N2]" placement="top-start">
-                  <el-date-picker type="date" placeholder="选择日期" v-model="form3.return_date" style="width: 100%;"></el-date-picker>
-                </el-tooltip>
+              <el-form-item label="还款期数">
+                <div>
+                  <el-input placeholder="请填写还款期数" v-model="form3.period"></el-input>
+                  <div style="color:red;font-size: 12px;heigth:14px">*小额贷款最长期限为1年，建议范围为[N1,N2]</div>
+                </div>
+
               </el-form-item>
               <el-form-item label="基准还款利率">
-                <el-tooltip class="item" effect="dark" content="利率上下限为[M1,M2],建议设置为M0" placement="top-start">
+                <div>
                   <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
-                </el-tooltip>
+                  <div style="color:red;font-size: 12px;heigth:14px">*利率上下限为[M1,M2],建议设置为M0</div>
+                </div>
               </el-form-item>
 
               <el-form-item label="还款方式">
                 <el-collapse v-model="form3.activeName" accordion>
 
                   <div @click="get_scheme(1)">
-                    <el-collapse-item title="等额本金" name="1" >
-                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
-                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
+                    <el-collapse-item title="等额本息" name="1">
+                      <div>每月偿还等同数额的贷款；</div>
+                      <div>还款期限内压力平分，总利息高于等额本金。</div>
                     </el-collapse-item>
                   </div>
 
                   <div @click="get_scheme(2)">
-                    <el-collapse-item title="等额本息" name="2">
-                      <div>每月偿还等同数额的贷款；</div>
-                      <div>还款期限内压力平分，总利息高于等额本金。</div>
+                    <el-collapse-item title="等额本金" name="2" >
+                      <div>贷款数总额等分，每月的还款本金额固定，利息越来越少；</div>
+                      <div>起初还款压力较大，但是随着时间的推移每月的还款数也越来越少。</div>
                     </el-collapse-item>
                   </div>
 
@@ -240,11 +243,12 @@
                 </div>
               </el-form-item>-->
 
-              <el-form-item style="padding-left: 20%;">
-                <el-button type="primary" @click="onSubmit">确定贷款</el-button>
-                <el-button @click="clean_form3">清空重写</el-button>
-              </el-form-item>
-
+              <div style="padding-top: 30px">
+                <el-form-item style="padding-left: 20%;">
+                  <el-button type="primary" @click="onSubmit">确定贷款</el-button>
+                  <el-button @click="clean_form3">清空重写</el-button>
+                </el-form-item>
+              </div>
 
             </el-form>
             <el-form id="evaluate" class="evaluate" style="background-color: white">
@@ -313,6 +317,8 @@
         this.scheme.capital = 20000;
         this.scheme.interest = 4000;
         this.scheme.sum = 24000;
+        this.scheme.count = 10;
+        this.scheme.months = [1,2,4,5,6,7,8,10,11,12];
       },
 
       get_average_capital(num){
@@ -451,7 +457,7 @@
         },
         form3:{
           money:'',
-          return_date:'',
+          period:'',
           rate:'',
           create:false,
           activeName: '',
@@ -461,6 +467,8 @@
           capital:0,
           interest:0,
           sum:0,
+          count:0,
+          months:[]
         },
 
         limit:3000,
@@ -619,7 +627,7 @@
   }
   .back{
     margib-top: 10px;
-    background-image:url("/static/pic/investListBack.jpg");
+    background-image:url("/static/pic/loanBack.jpg");
     background-size: 105% 105%;
     width: 100%;
     /* height: 1700px;*/
