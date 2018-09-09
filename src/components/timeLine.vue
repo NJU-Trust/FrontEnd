@@ -8,7 +8,8 @@
             <div v-for="(record,index) in recordList">
               <div v-if="record.right">
                 <span class="timeline-label">
-                  <span class="label label-primary">17.03.2016</span>
+                  <div class="label label-primary">还款日17.03.2016</div>
+                  <!--<div class="label label-primary"></div>-->
                 </span>
                 <div class="timeline-item" style="margin-top: 20px">
                   <div class="timeline-point timeline-point-success">
@@ -29,9 +30,9 @@
               </div>
 
               <div v-if="record.right === false">
-                <!--<span class="timeline-label">
-                  <span class="label label-primary">17.03.2016</span>
-                </span>-->
+                <span class="timeline-label">
+                  <span class="label label-primary">还款17.03.2016</span>
+                </span>
                 <div v-for="i in 1" class="timeline-item" style="margin-top: 80px"></div>
                 <div class="timeline-item">
                   <div class="timeline-point timeline-point-danger">

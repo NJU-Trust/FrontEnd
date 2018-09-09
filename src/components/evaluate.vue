@@ -1,6 +1,6 @@
 <template>
     <el-form class="main_panel">
-      <div style="display: flex;margin-bottom: 20px">
+      <div style="display: flex;padding-bottom: 20px">
         <div class="scheme_type" style="color: #ff6445">
           等额本金
           <div style="border: 1px solid #ff6445"></div>
@@ -280,6 +280,7 @@
 
   .main_panel{
     width:500px;
+    background-color: white;
     /*height:600px;*/
   }
 
