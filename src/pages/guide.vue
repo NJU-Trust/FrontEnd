@@ -62,7 +62,7 @@
               <div class="detail" v-if="item1">
                 <div class="content">
                   <label style="font-weight: normal;">
-                    平台定位<br/>
+                    平台定位<hr/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust致力于打造基于校园的金融互助平台，给在校大学生提供一个良好的资金交易、生活互助生态圈。在平台中，您可以向同校生申请借款，也可以把每月的盈余生活费拿来发放贷款、收取利息，从而实现资金从盈余方到需求方的流动，也降低了违约风险。
                     <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同时，Trust也给校友带来了回馈母校的机会，通过无利率贷款行为，校友可以帮助在校生解决因学习而产生的大额经济需求，充分展现校友情谊。此外，附加的失物招领、二手交易板块也使得Trust平台更加全面、生动，力求带给您最佳的用户体验。
@@ -75,7 +75,7 @@
               <div class="detail" v-if="item2">
                 <div class="content">
                   <label style="font-weight: normal;">
-                    团队简介<br/>
+                    团队简介<hr/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust
                     <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;团队
@@ -87,13 +87,13 @@
                   <div style="display: flex">
                     <div style="padding:0px 20px;">
                       <label style="font-weight: normal;">
-                        合作机构<br/>
+                        合作机构<hr/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust平台的主要合作机构是工行南大未来广场支行，它是南京大学 - 工商银行金融创新实验室项目的重要组成部分，是工商银行将金融创新科技融入网点建设当中，倾力打造的新型网点。
                         <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未来广场富有科技感，采用了工行最先进的智能设备，可以完成 90% 以上的非现金业务。同时引入人脸识别系统，在校师生可以通过手机端“工银 e 校园”注册并预定支行的会议室。
                       </label>
                     </div>
-                    <div style="padding:30px 0px 0px 0px;">
+                    <div style="padding:70px 0px 0px 0px;">
                       <img style="width:300px;height: 300px;border-radius:50%;" src="../../static/pic/futurefinance.png"/>
                     </div>
                   </div>
@@ -125,7 +125,125 @@
 
                 </div>
               </div>
+              <div class="detail" v-if="item4">
+                <div class="content">
+                  <label style="font-weight: normal">注册账号</label><hr/>
+                  <label style="font-weight: normal;line-height: 50px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击“注册”，填写相关信息，您便开启了美好的Trust之旅！<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册成功之后，您将会进入“个人中心”的“校园验证”页面，如您需要体验和享受更多的Trust服务您需完成信息填写（您也可选择跳过此步），您的信息完善程度将会影响您用户级别。
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：不同用户权限如下<br/>
+                  </label>
+                  <table style="margin:0 auto;width: 100%;">
+                    <tbody>
+                    <tr>
+                      <th style="text-align:center;border: 1px solid dimgrey;">用户级别</th>
+                      <th style="text-align:center;border: 1px solid dimgrey;">浏览信息</th>
+                      <th style="text-align:center;border: 1px solid dimgrey;">投资功能</th>
+                      <th style="text-align:center;border: 1px solid dimgrey;">借款功能</th>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center;border: 1px solid dimgrey;">初级用户</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">×</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">×</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center;border: 1px solid dimgrey;">中级用户</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center;border: 1px solid dimgrey;">高级用户</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                      <td style="text-align:center;border: 1px solid dimgrey;">√</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="detail" v-if="item5">
+                <div class="content">
+                  <label style="font-weight: normal">借款须知</label><hr/>
+                  <div class="page1" v-if="page1">
+                    <label style="font-weight: normal">（1）借款教程</label>
+                    <div>
+                      <div style="height: 200px;width:850px;">
+                        <el-steps align-center :active="4">
+                          <el-step title="步骤 1" description="进入trust平台主页，点击“我要借款”"></el-step>
+                          <el-step title="步骤 2" description="选择借款类型（消费类小额短期 或 学习培训类大额长期）"></el-step>
+                          <el-step title="步骤 3" description="进入借款信息填写页面，依次填写项目信息、信息披露层级、关于贷款三项内容"></el-step>
+                          <el-step title="步骤 4" description="填写完成后选择“确定贷款”，即发送贷款请求给后台审核人员，如果审核通过，则您的贷款信息将出现在平台借贷页面。如果所填内容有误，可以返回上一步或直接选择清空重写"></el-step>
+                        </el-steps>
+                      </div>
+                    </div>
+                    <label style="font-weight: normal">  （2）借款规则</label>
+                    <label style="font-weight: normal;font-size:14px;line-height: 26px;">
+                      一、校园互助平台的特点和优势<br/>
+                      A. 社区模式下交易成本更低。
+                      <br/>校园互助平台的使用者，是南京大学的在读学生、已经毕业的校友和在校职工。在这一社区模式下，投资人和借贷人不再是陌生人，而是互相熟知的朋友、校友。这极大地方便了平台对其使用者的信用评级，因此在一定程度上能够使得交易双方的信息对称，从而降低交易成本。
+                      <br/> B. 社区模式下违约可能性更低。
+                      <br/>社区模式下，参与人的之间的关联性更强，这就使得借款人违约的成本增加。在熟人社交网络下，借款人的违约行为将会对其个人信用及未来发展产生影响。同时，由于对借款人的信用评级更为精准，因此投资人在选择标的时能够更好的进行决策，这极大地降低了投资人的投资风险。
+                      <br/>二、借款的预期成本
+                      <br/>（1）借款利率由用户提出借款申请时所填写的利率确定。
+                      <br/>（2）在借款截止日期前，若标的提前满标，借款人从标的满标时即可将资金取出，系统即日开始计算利息，到还款截止日期为止；
+                      <br/>（3）在借款截止日，若标的未满标，但达到最低达标率，借款人在借款截止日可将资金取出，系统开始计算利息，到还款截止日前为止；
+                      <br/>（4）在借款截止日，若标的为达到最低达标率，则该标的流标，借款人借款失败。
+                    </label>
+                  </div>
+                  <div class="page2" v-if="page2">
+                    <label style="font-weight: normal;font-size:14px;line-height: 30px;">
+                      <br/>三、借款所需材料
+                      <br/>借款人：
+                      <br/>1. 有效身份证件、学生证、手持身份证照片；
+                      <br/>2. 拥有校园互助平台等级为完整的本人账户；
+                      <br/>3. 申请二类标的还需提供学习培训证明；
+                      <br/>以上材料要求尽可能的提供，平台会提供材料模板。根据项目具体要求，可能会增加其他材料。由于不可控原因造成的资料缺失，则根据具体情况进行协商、灵活处理。
+                      前期风控审核时借款人可提供材料扫描件或复印件，放款签订合同之前必须核实原件。
+                      如有疑问，可联系客服或信贷人员。
+                      <br/>四、项目流程
+                      <br/>借款人提出借款申请，并提交相关材料（联系信贷人员）。
+                      相关材料齐全后，需通过材料审核。如项目风险可控，则通过时间一般不超过一天，如项目风险较大、争议较大，则可能拖延较长时间或者需补充相关材料。
+                      风控通过后即可发标，项目募足资金后放款。资金募集期为1至7天。
+                      <br/>五、借款额度及期限
+                      <br/>借款人借款额度根据项目具体情况来确定。一般一类标的最高借款额度为5000，二类标的的最高额度为5万，可以根据项目具体风险情况调整。
+                      期限根据具体项目需求确定。一般一类标的的借款期限为1-3个月，二类标的的借款期限为1-3年，可以根据具体项目风险情况调整。
+                      <br/>六、还款方式
+                      <br/>借款人在提出借款申请时可以选择不同的还款方式（不同的借款申请可以选择的还款方式也不同），同时平台也会结合项目的具体情况和借款人情况来提供一些建议。
+                      <br/>七、是不是一定要南京大学的校友才能借款？还是其他人都可以借？
+                      <br/>校园互助平台创立之初的目标用户就是南京大学的校友群体，主要包括南京大学在读学生、南京大学校友以及南京大学职工。借款人仅限于南京大学在读学生。
+                      <br/>八、延期还款
+                      <br/>延期还款的，根据合同约定支付罚息。
+                      <br/>九、如何还款和还利息？
+                      <br/>请借款人记住每月还利息日期和还款日期，提前一至两天打款，确保还款日钱能到账，金额大的一定要提前两天打款，否则延期还款的话我们将收取罚息。我们也会提前一个星期提醒还款。
 
+                    </label>
+                  </div>
+                  <div style="float:right;">
+                    <el-button circle @click="changePage1">1</el-button>
+                    <el-button circle @click="changePage2">2</el-button>
+                    <div style="width:100px;"></div>
+                  </div>
+                  <div style="height: 20px;"></div>
+
+                </div>
+              </div>
+              <div class="detail" v-if="item6">
+                <div class="content">
+                  <label style="font-weight: normal">贷款须知</label><hr/>
+                </div>
+              </div>
+              <div class="detail" v-if="item7">
+                <div class="content">
+                  <label style="font-weight: normal">信息发布</label><hr/>
+                </div>
+              </div>
+              <div class="detail" v-if="item8">
+                <div class="content">
+                  <label style="font-weight: normal">物品交易</label><hr/>
+                </div>
+              </div>
               <div class="detail" v-if="item9">
                 <div class="content">
                   <label style="font-weight: normal">规则须知</label><hr/>
@@ -201,7 +319,7 @@
               <div class="detail" v-if="item11">
                 <div class="content">
                   <label style="font-weight: normal;">政策法规</label><hr/>
-                  <label style="font-weight: normal;font-size: 18px;line-height: 36px;">
+                  <label style="font-weight: normal;font-size: 16px;line-height: 36px;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;民间借贷，即自然人之间、自然人与法人之间、自然人与其它组织之间借贷。民间借贷是《民法通则》中一种民事法律行为，是民间资本的一种投资渠道，在当今社会，已经成为民间金融的一种重要的表达形式。《中华人民共和国合同法》从法律上肯定了民间借贷行为的合法性，并从法律层面保护出借人收回借贷资金和利息的权利。
                     <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;民间借贷的法律责任以民事责任为主，严重者还要追究刑事责任。主要包括：（1）瑕疵担保责任。实践中存在因标的物的瑕疵而致人损害的的事实，因此法律应该对民间借贷的瑕疵担保责任作出规定，可以参照《合同法》和其他国家的制度。有偿的民间借贷，出借人应承担担保责任，对于无偿的，除非明知有瑕疵故意不告知，不承担瑕疵担保责任。（2）违约责任。当事人违法借贷合同约定应承担的责任形式有四种：继续履行、承担违约金、定金责任和赔偿损失。
                     <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《中华人民共和国合同法》第二十三章“居间合同”中明确规定，居间人提供贷款合同订立的媒介服务，可依法向委托方收取相应的报酬。最高人民法院《关于人民法院审理借贷案件的若干意见》第6条：“民间借贷的利率可以适当高于银行的利率， 各地人民法院可以根据本地区的实际情况具体掌握，但最高不得超过银行同类贷款利率的四倍，（包含利率本款）。超出此限度的，超出部分的利息不予保护”。因此贷款服务机构的存在和服务费的收取都是符合法律规定并受法律保护的，且民间借贷行为具有合法性，出借人收回借贷资金和利息的权利也受法律保护。
@@ -212,7 +330,7 @@
               <div class="detail" v-if="item12">
                 <div class="content">
                   <label style="font-weight: normal;">隐私保护</label><hr/>
-                  <label style="font-weight: normal;font-size: 16px;">
+                  <label style="font-weight: normal;font-size: 16px;line-height:45px;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trust致力于打造和谐、安全的校园金融互助交易平台，我们有以下措施可以保障您的隐私安全：<br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）平台提供的金融借贷均严格遵守我国相关法律法规，同时严格保护您的隐私信息，对于您拒绝披露的信息，平台承诺不会予以公开。<br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）平台具有严格、可靠的安全系统，未经允许的管理员不可获取您的相关信息。<br/>
@@ -256,10 +374,19 @@
         item10:false,
         item11:false,
         item12:false,
-
+        page1:true,
+        page2:false,
       }
     },
     methods: {
+      changePage1(){
+        this.page1=true;
+        this.page2=false;
+      },
+      changePage2(){
+        this.page1=false;
+        this.page2=true;
+      },
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -449,10 +576,10 @@
     color:dimgrey;
     font-family: "Adobe 仿宋 Std R";
   }
-  .detail{
-    width:900px;
-    background-color:rgba(255,255,255,0.6);
-    border-radius:10%;
+  .detail {
+    width: 900px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10%;
   }
 
 </style>
