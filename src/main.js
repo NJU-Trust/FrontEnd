@@ -31,7 +31,7 @@ Vue.component('font-awesome-layers-text', FontAwesomeLayersText)
 
 
 Vue.use(ElementUI)
-Vue.use(Vuex)
+Vue.use(Vuex);
 Vue.use(vueEventCalendar, {locale: 'en'}) //可以设置语言，支持中文和英文
 
 Vue.config.productionTip = false;

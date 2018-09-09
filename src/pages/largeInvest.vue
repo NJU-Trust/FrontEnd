@@ -105,17 +105,17 @@
           <hr style="border:1px solid #e4e4e4;"/>
         </div>
         <div class="col-sm-12 col-md-12">
-          <div class="userInput" style="margin-top:1%;">
+          <div class="userInput" style="margin-top:0%;">
             <p>排序维度：</p>
             <div class="sort">
-              <div>
-                <div>
-                  <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
-                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChange" style="display: inline-block;margin-left:10px;">
-                    <el-checkbox-button v-for="indexA in indexAs" :label="indexA" :key="indexA" >{{indexA}}</el-checkbox-button>
-                  </el-checkbox-group>
-                </div>
-              </div>
+              <el-radio-group v-model="value_radio5">
+                <el-radio-button label="标的金额" ></el-radio-button>
+                <el-radio-button label="开始时间"></el-radio-button>
+                <el-radio-button label="利率"></el-radio-button>
+                <el-radio-button label="还款期限"></el-radio-button>
+                <el-radio-button label="用户信用分数"></el-radio-button>
+                <el-radio-button label="项目风险评级"></el-radio-button>
+              </el-radio-group>
             </div>
           </div>
         </div>
@@ -214,13 +214,13 @@
         checkAllD:false,
         isIndeterminateD:true,
         investInformation: [
-          {id:"0001", beginTime:"2018.09.17", endTime:"2018.10.17", name:"托福培训", type:"TOEFL", profit:"2.25%", money:"8000", remainMoney:"1600", finishProgress:"80%"},
-          {id:"0002", beginTime:"2018.10.12", endTime:"2018.11.12", name:"CFA培训及考试", type:"大额考证", profit:"2.16%", money:"10000", remainMoney:"2000", finishProgress:"80%"},
-          {id:"0003", beginTime:"2018.10.15", endTime:"2018.11.15", name:"雅思培训", type:"IELTS", profit:"3.15%", money:"9000", remainMoney:"2880", finishProgress:"68%"},
-          {id:"0004", beginTime:"2018.10.22", endTime:"2018.11.22", name:"AFP培训及考试", type:"大额考证", profit:"1.69%", money:"8000", remainMoney:"2160", finishProgress:"73%"},
-          {id:"0005", beginTime:"2018.10.26", endTime:"2018.11.26", name:"寒假交换", type:"交换生", profit:"0.00%", money:"13000", remainMoney:"5590", finishProgress:"57%"},
-          {id:"0006", beginTime:"2018.10.30", endTime:"2018.11.39", name:"寒假交换", type:"交换生", profit:"1.65%", money:"10000", remainMoney:"1900", finishProgress:"81%"},
-          {id:"0007", beginTime:"2018.11.03", endTime:"2018.12.03", name:"寒假交换", type:"交换生", profit:"3.22%", money:"15000", remainMoney:"4350", finishProgress:"71%"},
+          {id:"0001", beginTime:"2018.09.17", endTime:"2018.10.17", name:"托福培训", type:"TOEFL", profit:"2.25%", money:"8000", remainMoney:"1600", finishProgress:0.8,range:"AA"},
+          {id:"0002", beginTime:"2018.10.12", endTime:"2018.11.12", name:"CFA培训及考试", type:"大额考证", profit:"2.16%", money:"10000", remainMoney:"2000", finishProgress:0.8,range:"AA"},
+          {id:"0003", beginTime:"2018.10.15", endTime:"2018.11.15", name:"雅思培训", type:"IELTS", profit:"3.15%", money:"9000", remainMoney:"2880", finishProgress:0.68,range:"A"},
+          {id:"0004", beginTime:"2018.10.22", endTime:"2018.11.22", name:"AFP培训及考试", type:"大额考证", profit:"1.69%", money:"8000", remainMoney:"2160", finishProgress:0.73,range:"B"},
+          {id:"0005", beginTime:"2018.10.26", endTime:"2018.11.26", name:"寒假交换", type:"交换生", profit:"0.00%", money:"13000", remainMoney:"5980", finishProgress:0.54,range:"B"},
+          {id:"0006", beginTime:"2018.10.30", endTime:"2018.11.39", name:"寒假交换", type:"交换生", profit:"1.65%", money:"10000", remainMoney:"1900", finishProgress:0.81,range:"B"},
+          {id:"0007", beginTime:"2018.11.03", endTime:"2018.12.03", name:"寒假交换", type:"交换生", profit:"3.22%", money:"15000", remainMoney:"4350", finishProgress:0.71,range:"B"},
           ],
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
@@ -238,6 +238,7 @@
         value_radio2: '上海',
         value_radio3: '上海',
         value_radio4: '上海',
+        value_radio5: '上海',
       };
     },
     methods:{

@@ -12,7 +12,7 @@
       </el-table-column>
       <el-table-column
         prop="money"
-        label="借款金额"
+        label="借款金额(元)"
         align="center"
       >
       </el-table-column>
@@ -56,29 +56,23 @@
         data(){
           return{
             tableData:[{
-              name:'',
-              money:0,
-              year_rate:'',
-              start_to_end:'',
-              state:''
+              name:'创新创业项目经费',
+              money:2000,
+              year_rate:'1.9%',
+              start_to_end:'2017/11/1-2018/3/31',
+              state:'已结束'
             }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              start_to_end:'',
-              state:''
+              name:'购买IPAD',
+              money:3557,
+              year_rate:'6.8%',
+              start_to_end:'2018/2/23-2018/7/31',
+              state:'已结束'
             }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              start_to_end:'',
-              state:''
-            }, {
-              name:'',
-              money:0,
-              year_rate:'',
-              start_to_end:'',
-              state:''
+              name:'参加托福培训',
+              money:6000,
+              year_rate:'3.21%',
+              start_to_end:'2018/2/23-2018/7/31',
+              state:"已结束"
             }],
           }//end return
         }
