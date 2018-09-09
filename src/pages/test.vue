@@ -3,7 +3,7 @@
   <template id="v-card">
 
     <el-row>
-      <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
+      <el-col :span="4" v-for="(o, index) in " :key="o" :offset="index > 0 ? 1 : 0">
         <el-card :body-style="{ padding: '5px' }">
           <img src="https://placekitten.com/380/200" class="image">
           <div style="padding: 14px;">
@@ -84,12 +84,6 @@
     clear: both
   }
 
-  .textitem{
-    position:relative;
-    left:180px;
-    top:-150px;
-
-  }
 </style>
 
 

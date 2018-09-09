@@ -9,7 +9,7 @@
             <li><a id="invest" href="/enterInvest">投资大厅</a></li>
             <li><a id="loan" href="/enterLoan">我要借款</a></li>
             <li><a id="trade" href="/trade">南大鱼塘</a></li>
-            <li><a id="notice" href="/notice">失物/寻物</a></li>
+            <li><a id="notice" href="/notice/found">失物/寻物</a></li>
             <li><a id="guide" href="/guide">平台指南</a></li>
             <li id="last" style="float: right;min-width: 8%;"><a id="signup" href="/signup">注册</a></li>
             <li id="secondLast" style="float: right;min-width: 8%;"><a id="login" href="/login">登录</a></li>

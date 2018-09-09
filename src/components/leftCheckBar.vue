@@ -1,5 +1,5 @@
 <template>
-  <div class="leftsidenav" style="position:relative;left:-160px;top:50px;">
+  <div class="leftsidenav" >
     <div style="position:relative;top:30px;">
     <div class="left_menus">
       <p class="left_head"  ><b>用户信息审核</b></p><hr/>
@@ -35,8 +35,8 @@
     border-top:5px solid dodgerblue;
     height:450px;
     width:200px;
-    margin-right: 10%;
-    margin-left: 18%;
+    /*margin-right: 10%;*/
+    margin-left: 25%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);

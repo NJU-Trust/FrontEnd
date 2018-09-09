@@ -5,69 +5,77 @@
       <navi style="position: relative"></navi>
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;">
-        <div class="myspace">
-          <h2 class="myspace">审核模块</h2>
-          <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
-        </div>
+      <div class="myspace">
+        <h2 class="myspace">审核模块</h2>
+        <p style="color: #777777;">审核用户非结构化信息，审核各类标的请求</p>
+      </div>
     </div>
 
-    <!--左边栏-->
-   <!-- <div style="position:relative;top:200px;">
-      <leftCheckBar></leftCheckBar>
-    </div>-->
-
     <!--正文内容 -->
-    <div class="back">
-      <leftCheckBar ></leftCheckBar>
-      <div class="publishmes" >
-        <h4 style="margin-top:2%">&nbsp;&nbsp;&nbsp;&nbsp;<strong>非结构化信息</strong></h4>
-        <hr/><br/>
-        <!--<h3 style="margin-top: 10px;margin-left: 30px">用户选择</h3>-->
-        <div id="check" class="sheet" >
-      <el-table
-        :data="tableData"
-        max-height="350"
-        :default-sort = "{prop: 'time', order: 'descending'}"
-        style="width: 85%">
-        <el-table-column
-          prop="time"
-          label="提交时间"
-          sortable
-          width="200">
-        </el-table-column>
-          <el-table-column
-          prop="name"
-          label="用户名称"
-          width="200">
-        </el-table-column>
-        <el-table-column
-          prop="state"
-          label="当前状态"
-          width="150">
-         <template slot-scope="scope">
-            <el-tag :type="scope.row.state | statusFilter">{{scope.row.state | formatStata}}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="action"
-          label="操作"
-          width="150">
-          <template slot-scope="scope">
-            <router-link to="/userverify">
-              <i class="el-icon-view"></i>
-              <el-button  type="text">审核
-              </el-button>
-            </router-link>
-            <!--
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
-          </template>
-        </el-table-column>
-      </el-table>
+    <el-row :gutter="20" class="back" >
+      <el-col :span="5">
+        <div class="grid-content bg-purple" style="margin-top:13%;">
+          <leftCheckBar></leftCheckBar>
         </div>
-      </div>
+      </el-col>
+      <el-col :span="8" >
+        <div class="grid-content bg-purple" style="margin-top:7.6%;margin-left:8%;">
+          <div class="publishmes" >
+            <h4 style="margin-top:2%">&nbsp;&nbsp;&nbsp;&nbsp;<strong>非结构化信息</strong></h4>
+            <hr/><br/>
+            <!--<h3 style="margin-top: 10px;margin-left: 30px">用户选择</h3>-->
+            <div id="check" class="sheet" >
+              <el-table
+                :data="tableData"
+                max-height="350"
+                :default-sort = "{prop: 'time', order: 'descending'}"
+                style="width: 85%">
+                <el-table-column
+                  prop="time"
+                  label="提交时间"
+                  sortable
+                  width="200">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="用户名称"
+                  width="200">
+                </el-table-column>
+                <el-table-column
+                  prop="state"
+                  label="当前状态"
+                  width="150">
+                  <template slot-scope="scope">
+                    <el-tag :type="scope.row.state | statusFilter">{{scope.row.state | formatStata}}</el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="action"
+                  label="操作"
+                  width="150">
+                  <template slot-scope="scope">
+                    <router-link to="/userverify">
+                      <i class="el-icon-view"></i>
+                      <el-button  type="text">审核
+                      </el-button>
+                    </router-link>
+                    <!--
+                    <el-button
+                      size="mini"
+                      type="danger"
+                      @click="handleDelete(scope.$index, scope.row)">删除</el-button>-->
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+
+    <!--底栏-->
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
     <!--右边栏-->
@@ -75,10 +83,6 @@
       <right-bar></right-bar>
     </div>
 
-    <!--底栏-->
-    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
-      <footer-bar></footer-bar>
-    </div>
 
   </div>
 </template>
@@ -196,14 +200,11 @@
     height:550px;
   //width:100%;
     width:950px;
-    margin-right: 10%;
-    margin-left: 16%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
+    position:relative;
   }
 
   /*表格样式*/
