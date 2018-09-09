@@ -72,8 +72,8 @@
     margin-left:1%;
     font-size:35px;
     text-align: left;
-    display: inline;
-    position:absolute;
+    display: block;
+    position:relative;
     z-index:100;
   }
   .triangle-topleft{
@@ -81,8 +81,8 @@
     height: 0;
     border-top: 80px solid #F37B55;
     border-right: 110px solid transparent;
-    display: inline;
-    position:absolute;
+    display: block;
+    position:relative;
     left:11%;
     z-index:10;
   }
