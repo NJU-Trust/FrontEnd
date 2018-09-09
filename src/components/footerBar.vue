@@ -31,12 +31,11 @@
         <p>地址：南京市栖霞区仙林大道163号</p>
         <p style="margin-top: -5px;vertical-align: -10%">邮箱：nju_trust@163.com</p>
       </div>
-      <img src="/static/pic/logo1_silver.png" style="width: 24%;display: inline-block;float: right"/>
     </div>
     <div style="width: 100%;border-top: 1px solid #33333a;">
-      <img src="/static/pic/logo1_white.png" style="margin-left:4%;width:8%">
+      <img src="/static/pic/logo1_silver.png" style="margin-left:4%;width:8%">
       <span style="color: white;text-align: center;font-size: 16px;margin-top: 10px">让你的大学生活更美好</span>
-      <span style="color: white;text-align: center;font-size: 16px;float: right;padding-top: 20px;margin-right: 4%">NJU_trust Team</span>
+      <span style="color: white;text-align: center;font-size: 16px;float: right;padding-top: 20px;margin-right: 4%">NJU_Trust Team</span>
     </div>
   </div>
 </template>
@@ -80,5 +79,6 @@
     float: right;
     color: white;
     vertical-align: top;
+    margin-right: 60px;
   }
 </style>

@@ -11,8 +11,8 @@
             <li><a id="trade" href="/trade">南大鱼塘</a></li>
             <li><a id="notice" href="/notice">失物/寻物</a></li>
             <li><a id="guide" href="/guide">平台指南</a></li>
-            <li id="last" style="float: right;"><a id="signup" href="/signup">注册</a></li>
-            <li id="secondLast" style="float: right;"><a id="login" href="/login">登录</a></li>
+            <li id="last" style="float: right;min-width: 8%;"><a id="signup" href="/signup">注册</a></li>
+            <li id="secondLast" style="float: right;min-width: 8%;"><a id="login" href="/login">登录</a></li>
           </ul>
         </div>
       </div>

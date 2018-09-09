@@ -80,7 +80,7 @@
   .container {
     width:100%;
     background: #222;
-    background-image:url('/static/pic/loginBackground1.png');
+    background-image:url('/static/pic/loginBackground.jpg');
     background-size: cover;
     background-attachment:fixed;
     background-position: center center;
