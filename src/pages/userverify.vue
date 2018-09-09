@@ -334,15 +334,16 @@
     </div>
     </div>
 
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
+    </div>
+
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
     </div>
 
     <!--底栏-->
-    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
-      <footer-bar></footer-bar>
-    </div>
 
   </div>
 </template>
@@ -606,7 +607,7 @@
     width: 100%;
     background-color: #D9F3FB;
     min-height:700px;
-  //height: 200px;
+  //height: 2000px;
     display:flex;
   }
 
