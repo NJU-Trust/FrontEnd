@@ -11,8 +11,8 @@
     <div class="left_menus">
       <p class="left_head"><b>借款申请审核</b></p><hr/>
       <ul class="left_ul">
-        <li><a href="/smalltargetcheck">小额标的</a></li>
-        <li><a href="/largetargetcheck">大额标的</a></li>
+        <li><a href="/smalltargetcheck" id="leftB">小额标的</a></li>
+        <li><a href="/largetargetcheck" id="leftC">大额标的</a></li>
       </ul>
     </div>
     </div>

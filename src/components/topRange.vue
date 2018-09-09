@@ -2,7 +2,7 @@
   <el-carousel :interval="3000" type="card" height="400px" style="text-align: center;margin-top: 50px;width: 76%;margin-left: 12%;margin-bottom: 50px;min-width: 880px">
     <el-carousel-item v-for="item in 10" :key="item" class="is-always-shadow el-card rangeCard">
       <h3>TOP </h3>
-      <img class="photo" src="/static/pic/photo.jpg" style="display: inline-block">
+      <img class="photoOfTopRange" src="/static/pic/photo.jpg" style="display: inline-block">
       <div style="width: 40%;display: inline-block;text-align: left;margin-top: 12px" class="basic">
         <p><strong>姓名：</strong></p>
         <p style="margin-top: 20px"><strong>性别：</strong></p>
@@ -31,13 +31,26 @@
         mounted: function () {
           var items=$(".rangeCard");
           var i=0;
+          var photoSrc=['/static/pic/ChenJun.jpg','/static/pic/YinLin.jpg','/static/pic/ZhangRong.jpg','/static/pic/RenLiJian.jpg',
+            '/static/pic/PanYi.jpg','/static/pic/ZhengGang.jpg','/static/pic/LvJian.jpg','/static/pic/ZhangYiBin.jpg',
+            '/static/pic/XiaoBinQing.jpg','/static/pic/XuXin.jpg'];
           while (i<10) {
             items.eq(i).children('h3').text(items.eq(i).children('h3').text()+(i+1));
             i++;
           }
+          i=0;
+          while(i<10){
+            try{
+              $('.photoOfTopRange').eq(i).attr('src',photoSrc[i]);
+            }catch (e) {
+              console.log(e);
+            }
+            i++;
+          }
+
           var basicInfo=[
             ['陈骏','男','教授','南京大学','陈骏，男， 1954年生，教授，1985年获南京大学矿床学博士学位并留校任教，曾任南京大学地球科学系主任、南京大学副校长、常务副校长、南京大学校长。2013年当选为中国科学院院士。','80000','1.00%','148121\n151152\n180633'],
-            ['王德滋','男','教授','南京大学','王德滋, 男，1927年生，教授，中科院院士，1950年毕业于南京大学地质系。曾任南京大学副校长、地学院院长等职。现任《高校地质学报》主编、《岩石学报》副主编、中央大学校友会副会长等职。','75000','1.05%','180725\n171111\n156487'],
+            ['银临','女','歌手','南京大学','银临，本名向异，90后网络歌手，土家族，1991年12月11日生于湖南湘西自治州，毕业于南京大学外国语学院英文系。2013年12月15日，推出首张个人音乐专辑《腐草为萤。2017年9月15日，推出第二张个人音乐专辑《蚍蜉渡海》 ','75000','1.05%','180725\n171111\n156487'],
             ['张荣','男','教授','南京大学','张荣，男，1964 年生，1979年9月进入南京大学物理系学习，1986年硕士研究生毕业并留校任教，1995年获理学博士学位，先后担任南京大学校长助理、党委副书记、副校长。现任山东大学校长。','70000','1.01%','156987\n156489\n457866'],
             ['任利剑','男','教授','南京大学','任利剑, 男，教授。1962年生，1983年南京大学中文系毕业，曾任南京大学党委副书记，现任东南大学党委常委、党委副书记、纪委书记。','65000','1.50%','457889\n456457\n154347'],
             ['潘毅','男','教授','南京大学','潘毅, 男，1957年生，教授、博士生导师。1978年2月进入南京大学化学系学习，1988年获得博士学位。2001年起担任南京大学化学化工学院院长。','60000','1.02%','154678\n457123\n455343'],
@@ -75,6 +88,7 @@
             i++;
           }
 
+
           items=$('.investConditionOfTopRange');
 
           i=0;
@@ -97,7 +111,7 @@
   .rangeCard{
   }
 
-  .photo{
+  .photoOfTopRange{
     width: 160px;
     height: 160px;
     border-radius: 80px;

@@ -248,6 +248,9 @@
         value_radio5: '上海',
       };
     },
+    beforeCreate:function(){
+      localStorage.route = "#invest";
+    },
     methods:{
       handleCheckAllChange(val) {
         this.checkboxGroup2 = val ? indexAOptions : [];
