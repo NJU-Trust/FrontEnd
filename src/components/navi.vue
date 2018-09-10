@@ -1,6 +1,6 @@
 <template>
   <div class="whole" id="navi" style="width:100%;">
-    <a href="/"><img src="/static/pic/logo1_silver.png" id="naviLogo" class="img-responsive logo" alt="Cinque Terre"></a>
+    <a href="/"><img src="/static/pic/logo_silverBlue.png" id="naviLogo" class="img-responsive logo" alt="Cinque Terre"></a>
 
     <nav class="navbar navbar-inverse wholeNav">
       <div class="container-fluid" style="width: 100%">

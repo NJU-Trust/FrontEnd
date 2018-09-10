@@ -33,7 +33,7 @@
       </div>
     </div>
     <div style="width: 100%;border-top: 1px solid #33333a;">
-      <img src="/static/pic/logo1_silver.png" style="margin-left:4%;width:8%">
+      <img src="/static/pic/logo_silverBlue.png" style="margin-left:4%;width:8%">
       <span style="color: white;text-align: center;font-size: 16px;margin-top: 10px">让你的大学生活更美好</span>
       <span style="color: white;text-align: center;font-size: 16px;float: right;padding-top: 20px;margin-right: 4%">NJU_Trust Team</span>
     </div>
