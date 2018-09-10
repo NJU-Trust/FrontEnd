@@ -25,7 +25,8 @@
         </div>
       </div>-->
       <el-card>
-        <div class="top_panel">
+        <evaluateTopPane :scheme="scheme"></evaluateTopPane>
+        <!--<div class="top_panel">
           <div>
             <div style="padding-left: 30px">
               还款难度：
@@ -52,7 +53,7 @@
             <div style="border: 1px #b7b7b7 solid"></div>
             还款总额&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="font-weight: bold;color: red">{{scheme.sum}}</span>元
           </div>
-        </div>
+        </div>-->
       </el-card>
 
       <el-card id="myChart" align="center" style="width: 500px;height: 300px;margin-top: 20px"></el-card>
@@ -70,9 +71,11 @@
 
 <script>
 
-  // 引入基本模板
-  import ElCard from "element-ui/packages/card/src/main";
 
+  import ElCard from "element-ui/packages/card/src/main";
+  import evaluateTopPane from './evaluateTopPane'
+
+  // 引入基本模板
   let echarts = require('echarts/lib/echarts')
   // 引入柱状图组件
   require('echarts/lib/chart/bar')
@@ -86,7 +89,7 @@
   /*require('echarts/theme/shine')*/
 
     export default {
-      components: {ElCard},
+      components: {ElCard,evaluateTopPane},
       name: "evaluate",
       props:['scheme','plan_table'],
       mounted() {

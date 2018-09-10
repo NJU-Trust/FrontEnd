@@ -313,9 +313,9 @@
           document.getElementById('small_loan').setAttribute('width','550px');
           document.getElementById('evaluate').style.display = 'block';
           this.show_evaluate = true;
-          //this.$refs.form3.style.width = '550px';
           console.log(num);
           console.log("等额本金");
+          this.scheme.difficulty = 3;
           this.scheme.capital = 20000;
           this.scheme.interest = 4000;
           this.scheme.sum = 24000;
@@ -328,7 +328,6 @@
           document.getElementById('small_loan').setAttribute('width','550px');
           document.getElementById('evaluate').style.display = 'block';
           this.show_evaluate = true;
-          //this.$refs.form3.style.width = '550px';
           console.log(num);
           console.log("等额本金");
           this.scheme.capital = 20000;
@@ -340,7 +339,6 @@
 
           document.getElementById('small_loan').className+=' animation_left';
           document.getElementById('evaluate').style.display = 'block';
-          //this.$refs.form3.style.width = '550px';
           console.log("等额本息");
           this.scheme.capital = 20000;
           this.scheme.interest = 5000;
@@ -375,9 +373,6 @@
            document.getElementById("information").style.display = "none";
            document.getElementById("small_loan").style.display = "block";
          }
-          //document.getElementById('small_loan').style.width = '550px';
-          //document.getElementById('small_loan').setAttribute('width','550px');
-         // this.$refs.form3.style.width = '550px';
         },
 
         next() {
@@ -466,11 +461,12 @@
           },
 
           scheme:{
+            difficulty:0,
             capital:0,
             interest:0,
             sum:0,
             count:0,
-            months:[]
+            months:[],
           },
 
           limit:3000,
@@ -578,10 +574,8 @@
       background-image:url("/static/pic/loanBack.jpg");
       background-size: 105% 105%;
       width: 100%;
-     /* height: 1700px;*/
       display:flex;
       padding-bottom: 50px;
-      /*position: absolute;*/
     }
 
     .sheet{
