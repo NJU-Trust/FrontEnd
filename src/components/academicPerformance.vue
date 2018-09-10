@@ -311,9 +311,28 @@
               else {
                 var br = '<br/>';
                 var a = '信用分数 ' + x.data.creditPts + br;
-                var b = '财务分数 ' + x.data.financialPts + br;
-                var c = '校园表现 ' + x.data.schoolPts;
-                return a + b + c;
+                var b = ' 财务分数 ' + x.data.financialPts + br;
+                var c = ' 校园表现 ' + x.data.schoolPts + br;
+                var d = ' 信用变化 ';
+                if(x.data.creditChange == -3) {
+                  d += '最近信用状况急剧恶化';
+                }
+                else if(x.data.creditChange == -2) {
+                  d += '最近信用状况越来越不好';
+                }
+                else if(x.data.creditChange == -1) {
+                  d += '最近信用状况有点下降的倾向';
+                }
+                else if(x.data.creditChange == 0) {
+                  d += '最近信用状况处于平稳状况';
+                }
+                else if(x.data.creditChange == 1) {
+                  d += '最近信用状况有提高趋势';
+                }
+                else{
+                  d += '最近该用户的信用状况非常好';
+                }
+                return a + b + c + d ;
               }
 
             }
@@ -408,52 +427,110 @@
                 name: '张秀英',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: 1,
+                itemStyle: {
+                  normal: {
+                    color: '#5db2ff',
+                  }
+                },
               }, {
                 name: '王桐',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: 2,
+                itemStyle: {
+                  normal: {
+                    color: '#409EFF',
+                  }
+                },
               }, {
                 name: '罗子俊',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: 1,
+                itemStyle: {
+                  normal: {
+                    color: '#5db2ff',
+                  }
+                },
               }, {
                 name: '付贺然',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: -3,
+                itemStyle: {
+                  normal: {
+                    color: '#fa6862',
+                  }
+                },
               }, {
                 name: '陈文博',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: -3,
+                itemStyle: {
+                  normal: {
+                    color: '#fa6862',
+                  }
+                },
               }, {
                 name: '吴欣怡',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: 2,
+                itemStyle: {
+                  normal: {
+                    color: '#409EFF',
+                  }
+                },
               }, {
                 name: '刘浩',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: -2,
+                itemStyle: {
+                  normal: {
+                    color: '#afb8c2',
+                  }
+                },
               }, {
                 name: '张一帆',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: 0,
+                normal: {
+                  color: '#244767',
+                }
               }, {
                 name: '李艺璇',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: -1,
+                itemStyle: {
+                  normal: {
+                    color: '#7ac2ff',
+                  }
+                },
               }, {
                 name: '王刚',
                 creditPts: 97,
                 financialPts: 85,
-                schoolPts: 67
+                schoolPts: 67,
+                creditChange: -1,
+                itemStyle: {
+                  normal: {
+                    color: '#7ac2ff',
+                  }
+                },
               }],
               // links: [],
               links: [{
