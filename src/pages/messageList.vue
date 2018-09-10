@@ -67,6 +67,19 @@
     <footer-bar></footer-bar>
     <right-bar></right-bar>
 
+    <el-card id="messageDetail">
+      <div style="text-align: center;margin-top: 6%">
+        <h3 style="padding-bottom: 20px;color: lightskyblue">消息详情</h3>
+        <h4>日期：{{dateOfDetail}}</h4>
+        <h4>时间：{{timeOfDetail}}</h4>
+        <h4>类型：{{kindOfDetail}}</h4>
+      </div>
+      <div style="padding: 20px">
+        <p>{{contentOfDetail}}</p>
+      </div>
+      <a v-on:click="closeDetail()">查看完毕</a>
+    </el-card>
+
 
   </div>
 
@@ -80,9 +93,28 @@
     export default {
         name: "messageList",
       components:{navi, footerBar, rightBar},
+      data(){
+        return{
+          dateOfDetail: '2018.9.10',
+          timeOfDetail: '19:18:31',
+          kindOfDetail: '借款',
+          contentOfDetail:'Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。\n' +
+          '\n' +
+          'Vue 只关注视图层， 采用自底向上增量开发的设计。\n' +
+          '\n' +
+          'Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。\n' +
+          '\n' +
+          'Vue 学习起来非常简单，本教程基于 Vue 2.1.8 版本测试。'
+        }
+      },
       mounted: function () {
         localStorage.route="#message";
         $('#message').attr('src', '/static/pic/message_blue.png');
+      },
+      methods:{
+          closeDetail:function () {
+            $('#messageDetail').css('display','none');
+          }
       }
 
     }
@@ -141,6 +173,33 @@
     margin-right: 30px;
     color: dodgerblue;
     cursor: pointer;
+  }
+
+  #messageDetail{
+    position: fixed;
+    height: 400px;
+    width:40%;
+    margin-left: 30%;
+    top: 100px;
+    z-index: 10;
+  }
+
+  #messageDetail h4{
+    display: inline;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    color: #909399;
+  }
+
+  #messageDetail a{
+    color: dodgerblue;
+    float: bottom;
+    bottom: 10px;
+    margin-left: 20px;
+  }
+
+  .el-card__body{
+    height: 100%;
   }
 
 </style>
