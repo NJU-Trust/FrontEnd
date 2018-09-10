@@ -1,6 +1,15 @@
 <template>
     <el-form class="main_panel">
-      <div style="display: flex;padding-bottom: 20px">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="等额本息" name="first">
+
+        </el-tab-pane>
+        <el-tab-pane label="等额本金" name="second"></el-tab-pane>
+        <el-tab-pane label="一次性还本付息" name="third"></el-tab-pane>
+        <el-tab-pane label="先息后本" name="fourth"></el-tab-pane>
+      </el-tabs>
+      <!--<div style="display: flex;padding-bottom: 20px">
+
         <div class="scheme_type" style="color: #ff6445">
           等额本息
           <div style="border: 1px solid #ff6445"></div>
@@ -14,7 +23,7 @@
         <div class="scheme_type">
           先息后本
         </div>
-      </div>
+      </div>-->
       <el-card>
         <div class="top_panel">
           <div>
@@ -91,7 +100,7 @@
             interest:0,
             sum:0
           },*/
-
+          activeName:'first',
           enough:false,
           change:true,
           tableData: [{
