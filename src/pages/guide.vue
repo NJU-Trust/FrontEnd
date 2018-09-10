@@ -232,16 +232,93 @@
               <div class="detail" v-if="item6">
                 <div class="content">
                   <label style="font-weight: normal">贷款须知</label><hr/>
+                  <div>
+                    <div>
+                      <div class="page1" v-if="page3">
+                        <label style="font-weight: normal;">（1）贷款教程</label>
+                        <div style="height: 400px;width:850px;padding:20px 0px 50px 30px;">
+                          <el-steps :active="3" direction="vertical">
+                            <el-step title="步骤 1" description="选择投资类型（小额短期投资或者大额长期投资）选择投资类型（小额短期投资或者大额长期投资）"></el-step>
+                            <el-step title="步骤 2" description="点击进入相应标的页面进行标的选择
+                    （1）：显示筛选项，您可以根据自己的偏好进行投资标的的筛选：投资金额、利率、用户信用评级等。
+                    （2）：排序维度：平台会为您提供合适的标的信息，您可通过个性化排序进行标的查看。
+                    （3）：标的信息：此处您可看到标的的基本信息，点击“查看详情”可以进一步了解。
+                    （4）：标的搜索：您可通过关键词（例如标的编号、借款用途等）对标的进行搜索。
+                    （5）：平台为您提供个性推荐，您可输入投资金额和期望利率，平台将为您推荐合适的标的。
+                    （6）：标的比较：输入亮哥标的的编号，可对其在金额、期限、利率等多方面进行全面比较，方便您的投资选择。
+                    "></el-step>
+                            <el-step title="步骤 3" description="选择标的后进行查看与投资
+                    （1）：您可以查看产品概要、借款人信息、投标记录等，来决定是否投资。
+                    （2）：您可看到目前标的的需求金额以及您的余额，自定义将要投资的金额大小，点击确认投资即可完成投标。
+                    "></el-step>
+                          </el-steps>
+                        </div>
+                        <label style="font-weight: normal;">（2）贷款规则</label>
+                        <label style="font-weight: normal;font-size:14px;line-height: 24px;">
+                          一、校园互助平台的特点和优势
+                          <br/>A.社区模式下交易成本更低。
+                          <br/>校园互助平台的使用者，是南京大学的在读学生、已经毕业的校友和在校职工。在这一社区模式下，投资人和借贷人不再是陌生人，而是互相熟知的朋友、校友。这极大地方便了平台对其使用者的信用评级，因此在一定程度上能够使得交易双方的信息对称，从而降低交易成本。
+                          <br/>B.社区模式下违约可能性更低。
+                          <br/>社区模式下，参与人的之间的关联性更强，这就使得借款人违约的成本增加。在熟人社交网络下，借款人的违约行为将会对其个人信用及未来发展产生影响。同时，由于对借款人的信用评级更为精准，因此投资人在选择标的时能够更好的进行决策，这极大地降低了投资人的投资风险。
+                          <br/>二、投资的预期收益
+                          <br/>（1）投资利率由投资者自行选择的标的利率确定。
+                          <br/>（2）在借款截止日期前，若标的提前满标，则从标的满标当日开始计算利息，到还款截止日期为止；
+                          <br/> （3）在借款截止日，若标的未满标，但达到最低达标率，则从借款截止日开始计算利息，到还款截止日前为止；
+                          <br/> （4）在借款截止日，若标的为达到最低达标率，则该标的流标。
+                          <br/>  （5）提前撤资将无法获得收益。
+                          </label>
+                      </div>
+                      <div class="page2" v-if="page4" style="padding:30px 0px 0px 0px;">
+                        <label style="font-weight: normal;font-size:14px;line-height: 24px;">
+                          <br/>  三、投资所需材料
+                          <br/>   投资人：
+                          <br/>  1.有效身份证件、学生证、手持身份证照片；
+                          <br/>  2.拥有校园互助平台等级为中级及以上的本人账户（中级账户仅能够参与一类标的投资，完整账号能参与一、二类标的投资）；
+
+                          <br/>   以上材料要求尽可能的提供，平台会提供材料模板。根据项目具体要求，可能会增加其他材料。由于不可控原因造成的资料缺失，则根据具体情况进行协商、灵活处理。
+                          前期风控审核时借款人可提供材料扫描件或复印件，放款签订合同之前必须核实原件。
+                          如有疑问，可联系客服或信贷人员。
+                          <br/>  四、项目流程
+                          <br/>  投资人通过设定预期投资的各项条目，例如金额、期限、利率等，提交后系统将会自动生成投资方案。
+                          <br/>  投资人可以浏览投资方案中各标的信息，无异议后即可提交投资方案，方案即刻生效。
+                          <br/>  投资的收益计算日从标的集资成功日算起，若标的流标，资金将退回相应投资人的账户。投资人选择投资标的后，所投资金在账户中显示为“冻结资金”，投资人无法对这笔资金进行操作。
+                          <br/> 五、资金收回方式
+                          <br/>  投资人在提交投资方案并标的融资成功后，可以在个人中心的历史投资模块中了解各个标的的各项信息，包括标的投资利率、还款进度、还款期限等。
+                          <br/>  六、是不是一定要南京大学的校友才能投资？还是其他人都可以？
+                          <br/>  校园互助平台创立之初的目标用户就是南京大学的校友群体，主要包括南京大学在读学生、南京大学校友以及南京大学职工。目前，投资人仅限于以上三个群体。
+                          <br/>  七、提前撤资
+                          <br/> 想要提前撤资的用户，首先在平台提出“提前撤资”申请，当且仅当该标的被其他用户接管时，才能将自己的投资资金收回，并此前所获的投资收益均归接管标的的用户所有。若无人接管，则用户无法收回自己的投资资金。
+                          <br/>  八、接管标的
+                          <br/>  用户在选择接管标的后，将获得撤资用户之前投资所获得的收益和自己投资后所获得的收益，标的详情中所显示的利率为用户实际所得收益的利率。
+
+                        </label>
+                      </div>
+                      <div style="float:right;">
+                        <el-button circle @click="changePage3">1</el-button>
+                        <el-button circle @click="changePage4">2</el-button>
+                        <div style="width:100px;"></div>
+                      </div>
+                      <div style="height: 20px;"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="detail" v-if="item7">
                 <div class="content">
                   <label style="font-weight: normal">信息发布</label><hr/>
+                  <label style="font-weight: normal">
+                    <br/>“失物/寻物”板块帮您找回您的心中所爱！<br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击进入“失物/寻物”，您可以在“与我相关”发布信息、查看您正在进行与已经完成的失物招领与寻物启事信息；在“消息集散”中，您可以查看其它用户发布的失物招领与寻物启事信息。
+                  </label>
                 </div>
               </div>
               <div class="detail" v-if="item8">
                 <div class="content">
                   <label style="font-weight: normal">物品交易</label><hr/>
+                  <label style="font-weight: normal">
+                    <br/>“南大鱼塘”板块让闲置物品效用最大化！<br/><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击进入“南大鱼塘”，您可以在“交易大厅”查看相关二手物品的发布信息；在“我的闲置”中，您可以选择发布闲置物品信息、查看您已发布的闲置物品以及查看已经成功交易的物品。
+                  </label>
                 </div>
               </div>
               <div class="detail" v-if="item9">
@@ -376,6 +453,8 @@
         item12:false,
         page1:true,
         page2:false,
+        page3:true,
+        page4:false,
       }
     },
     methods: {
@@ -386,6 +465,14 @@
       changePage2(){
         this.page1=false;
         this.page2=true;
+      },
+      changePage3(){
+        this.page3=true;
+        this.page4=false;
+      },
+      changePage4(){
+        this.page3=false;
+        this.page4=true;
       },
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
