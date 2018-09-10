@@ -3,7 +3,7 @@
     <div style="display: inline;">
       <p class="text">{{investList.range}}</p>
       <div class="triangle-topleft">
-    </div>
+      </div>
     </div>
     <div class="type" style="text-align: center;">
       <p class="center">{{investList.type}}</p>
@@ -39,7 +39,7 @@
             <div class="itemDescription" style="margin-top: 10px">
               <div>
                 <el-row>
-                  <el-button type="primary" round @click="showDetails">查看详情</el-button>
+                  <el-button type="primary" round @click="showDetails" style="background: #F88562;border:1px solid #F88562;">查看详情</el-button>
                 </el-row>
                 <br/>
                 <p style="font-size:10px;">借款截止：{{investList.beginTime}}</p>
@@ -55,7 +55,7 @@
 
 <script>
   export default {
-    name: "projectList",
+    name: "investList2",
     methods: {
       showDetails(){
         window.location.href='/DoInvesting';
@@ -79,7 +79,7 @@
   .triangle-topleft{
     width: 0;
     height: 0;
-    border-top: 80px solid #F37B55;
+    border-top: 80px solid #E73826;
     border-right: 110px solid transparent;
     display: block;
     position:absolute;
@@ -93,7 +93,7 @@
   }
   .curRate {
     width: 60%;
-    background: #409EFF;
+    background: #F88562;
     color:white;
   }
   .round-conner {
@@ -111,7 +111,7 @@
     margin-top:10px;
   }
   .investList:hover{
-    border:2px solid #7CADDB;
+    border:2px solid #F88562;
   }
   .itemName{
     color:#616363;
@@ -127,7 +127,7 @@
     font-weight: 500;
   }
   .profit{
-    color:#409EFF;
+    color:#F88562;
     font-size:32px;
     font-weight:500;
   }

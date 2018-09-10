@@ -2,14 +2,14 @@
   <div class="leftsidenav" >
     <div style="position:relative;top:30px;">
     <div class="left_menus">
-      <p class="left_head"  ><b>用户信息审核</b></p><hr/>
+      <p class="left_head"  ><b>用户信息</b></p><hr/>
       <ul class="left_ul">
         <li><a href="/EnterVerify" id="leftA" >非结构化信息</a></li>
       </ul>
       <hr/>
     </div>
     <div class="left_menus">
-      <p class="left_head"><b>借款申请审核</b></p><hr/>
+      <p class="left_head"><b>借款申请</b></p><hr/>
       <ul class="left_ul">
         <li><a href="/smalltargetcheck" id="leftB">小额标的</a></li>
         <li><a href="/largetargetcheck" id="leftC">大额标的</a></li>
@@ -34,7 +34,7 @@
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
     height:450px;
-    width:200px;
+    //width:230px;
     /*margin-right: 10%;*/
     margin-left: 25%;
     box-shadow:
