@@ -136,118 +136,122 @@
           <hr style="border:1px solid #e4e4e4;"/>
         </div>
         <div class="col-sm-12 col-md-12">
-          <div class="userInput" style="margin-top:0%;">
-            <p>排序维度：</p>
-            <div class="sort">
-              <el-radio-group v-model="value_radio5">
-                <el-radio-button label="标的金额" ></el-radio-button>
-                <el-radio-button label="开始时间"></el-radio-button>
-                <el-radio-button label="利率"></el-radio-button>
-                <el-radio-button label="还款期限"></el-radio-button>
-                <el-radio-button label="用户信用分数"></el-radio-button>
-                <el-radio-button label="项目风险评级"></el-radio-button>
-              </el-radio-group>
+          <div class="col-sm-9 col-md-9">
+            <div class="userInput" style="margin-top:0%;">
+              <p>排序维度：</p>
+              <div class="sort">
+                <el-radio-group v-model="value_radio5">
+                  <el-radio-button label="标的金额" ></el-radio-button>
+                  <el-radio-button label="开始时间"></el-radio-button>
+                  <el-radio-button label="利率"></el-radio-button>
+                  <el-radio-button label="还款期限"></el-radio-button>
+                  <el-radio-button label="用户信用分数"></el-radio-button>
+                  <el-radio-button label="项目风险评级"></el-radio-button>
+                </el-radio-group>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <div class="change">
+              <div class="sort changeSecond">
+                <input type="button" v-on:click="handleClick1" value="一级平台"/>
+                <input type="button" v-on:click="handleClick2" value="二级平台"/>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div>
-      <div class="change">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="一级平台" name="first">
-            <div class="col-xs-12 col-md-12" style="padding: 0;">
-              <div class="col-sm-8 col-md-8">
-                <div style="margin-left:10%;width:91%;">
-                  <invest-list
-                    v-for="item in investInformation"
-                    v-bind:investList="item"
-                    v-bind:key="item.id"
-                  ></invest-list><br/><br/>
-                </div>
-              </div>
-              <div class="col-xs-4 col-md-4">
-                <div class="userSearch">
-                  <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
-                  <input type="button" class="searchButton searchBack" :style="searchBack"/>
-                </div>
-                <div class="searchBorder" style="margin-top:80px;">
-                  <h3>个性推荐</h3>
-                  <div class="userInput">
-                    <p>投资金额：</p>
-                    <input type="number" value="1000" style="width:30%;"/>
-                  </div><br><br><br>
-                  <div class="userInput">
-                    <p style="margin-right:30px;">利率：</p>
-                    <input type="number" value="1000" style="width:30%;"/>
-                  </div><br><br><br><br>
-                  <div class="userInput">
-                    <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
-                  </div>
-                  <div>
-                    <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-                  </div>
-                </div>
-                <div class="searchBorder" style="height:500px;">
-                  <h3>标的比较</h3>
-                  <div class="userInput">
-                    <p>请输入需要比较的标的编号：</p><br><br>
-                    <p>A: </p><input type="number" value="0000" style="width:100px;"/>
-                    <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-                    <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
-                  </div>
-                </div>
-              </div>
+    <div v-if="div1">
+      <div class="col-xs-12 col-md-12" style="padding: 0;">
+        <div class="col-sm-8 col-md-8">
+          <div style="margin-left:10%;width:91%;">
+            <invest-list
+              v-for="item in investInformation"
+              v-bind:investList="item"
+              v-bind:key="item.id"
+            ></invest-list><br/><br/>
+          </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+          <div class="userSearch">
+            <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
+            <input type="button" class="searchButton searchBack" :style="searchBack"/>
+          </div>
+          <div class="searchBorder" style="margin-top:80px;">
+            <h3>个性推荐</h3>
+            <div class="userInput">
+              <p>投资金额：</p>
+              <input type="number" value="1000" style="width:30%;"/>
+            </div><br><br><br>
+            <div class="userInput">
+              <p style="margin-right:30px;">利率：</p>
+              <input type="number" value="1000" style="width:30%;"/>
+            </div><br><br><br><br>
+            <div class="userInput">
+              <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
             </div>
-          </el-tab-pane>
-          <el-tab-pane label="二级平台" name="second">
-          </el-tab-pane>
-        </el-tabs>
+            <div>
+              <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+            </div>
+          </div>
+          <div class="searchBorder" style="height:500px;">
+            <h3>标的比较</h3>
+            <div class="userInput">
+              <p>请输入需要比较的标的编号：</p><br><br>
+              <p>A: </p><input type="number" value="0000" style="width:100px;"/>
+              <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
+              <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!--<div class="col-xs-12 col-md-12" style="padding: 0;">
-      <div class="col-sm-8 col-md-8">
-        <div style="margin-left:10%;width:91%;">
-          <invest-list
-            v-for="item in investInformation"
-            v-bind:investList="item"
-            v-bind:key="item.id"
-          ></invest-list><br/><br/>
+    <div v-if="div2">
+      <div class="col-xs-12 col-md-12" style="padding: 0;">
+        <div class="col-sm-8 col-md-8">
+          <div style="margin-left:10%;width:91%;">
+            <invest-list2
+              v-for="item in investInformation2"
+              v-bind:investList="item"
+              v-bind:key="item.id"
+            ></invest-list2><br/><br/>
+          </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+          <div class="userSearch">
+            <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
+            <input type="button" class="searchButton searchBack" :style="searchBack"/>
+          </div>
+          <div class="searchBorder" style="margin-top:80px;">
+            <h3>个性推荐</h3>
+            <div class="userInput">
+              <p>投资金额：</p>
+              <input type="number" value="1000" style="width:30%;"/>
+            </div><br><br><br>
+            <div class="userInput">
+              <p style="margin-right:30px;">利率：</p>
+              <input type="number" value="1000" style="width:30%;"/>
+            </div><br><br><br><br>
+            <div class="userInput">
+              <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
+            </div>
+            <div>
+              <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
+            </div>
+          </div>
+          <div class="searchBorder" style="height:500px;">
+            <h3>标的比较</h3>
+            <div class="userInput">
+              <p>请输入需要比较的标的编号：</p><br><br>
+              <p>A: </p><input type="number" value="0000" style="width:100px;"/>
+              <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
+              <div id="myradar2" style="width: 310px;height: 350px;margin-left:3%;"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-xs-4 col-md-4">
-        <div class="userSearch">
-          <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
-          <input type="button" class="searchButton searchBack" :style="searchBack"/>
-        </div>
-        <div class="searchBorder" style="margin-top:80px;">
-          <h3>个性推荐</h3>
-          <div class="userInput">
-            <p>投资金额：</p>
-            <input type="number" value="1000" style="width:30%;"/>
-          </div><br><br><br>
-          <div class="userInput">
-            <p style="margin-right:30px;">利率：</p>
-            <input type="number" value="1000" style="width:30%;"/>
-          </div><br><br><br><br>
-          <div class="userInput">
-            <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
-          </div>
-          <div>
-            <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-          </div>
-        </div>
-        <div class="searchBorder" style="height:500px;">
-          <h3>标的比较</h3>
-          <div class="userInput">
-            <p>请输入需要比较的标的编号：</p><br><br>
-            <p>A: </p><input type="number" value="0000" style="width:100px;"/>
-            <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-            <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
-          </div>
-        </div>
-      </div>
-    </div>-->
+    </div>
     <div class="col-sm-12 col-md-12" style="padding:0">
       <div class="center">
         <ul class="pagination model">
@@ -277,6 +281,7 @@
   import rightBar from '@/components/rightBar.vue'
   import investList from '@/components/investList.vue'
   import ProjectList from "../components/projectList";
+  import investList2 from "../components/investList2";
   import personalCenter from "../components/personalCenter";
   const indexAOptions = ['标的金额', '开始时间', '利率', '还款期限','用户信用分数'];
   const indexBOptions = ['AA','A','B','C','D'];
@@ -293,12 +298,14 @@
   require('echarts/theme/infographic')
   export default {
     name: "invest",
-    components:{navi, footerBar, rightBar,investList,ProjectList},
+    components:{navi, footerBar, rightBar,investList,ProjectList,investList2},
     mounted() {
       this.drawRadar();
     },
     data(){
       return{
+        div1:true,
+        div2:false,
         activeName: 'first',
         date_value_choose: '',
         checkboxGroup2: [],
@@ -322,6 +329,16 @@
           {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:0.86,range:"C"},
           {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:0.6,range:"C"},
           ],
+        investInformation2: [
+          {id:"0002", beginTime:"2018.09.14", endTime:"2018.10.03", name:"炉石砰砰计划", type:"GAME", profit:"9.99%", money:"388", remainMoney:"88", finishProgress:0.7731,range:"AA"},
+          {id:"0003", beginTime:"2018.09.17", endTime:"2018.10.28", name:"国庆省内", type:"TRAVEL", profit:"6.73%", money:"2000", remainMoney:"400", finishProgress:0.8,range:"A"},
+          {id:"0004", beginTime:"2018.10.12", endTime:"2018.10.25", name:"托福考试", type:"EXAM", profit:"5.85%", money:"1800", remainMoney:"360", finishProgress:0.8,range:"A"},
+          {id:"0005", beginTime:"2018.10.15", endTime:"2018.11.20", name:"方大同演唱会", type:"CONCERT", profit:"7.67%", money:"1000", remainMoney:"470", finishProgress:0.53,range:"A"},
+          {id:"0006", beginTime:"2018.10.22", endTime:"2018.11.21", name:"d'zzit地素连衣裙", type:"CLOTH", profit:"7.06%", money:"1300", remainMoney:"741", finishProgress:0.43,range:"B"},
+          {id:"0007", beginTime:"2018.10.26", endTime:"2018.11.22", name:"预购", type:"GAME", profit:"6.45%", money:"1800", remainMoney:"1116", finishProgress:0.38,range:"B"},
+          {id:"0008", beginTime:"2018.10.30", endTime:"2018.11.23", name:"生活费周转", type:"TURNOVER", profit:"5.27%", money:"1000", remainMoney:"140", finishProgress:0.86,range:"C"},
+          {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:0.6,range:"C"},
+        ],
         back:{
           backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
           backgroundRepeat:"no-repeat",
@@ -347,18 +364,20 @@
         value_radio3: '上海',
         value_radio4: '上海',
         value_radio5: '上海',
+        value_radio6: '上海',
       };
     },
     beforeCreate:function(){
       localStorage.route = "#invest";
     },
     methods:{
-      handleClick(tab, event) {
-        if(activeName == 'second')
-        {
-          alert('修改密码');
-        }
-        console.log(tab, event);
+      handleClick1(){
+        this.div1=true;
+        this.div2=false;
+      },
+      handleClick2(){
+        this.div1=false;
+        this.div2=true;
       },
       handleCheckAllChange(val) {
         this.checkboxGroup2 = val ? indexAOptions : [];
@@ -444,7 +463,20 @@
 <style scoped>
   .change{
     float:right;
-    margin-right:5%;
+    margin-right:3%;
+  }
+  .sort{
+    display: inline-block;
+  }
+  .changeSecond input{
+    background: white;
+    border:1px solid #e4e4e4;
+    height:37px;
+    width:110px;
+  }
+  .changeSecond input:focus{
+    background:#409EFF;
+    color:white;
   }
   .selectInput{
     display: inline;
@@ -474,9 +506,6 @@
   }
   .recommend input[type=number]{
     width:30%;
-  }
-  .sort{
-    display: inline-block;
   }
   .searchBorder{
     text-align: center;
