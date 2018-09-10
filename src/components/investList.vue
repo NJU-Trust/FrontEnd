@@ -73,7 +73,7 @@
     font-size:35px;
     text-align: left;
     display: block;
-    position:relative;
+    position:absolute;
     z-index:100;
   }
   .triangle-topleft{
@@ -82,7 +82,7 @@
     border-top: 80px solid #F37B55;
     border-right: 110px solid transparent;
     display: block;
-    position:relative;
+    position:absolute;
     left:11%;
     z-index:10;
   }
