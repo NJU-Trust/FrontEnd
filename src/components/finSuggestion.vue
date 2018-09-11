@@ -15,7 +15,7 @@
         <!--</p>-->
       </div><!--历史版本修正建议-->
       <div id="myNextPay">
-        <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>25</span> 天, 下次还需还款 <span>300</span> 元</b></h4>
+        <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>{{ nextRepayTime }}</span> 天, 下次还需还款 <span>{{ nextRepayAmount}}</span> 元</b></h4>
         <!--<nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
         <!--<nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
         <nextpay
@@ -140,6 +140,8 @@
     data() {
       return {
         loanStart: 12,
+        nextRepayAmount: 318,
+        nextRepayTime: 15,
         user:{
           surplus: 3140, //结余
           netAssets: 1750, //净资产
