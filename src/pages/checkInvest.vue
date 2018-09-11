@@ -73,11 +73,50 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="借款人信息" name="second">
-        <div class="title2">基本信息</div>
+       <!-- <div class="title2">基本信息</div>
         <loanerBasicInfo></loanerBasicInfo>
-        <div class="title2">学业表现</div>
+        <div class="title2">学业表现</div>-->
       </el-tab-pane>
-      <div v-if="showGraph">
+      <div class="market_out">
+        <el-collapse  v-if="activeName==='second'" v-model="activeCollapse" @change="handleChange">
+          <el-collapse-item title="基本信息" name="1">
+            <loanerBasicInfo></loanerBasicInfo>
+          </el-collapse-item>
+          <el-collapse-item title="学业表现" name="2">
+            <!--<academicPerformance></academicPerformance>-->
+          </el-collapse-item>
+          <div v-if="showGraph">
+            <academicPerformance></academicPerformance>
+          </div>
+          <el-collapse-item title="财务分析" name="3">
+            <fin-analysis></fin-analysis>
+          </el-collapse-item>
+          <el-collapse-item title="项目信息" name="4">
+            <div>
+              <el-tabs v-model="activeChild" @tab-click="handleClick">
+                <el-tab-pane label="正在进行" name="first">
+                  <loanTopBar></loanTopBar>
+                  <loanUnderway></loanUnderway>
+                </el-tab-pane>
+                <el-tab-pane label="完成项目" name="second">
+                  <loanTopBar></loanTopBar>
+                  <loanComplete></loanComplete>
+                </el-tab-pane>
+                <el-tab-pane label="已发布项目" name="third">
+                  <loanTopBar></loanTopBar>
+                  <loanLaunched></loanLaunched>
+                </el-tab-pane>
+                <el-tab-pane label="违约记录" name="fourth">
+                  <loanTopBar></loanTopBar>
+                  <loanUnbelievable></loanUnbelievable>
+                </el-tab-pane>
+              </el-tabs>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+
+      <!--<div v-if="showGraph">
         <academicPerformance></academicPerformance>
         <div class="title2">财务分析</div>
         <fin-analysis></fin-analysis>
@@ -102,7 +141,7 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-      </div>
+      </div>-->
       <el-tab-pane label="还款历史" name="third">
         <div class="title2">
           还款历史
@@ -197,6 +236,7 @@
     components: {ElCard, InvestList, loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,personalCenter,timeLine,loanerBasicInfo,academicPerformance,FinAnalysis},
     data() {
       return {
+        activeCollapse: ['1'],
         showGraph:false,
         activeChild:'first',
         info1:{
@@ -275,7 +315,15 @@
       handleClick(tab, event) {
         console.log(tab, event);
         console.log(this.activeName)
-        if(this.activeName=="second"){
+        if(this.activeName==="second" && this.activeCollapse.indexOf('2')>=0){
+          this.showGraph = true;
+        }else{
+          this.showGraph = false;
+        }
+      },
+      handleChange(val) {
+        console.log(val);
+        if(this.activeName==="second" && this.activeCollapse.indexOf('2')>=0){
           this.showGraph = true;
         }else{
           this.showGraph = false;
@@ -357,8 +405,14 @@
 
 <style>
 
+
   .el-tabs__item{
     font-size: 18px !important;
+  }
+
+  .el-collapse-item__header{
+    font-size: 18px !important;
+    color: #409EFF;
   }
 
   #mainpanel { min-height: 500px !important}
