@@ -405,13 +405,14 @@
 
 <style>
 
+
   .el-tabs__item{
     font-size: 18px !important;
   }
 
   .el-collapse-item__header{
     font-size: 18px !important;
-    /*color: #409EFF;*/
+    color: #409EFF;
   }
 
   #mainpanel { min-height: 500px !important}
