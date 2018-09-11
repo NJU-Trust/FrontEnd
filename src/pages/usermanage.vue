@@ -56,14 +56,8 @@
             <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
             <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
             <td style="border: 1px solid black ;text-align:center;">
-              <router-link to="">
-                <button class="checkDetailButton">历史投资</button>
-              </router-link>
-              <router-link to="">
-                <button class="checkDetailButton">查看标的</button>
-              </router-link>
-              <router-link to="">
-                <button class="checkDetailButton">个人财务</button>
+              <router-link to="/userdetail">
+                <button class="checkDetailButton" style="min-width: 200px;">查看投资/借款/个人财务</button>
               </router-link>
             </td>
           </tr>
@@ -187,25 +181,22 @@
       }
     },
     mounted:function(){
-      this.getData();
-    },
-    methods: {
-      getData:function(){
-        this.$axios.get('/AdminUser/manage', {
+        this.$axios.get('/adminUser/manage', {
           params: {
             page:1,
             pageSize:20,
-            keyword: "未",
+            keyword: "",
             type:"无借款",
           }
         }).then(function (response) {
-            alert("success!");
-            console.log(response);
-          }).catch(function (error) {
-            alert("error!")
-            console.log(error);
-          });
-      },
+          alert("success!");
+          console.log(response);
+        }).catch(function (error) {
+          alert("error!")
+          console.log(error);
+        });
+    },
+    methods: {
       addUser() {
         this.users.push(this.user)
       },
