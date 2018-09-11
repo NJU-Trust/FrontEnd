@@ -197,6 +197,7 @@
         list: [],
         loading: false,
         types:typeOptions,
+
         checkboxGroup:['数码零件'],
         //<el-option label="数码零件" value="家居日用"></el-option>
         //<el-option label="影音家电" value="影音家电"></el-option>
@@ -366,6 +367,7 @@
   .input-with-select .el-input-group__prepend {
     background-color: #fff;
   }
+
   div.myspace{
     /*个人中心*/
     text-indent:6.3%;
