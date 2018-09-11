@@ -56,9 +56,9 @@
             <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
             <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
             <td style="border: 1px solid black ;text-align:center;">
-              <router-link to="/userdetail">
+              <a href="/userdetail">
                 <button class="checkDetailButton" style="min-width: 200px;">查看投资/借款/个人财务</button>
-              </router-link>
+              </a>
             </td>
           </tr>
           </tbody>
