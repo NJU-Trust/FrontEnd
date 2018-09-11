@@ -1,17 +1,14 @@
 <template>
   <div class="investList">
-    <div style="display: inline;">
-      <p class="text">{{investList.range}}</p>
-      <div class="triangle-topleft">
-      </div>
-    </div>
-    <div class="type" style="text-align: center;">
-      <p class="center">{{investList.type}}</p>
-    </div>
     <div style="height:130px;text-align: center;">
       <el-row :gutter="20">
         <el-col :span="6">
-          <div class="grid-content bg-purple" style="margin-left:20%;">
+          <div style="display: inline;float: left;margin: 0;padding: 0">
+            <p class="text">{{investList.range}}</p>
+            <div class="triangle-topleft">
+            </div>
+          </div>
+          <div class="grid-content bg-purple" style="margin-left:30%;">
             <div style="margin-top:10%;">
               <p class="month" style="display: inline;">Profit : </p>
               <p class="profit" style="display: inline;">{{investList.profit}}</p>
@@ -22,6 +19,9 @@
           </div>
         </el-col>
         <el-col :span="12">
+          <div class="type" style="text-align: center;">
+            <p class="center">{{investList.type}}</p>
+          </div>
           <div class="grid-content bg-purple">
             <p class="itemName">{{investList.name}}</p>
             <p class="money">￥{{investList.remainMoney}}</p><p class="moneyName"> / 剩余金额</p>
@@ -39,7 +39,7 @@
             <div class="itemDescription" style="margin-top: 10px">
               <div>
                 <el-row>
-                  <el-button type="primary" round @click="showDetails" style="background: #F88562;border:1px solid #F88562;">查看详情</el-button>
+                  <el-button type="primary" round @click="showDetails">查看详情</el-button>
                 </el-row>
                 <br/>
                 <p style="font-size:10px;">借款截止：{{investList.beginTime}}</p>
@@ -69,21 +69,20 @@
 <style scoped>
   .text{
     color: white;
-    margin-left:1%;
     font-size:35px;
     text-align: left;
     display: block;
     position:absolute;
     z-index:100;
+    margin-left:3px;
   }
   .triangle-topleft{
     width: 0;
     height: 0;
     border-top: 80px solid #E73826;
-    border-right: 110px solid transparent;
+    border-right: 100px solid transparent;
     display: block;
     position:absolute;
-    left:11%;
     z-index:10;
   }
   .progress {
@@ -107,7 +106,7 @@
     -moz-border-radius: 20px;
     border-radius: 20px;
     max-height: 170px;
-    /*text-align: center;*/
+    text-align: center;
     margin-top:10px;
   }
   .investList:hover{
@@ -116,7 +115,8 @@
   .itemName{
     color:#616363;
     font-size:15px;
-    margin-top:3%;
+    margin-top:1%;
+    margin-bottom: 0;
   }
   .itemDescription {
     color: #7A7A7A;
@@ -136,10 +136,10 @@
     text-align: center;
   }
   .type{
+    margin: auto;
     background: #A6A3A3;
     max-width:50%;
     color:white;
-    margin-left:25%;
     font-size:10px;
     height:15px;
     border-bottom-left-radius: 5px;

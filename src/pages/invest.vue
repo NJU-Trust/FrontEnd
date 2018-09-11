@@ -154,8 +154,8 @@
           <div class="col-sm-3 col-md-3">
             <div class="change">
               <div class="sort changeSecond">
-                <input type="button" v-on:click="handleClick1" value="一级平台"/>
-                <input type="button" v-on:click="handleClick2" value="二级平台"/>
+                <input type="button" v-on:click="handleClick1" value="未成交"/>
+                <input type="button" v-on:click="handleClick2" value="转让中"/>
               </div>
             </div>
           </div>

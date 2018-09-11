@@ -46,9 +46,6 @@
     <footerBar></footerBar>
 
   </div>
-
-
-
 </template>
 
 <script>
