@@ -1,24 +1,29 @@
 <template>
-  <div class="leftsidenav" style="position:relative;left:-160px;top:200px;">
-    <div style="position:relative;top:-80px;">
-      <div class="left_menus">
-        <p class="left_head"><b>交易市场</b></p><hr/>
-        <ul class="left_ul">
-          <li><a href="/trade">交易大厅</a></li>
-        </ul>
-        <hr/>
-      </div>
-      <div class="left_menus">
-        <p class="left_head"><b>我的闲置</b></p><hr/>
-        <ul class="left_ul">
-          <li><a href="/trade/mine">闲置上传</a></li>
-          <li><a href="/trade/going">正在进行</a></li>
-          <li><a href="/trade/finished">成功交易</a></li>
-        </ul>
-        <hr/>
-      </div>
-    </div>
-  </div>
+  <el-menu
+  default-active="2"
+  class="el-menu-vertical-demo"
+  style="height: auto;margin-top: 30px">
+  <el-submenu index="1">
+    <template slot="title">
+      <i class="el-icon-location"></i>
+      <span>交易大厅</span>
+    </template>
+    <el-menu-item-group>
+      <el-menu-item index="1-1">交易大厅</el-menu-item>
+    </el-menu-item-group>
+  </el-submenu>
+  <el-submenu index="1">
+    <template slot="title">
+      <i class="el-icon-menu"></i>
+      <span>我的闲置</span>
+    </template>
+    <el-menu-item-group>
+      <el-menu-item index="2-1">闲置上传</el-menu-item>
+      <el-menu-item index="2-2">正在进行</el-menu-item>
+      <el-menu-item index="2-3">成功交易</el-menu-item>
+    </el-menu-item-group>
+  </el-submenu>
+</el-menu>
 </template>
 
 <script>
@@ -28,51 +33,5 @@
 </script>
 
 <style scoped>
-  /*----------左侧导航栏样式-------------*/
-  div.leftsidenav{
-    background:white;
-    border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
-    height:550px;
-    width:200px;
-    margin-right: 10%;
-    margin-left: 16%;
-    box-shadow:
-      0 1px 6px 0 rgba(0,0,0, .12),
-      0 1px 6px 0 rgba(0,0,0, .12);
-    border-radius: 3px;
-  }
-  /*----------左侧导航栏修正----------*/
-  .left_menus ul{
-    list-style: none;
-    position: relative;
-  }
 
-  .left_head {
-    font-size: 16px;
-    color: #48576a;
-    text-indent: 8%;
-    margin-top: -3%;
-    margin-bottom: -3%;
-  }
-
-  .left_ul li{
-    margin: 3%;
-    padding: 0;
-    min-width: 80px;
-    font-size: 15px;
-  }
-
-  .left_ul li a{
-    color: #777777;
-    text-decoration:none;
-  }
-
-  .left_ul li a:hover{
-    color: dodgerblue;
-  }
-
-  .left_ul li a.active{
-    color: dodgerblue;
-  }
 </style>

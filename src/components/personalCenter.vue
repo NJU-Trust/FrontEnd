@@ -18,7 +18,7 @@
       </div>
     </div>
     <!--background-color: #D9F3FB-->
-    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative; background-color: #D9F3FB; min-height: 800px">
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative; min-height: 800px">
       <div class="container-fluid">
         <div class="row">
           <div style="height: 50px">

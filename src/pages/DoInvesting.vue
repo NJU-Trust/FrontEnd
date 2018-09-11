@@ -2,7 +2,7 @@
   <div id="Investing">
     <navi></navi>
     <rightBar></rightBar>
-    <img src="http://bigwords-books.com/wp-content/uploads/2016/03/open-book-on-table-red-ml.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px;position: absolute">
+    <img src="https://megsoftconsulting.com/wp-content/uploads/2016/04/web-design-packages-background.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px;position: absolute">
     <div class="overview" style="padding: 100px 60px 40px 40px;font-size:18px;height: 400px">
       <el-row>
         <el-col :span="12">
@@ -300,8 +300,8 @@
     text-align: left;
   }
   .gray {
-    -webkit-filter: brightness(80%);
-    filter: brightness(80%);
+    -webkit-filter: brightness(200%);
+    filter: brightness(200%);
   }
   .small {
     color: white;

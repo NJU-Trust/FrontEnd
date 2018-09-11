@@ -12,97 +12,194 @@
     </div>
 
     <!--正文-->
-    <div class="back">
-      <leftInformationbar></leftInformationbar>
-      <div class="mesboxborder">
-      <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:77px;width:800px;">
-        <el-tab-pane label="失物招领" name="first">
-          <div v-for="i in mesdata.length" :key="i">
-            <!--<span>{{ i }}</span>
-            <span>{{ mesdata[i-1].mestype }}</span>-->
-            <div v-if="mesdata[i-1].mestype === '失物招领'">
-              <el-card class="box-card">
-                <div>
-                  <img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+    <el-row>
+      <el-col span="6">
+        <leftInformationbar></leftInformationbar>
+      </el-col>
+      <el-col span="18">
+        <div class="mesboxborder">
+          <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+            <el-tab-pane label="失物招领" name="first">
+              <div v-for="i in mesdata.length" :key="i">
+                <!--<span>{{ i }}</span>
+                <span>{{ mesdata[i-1].mestype }}</span>-->
+                <div v-if="mesdata[i-1].mestype === '失物招领'" style="margin-top: 20px;margin-left: 20px">
+                  <el-card class="box-card">
+                    <div>
+                      <img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                    </div>
+                    <div class="textitem">
+                      <div>
+                        <strong style="font-size: 15px;">物品类别</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                        <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
+                        <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">发布时间</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">联系方式</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">详细信息</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                      </div>
+                      <hr/>
+                      <div style="position:relative;width:400px;">
+                        <strong style="font-size: 15px;">对方用户名</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <strong style="font-size: 15px;">完成日期</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>
+                      </div>
+                    </div>
+                  </el-card>
                 </div>
-                <div class="textitem">
-                  <div>
-                    <strong style="font-size: 15px;">物品类别</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                    <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
-                    <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">发布时间</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">联系方式</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;width:400px;">
-                    <strong style="font-size: 15px;">详细信息</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                  </div>
-                  <hr/>
-                  <div style="position:relative;width:400px;">
-                    <strong style="font-size: 15px;">对方用户名</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <strong style="font-size: 15px;">完成日期</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>
-                  </div>
-                </div>
-              </el-card>
-            </div>
-          </div>
-        </el-tab-pane>
+              </div>
+            </el-tab-pane>
 
-        <el-tab-pane label="寻物启事" name="second">
-          <div v-for="i in mesdata.length" :key="i">
-            <!--<span>{{ i }}</span>
-            <span>{{ mesdata[i-1].mestype }}</span>-->
-            <div v-if="mesdata[i-1].mestype === '寻物启事'">
-              <el-card class="box-card">
-                <div>
-                  <img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+            <el-tab-pane label="寻物启事" name="second">
+              <div v-for="i in mesdata.length" :key="i">
+                <!--<span>{{ i }}</span>
+                <span>{{ mesdata[i-1].mestype }}</span>-->
+                <div v-if="mesdata[i-1].mestype === '寻物启事'" style="margin-top: 20px;margin-left: 20px">
+                  <el-card class="box-card">
+                    <div>
+                      <img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                    </div>
+                    <div class="textitem">
+                      <div>
+                        <strong style="font-size: 15px;">物品类别</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                        <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
+                        <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">发布时间</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">联系方式</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">详细信息</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                      </div>
+                      <hr/>
+                      <div style="position:relative;width:400px;">
+                        <strong style="font-size: 15px;">对方用户名</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <strong style="font-size: 15px;">完成日期</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>
+                      </div>
+                    </div>
+                  </el-card>
                 </div>
-                <div class="textitem">
-                  <div>
-                    <strong style="font-size: 15px;">物品类别</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                    <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
-                    <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">发布时间</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;">
-                    <strong style="font-size: 15px;">联系方式</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
-                  </div>
-                  <div style="position:relative;top:3px;width:400px;">
-                    <strong style="font-size: 15px;">详细信息</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                  </div>
-                  <hr/>
-                  <div style="position:relative;width:400px;">
-                    <strong style="font-size: 15px;">对方用户名</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <strong style="font-size: 15px;">完成日期</strong>
-                    <span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>
-                  </div>
-                </div>
-              </el-card>
-            </div>
-          </div>
+              </div>
 
-        </el-tab-pane>
-      </el-tabs>
-    </div>
-    </div>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+      </el-col>
+    </el-row>
+
+
+    <!--<div class="back">-->
+      <!--<leftInformationbar></leftInformationbar>-->
+      <!--<div class="mesboxborder">-->
+      <!--<el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:77px;width:800px;">-->
+        <!--<el-tab-pane label="失物招领" name="first">-->
+          <!--<div v-for="i in mesdata.length" :key="i">-->
+            <!--&lt;!&ndash;<span>{{ i }}</span>-->
+            <!--<span>{{ mesdata[i-1].mestype }}</span>&ndash;&gt;-->
+            <!--<div v-if="mesdata[i-1].mestype === '失物招领'">-->
+              <!--<el-card class="box-card">-->
+                <!--<div>-->
+                  <!--<img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">-->
+                <!--</div>-->
+                <!--<div class="textitem">-->
+                  <!--<div>-->
+                    <!--<strong style="font-size: 15px;">物品类别</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
+                    <!--<strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>-->
+                    <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;">-->
+                    <!--<strong style="font-size: 15px;">发布时间</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;">-->
+                    <!--<strong style="font-size: 15px;">联系方式</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;width:400px;">-->
+                    <!--<strong style="font-size: 15px;">详细信息</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
+                  <!--</div>-->
+                  <!--<hr/>-->
+                  <!--<div style="position:relative;width:400px;">-->
+                    <!--<strong style="font-size: 15px;">对方用户名</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>-->
+                    <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                    <!--<strong style="font-size: 15px;">完成日期</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</el-card>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</el-tab-pane>-->
+
+        <!--<el-tab-pane label="寻物启事" name="second">-->
+          <!--<div v-for="i in mesdata.length" :key="i">-->
+            <!--&lt;!&ndash;<span>{{ i }}</span>-->
+            <!--<span>{{ mesdata[i-1].mestype }}</span>&ndash;&gt;-->
+            <!--<div v-if="mesdata[i-1].mestype === '寻物启事'">-->
+              <!--<el-card class="box-card">-->
+                <!--<div>-->
+                  <!--<img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">-->
+                <!--</div>-->
+                <!--<div class="textitem">-->
+                  <!--<div>-->
+                    <!--<strong style="font-size: 15px;">物品类别</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
+                    <!--<strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>-->
+                    <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;">-->
+                    <!--<strong style="font-size: 15px;">发布时间</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;">-->
+                    <!--<strong style="font-size: 15px;">联系方式</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>-->
+                  <!--</div>-->
+                  <!--<div style="position:relative;top:3px;width:400px;">-->
+                    <!--<strong style="font-size: 15px;">详细信息</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
+                  <!--</div>-->
+                  <!--<hr/>-->
+                  <!--<div style="position:relative;width:400px;">-->
+                    <!--<strong style="font-size: 15px;">对方用户名</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].username}}</span>-->
+                    <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                    <!--<strong style="font-size: 15px;">完成日期</strong>-->
+                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].date}}</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</el-card>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        <!--</el-tab-pane>-->
+      <!--</el-tabs>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -198,11 +295,11 @@
 
   /*消息框*/
   .mesboxborder{
-    width:950px;
+    width:850px;
+    margin-top: 30px;
     margin-right: 10%;
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
+    margin-left: 5%;
     background:white;
     border:1px solid #e4e4e4;
     height:800px;

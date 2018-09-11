@@ -17,7 +17,7 @@
 
         <div id="sheet" class="sheet">
 
-          <div style="border:2px #d6d6d6 solid;border-radius:10px;background-color: white;margin-top: 20px;padding-top:15px;padding-left:30px;width: 860px">
+          <div style="margin-top: 20px;padding-top:15px;padding-left:30px;width: 860px">
             <el-steps :active="active" style="width: 800px">
               <el-step class="test" title="项目信息" icon="el-icon-edit" align-center></el-step>
               <el-step title="信息披露层级" icon="el-icon-document" align-center></el-step>
@@ -571,15 +571,13 @@
 
     .back{
       margin-top: 10px;
-      background-image:url("/static/pic/loanBack.jpg");
-      background-size: 105% 105%;
       width: 100%;
       display:flex;
       padding-bottom: 50px;
     }
 
     .sheet{
-      margin-top: 100px;
+      margin-top: 40px;
       margin-left:18%;
 
     }

@@ -1,273 +1,170 @@
 <template>
-  <div class="col-xs-12 col-md-12 back" :style="back" style="padding: 0;background-color: #D9F3FB;">
+  <div class="col-xs-12 col-md-12 back" :style="back" style="padding: 0;background-color: #fff;">
     <div style="width: 100%;float: top;">
       <navi></navi>
     </div>
     <div>
       <right-bar></right-bar>
     </div>
-    <div class="col-xs-12 col-md-12" style="margin-top:80px;">
-      <div class="inputBorder">
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>投资金额&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio1">
-              <el-radio-button label="500以下" ></el-radio-button>
-              <el-radio-button label="500-1000"></el-radio-button>
-              <el-radio-button label="1000以上"></el-radio-button>
-            </el-radio-group>
-            <input type="number" class="selectInput" value="2000"/>
-            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
-            <input type="number" class="selectInput" value="3000"/>
-            <div style="display: inline-block;margin-left:30px;"></div>
-            <span><b>开始时间&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio2">
-              <el-radio-button label="立即开始"></el-radio-button>
-              <el-radio-button label="10天之内"></el-radio-button>
-            </el-radio-group>
-            <input type="date" class="selectInput" style="width:110px;"/>
-            <p style="display: inline;margin-left:5px;margin-right:5px;">-</p>
-            <input type="date" class="selectInput" style="width:110px;"/>
-          </div>
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>利率&nbsp&nbsp&nbsp</b></span>
-            <div style="display: inline-block;margin-left:23px;"></div>
-            <el-radio-group v-model="value_radio3">
-              <el-radio-button label="1%以下"></el-radio-button>
-              <el-radio-button label="1%-2%"></el-radio-button>
-              <el-radio-button label="2%以上"></el-radio-button>
-            </el-radio-group>
-            <input type="number" class="selectInput" value="2.5"/>
-            <p style="display: inline;margin-left:5px; margin-right:5px;">-</p>
-            <input type="number" class="selectInput" value="3"/>
-            <p style="display: inline;margin-left:5px;">%</p>
-            <div style="display: inline-block;margin-left:40px;"></div>
-            <span><b>还款期限&nbsp&nbsp&nbsp</b></span>
-            <el-radio-group v-model="value_radio4">
-              <el-radio-button label="10天"></el-radio-button>
-              <el-radio-button label="30天"></el-radio-button>
-              <el-radio-button label="60天"></el-radio-button>
-            </el-radio-group>
-            <input type="number" class="selectInput" value="90"/>
-            <p style="display: inline;margin-left:10px; margin-right:10px;">-</p>
-            <input type="number" class="selectInput" value="100"/>
-            <p style="display: inline;margin-left:10px; margin-right:10px;">天</p>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="userInput">
-            <p>用户信用评级：</p>
-            <div class="sort">
-              <div>
-                <div>
-                  <el-checkbox :indeterminate="isIndeterminateB" v-model="checkAllB" @change="handleCheckAllChangeB">全选</el-checkbox>
-                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeB" style="display: inline-block;margin-left:10px;">
-                    <el-checkbox-button v-for="indexB in indexBs" :label="indexB" :key="indexB" >{{indexB}}</el-checkbox-button>
-                  </el-checkbox-group>
-                </div>
+    <div style="margin: 20px 40px 20px 40px;">
+      <el-row>
+        <el-col span="16">
+          <el-tabs type="border-card">
+            <el-tab-pane label="一级平台">
+              <div class="form">
+              <el-form :inline="true" label-width="100px">
+                <el-form-item label="标的分类">
+                  <el-dropdown class="dropdown">
+                    <el-button type="primary" plain>
+                      购物<i class="el-icon-arrow-down el-icon--right"></i>
+                    </el-button>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>鞋帽服饰</el-dropdown-item>
+                      <el-dropdown-item>生活用品</el-dropdown-item>
+                      <el-dropdown-item>护肤美妆</el-dropdown-item>
+                      <el-dropdown-item>游戏动漫</el-dropdown-item>
+                      <el-dropdown-item>电子产品</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                  <el-dropdown class="dropdown">
+                    <el-button type="primary" plain>
+                      学习<i class="el-icon-arrow-down el-icon--right"></i>
+                    </el-button>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>学习用品</el-dropdown-item>
+                      <el-dropdown-item>书籍报刊</el-dropdown-item>
+                      <el-dropdown-item>培训考证</el-dropdown-item>
+                      <el-dropdown-item>校际交换</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                  <el-dropdown class="dropdown">
+                    <el-button type="primary" plain>
+                      娱乐<i class="el-icon-arrow-down el-icon--right"></i>
+                    </el-button>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>聚餐轰趴</el-dropdown-item>
+                      <el-dropdown-item>运动健身</el-dropdown-item>
+                      <el-dropdown-item>观看演出</el-dropdown-item>
+                      <el-dropdown-item>外出旅游</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                  <el-dropdown class="dropdown">
+                    <el-button type="primary" plain>
+                      医疗<i class="el-icon-arrow-down el-icon--right"></i>
+                    </el-button>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item>诊断治疗</el-dropdown-item>
+                      <el-dropdown-item>保健养生</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </el-form-item>
+                <el-form-item label="用户信用等级">
+                  <el-select multiple placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="项目风险评级">
+                  <el-select multiple placeholder="请选择">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="利率">
+                  <input type="number" class="selectInput" style="width:70px;"/>
+                  <p style="display: inline;margin-left:5px;margin-right:5px;">-</p>
+                  <input type="number" class="selectInput" style="width:70px;"/>
+                </el-form-item>
+                <el-form-item label="投资金额">
+                  <input type="number" class="selectInput" style="width:100px;"/>
+                  <p style="display: inline;margin-left:5px;margin-right:5px;">-</p>
+                  <input type="number" class="selectInput" style="width:100px;"/>
+                </el-form-item>
+              </el-form>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="userInput" style="margin-left:10px;">
-            <p>项目风险评级：</p>
-            <div class="sort">
-              <div>
-                <div>
-                  <el-checkbox :indeterminate="isIndeterminateC" v-model="checkAllC" @change="handleCheckAllChangeC">全选</el-checkbox>
-                  <el-checkbox-group v-model="checkboxGroup2" size="medium" @change="handleCheckedCitiesChangeC" style="display: inline-block;margin-left:10px;">
-                    <el-checkbox-button v-for="indexC in indexCs" :label="indexC" :key="indexC" >{{indexC}}</el-checkbox-button>
-                  </el-checkbox-group>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-12">
-          <div style="margin-top:1%;margin-left:1%;">
-            <span><b>标的分类&nbsp&nbsp&nbsp</b></span>
-            <el-dropdown class="dropdown">
-              <span class="el-dropdown-link">
-                购 物<i class="el-icon-arrow-down el-icon--left"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>鞋帽服饰</el-dropdown-item>
-                <el-dropdown-item>生活用品</el-dropdown-item>
-                <el-dropdown-item>护肤美妆</el-dropdown-item>
-                <el-dropdown-item>游戏动漫</el-dropdown-item>
-                <el-dropdown-item>电子产品</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown class="dropdown" style="background-color:#36A1F9;">
-              <span class="el-dropdown-link">
-                学 习<i class="el-icon-arrow-down el-icon--left"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>学习用品</el-dropdown-item>
-                <el-dropdown-item>书籍报刊</el-dropdown-item>
-                <el-dropdown-item>培训考证</el-dropdown-item>
-                <el-dropdown-item>校际交换</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown class="dropdown" style="background-color:#0E8FFA;">
-              <span class="el-dropdown-link">
-                娱 乐<i class="el-icon-arrow-down el-icon--left"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>聚餐轰趴</el-dropdown-item>
-                <el-dropdown-item>运动健身</el-dropdown-item>
-                <el-dropdown-item>观看演出</el-dropdown-item>
-                <el-dropdown-item>外出旅游</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <el-dropdown class="dropdown" style="background-color:#0B7AD6;">
-              <span class="el-dropdown-link">
-                医 疗<i class="el-icon-arrow-down el-icon--left"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>诊断治疗</el-dropdown-item>
-                <el-dropdown-item>保健养生</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-12">
-          <hr style="border:1px solid #e4e4e4;"/>
-        </div>
-        <div class="col-sm-12 col-md-12">
-          <div class="col-sm-9 col-md-9">
-            <div class="userInput" style="margin-top:0%;">
-              <p>排序维度：</p>
-              <div class="sort">
-                <el-radio-group v-model="value_radio5">
-                  <el-radio-button label="标的金额" ></el-radio-button>
-                  <el-radio-button label="开始时间"></el-radio-button>
+              <div style="margin-top: 10px;">
+                <el-radio-group >
+                  <el-radio-button label="综合排序"></el-radio-button>
+                  <el-radio-button label="标的金额"></el-radio-button>
                   <el-radio-button label="利率"></el-radio-button>
-                  <el-radio-button label="还款期限"></el-radio-button>
-                  <el-radio-button label="用户信用分数"></el-radio-button>
+                  <el-radio-button label="用户信用等级"></el-radio-button>
                   <el-radio-button label="项目风险评级"></el-radio-button>
                 </el-radio-group>
+
+                <div style="float:right;">
+                  <el-autocomplete
+                    popper-class="my-autocomplete"
+                    placeholder="请输入内容" >
+                    <i class="el-icon-edit el-input__icon"
+                       slot="suffix"
+                       @click="handleIconClick">
+                    </i>
+                    <!--<template slot-scope="{ item }">-->
+                    <!--<div class="name">{{ item.value }}</div>-->
+                    <!--<span class="addr">{{ item.address }}</span>-->
+                    <!--</template>-->
+                  </el-autocomplete>
+                </div>
+
               </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="change">
-              <div class="sort changeSecond">
-                <input type="button" v-on:click="handleClick1" value="一级平台"/>
-                <input type="button" v-on:click="handleClick2" value="二级平台"/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="div1">
-      <div class="col-xs-12 col-md-12" style="padding: 0;">
-        <div class="col-sm-8 col-md-8">
-          <div style="margin-left:10%;width:91%;">
-            <invest-list
-              v-for="item in investInformation"
-              v-bind:investList="item"
-              v-bind:key="item.id"
-            ></invest-list><br/><br/>
-          </div>
-        </div>
-        <div class="col-xs-4 col-md-4">
-          <div class="userSearch">
-            <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
-            <input type="button" class="searchButton searchBack" :style="searchBack"/>
-          </div>
-          <div class="searchBorder" style="margin-top:80px;">
-            <h3>个性推荐</h3>
-            <div class="userInput">
-              <p>投资金额：</p>
-              <input type="number" value="1000" style="width:30%;"/>
-            </div><br><br><br>
-            <div class="userInput">
-              <p style="margin-right:30px;">利率：</p>
-              <input type="number" value="1000" style="width:30%;"/>
-            </div><br><br><br><br>
-            <div class="userInput">
-              <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
-            </div>
-            <div>
-              <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-            </div>
-          </div>
-          <div class="searchBorder" style="height:500px;">
-            <h3>标的比较</h3>
-            <div class="userInput">
-              <p>请输入需要比较的标的编号：</p><br><br>
-              <p>A: </p><input type="number" value="0000" style="width:100px;"/>
-              <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-              <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="div2">
-      <div class="col-xs-12 col-md-12" style="padding: 0;">
-        <div class="col-sm-8 col-md-8">
-          <div style="margin-left:10%;width:91%;">
-            <invest-list2
-              v-for="item in investInformation2"
-              v-bind:investList="item"
-              v-bind:key="item.id"
-            ></invest-list2><br/><br/>
-          </div>
-        </div>
-        <div class="col-xs-4 col-md-4">
-          <div class="userSearch">
-            <input type="search"  name="investSearch" placeholder="请输入搜索关键词"/>
-            <input type="button" class="searchButton searchBack" :style="searchBack"/>
-          </div>
-          <div class="searchBorder" style="margin-top:80px;">
-            <h3>个性推荐</h3>
-            <div class="userInput">
-              <p>投资金额：</p>
-              <input type="number" value="1000" style="width:30%;"/>
-            </div><br><br><br>
-            <div class="userInput">
-              <p style="margin-right:30px;">利率：</p>
-              <input type="number" value="1000" style="width:30%;"/>
-            </div><br><br><br><br>
-            <div class="userInput">
-              <input type="submit" value="个性推荐" style="width:50%;" onclick="location.href='/recommend'"/>
-            </div>
-            <div>
-              <img src="../../static/pic/library.jpg"  alt="您无法查看此图片" class = "picture" style="margin-top:20px;"/>
-            </div>
-          </div>
-          <div class="searchBorder" style="height:500px;">
-            <h3>标的比较</h3>
-            <div class="userInput">
-              <p>请输入需要比较的标的编号：</p><br><br>
-              <p>A: </p><input type="number" value="0000" style="width:100px;"/>
-              <p>B: </p><input type="number" value="0100" style="width:100px;"/><br><br>
-              <div id="myradar2" style="width: 310px;height: 350px;margin-left:3%;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-12" style="padding:0">
-      <div class="center">
-        <ul class="pagination model">
-          <li><a href="#" class="prev">&laquo</a></li>
-          <li><a href="#" class="active">1</a></li>
-          <li> <a href="#">2</a></li>
-          <li> <a href="#">3</a></li>
-          <li> <a href="#">4</a></li>
-          <li> <a href="#">5</a></li>
-          <li> <a href="#">6</a></li>
-          <li> <a href="#">7</a></li>
-          <li> <a href="#">8</a></li>
-          <li> <a href="#">9</a></li>
-          <li><a href="#" class="next">&raquo;</a></li>
-        </ul><br>
-      </div>
+
+              <invest-list
+                v-for="item in investInformation"
+                v-bind:investList="item"
+                v-bind:key="item.id"
+              ></invest-list>
+            </el-tab-pane>
+            <el-tab-pane label="二级平台">二级平台</el-tab-pane>
+          </el-tabs>
+        </el-col>
+        <el-col span="8">
+          <el-card shadow="hover" style="margin-left: 10px;margin-right: 10px;">
+            <el-tabs>
+              <el-tab-pane label="标的推荐" >
+                <el-form>
+                  <el-form-item label="投资金额">
+                    <el-input placeholder="请输入内容"></el-input>
+                  </el-form-item>
+                  <el-form-item label="利率">
+                    <el-input placeholder="请输入内容"></el-input>
+                  </el-form-item>
+                  <el-form-item>
+                    <el-button type="primary">个性推荐</el-button>
+                  </el-form-item>
+                </el-form>
+              </el-tab-pane>
+            </el-tabs>
+            <el-tabs>
+              <el-tab-pane label="标的比较" >
+                <el-form :inline="true">
+                  <el-form-item label="编号">
+                    <el-input placeholder="" style="width: 80px"></el-input>
+                  </el-form-item>
+                  <el-form-item label="编号" style="margin-left: 20px;">
+                    <el-input placeholder="" style="width: 80px"></el-input>
+                  </el-form-item>
+                  <el-form-item>
+                    <div id="myradar" style="width: 310px;height: 350px;margin-left:3%;"></div>
+                  </el-form-item>
+                  <el-form-item>
+                    <el-button type="primary">
+                      标的比较
+                    </el-button>
+                  </el-form-item>
+                </el-form>
+              </el-tab-pane>
+            </el-tabs>
+          </el-card>
+        </el-col>
+      </el-row>
     </div>
     <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
       <footerBar></footerBar>
@@ -306,6 +203,15 @@
       return{
         div1:true,
         div2:false,
+        user_value: 0,
+        target_value: 4,
+        options:[
+          {value: 4, label: 'AA'},
+          {value: 3, label: 'A'},
+          {value: 2, label: 'B'},
+          {value: 1, label: 'C'},
+          {value: 0, label: 'D'},
+        ],
         activeName: 'first',
         date_value_choose: '',
         checkboxGroup2: [],
@@ -340,12 +246,7 @@
           {id:"0009", beginTime:"2018.11.03", endTime:"2018.12.01", name:"Chanel香水", type:"CONSMETIC", profit:"8.56%", money:"800", remainMoney:"320", finishProgress:0.6,range:"C"},
         ],
         back:{
-          backgroundImage:"url(" + require("../../static/pic/investListBack.jpg") + ")",
-          backgroundRepeat:"no-repeat",
-          backgroundAttachment:"fixed",
-          backgroundSize:"100% auto",
-          /*backgroundSize:"150% 150%",*/
-          backgroundPosition: "0% 0%",
+
         },
         backPic:{
           backgroundImage:"url(" + require("../../static/pic/notice.jpg") + ")",
@@ -456,27 +357,20 @@
           }]
         });
       },
+      loadAll() {
+        return [
+          { "value": "哈哈哈", "address": "吼吼吼" },
+          { "value": "哈哈哈哈哈", "address": "吼吼吼吼" },
+        ];
+      },
     }
   }
 </script>
 
 <style scoped>
-  .change{
-    float:right;
-    margin-right:3%;
-  }
-  .sort{
-    display: inline-block;
-  }
-  .changeSecond input{
-    background: white;
-    border:1px solid #e4e4e4;
-    height:37px;
-    width:110px;
-  }
-  .changeSecond input:focus{
-    background:#409EFF;
-    color:white;
+  .card {
+    border-radius: 0px;
+    border-color: #c7defa;
   }
   .selectInput{
     display: inline;
@@ -489,171 +383,12 @@
     border-radius: 3px;
     text-align: center;
   }
-  .dropdown{
-    border:1px solid transparent;
-    width:80px;
-    height:25px;
-    text-align: center;
-    margin-left:20px;
-    background-color: #59B1F9;
-    color:white;
+  .dropdown {
+    margin-left: 20px;
   }
-  .recommend{
-    font-size:14px;
-    float: left;
-    margin-left:5%;
-    width:95%;
-  }
-  .recommend input[type=number]{
-    width:30%;
-  }
-  .searchBorder{
-    text-align: center;
-    background:white;
-    border:1px solid #e4e4e4;
-    border-top:5px solid #4285F4;
-    height:400px;
-    margin-right:22%;
-    margin-top:30px;
-  }
-  .searchButton{
-    width:30%;
-    background: white;
-    border:2px solid #e4e4e4;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin-top:5px;
-  }
-  .picture{
-    height:150px;
-    width:100%;
-  }
-  .userSearch{
-    border:2px solid lightblue;
-    display: inline;
-    float:right;
-    margin-right:22%;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    margin-top:5%;
-    height:32px;
-    width:75%;
-    background: white;
-  }
-  .userSearch input {
-    margin-top:1%;
-    border-style: none;
-  }
-  .userSearch input[type=search] {
-    margin-left:4%;
-    display: inline;
-    width:76%;
-  }
-  .userSearch input[type=search]:focus{
-    outline:none;
-  }
-  .userSearch input[type=button] {
-    float: right;
-    display: inline;
-    width:13%;
-    margin-top:0%;
-    height:100%;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-  }
-  .userSearch input[type=button]:focus {
-    outline:none;
-  }
-  .inputBorder{
-    border: 1px solid #DEDDDD;
-    margin-left:7%;
-    margin-right:7%;
-    background-color:white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    height:300px;
-    margin-bottom: 20px;
-  }
-  .userInput{
-    margin-top:2%;
-    font-size:14px;
-    font-weight: 900;
-    float: left;
-    width:95%;
-    margin-left:1%;
-  }
-  .userInput input{
-    width:10%;
-    box-sizing: border-box;
-    border: 1px solid #e4e4e4;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-left:3%;
-    color:#B9B8B8;
-  }
-  .userInput p{
-    display: inline;
-    margin-left:1%;
-  }
-  .userInput input:focus{
-    border: 1px solid lightblue;
-  }
-  .userInput input[type=date]{
-    width:24%;
-  }
-  .userInput select{
-    width:18%;
-    height:30px;
-    box-sizing: border-box;
-    border: 1px solid #e4e4e4;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  .userInput input[type=button]{
-    width:14%;
-    margin-left:1%;
-    background-color:#E8F2FA;
-    border:1px solid #e4e4e4;
-    color:#B9B8B8;
-  }
-  .userInput input[type=button]:hover{
-    background-color:#409EFF;
-    color:white;
-  }
-  .userInput input[type=submit]{
-    background: #4285F4;
-    border-color: #4285F4;
-    color:white;
-
-  }
-  .pagination {
-    margin-top:50px;
-    margin-left:25%;
-    list-style: none;
-    display: inline-block;
-    padding: 0;
-  }
-  .pagination li {
-    display: inline;
-    text-align: center;
-  }
-  .pagination a {
-    display: block;
-    font-size: 14px;
-    text-decoration: none;
-    padding: 5px 12px;
-    color: #4285F4;
-    border: 1px solid transparent;
-    line-height: 1.5;
-  }
-  .pagination a.active {
-    cursor: default;
-  }
-  .pagination a:active {
-    outline: none;
+  .form {
+    padding-top: 20px;
+    padding-left: 20px;
+    border:0.5px #c7defa solid;
   }
 </style>

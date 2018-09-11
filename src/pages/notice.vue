@@ -11,69 +11,135 @@
       </div>
     </div>
 
+    <el-row>
+      <el-col span="6">
+        <leftInformationbar></leftInformationbar>
+      </el-col>
+      <el-col span="18">
+        <div class="publishmes" >
+          <el-form :rules="rules"
+                   :inline="true"
+                   ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">
+            <el-form-item label="消息性质" prop="type">
+              <el-radio-group v-model="sizeForm.type" size="small">
+                <el-radio border label="失物招领"></el-radio>
+                <el-radio border label="寻物启事"></el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="物品类别" prop="itemtype" style="position:relative;left:50px;">
+              <el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">
+                <el-option label="校园卡" value="校园卡"></el-option>
+                <el-option label="钥匙" value="钥匙"></el-option>
+                <el-option label="证件" value="证件"></el-option>
+                <el-option label="其他" value="其他"></el-option>
+              </el-select>
+            </el-form-item>
+            <br/>
+            <el-form-item label="物品名称" prop="name" >
+              <el-input v-model="sizeForm.name"
+                        palceholder="请输入物品名称"
+                        style="width:203px;"></el-input>
+            </el-form-item>
+            <el-form-item label="联系方式"
+                          prop="phone"
+                          style="position:relative;left:50px;">
+              <el-input v-model.number="sizeForm.phone"
+                        type="phone"
+                        style="width:200px;"
+                        placeholder="QQ号"></el-input>
+            </el-form-item>
+            <br/>
+            <el-form-item label="物品图片" prop="pic" >
+              <el-upload class="upload-demo"
+                         drag
+                         action="https://jsonplaceholder.typicode.com/posts/"
+                         multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+              </el-upload>
+            </el-form-item>
+            <br/>
+            <el-form-item label="物品信息" prop="desc" >
+              <el-input type="textarea"
+                        style="width:360px"
+                        minRows="1"
+                        maxRows="3"
+                        autosize
+                        placeholder="请输物品的详细信息"
+                        v-model="sizeForm.desc"></el-input>
+            </el-form-item>
+            <br/>
+            <el-form-item size="large" style="margin-top: 20px">
+              <el-button type="primary" @click="onSubmit()">发布</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </el-col>
+    </el-row>
     <!--正文-->
-    <div class="back">
-      <leftInformationbar></leftInformationbar>
-      <div class="publishmes" >
-      <el-form :rules="rules"
-               :inline="true"
-               ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">
-        <el-form-item label="消息性质" prop="type">
-          <el-radio-group v-model="sizeForm.type" size="small">
-            <el-radio border label="失物招领"></el-radio>
-            <el-radio border label="寻物启事"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="物品类别" prop="itemtype" style="position:relative;left:50px;">
-          <el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">
-            <el-option label="校园卡" value="校园卡"></el-option>
-            <el-option label="钥匙" value="钥匙"></el-option>
-            <el-option label="证件" value="证件"></el-option>
-            <el-option label="其他" value="其他"></el-option>
-          </el-select>
-        </el-form-item>
-        <br/>
-        <el-form-item label="物品名称" prop="name" >
-          <el-input v-model="sizeForm.name"
-                    palceholder="请输入物品名称"
-                    style="width:203px;"></el-input>
-        </el-form-item>
-        <el-form-item label="联系方式"
-                      prop="phone"
-                      style="position:relative;left:50px;">
-          <el-input v-model.number="sizeForm.phone"
-                    type="phone"
-                    style="width:200px;"
-                    placeholder="QQ号"></el-input>
-        </el-form-item>
-        <br/>
-        <el-form-item label="物品图片" prop="pic" >
-          <el-upload class="upload-demo"
-                     drag
-                     action="https://jsonplaceholder.typicode.com/posts/"
-                     multiple>
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
-        </el-form-item>
-        <br/>
-        <el-form-item label="物品信息" prop="desc" >
-          <el-input type="textarea"
-                    style="width:360px"
-                    minRows="1"
-                    maxRows="3"
-                    autosize
-                    placeholder="请输物品的详细信息"
-                    v-model="sizeForm.desc"></el-input>
-        </el-form-item>
-        <br/>
-        <el-form-item size="large" style="position:absolute;left:550px;">
-          <el-button type="primary" @click="onSubmit()">发布</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
-    </div>
+    <!--<div class="back">-->
+      <!--<leftInformationbar></leftInformationbar>-->
+      <!--<div class="publishmes" >-->
+      <!--<el-form :rules="rules"-->
+               <!--:inline="true"-->
+               <!--ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">-->
+        <!--<el-form-item label="消息性质" prop="type">-->
+          <!--<el-radio-group v-model="sizeForm.type" size="small">-->
+            <!--<el-radio border label="失物招领"></el-radio>-->
+            <!--<el-radio border label="寻物启事"></el-radio>-->
+          <!--</el-radio-group>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item label="物品类别" prop="itemtype" style="position:relative;left:50px;">-->
+          <!--<el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">-->
+            <!--<el-option label="校园卡" value="校园卡"></el-option>-->
+            <!--<el-option label="钥匙" value="钥匙"></el-option>-->
+            <!--<el-option label="证件" value="证件"></el-option>-->
+            <!--<el-option label="其他" value="其他"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
+        <!--<br/>-->
+        <!--<el-form-item label="物品名称" prop="name" >-->
+          <!--<el-input v-model="sizeForm.name"-->
+                    <!--palceholder="请输入物品名称"-->
+                    <!--style="width:203px;"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item label="联系方式"-->
+                      <!--prop="phone"-->
+                      <!--style="position:relative;left:50px;">-->
+          <!--<el-input v-model.number="sizeForm.phone"-->
+                    <!--type="phone"-->
+                    <!--style="width:200px;"-->
+                    <!--placeholder="QQ号"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<br/>-->
+        <!--<el-form-item label="物品图片" prop="pic" >-->
+          <!--<el-upload class="upload-demo"-->
+                     <!--drag-->
+                     <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                     <!--multiple>-->
+            <!--<i class="el-icon-upload"></i>-->
+            <!--<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
+            <!--<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>-->
+          <!--</el-upload>-->
+        <!--</el-form-item>-->
+        <!--<br/>-->
+        <!--<el-form-item label="物品信息" prop="desc" >-->
+          <!--<el-input type="textarea"-->
+                    <!--style="width:360px"-->
+                    <!--minRows="1"-->
+                    <!--maxRows="3"-->
+                    <!--autosize-->
+                    <!--placeholder="请输物品的详细信息"-->
+                    <!--v-model="sizeForm.desc"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<br/>-->
+        <!--<el-form-item size="large" style="position:absolute;left:550px;">-->
+          <!--<el-button type="primary" @click="onSubmit()">发布</el-button>-->
+        <!--</el-form-item>-->
+      <!--</el-form>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -198,18 +264,13 @@
   .publishmes{
     background:white;
     border:1px solid #e4e4e4;
-    //border-top:5px solid dodgerblue;
     height:630px;
-    //width:100%;
-    width:950px;
-    margin-right: 10%;
-    margin-left: 16%;
+    width:850px;
+    margin: 30px 10% 50px 3%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
   }
 
 </style>

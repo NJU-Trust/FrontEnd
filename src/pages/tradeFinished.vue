@@ -10,164 +10,168 @@
         <p style="color: #777777;">欢迎来这里，让您的闲置创造价值！</p>
       </div>
     </div>
+    <el-row>
+      <el-col span="6">
+        <left-trade-bar></left-trade-bar>
+      </el-col>
+
+      <el-col span="18">
+
+        <div class="mesboxborder" >
+          <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+            <el-tab-pane label="已卖出" name="first">
+              <div v-for="i in soldData.length" :key="i">
+                <div style="margin-top: 20px;margin-left: 20px">
+                  <el-card class="box-card">
+                    <div>
+                      <img v-bind:src=soldData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                    </div>
+                    <div class="textitem">
+                      <div>
+                        <strong style="font-size: 15px;">物品名称</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">订单编号</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].num}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">物品种类</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].type}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">联系方式</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].contact}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">目标价格</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].price}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">物品描述</strong>
+                        <span style="position:relative;left:20px;">{{soldData[i-1].description}}</span>
+                      </div>
+
+                    </div>
+                  </el-card>
+                </div>
+              </div>
+            </el-tab-pane>
+
+            <el-tab-pane label="待评价" name="second">
+              <div v-for="i in commentData.length" :key="i">
+                <div v-show="commentData[i-1].state" style="margin-top: 20px;margin-left: 20px">
+                  <el-card class="box-card">
+                    <div>
+                      <img v-bind:src=commentData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                    </div>
+                    <div class="textitem">
+                      <div>
+                        <strong style="font-size: 15px;">物品名称</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">订单编号</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].num}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">物品种类</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].type}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">联系方式</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].contact}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">目标价格</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].price}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">物品描述</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].description}}</span>
+                      </div>
+
+                      <el-button type="success"
+                                 round size="small"
+                                 @click="dialogFormVisible = true"
+                                 style="margin-top: 20px">评分</el-button>
+                      <el-dialog title="评价"
+                                 width="40%"
+                                 :visible.sync="dialogFormVisible">
+                        <el-form :model="form" >
+                          <el-form-item label="评分" :label-width="formLabelWidth" prop="name">
+                            <el-rate
+                              v-model="value3"
+                              show-text>
+                            </el-rate>
+                          </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                          <el-button @click="dialogFormVisible=false">取 消</el-button>
+                          <el-button type="primary" @click="dialogFormVisible=done(commentData[i-1])">确 定</el-button>
+                        </div>
+                      </el-dialog>
+                    </div>
+                  </el-card>
+                </div>
+              </div>
+            </el-tab-pane>
+
+            <el-tab-pane label="已评价" name="third">
+              <div v-for="i in commentData.length" :key="i">
+                <div v-show="!commentData[i-1].state" style="margin-top: 20px;margin-left: 20px">
+                  <el-card class="box-card">
+                    <div>
+                      <img v-bind:src=commentData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                    </div>
+                    <div class="textitem">
+                      <div>
+                        <strong style="font-size: 15px;">物品名称</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">订单编号</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].num}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">物品种类</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].type}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">联系方式</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].contact}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">目标价格</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].price}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:400px;">
+                        <strong style="font-size: 15px;">物品描述</strong>
+                        <span style="position:relative;left:20px;">{{ commentData[i-1].description}}</span>
+                      </div>
+                    </div>
+                  </el-card>
+                </div>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+        <!--<el-pagination-->
+          <!--background-->
+          <!--layout="prev, pager, next"-->
+          <!--style="left:600px;"-->
+          <!--:total=soldData.length>-->
+        <!--</el-pagination>-->
+      </el-col>
+    </el-row>
+
+
 
     <!--左边栏-->
 
     <right-bar></right-bar>
 
-    <!--正文-->
 
-        <div>
-          <leftTradeBar></leftTradeBar>
-        </div>
-
-      <div class="mesboxborder" >
-        <el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:77px;width:800px;">
-          <el-tab-pane label="已卖出" name="first">
-            <div v-for="i in soldData.length" :key="i">
-              <div>
-                <el-card class="box-card">
-                  <div>
-                    <img v-bind:src=soldData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-                  </div>
-                  <div class="textitem">
-                    <div>
-                      <strong style="font-size: 15px;">物品名称</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].name}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">订单编号</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].num}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">物品种类</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].type}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">联系方式</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].contact}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">目标价格</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].price}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">物品描述</strong>
-                      <span style="position:relative;left:20px;">{{soldData[i-1].description}}</span>
-                    </div>
-
-                  </div>
-                </el-card>
-              </div>
-            </div>
-          </el-tab-pane>
-
-          <el-tab-pane label="待评价" name="second">
-            <div v-for="i in commentData.length" :key="i">
-              <div v-show="commentData[i-1].state">
-                <el-card class="box-card">
-                  <div>
-                    <img v-bind:src=commentData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-                  </div>
-                  <div class="textitem">
-                    <div>
-                      <strong style="font-size: 15px;">物品名称</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].name}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">订单编号</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].num}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">物品种类</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].type}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">联系方式</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].contact}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">目标价格</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].price}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">物品描述</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].description}}</span>
-                    </div>
-
-                    <el-button type="success"
-                               round size="small"
-                               @click="dialogFormVisible = true"
-                               style="position:absolute;left:300px;top:150px;">评分</el-button>
-                    <el-dialog title="评价"
-                               width="40%"
-                               :visible.sync="dialogFormVisible">
-                      <el-form :model="form" >
-                        <el-form-item label="评分" :label-width="formLabelWidth" prop="name">
-                          <el-rate
-                            v-model="value3"
-                            show-text>
-                          </el-rate>
-                        </el-form-item>
-                      </el-form>
-                      <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogFormVisible=false">取 消</el-button>
-                        <el-button type="primary" @click="dialogFormVisible=done(commentData[i-1])">确 定</el-button>
-                      </div>
-                    </el-dialog>
-                  </div>
-                </el-card>
-              </div>
-            </div>
-          </el-tab-pane>
-
-          <el-tab-pane label="已评价" name="third">
-            <div v-for="i in commentData.length" :key="i">
-              <div v-show="!commentData[i-1].state">
-                <el-card class="box-card">
-                  <div>
-                    <img v-bind:src=commentData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-                  </div>
-                  <div class="textitem">
-                    <div>
-                      <strong style="font-size: 15px;">物品名称</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].name}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">订单编号</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].num}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">物品种类</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].type}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">联系方式</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].contact}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">目标价格</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].price}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:400px;">
-                      <strong style="font-size: 15px;">物品描述</strong>
-                      <span style="position:relative;left:20px;">{{ commentData[i-1].description}}</span>
-                    </div>
-                  </div>
-                </el-card>
-              </div>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        style="position:absolute;left:750px;top:850px;"
-        :total=soldData.length>
-      </el-pagination>
-
-    <!--右边栏-->
 
 
     <!--底栏-->
@@ -272,11 +276,11 @@
 
   /*消息框*/
   .mesboxborder{
-    width:950px;
+    width:850px;
     margin-right: 10%;
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
+    margin-top: 30px;
+    margin-left: 3%;
     background:white;
     border:1px solid #e4e4e4;
     height:800px;

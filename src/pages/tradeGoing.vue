@@ -10,82 +10,161 @@
       <p style="color: #777777;">欢迎来这里，让您的闲置创造价值！</p>
     </div>
   </div>
-
-  <!--左边栏-->
   <div>
-    <leftTradeBar></leftTradeBar>
+    <div>
+      <el-row>
+        <el-col span="6">
+          <left-trade-bar></left-trade-bar>
+        </el-col>
+
+        <el-col span="18">
+          <div class="mesboxborder">
+            <el-tabs v-model="activeName2" type="card"  @tab-click="handleClick" style="width:800px;">
+              <div v-for="i in commData.length" :key="i">
+                <el-card v-if=commData[i-1].state class="box-card">
+                  <div>
+                    <img v-bind:src=commData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
+                  </div>
+                  <div class="textitem">
+                    <div>
+                      <strong style="font-size: 15px;">物品名称</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].name}}</span>
+                    </div>
+                    <div style="position:relative;top:5px;">
+                      <strong style="font-size: 15px;">订单编号</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].num}}</span>
+                    </div>
+                    <div style="position:relative;top:5px;">
+                      <strong style="font-size: 15px;">物品种类</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].type}}</span>
+                    </div>
+                    <div style="position:relative;top:5px;">
+                      <strong style="font-size: 15px;">联系方式</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].contact}}</span>
+                    </div>
+                    <div style="position:relative;top:5px;width:400px;">
+                      <strong style="font-size: 15px;">目标价格</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].price}}</span>
+                    </div>
+                    <div style="position:relative;top:5px;width:400px;">
+                      <strong style="font-size: 15px;">物品描述</strong>
+                      <span style="position:relative;left:20px;">{{ commData[i-1].description}}</span>
+                    </div>
+                    <el-button type="success"
+                               round size="small"
+                               @click="dialogFormVisible = true"
+                               style="position:absolute;top:150px;">确认完成</el-button>
+                    <el-dialog title="确认完成"
+                               width="40%"
+                               :visible.sync="dialogFormVisible">
+                      <el-form :model="form" >
+                        <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                          <el-input v-model="form.name"
+                                    style="width:330px;"
+                                    auto-complete="off"></el-input>
+                        </el-form-item>
+                      </el-form>
+                      <div slot="footer" class="dialog-footer">
+                        <el-button @click="dialogFormVisible=false">取 消</el-button>
+                        <el-button type="primary" @click="dialogFormVisible=done(commData[i-1])">确 定</el-button>
+                      </div>
+                    </el-dialog>
+                  </div>
+                </el-card>
+              </div>
+              <br/><br/>
+              <el-pagination
+                background
+                layout="prev, pager, next"
+                style="position:relative;left: 300px"
+                :total="30">
+              </el-pagination>
+            </el-tabs>
+            <br/>
+            <br/>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
   </div>
+
+
+
+  <!--&lt;!&ndash;左边栏&ndash;&gt;-->
+  <!--<div>-->
+    <!--<leftTradeBar></leftTradeBar>-->
+  <!--</div>-->
 
 
   <!--正文-->
-  <el-row>
-  <div class="mesboxborder" style="position:relative;left:80px;top:-350px;">
-    <el-tabs v-model="activeName2" type="card"  @tab-click="handleClick" style="position:relative;top:35px;left:90px;width:800px;">
-      <div v-for="i in commData.length" :key="i">
-        <el-card v-if=commData[i-1].state class="box-card">
-          <div>
-            <img v-bind:src=commData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-          </div>
-          <div class="textitem">
-          <div>
-            <strong style="font-size: 15px;">物品名称</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].name}}</span>
-          </div>
-          <div style="position:relative;top:3px;">
-            <strong style="font-size: 15px;">订单编号</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].num}}</span>
-          </div>
-          <div style="position:relative;top:3px;">
-            <strong style="font-size: 15px;">物品种类</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].type}}</span>
-          </div>
-          <div style="position:relative;top:3px;">
-            <strong style="font-size: 15px;">联系方式</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].contact}}</span>
-          </div>
-          <div style="position:relative;top:3px;width:400px;">
-            <strong style="font-size: 15px;">目标价格</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].price}}</span>
-          </div>
-          <div style="position:relative;top:3px;width:400px;">
-            <strong style="font-size: 15px;">物品描述</strong>
-            <span style="position:relative;left:20px;">{{ commData[i-1].description}}</span>
-          </div>
-          <el-button type="success"
-                     round size="small"
-                     @click="dialogFormVisible = true"
-                     style="position:absolute;left:300px;top:150px;">确认完成</el-button>
-          <el-dialog title="确认完成"
-                     width="40%"
-                     :visible.sync="dialogFormVisible">
-            <el-form :model="form" >
-              <el-form-item label="对方用户名" :label-width="formLabelWidth">
-                <el-input v-model="form.name"
-                          style="width:330px;"
-                          auto-complete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible=false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible=done(commData[i-1])">确 定</el-button>
-            </div>
-          </el-dialog>
-        </div>
-        </el-card>
-      </div>
-      <br/><br/>
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        style="position:relative;left:350px;"
-        :total="30">
-      </el-pagination>
-    </el-tabs>
-    <br/>
-    <br/>
+  <!--<el-row>-->
+  <!--<div class="mesboxborder" style="position:relative;left:80px;top:-350px;">-->
+    <!--<el-tabs v-model="activeName2" type="card"  @tab-click="handleClick" style="position:relative;top:35px;left:90px;width:800px;">-->
+      <!--<div v-for="i in commData.length" :key="i">-->
+        <!--<el-card v-if=commData[i-1].state class="box-card">-->
+          <!--<div>-->
+            <!--<img v-bind:src=commData[i-1].pic style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">-->
+          <!--</div>-->
+          <!--<div class="textitem">-->
+          <!--<div>-->
+            <!--<strong style="font-size: 15px;">物品名称</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].name}}</span>-->
+          <!--</div>-->
+          <!--<div style="position:relative;top:3px;">-->
+            <!--<strong style="font-size: 15px;">订单编号</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].num}}</span>-->
+          <!--</div>-->
+          <!--<div style="position:relative;top:3px;">-->
+            <!--<strong style="font-size: 15px;">物品种类</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].type}}</span>-->
+          <!--</div>-->
+          <!--<div style="position:relative;top:3px;">-->
+            <!--<strong style="font-size: 15px;">联系方式</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].contact}}</span>-->
+          <!--</div>-->
+          <!--<div style="position:relative;top:3px;width:400px;">-->
+            <!--<strong style="font-size: 15px;">目标价格</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].price}}</span>-->
+          <!--</div>-->
+          <!--<div style="position:relative;top:3px;width:400px;">-->
+            <!--<strong style="font-size: 15px;">物品描述</strong>-->
+            <!--<span style="position:relative;left:20px;">{{ commData[i-1].description}}</span>-->
+          <!--</div>-->
+          <!--<el-button type="success"-->
+                     <!--round size="small"-->
+                     <!--@click="dialogFormVisible = true"-->
+                     <!--style="position:absolute;left:300px;top:150px;">确认完成</el-button>-->
+          <!--<el-dialog title="确认完成"-->
+                     <!--width="40%"-->
+                     <!--:visible.sync="dialogFormVisible">-->
+            <!--<el-form :model="form" >-->
+              <!--<el-form-item label="对方用户名" :label-width="formLabelWidth">-->
+                <!--<el-input v-model="form.name"-->
+                          <!--style="width:330px;"-->
+                          <!--auto-complete="off"></el-input>-->
+              <!--</el-form-item>-->
+            <!--</el-form>-->
+            <!--<div slot="footer" class="dialog-footer">-->
+              <!--<el-button @click="dialogFormVisible=false">取 消</el-button>-->
+              <!--<el-button type="primary" @click="dialogFormVisible=done(commData[i-1])">确 定</el-button>-->
+            <!--</div>-->
+          <!--</el-dialog>-->
+        <!--</div>-->
+        <!--</el-card>-->
+      <!--</div>-->
+      <!--<br/><br/>-->
+      <!--<el-pagination-->
+        <!--background-->
+        <!--layout="prev, pager, next"-->
+        <!--style="position:relative;left:350px;"-->
+        <!--:total="30">-->
+      <!--</el-pagination>-->
+    <!--</el-tabs>-->
+    <!--<br/>-->
+    <!--<br/>-->
 
-  </div>
-  </el-row>
+  <!--</div>-->
+  <!--</el-row>-->
   <!--右边栏-->
   <div>
     <right-bar></right-bar>
@@ -187,10 +266,11 @@
     background:white;
     border:1px solid #e4e4e4;
     border-top:5px solid dodgerblue;
-
-    width:1000px;
+    margin-top: 30px;
+    width:830px;
+    padding: 10px;
     margin-right: 10%;
-    margin-left: 16%;
+    margin-left: 5%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);

@@ -6,11 +6,12 @@
     <div>
       <right-bar></right-bar>
     </div>
+    <br/>
+    <br/>
+    <br/>
     <div class="square">
-
-      <br><br>
-
-      <p class="slogan">Trust us, receive fond</p><br><br><br>
+      <br><br><br>
+      <p class="slogan">请选择借款项目类型</p><br><br><br>
 
       <div style="display: flex;">
         <div class="btn" onclick="location.href='/loan'">
@@ -74,11 +75,10 @@
 
 <style scoped>
   .square{
-    margin-top:120px;
-    margin-left:12.5%;
-    width:75%;
+    width:800px;
     height:500px;
     background-color:rgba(111,109,109,0.6);
+    margin: auto;
   }
   .slogan{
     color:white;
@@ -132,11 +132,10 @@
 
   .btn{
     margin-top: 20px;
-    margin-left: 240px;
+    margin-left: 150px;
     width: 180px;
     height: 200px;
   }
-
   .btn:hover{
     cursor: pointer;
   }

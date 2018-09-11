@@ -4,7 +4,7 @@
     <img src="/static/pic/Investing.png" class="img-responsive"
          alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">
     <div class="mytable">
-      <div class="base-info" style="padding:50px 0px 0px 30px; font-size:15px;margin-left:20%;">
+      <div class="base-info" style="padding:50px 0px 0px 30px;font-size:15px;margin-left:20%;">
         <label>标的状态：</label>
         <select name="state" type="hidden" v-model.lazy="state" style="color:black;">
           <option value="">所有</option>

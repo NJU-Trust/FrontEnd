@@ -10,164 +10,118 @@
         <p style="color: #777777;">欢迎来这里，让您的闲置创造价值！</p>
       </div>
     </div>
-
-    <!--左边栏-->
     <div>
-      <leftTradeBar></leftTradeBar>
-    </div>
-
-    <!--正文-->
-    <div class="back">
-
-    <div class="mesboxborder">
-      <!---走马灯部分--->
-      <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
-        <el-tabs type="border-card">
-          <el-tab-pane >
-            <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;鱼塘上新</span>
-            <div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">
-              <template>
-                <el-carousel :interval="3000" type="card" height="250px">
-                  <el-carousel-item v-for="i in topData.length" :key="i">
-                    <div >
-                      <img v-bind:src=topData[i-1].pic style="width:360px;height:230px;margin-top:9px;margin-left:13px;" class="picbox" alt="User_pic">
+      <div>
+        <el-row>
+          <el-col span="6">
+            <left-trade-bar></left-trade-bar>
+          </el-col>
+          <el-col span="18">
+            <div style="position:relative;top:20px;margin-left:6%;margin-right:3%;">
+              <el-tabs type="border-card">
+                <el-tab-pane >
+                  <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;鱼塘上新</span>
+                  <div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">
+                    <template>
+                      <el-carousel :interval="3000" type="card" height="250px">
+                        <el-carousel-item v-for="i in topData.length" :key="i">
+                          <div >
+                            <img v-bind:src=topData[i-1].pic style="width:360px;height:230px;margin-top:9px;margin-left:13px;" class="picbox" alt="User_pic">
+                          </div>
+                        </el-carousel-item>
+                      </el-carousel>
+                    </template>
+                    <!----
+                    <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
+                      <span style="font-size:10px;">*点击图片快速查看详细信息</span>
                     </div>
-                  </el-carousel-item>
-                </el-carousel>
-              </template>
-              <!----
-              <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
-                <span style="font-size:10px;">*点击图片快速查看详细信息</span>
-              </div>
-              --->
+                    --->
+
+                  </div>
+                </el-tab-pane>
+              </el-tabs>
+            </div>
+
+            <div style="position:relative;top:20px;margin-left:6%;margin-right:3%;">
+              <hr/>
+              <el-tabs type="border-card" >
+                <el-tab-pane >
+                  <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
+                  <el-row :gutter="20">
+                    <el-col :span="16"><template>
+                      <div style="margin-top: 20px">
+                        <span><strong>&nbsp;&nbsp;类别筛选&nbsp;&nbsp;</strong></span>
+                        <br/>
+                        <el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>
+
+                      </div>
+                    </template></el-col>
+                    <el-col :span="8"><div style="margin-top: 15px;">
+                      <el-input placeholder="范围搜索" class="input-with-select">
+                        <el-select  slot="prepend" placeholder="请选择">
+                          <el-option label="名称" value="1"></el-option>
+                          <el-option label="类别" value="2"></el-option>
+                          <el-option label="描述" value="3"></el-option>
+                        </el-select>
+                        <el-button slot="append" icon="el-icon-search"></el-button>
+                      </el-input>
+                    </div></el-col>
+                  </el-row>
+                  <el-row :gutter="5" v-for="r in 2" :key="r" style="position:relative;top:20px;">
+                    <br/>
+                    <el-col :span="7" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 1 : 0"style="position:relative;top:20px;">
+                      <el-card :body-style="{ padding: '5px' }">
+                        <img v-bind:src=commData[(r-1)*3+o-1].pic class="image" style="height:200px;">
+                        <div style="padding: 14px;">
+                          <strong style="font-size: 18px;">{{commData[(r-1)*3+o-1].name}}</strong>
+                          <el-collapse v-model="activeName" accordion >
+                            <el-collapse-item  name="1">
+                              <span slot="title" style="font-size: 17px;">详细信息</span>
+                              <div style="position:relative;top:3px;">
+                                <i class="el-icon-menu"></i><strong style="font-size: 14px;">种类</strong>
+                                <span style="position:relative;left:20px;">{{commData[(r-1)*3+o-1].type}}</span>
+                              </div>
+                              <div style="position:relative;top:3px;">
+
+                                <i class="el-icon-phone"></i><strong style="font-size: 15px;">电话</strong>
+                                <span style="position:relative;left:20px;">{{commData[(r-1)*3+o-1].contact}}</span>
+                              </div>
+                              <div style="position:relative;top:3px;">
+                                <i class="el-icon-document"></i><strong style="font-size: 15px;">详细描述</strong>
+                                <span style="position:relative;left:0px;right:20px;">{{commData[(r-1)*3+o-1].description}}</span>
+                              </div>
+                            </el-collapse-item>
+
+                          </el-collapse>
+                          <div class="bottom clearfix">
+                            <i class="el-icon-goods" style='font-size:25px;'></i>
+                            <strong style="position:relative;left:20px;font-size: 17px;">{{commData[(r-1)*3+o-1].price}}元</strong>
+                            <el-button type="primary" class="button" icon="el-icon-star-off">收藏</el-button>
+                          </div>
+                        </div>
+                      </el-card>
+                    </el-col>
+                  </el-row>
+                </el-tab-pane>
+                <br/><br/><br/><br/>
+                <el-pagination
+                  background
+                  layout="prev, pager, next"
+                  style="position:relative;left:350px;"
+                  :total="30">
+                </el-pagination>
+
+              </el-tabs>
+              <hr/>
 
             </div>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-
-      <!---筛选+搜索 --->
-      <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
-        <hr/>
-        <el-tabs type="border-card" >
-          <el-tab-pane >
-                <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
-            <el-row :gutter="20">
-              <el-col :span="16"><template>
-                <div style="margin-top: 20px">
-                  <span><strong>类别筛选</strong></span>
-                  <br/>
-                  <el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>
-
-                </div>
-              </template></el-col>
-              <el-col :span="8"><div style="margin-top: 15px;">
-                <el-input placeholder="范围搜索" class="input-with-select">
-                  <el-select  slot="prepend" placeholder="请选择">
-                    <el-option label="名称" value="1"></el-option>
-                    <el-option label="类别" value="2"></el-option>
-                    <el-option label="描述" value="3"></el-option>
-                  </el-select>
-                  <el-button slot="append" icon="el-icon-search"></el-button>
-                </el-input>
-              </div></el-col>
-            </el-row>
-            <el-row :gutter="5" v-for="r in 2" :key="r" style="position:relative;top:20px;">
-              <br/>
-              <el-col :span="7" v-for="(o, index) in 3" :key="o" :offset="index > 0 ? 1 : 0"style="position:relative;top:20px;">
-                <el-card :body-style="{ padding: '5px' }">
-                  <img v-bind:src=commData[(r-1)*3+o-1].pic class="image" style="height:200px;">
-                  <div style="padding: 14px;">
-                    <strong style="font-size: 18px;">{{commData[(r-1)*3+o-1].name}}</strong>
-                    <el-collapse v-model="activeName" accordion >
-                      <el-collapse-item  name="1">
-                        <span slot="title" style="font-size: 17px;">详细信息</span>
-                        <div style="position:relative;top:3px;">
-                          <i class="el-icon-menu"></i><strong style="font-size: 14px;">种类</strong>
-                          <span style="position:relative;left:20px;">{{commData[(r-1)*3+o-1].type}}</span>
-                        </div>
-                        <div style="position:relative;top:3px;">
-
-                          <i class="el-icon-phone"></i><strong style="font-size: 15px;">电话</strong>
-                          <span style="position:relative;left:20px;">{{commData[(r-1)*3+o-1].contact}}</span>
-                        </div>
-                        <div style="position:relative;top:3px;">
-                          <i class="el-icon-document"></i><strong style="font-size: 15px;">详细描述</strong>
-                        <span style="position:relative;left:0px;right:20px;">{{commData[(r-1)*3+o-1].description}}</span>
-                        </div>
-                      </el-collapse-item>
-
-                    </el-collapse>
-                    <div class="bottom clearfix">
-                      <i class="el-icon-goods" style='font-size:25px;'></i>
-                        <strong style="position:relative;left:20px;font-size: 17px;">{{commData[(r-1)*3+o-1].price}}元</strong>
-                      <el-button type="primary" class="button" icon="el-icon-star-off">收藏</el-button>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </el-tab-pane>
-        <br/><br/><br/><br/>
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            style="position:relative;left:350px;"
-            :total="30">
-          </el-pagination>
-
-        </el-tabs>
-        <hr/>
-
-      </div>
-    <br/>
-
-
-
-
-      <!-- 卡片展示
-
-      <div v-for="i in commData.length" :key="i">
-        <el-row>
-          <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">
-            <el-card :body-style="{ padding: '5px' }">
-              <img src="https://placekitten.com/380/200" class="image">
-              <div style="padding: 14px;">
-                <strong style="font-size: 18px;">一只猫猫</strong>
-                <el-collapse v-model="activeName" accordion>
-                  <el-collapse-item title="详细信息" name="1">
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;color: #999;">种类</strong>
-                      <span style="position:relative;left:20px;">其他</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;color: #999;">电话</strong>
-                      <span style="position:relative;left:20px;">233333345</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;color: #999;">详细描述</strong>
-                    </div>
-                    <span style="position:relative;left:0px;right:20px;">非常可爱的喵喵~o( =∩ω∩= )m，召之即来，来之可撸，萌萌萌。</span>
-                  </el-collapse-item>
-
-                </el-collapse>
-                <div style="position:relative;top:3px;">
-                  <strong style="font-size: 15px;">目标价格</strong>
-                  <span style="position:relative;left:20px;">100元</span>
-                </div>
-                <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
-                  <el-button type="primary" class="button" icon="el-icon-star-off">收藏</el-button>
-                </div>
-              </div>
-            </el-card>
           </el-col>
         </el-row>
-          </div>
-      -->
+      </div>
     </div>
-    </div>
-    <!--右边栏-->
+
+
+
     <div>
       <right-bar></right-bar>
     </div>

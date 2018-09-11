@@ -1,37 +1,45 @@
 <template>
   <div class="investList">
-    <div style="display: inline;">
-      <p class="text">{{investList.range}}</p>
-      <div class="triangle-topleft">
-    </div>
-    </div>
-    <div class="type" style="text-align: center;">
-      <p class="center">{{investList.type}}</p>
-    </div>
     <div style="height:130px;text-align: center;">
       <el-row :gutter="20">
         <el-col :span="6">
+          <!--<div style="display: inline;float: left;margin: 0;padding: 0">-->
+            <!--<p class="text">{{investList.range}}</p>-->
+            <!--<div class="triangle-topleft">-->
+            <!--</div>-->
+          <!--</div>-->
           <div class="grid-content bg-purple" style="margin-left:20%;">
             <div style="margin-top:10%;">
               <p class="month" style="display: inline;">Profit : </p>
               <p class="profit" style="display: inline;">{{investList.profit}}</p>
               <p class="month" >/ per year</p>
-              <p style="font-size:10px;display: inline-block;">标的编号：</p>
-              <p style="display: inline-block;font-weight:800;">{{investList.id}}</p>
+              <el-rate
+                value="3.7"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="{value}">
+              </el-rate>
             </div>
           </div>
         </el-col>
         <el-col :span="12">
+          <div class="type" style="text-align: center;">
+            <p class="center">{{investList.type}}</p>
+          </div>
           <div class="grid-content bg-purple">
             <p class="itemName">{{investList.name}}</p>
             <p class="money">￥{{investList.remainMoney}}</p><p class="moneyName"> / 剩余金额</p>
             <p>借款总金额：￥{{investList.money}}</p>
-            <div class="progress round-conner">
-              <div class="curRate round-conner" :style="'width:'+ investList.finishProgress * 100 +'%;'">
-                <p>{{investList.finishProgress * 100}}%</p>
-              </div>
-              <div style="display:inline;"></div>
-            </div>
+            <vm-progress :percentage="investList.finishProgress * 100"  :text-inside="true" :stroke-width="18" strokeColor="info" :striped="true">
+              {{investList.finishProgress * 100}}%
+            </vm-progress>
+            <!--<div class="progress round-conner">-->
+              <!--<div class="curRate round-conner" :style="'width:'+ investList.finishProgress * 100 +'%;'">-->
+                <!--<p>{{investList.finishProgress * 100}}%</p>-->
+              <!--</div>-->
+              <!--<div style="display:inline;"></div>-->
+            <!--</div>-->
           </div>
         </el-col>
         <el-col :span="6">
@@ -69,7 +77,6 @@
 <style scoped>
   .text{
     color: white;
-    margin-left:1%;
     font-size:35px;
     text-align: left;
     display: block;
@@ -83,7 +90,6 @@
     border-right: 110px solid transparent;
     display: block;
     position:absolute;
-    left:11%;
     z-index:10;
   }
   .progress {
@@ -107,7 +113,7 @@
     -moz-border-radius: 20px;
     border-radius: 20px;
     max-height: 170px;
-    /*text-align: center;*/
+    text-align: center;
     margin-top:10px;
   }
   .investList:hover{
@@ -116,7 +122,8 @@
   .itemName{
     color:#616363;
     font-size:15px;
-    margin-top:3%;
+    margin-top:1%;
+    margin-bottom: 0;
   }
   .itemDescription {
     color: #7A7A7A;
@@ -136,10 +143,10 @@
     text-align: center;
   }
   .type{
+    margin: auto;
     background: #A6A3A3;
     max-width:50%;
     color:white;
-    margin-left:25%;
     font-size:10px;
     height:15px;
     border-bottom-left-radius: 5px;

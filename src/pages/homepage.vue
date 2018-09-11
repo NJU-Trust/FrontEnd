@@ -1,9 +1,9 @@
 <template>
   <div class="col-xs-12 col-md-12" style="padding: 0;">
-    <navi></navi>
+    <div style="position: absolute">
     <div id="mainPic">
       <img src="/static/pic/标语.png" class="img-responsive" alt="Cinque Terre" style="padding-top: 15%;z-index: 0;width: 56%;margin-left: 22%;">
-      <button type="button" class="mainButton" v-on:click="trustNow()">即刻trust</button>
+      <el-button type="primary" class="mainButton" v-on:click="trustNow()">即刻trust</el-button>
       <img src="/static/pic/特色.png" class="img-responsive" alt="Cinque Terre" style="margin-top:4%;z-index: 0;width: 40%;margin-left: 30%;">
     </div>
     <rightBar></rightBar>
@@ -89,7 +89,8 @@
     </div>
 
     <footerBar style="float: bottom"></footerBar>
-
+    </div>
+    <navi></navi>
   </div>
 
 </template>
@@ -187,7 +188,7 @@
     min-height: 60px;
     padding: 0px 0px;
     line-height: 50px;
-    background-color: lightskyblue;
+    background-color: #409EFF;
     color: white;
     border: none;
     font-size: 22px;

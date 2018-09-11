@@ -67,18 +67,18 @@
     <footer-bar></footer-bar>
     <right-bar></right-bar>
 
-    <el-card id="messageDetail">
-      <div style="text-align: center;margin-top: 6%">
-        <h3 style="padding-bottom: 20px;color: lightskyblue">消息详情</h3>
-        <h4>日期：{{dateOfDetail}}</h4>
-        <h4>时间：{{timeOfDetail}}</h4>
-        <h4>类型：{{kindOfDetail}}</h4>
-      </div>
-      <div style="padding: 20px">
-        <p>{{contentOfDetail}}</p>
-      </div>
-      <a v-on:click="closeDetail()">查看完毕</a>
-    </el-card>
+    <!--<el-card id="messageDetail">-->
+      <!--<div style="text-align: center;margin-top: 6%">-->
+        <!--<h3 style="padding-bottom: 20px;color: lightskyblue">消息详情</h3>-->
+        <!--<h4>日期：{{dateOfDetail}}</h4>-->
+        <!--<h4>时间：{{timeOfDetail}}</h4>-->
+        <!--<h4>类型：{{kindOfDetail}}</h4>-->
+      <!--</div>-->
+      <!--<div style="padding: 20px">-->
+        <!--<p>{{contentOfDetail}}</p>-->
+      <!--</div>-->
+      <!--<a v-on:click="closeDetail()">查看完毕</a>-->
+    <!--</el-card>-->
 
 
   </div>
@@ -123,8 +123,6 @@
 <style scoped>
   .container {
     width:100%;
-    background: #D9F3FB
-  ;
     /*background-image:url('/static/pic/messageBackground.png');*/
     /*background-size: cover;*/
     /*background-attachment:fixed;*/
@@ -143,7 +141,6 @@
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .12),
     0 1px 6px 0 rgba(0, 0, 0, .12);
     border-radius: 3px;
-    margin-top: 69px;
   }
 
   .el-card{

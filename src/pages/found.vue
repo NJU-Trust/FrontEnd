@@ -12,304 +12,606 @@
     </div>
 
     <!--正文-->
-    <div class="back">
-      <leftInformationbar></leftInformationbar>
-      <div class="mesboxborder">
-        <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
-          <el-tabs type="border-card">
-            <el-tab-pane >
-              <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;最新消息</span>
-              <div style="position:relative;top:10px;margin-left:5%;margin-right:5%;">
-                <template>
-                  <el-carousel :interval="3000" type="card" height="200px">
-                    <el-carousel-item v-for="i in latestmes.length" :key="i">
+    <el-row>
+      <el-col span="6">
+        <leftInformationbar></leftInformationbar>
+      </el-col>
+      <el-col span="18">
+        <div class="mesboxborder">
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card">
+              <el-tab-pane >
+                <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;最新消息</span>
+                <div style="position:relative;top:10px;margin-left:5%;margin-right:5%;">
+                  <template>
+                    <el-carousel :interval="3000" type="card" height="200px">
+                      <el-carousel-item v-for="i in latestmes.length" :key="i">
                         <el-popover
                           placement="left"
                           style="background-color: #DCDFE6;"
                           width="200"
                           trigger="hover">
                           <div >
-                                <div style="position:relative;top:3px;">
-                                  <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
-                                  <br/>
-                                  <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
-                                  <br/>
-                                  <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
-                                </div>
+                            <div style="position:relative;top:3px;">
+                              <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
+                              <br/>
+                              <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
+                              <br/>
+                              <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
+                            </div>
                             <hr/>
-                                <div style="margin-top:-10%;width:150px;">
-                                  <img v-bind:src=latestmes[i-1].headpic style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
-                                  <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
-                                </div>
-                              </div>
+                            <div style="margin-top:-10%;width:150px;">
+                              <img v-bind:src=latestmes[i-1].headpic style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                              <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
+                            </div>
+                          </div>
                           <el-button slot="reference">
                             <img v-bind:src=latestmes[i-1].pic style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
                           </el-button>
                         </el-popover>
-                      <!--
-                      <div v-if="i === 2">
-                        <el-popover
-                          placement="left"
-                          style="background-color: #DCDFE6;"
-                          width="200"
-                          trigger="hover">
-                          <div class="textitem">
-                            <div style="position:relative;top:3px;">
-                              <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
-                            </div>
-                            <hr/>
-                            <div style="margin-top:-10%;width:150px;">
-                              <img src="../../static/pic/testuserpic2.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
-                              <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
-                            </div>
-                          </div>
-                          <el-button slot="reference">
-                            <img src="../../static/pic/testusb.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
-                          </el-button>
-                        </el-popover>
-                      </div>
-                      <div v-if="i === 3">
-                        <el-popover
-                          placement="left"
-                          style="background-color: #DCDFE6;"
-                          width="200"
-                          trigger="hover">
-                          <div class="textitem">
-                            <div style="position:relative;top:3px;">
-                              <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
-                            </div>
-                            <hr/>
-                            <div style="margin-top:-10%;width:150px;">
-                              <img src="../../static/pic/testuserpic3.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
-                              <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
-                            </div>
-                          </div>
-                          <el-button slot="reference">
-                            <img src="../../static/pic/testcard.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
-                          </el-button>
-                        </el-popover>
-                      </div>
-                      <div v-if="i === 4">
-                        <el-popover
-                          placement="left"
-                          style="background-color: #DCDFE6;"
-                          width="200"
-                          trigger="hover">
-                          <div class="textitem">
-                            <div style="position:relative;top:3px;">
-                              <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
-                              <br/>
-                              <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
-                            </div>
-                            <hr/>
-                            <div style="margin-top:-10%;width:150px;">
-                              <img src="../../static/pic/photo.jpg" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
-                              <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
-                            </div>
-                          </div>
-                          <el-button slot="reference">
-                            <img src="../../static/pic/testcup.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
-                          </el-button>
-                        </el-popover>
-                      </div>-->
-                      <!--<div class="textitem">
-                        <el-tag type="info"
-                                :disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>
-                        <div>
-                          <strong style="font-size: 15px;">物品类别</strong>
-                          <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                          <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
-                          <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
-                        </div>
-                        <div style="position:relative;top:3px;">
-                          <strong style="font-size: 15px;">发布时间</strong>
-                          <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                          <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
-                          <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
-                        </div>
-                        <div style="position:relative;top:3px;width:450px;">
-                          <strong style="font-size: 15px;">详细信息</strong>
-                          <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                        </div>
-                      </div>-->
-                    </el-carousel-item>
-                  </el-carousel>
-                </template>
-                <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
-                  <span style="font-size:10px;">*点击图片快速查看详细信息</span>
-                </div>
-              </div>
-            </el-tab-pane>
-          </el-tabs>
-          <hr/>
-        </div>
-
-        <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
-          <el-tabs type="border-card">
-            <el-tab-pane >
-              <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
-              <template>
-                <div style="margin-top: 20px">
-                  <span><strong>消息性质</strong></span>
-                  <el-checkbox style="margin-left:2%;">失物招领</el-checkbox>
-                  <el-checkbox style="margin-left:2%;">寻物启事</el-checkbox>
-                  <br/>
-
-                  <span><strong>物品分类</strong></span>
-                  <el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>
-                  <br/>
-
-                  <span><strong>常见地点</strong></span>
-                  <el-checkbox v-for="loc in locs" :key="loc" :label="loc" style="margin-left:2%;">{{ loc }}</el-checkbox>
-                  <hr/>
-                </div>
-              </template>
-              <div v-for="j in mesdata.length" :key="j">
-              <el-row :gutter="400" >
-                <div v-for="i in 2" :key="i">
-                  <el-col :span="6">
-                    <el-card class="box-card">
-                        <div class="grid-content bg-purple">
-                          <div style="margin-top:-3%;">
-                          <img v-bind:src=mesdata[j-1][i-1].headpic style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >
-                          <span style="position:relative;left:20px;">{{ mesdata[j-1][i-1].username}}</span>
-                          <span style="position:relative;left:135px;">{{ mesdata[j-1][i-1].time}}</span>
-                          </div>
-                          <br/>
-                          <el-row :gutter="30">
-                            <el-col :span="13">
-                              <div class="grid-content bg-purple" style="margin-top:-3%;">
-                                <span style="position:relative;left:55px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].phone}}</span>
+                        <!--
+                        <div v-if="i === 2">
+                          <el-popover
+                            placement="left"
+                            style="background-color: #DCDFE6;"
+                            width="200"
+                            trigger="hover">
+                            <div class="textitem">
+                              <div style="position:relative;top:3px;">
+                                <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
                                 <br/>
-                                <span style="position:relative;left:55px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].loc}}</span>
+                                <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
                                 <br/>
-
-                                <div style="position:relative;top:3px;width:200px;">
-                                  <span style="position:relative;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{ mesdata[j-1][i-1].dec}}</span>
-                                </div>
+                                <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
                               </div>
-                            </el-col>
-                            <el-col :span="10">
-                              <div class="grid-content bg-purple" style="margin-top:-9%;">
-                                <img v-bind:src=mesdata[j-1][i-1].pic style="width:110px;height:110px;position:relative;left:5px;top:-8px;" class="picbox" alt="User_pic">
-                                <br/>
-                                <span style="position:relative;"><strong>{{ mesdata[j-1][i-1].mestype}}&nbsp;&nbsp;>></strong></span>
-                                <span style="position:relative;left:5px;"><strong>{{ mesdata[j-1][i-1].name}}</strong></span>
+                              <hr/>
+                              <div style="margin-top:-10%;width:150px;">
+                                <img src="../../static/pic/testuserpic2.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                                <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
                               </div>
-                            </el-col>
-                          </el-row>
-                      </div>
-                    </el-card>
-                    </el-col>
+                            </div>
+                            <el-button slot="reference">
+                              <img src="../../static/pic/testusb.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
+                            </el-button>
+                          </el-popover>
+                        </div>
+                        <div v-if="i === 3">
+                          <el-popover
+                            placement="left"
+                            style="background-color: #DCDFE6;"
+                            width="200"
+                            trigger="hover">
+                            <div class="textitem">
+                              <div style="position:relative;top:3px;">
+                                <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
+                                <br/>
+                                <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
+                                <br/>
+                                <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
+                              </div>
+                              <hr/>
+                              <div style="margin-top:-10%;width:150px;">
+                                <img src="../../static/pic/testuserpic3.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                                <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
+                              </div>
+                            </div>
+                            <el-button slot="reference">
+                              <img src="../../static/pic/testcard.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
+                            </el-button>
+                          </el-popover>
+                        </div>
+                        <div v-if="i === 4">
+                          <el-popover
+                            placement="left"
+                            style="background-color: #DCDFE6;"
+                            width="200"
+                            trigger="hover">
+                            <div class="textitem">
+                              <div style="position:relative;top:3px;">
+                                <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
+                                <br/>
+                                <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
+                                <br/>
+                                <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
+                              </div>
+                              <hr/>
+                              <div style="margin-top:-10%;width:150px;">
+                                <img src="../../static/pic/photo.jpg" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                                <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
+                              </div>
+                            </div>
+                            <el-button slot="reference">
+                              <img src="../../static/pic/testcup.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >
+                            </el-button>
+                          </el-popover>
+                        </div>-->
+                        <!--<div class="textitem">
+                          <el-tag type="info"
+                                  :disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>
+                          <div>
+                            <strong style="font-size: 15px;">物品类别</strong>
+                            <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                            <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
+                            <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
+                          </div>
+                          <div style="position:relative;top:3px;">
+                            <strong style="font-size: 15px;">发布时间</strong>
+                            <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                            <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
+                            <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
+                          </div>
+                          <div style="position:relative;top:3px;width:450px;">
+                            <strong style="font-size: 15px;">详细信息</strong>
+                            <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                          </div>
+                        </div>-->
+                      </el-carousel-item>
+                    </el-carousel>
+                  </template>
+                  <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
+                    <span style="font-size:10px;">*点击图片快速查看详细信息</span>
                   </div>
-              </el-row>
-              </div>
-              <el-pagination
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+            <hr/>
+          </div>
+
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card">
+              <el-tab-pane >
+                <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
+                <template>
+                  <div style="margin-top: 20px">
+                    <span><strong>消息性质</strong></span>
+                    <el-checkbox style="margin-left:2%;">失物招领</el-checkbox>
+                    <el-checkbox style="margin-left:2%;">寻物启事</el-checkbox>
+                    <br/>
+
+                    <span><strong>物品分类</strong></span>
+                    <el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>
+                    <br/>
+
+                    <span><strong>常见地点</strong></span>
+                    <el-checkbox v-for="loc in locs" :key="loc" :label="loc" style="margin-left:2%;">{{ loc }}</el-checkbox>
+                    <hr/>
+                  </div>
+                </template>
+                <div v-for="j in mesdata.length" :key="j">
+                  <el-row :gutter="400" >
+                    <div v-for="i in 2" :key="i">
+                      <el-col :span="6">
+                        <el-card class="box-card">
+                          <div class="grid-content bg-purple">
+                            <div style="margin-top:-3%;">
+                              <img v-bind:src=mesdata[j-1][i-1].headpic style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >
+                              <span style="position:relative;left:20px;">{{ mesdata[j-1][i-1].username}}</span>
+                              <span style="position:relative;left:135px;">{{ mesdata[j-1][i-1].time}}</span>
+                            </div>
+                            <br/>
+                            <el-row :gutter="30">
+                              <el-col :span="13">
+                                <div class="grid-content bg-purple" style="margin-top:-3%;">
+                                  <span style="position:relative;left:55px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].phone}}</span>
+                                  <br/>
+                                  <span style="position:relative;left:55px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].loc}}</span>
+                                  <br/>
+
+                                  <div style="position:relative;top:3px;width:200px;">
+                                    <span style="position:relative;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{ mesdata[j-1][i-1].dec}}</span>
+                                  </div>
+                                </div>
+                              </el-col>
+                              <el-col :span="10">
+                                <div class="grid-content bg-purple" style="margin-top:-9%;">
+                                  <img v-bind:src=mesdata[j-1][i-1].pic style="width:110px;height:110px;position:relative;left:5px;top:-8px;" class="picbox" alt="User_pic">
+                                  <br/>
+                                  <span style="position:relative;"><strong>{{ mesdata[j-1][i-1].mestype}}&nbsp;&nbsp;>></strong></span>
+                                  <span style="position:relative;left:5px;"><strong>{{ mesdata[j-1][i-1].name}}</strong></span>
+                                </div>
+                              </el-col>
+                            </el-row>
+                          </div>
+                        </el-card>
+                      </el-col>
+                    </div>
+                  </el-row>
+                </div>
+                <el-pagination
                   background
                   layout="prev, pager, next"
                   style="position:relative;left:350px;"
                   :total="1000">
                 </el-pagination>
-            </el-tab-pane>
-          </el-tabs>
-        </div>
-        <br/>
-        <hr/>
-
-        <!--<div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">
-          <template>
-          <el-carousel :interval="3000" type="card" height="200px">
-            <el-carousel-item v-for="i in 4" :key="i">
-              <div>
-                <img src="../../static/pic/mestest.png" style="width:180px;height:180px;margin-top:9px;margin-left:5px;" class="picbox" alt="User_pic">
-              </div>
-              <div class="textitem">
-                <el-tag type="info"
-                        :disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>
-                    <div>
-                      <strong style="font-size: 15px;">物品类别</strong>
-                      <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                      <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
-                      <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;">
-                      <strong style="font-size: 15px;">发布时间</strong>
-                      <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                      <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
-                      <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
-                    </div>
-                    <div style="position:relative;top:3px;width:450px;">
-                      <strong style="font-size: 15px;">详细信息</strong>
-                      <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                    </div>
-                  </div>
-            </el-carousel-item>
-          </el-carousel>
-        </template>
-        </div>
-        <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
-          <h3 ><strong>分类检索</strong></h3>
-          <hr/>
-        </div>-->
-
-        <!--<el-dropdown @command="handleCommand" class="select">
-          <span class="el-dropdown-link">类别<i class="el-icon-arrow-down el-icon--right"></i></span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="a">校园卡</el-dropdown-item>
-            <el-dropdown-item command="b">钥匙</el-dropdown-item>
-            <el-dropdown-item command="c">其他证件</el-dropdown-item>
-            <el-dropdown-item command="d" disabled>雨伞</el-dropdown-item>
-            <el-dropdown-item command="e" divided>杯子</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>-->
-
-
-
-
-        <!-- 内容-->
-        <!--<div v-for="i in mesdata.length" :key="i">
-          <div v-if="mesdata[i-1].mestype === '失物招领'"
-               v-show="mesdata[i-1].state">
-            <el-card class="box-card">
-              <div>
-                <img src="../../static/pic/mestest.png" style="width:100px;height:100px;position:relative;left:5px;top:-10px;" class="picbox" alt="User_pic">
-              </div>
-
-              <div class="textitem">
-                <div>
-                  <strong style="font-size: 15px;">物品类别</strong>
-                  <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                  <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
-                  <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
-                </div>
-                <div style="position:relative;top:3px;">
-                  <strong style="font-size: 15px;">发布时间</strong>
-                  <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                  <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
-                  <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
-                </div>
-                <div style="position:relative;top:3px;width:450px;">
-                  <strong style="font-size: 15px;">详细信息</strong>
-                  <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                </div>
-              </div>
-            </el-card>
-            <hr/>
+              </el-tab-pane>
+            </el-tabs>
           </div>
-        </div>-->
+          <br/>
+          <hr/>
 
-      </div>
-    </div>
+          <!--<div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">
+            <template>
+            <el-carousel :interval="3000" type="card" height="200px">
+              <el-carousel-item v-for="i in 4" :key="i">
+                <div>
+                  <img src="../../static/pic/mestest.png" style="width:180px;height:180px;margin-top:9px;margin-left:5px;" class="picbox" alt="User_pic">
+                </div>
+                <div class="textitem">
+                  <el-tag type="info"
+                          :disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>
+                      <div>
+                        <strong style="font-size: 15px;">物品类别</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                        <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
+                        <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;">
+                        <strong style="font-size: 15px;">发布时间</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                        <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
+                        <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
+                      </div>
+                      <div style="position:relative;top:3px;width:450px;">
+                        <strong style="font-size: 15px;">详细信息</strong>
+                        <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                      </div>
+                    </div>
+              </el-carousel-item>
+            </el-carousel>
+          </template>
+          </div>
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <h3 ><strong>分类检索</strong></h3>
+            <hr/>
+          </div>-->
+
+          <!--<el-dropdown @command="handleCommand" class="select">
+            <span class="el-dropdown-link">类别<i class="el-icon-arrow-down el-icon--right"></i></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="a">校园卡</el-dropdown-item>
+              <el-dropdown-item command="b">钥匙</el-dropdown-item>
+              <el-dropdown-item command="c">其他证件</el-dropdown-item>
+              <el-dropdown-item command="d" disabled>雨伞</el-dropdown-item>
+              <el-dropdown-item command="e" divided>杯子</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>-->
+
+
+
+
+          <!-- 内容-->
+          <!--<div v-for="i in mesdata.length" :key="i">
+            <div v-if="mesdata[i-1].mestype === '失物招领'"
+                 v-show="mesdata[i-1].state">
+              <el-card class="box-card">
+                <div>
+                  <img src="../../static/pic/mestest.png" style="width:100px;height:100px;position:relative;left:5px;top:-10px;" class="picbox" alt="User_pic">
+                </div>
+
+                <div class="textitem">
+                  <div>
+                    <strong style="font-size: 15px;">物品类别</strong>
+                    <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                    <strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>
+                    <span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>
+                  </div>
+                  <div style="position:relative;top:3px;">
+                    <strong style="font-size: 15px;">发布时间</strong>
+                    <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                    <strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>
+                    <span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>
+                  </div>
+                  <div style="position:relative;top:3px;width:450px;">
+                    <strong style="font-size: 15px;">详细信息</strong>
+                    <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                  </div>
+                </div>
+              </el-card>
+              <hr/>
+            </div>
+          </div>-->
+
+        </div>
+      </el-col>
+    </el-row>
+    <!--<div class="back">-->
+      <!--<leftInformationbar></leftInformationbar>-->
+      <!--<div class="mesboxborder">-->
+        <!--<div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">-->
+          <!--<el-tabs type="border-card">-->
+            <!--<el-tab-pane >-->
+              <!--<span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;最新消息</span>-->
+              <!--<div style="position:relative;top:10px;margin-left:5%;margin-right:5%;">-->
+                <!--<template>-->
+                  <!--<el-carousel :interval="3000" type="card" height="200px">-->
+                    <!--<el-carousel-item v-for="i in latestmes.length" :key="i">-->
+                        <!--<el-popover-->
+                          <!--placement="left"-->
+                          <!--style="background-color: #DCDFE6;"-->
+                          <!--width="200"-->
+                          <!--trigger="hover">-->
+                          <!--<div >-->
+                                <!--<div style="position:relative;top:3px;">-->
+                                  <!--<span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>-->
+                                  <!--<br/>-->
+                                  <!--<span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>-->
+                                  <!--<br/>-->
+                                  <!--<span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>-->
+                                <!--</div>-->
+                            <!--<hr/>-->
+                                <!--<div style="margin-top:-10%;width:150px;">-->
+                                  <!--<img v-bind:src=latestmes[i-1].headpic style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >-->
+                                  <!--<span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                          <!--<el-button slot="reference">-->
+                            <!--<img v-bind:src=latestmes[i-1].pic style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >-->
+                          <!--</el-button>-->
+                        <!--</el-popover>-->
+                      <!--&lt;!&ndash;-->
+                      <!--<div v-if="i === 2">-->
+                        <!--<el-popover-->
+                          <!--placement="left"-->
+                          <!--style="background-color: #DCDFE6;"-->
+                          <!--width="200"-->
+                          <!--trigger="hover">-->
+                          <!--<div class="textitem">-->
+                            <!--<div style="position:relative;top:3px;">-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>-->
+                            <!--</div>-->
+                            <!--<hr/>-->
+                            <!--<div style="margin-top:-10%;width:150px;">-->
+                              <!--<img src="../../static/pic/testuserpic2.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >-->
+                              <!--<span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                          <!--<el-button slot="reference">-->
+                            <!--<img src="../../static/pic/testusb.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >-->
+                          <!--</el-button>-->
+                        <!--</el-popover>-->
+                      <!--</div>-->
+                      <!--<div v-if="i === 3">-->
+                        <!--<el-popover-->
+                          <!--placement="left"-->
+                          <!--style="background-color: #DCDFE6;"-->
+                          <!--width="200"-->
+                          <!--trigger="hover">-->
+                          <!--<div class="textitem">-->
+                            <!--<div style="position:relative;top:3px;">-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>-->
+                            <!--</div>-->
+                            <!--<hr/>-->
+                            <!--<div style="margin-top:-10%;width:150px;">-->
+                              <!--<img src="../../static/pic/testuserpic3.png" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >-->
+                              <!--<span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                          <!--<el-button slot="reference">-->
+                            <!--<img src="../../static/pic/testcard.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >-->
+                          <!--</el-button>-->
+                        <!--</el-popover>-->
+                      <!--</div>-->
+                      <!--<div v-if="i === 4">-->
+                        <!--<el-popover-->
+                          <!--placement="left"-->
+                          <!--style="background-color: #DCDFE6;"-->
+                          <!--width="200"-->
+                          <!--trigger="hover">-->
+                          <!--<div class="textitem">-->
+                            <!--<div style="position:relative;top:3px;">-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>-->
+                              <!--<br/>-->
+                              <!--<span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>-->
+                            <!--</div>-->
+                            <!--<hr/>-->
+                            <!--<div style="margin-top:-10%;width:150px;">-->
+                              <!--<img src="../../static/pic/photo.jpg" style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >-->
+                              <!--<span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                          <!--<el-button slot="reference">-->
+                            <!--<img src="../../static/pic/testcup.png" style="width:360px;height:180px;margin-top:-1%;margin-left:-3%;" class="picbox" alt="User_pic" >-->
+                          <!--</el-button>-->
+                        <!--</el-popover>-->
+                      <!--</div>&ndash;&gt;-->
+                      <!--&lt;!&ndash;<div class="textitem">-->
+                        <!--<el-tag type="info"-->
+                                <!--:disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>-->
+                        <!--<div>-->
+                          <!--<strong style="font-size: 15px;">物品类别</strong>-->
+                          <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
+                          <!--<strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>-->
+                          <!--<span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>-->
+                        <!--</div>-->
+                        <!--<div style="position:relative;top:3px;">-->
+                          <!--<strong style="font-size: 15px;">发布时间</strong>-->
+                          <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
+                          <!--<strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>-->
+                          <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>-->
+                        <!--</div>-->
+                        <!--<div style="position:relative;top:3px;width:450px;">-->
+                          <!--<strong style="font-size: 15px;">详细信息</strong>-->
+                          <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
+                        <!--</div>-->
+                      <!--</div>&ndash;&gt;-->
+                    <!--</el-carousel-item>-->
+                  <!--</el-carousel>-->
+                <!--</template>-->
+                <!--<div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">-->
+                  <!--<span style="font-size:10px;">*点击图片快速查看详细信息</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-tab-pane>-->
+          <!--</el-tabs>-->
+          <!--<hr/>-->
+        <!--</div>-->
+
+        <!--<div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">-->
+          <!--<el-tabs type="border-card">-->
+            <!--<el-tab-pane >-->
+              <!--<span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>-->
+              <!--<template>-->
+                <!--<div style="margin-top: 20px">-->
+                  <!--<span><strong>消息性质</strong></span>-->
+                  <!--<el-checkbox style="margin-left:2%;">失物招领</el-checkbox>-->
+                  <!--<el-checkbox style="margin-left:2%;">寻物启事</el-checkbox>-->
+                  <!--<br/>-->
+
+                  <!--<span><strong>物品分类</strong></span>-->
+                  <!--<el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>-->
+                  <!--<br/>-->
+
+                  <!--<span><strong>常见地点</strong></span>-->
+                  <!--<el-checkbox v-for="loc in locs" :key="loc" :label="loc" style="margin-left:2%;">{{ loc }}</el-checkbox>-->
+                  <!--<hr/>-->
+                <!--</div>-->
+              <!--</template>-->
+              <!--<div v-for="j in mesdata.length" :key="j">-->
+              <!--<el-row :gutter="400" >-->
+                <!--<div v-for="i in 2" :key="i">-->
+                  <!--<el-col :span="6">-->
+                    <!--<el-card class="box-card">-->
+                        <!--<div class="grid-content bg-purple">-->
+                          <!--<div style="margin-top:-3%;">-->
+                          <!--<img v-bind:src=mesdata[j-1][i-1].headpic style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >-->
+                          <!--<span style="position:relative;left:20px;">{{ mesdata[j-1][i-1].username}}</span>-->
+                          <!--<span style="position:relative;left:135px;">{{ mesdata[j-1][i-1].time}}</span>-->
+                          <!--</div>-->
+                          <!--<br/>-->
+                          <!--<el-row :gutter="30">-->
+                            <!--<el-col :span="13">-->
+                              <!--<div class="grid-content bg-purple" style="margin-top:-3%;">-->
+                                <!--<span style="position:relative;left:55px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].phone}}</span>-->
+                                <!--<br/>-->
+                                <!--<span style="position:relative;left:55px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].loc}}</span>-->
+                                <!--<br/>-->
+
+                                <!--<div style="position:relative;top:3px;width:200px;">-->
+                                  <!--<span style="position:relative;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{ mesdata[j-1][i-1].dec}}</span>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</el-col>-->
+                            <!--<el-col :span="10">-->
+                              <!--<div class="grid-content bg-purple" style="margin-top:-9%;">-->
+                                <!--<img v-bind:src=mesdata[j-1][i-1].pic style="width:110px;height:110px;position:relative;left:5px;top:-8px;" class="picbox" alt="User_pic">-->
+                                <!--<br/>-->
+                                <!--<span style="position:relative;"><strong>{{ mesdata[j-1][i-1].mestype}}&nbsp;&nbsp;>></strong></span>-->
+                                <!--<span style="position:relative;left:5px;"><strong>{{ mesdata[j-1][i-1].name}}</strong></span>-->
+                              <!--</div>-->
+                            <!--</el-col>-->
+                          <!--</el-row>-->
+                      <!--</div>-->
+                    <!--</el-card>-->
+                    <!--</el-col>-->
+                  <!--</div>-->
+              <!--</el-row>-->
+              <!--</div>-->
+              <!--<el-pagination-->
+                  <!--background-->
+                  <!--layout="prev, pager, next"-->
+                  <!--style="position:relative;left:350px;"-->
+                  <!--:total="1000">-->
+                <!--</el-pagination>-->
+            <!--</el-tab-pane>-->
+          <!--</el-tabs>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<hr/>-->
+
+        <!--&lt;!&ndash;<div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">-->
+          <!--<template>-->
+          <!--<el-carousel :interval="3000" type="card" height="200px">-->
+            <!--<el-carousel-item v-for="i in 4" :key="i">-->
+              <!--<div>-->
+                <!--<img src="../../static/pic/mestest.png" style="width:180px;height:180px;margin-top:9px;margin-left:5px;" class="picbox" alt="User_pic">-->
+              <!--</div>-->
+              <!--<div class="textitem">-->
+                <!--<el-tag type="info"-->
+                        <!--:disable-transitions="true">{{ mesdata[i-1].time}}</el-tag>-->
+                    <!--<div>-->
+                      <!--<strong style="font-size: 15px;">物品类别</strong>-->
+                      <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
+                      <!--<strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>-->
+                      <!--<span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>-->
+                    <!--</div>-->
+                    <!--<div style="position:relative;top:3px;">-->
+                      <!--<strong style="font-size: 15px;">发布时间</strong>-->
+                      <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
+                      <!--<strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>-->
+                      <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>-->
+                    <!--</div>-->
+                    <!--<div style="position:relative;top:3px;width:450px;">-->
+                      <!--<strong style="font-size: 15px;">详细信息</strong>-->
+                      <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
+                    <!--</div>-->
+                  <!--</div>-->
+            <!--</el-carousel-item>-->
+          <!--</el-carousel>-->
+        <!--</template>-->
+        <!--</div>-->
+        <!--<div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">-->
+          <!--<h3 ><strong>分类检索</strong></h3>-->
+          <!--<hr/>-->
+        <!--</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<el-dropdown @command="handleCommand" class="select">-->
+          <!--<span class="el-dropdown-link">类别<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i></span>-->
+          <!--<el-dropdown-menu slot="dropdown">-->
+            <!--<el-dropdown-item command="a">校园卡</el-dropdown-item>-->
+            <!--<el-dropdown-item command="b">钥匙</el-dropdown-item>-->
+            <!--<el-dropdown-item command="c">其他证件</el-dropdown-item>-->
+            <!--<el-dropdown-item command="d" disabled>雨伞</el-dropdown-item>-->
+            <!--<el-dropdown-item command="e" divided>杯子</el-dropdown-item>-->
+          <!--</el-dropdown-menu>-->
+        <!--</el-dropdown>&ndash;&gt;-->
+
+
+
+
+        <!--&lt;!&ndash; 内容&ndash;&gt;-->
+        <!--&lt;!&ndash;<div v-for="i in mesdata.length" :key="i">-->
+          <!--<div v-if="mesdata[i-1].mestype === '失物招领'"-->
+               <!--v-show="mesdata[i-1].state">-->
+            <!--<el-card class="box-card">-->
+              <!--<div>-->
+                <!--<img src="../../static/pic/mestest.png" style="width:100px;height:100px;position:relative;left:5px;top:-10px;" class="picbox" alt="User_pic">-->
+              <!--</div>-->
+
+              <!--<div class="textitem">-->
+                <!--<div>-->
+                  <!--<strong style="font-size: 15px;">物品类别</strong>-->
+                  <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
+                  <!--<strong style="font-size: 15px;position:relative;left:103px;">物品名称</strong>-->
+                  <!--<span style="position:relative;left:123px;">{{ mesdata[i-1].name}}</span>-->
+                <!--</div>-->
+                <!--<div style="position:relative;top:3px;">-->
+                  <!--<strong style="font-size: 15px;">发布时间</strong>-->
+                  <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
+                  <!--<strong style="font-size: 15px;position:relative;left:60px;">联系方式</strong>-->
+                  <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].phone}}</span>-->
+                <!--</div>-->
+                <!--<div style="position:relative;top:3px;width:450px;">-->
+                  <!--<strong style="font-size: 15px;">详细信息</strong>-->
+                  <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+            <!--<hr/>-->
+          <!--</div>-->
+        <!--</div>&ndash;&gt;-->
+
+      <!--</div>-->
+    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -510,18 +812,18 @@
 
   /*消息框*/
   .mesboxborder{
-    width:950px;
+    width:850px;
     margin-right: 10%;
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
+    margin-top: 10px;
+    margin-left: 5%;
     background:white;
-    border:1px solid #e4e4e4;
-    //height:80px;
-    box-shadow:
-      0 1px 6px 0 rgba(0,0,0, .12),
-      0 1px 6px 0 rgba(0,0,0, .12);
-    border-radius: 3px;
+    /*border:1px solid #e4e4e4;*/
+    /*//height:80px;*/
+    /*box-shadow:*/
+      /*0 1px 6px 0 rgba(0,0,0, .12),*/
+      /*0 1px 6px 0 rgba(0,0,0, .12);*/
+    /*border-radius: 3px;*/
   }
 
   .textitem{
