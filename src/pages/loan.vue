@@ -191,7 +191,7 @@
                 </el-form-item>
                 <el-form-item label="基准还款利率">
                   <div>
-                    <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
+                    <el-input placeholder="基准还款利率" v-model="form3.rate"></el-input>
                     <div style="color:red;font-size: 12px;">*利率上下限为[M1,M2],建议设置为M0</div>
                   </div>
                 </el-form-item>
@@ -424,6 +424,9 @@
         },
         handleChange(value) {
           console.log(value);
+        },
+        test(a){
+          console.log(a.money);
         }
 
       },
@@ -541,6 +544,15 @@
           show_evaluate:false,
 
         };//return
+      },
+
+      watch:{
+        form3:{
+            handler(a){
+              this.test(a);
+            },
+            deep:true
+        }
       },
 
       mounted() {
