@@ -220,7 +220,7 @@
                 <el-pagination
                   background
                   layout="prev, pager, next"
-                  style="position:relative;left:350px;"
+                  style="position:relative;left:200px;"
                   :total="1000">
                 </el-pagination>
               </el-tab-pane>
@@ -852,8 +852,6 @@
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     position:relative;
-    left:40px;
-    //top:70px;
   }
   .box-card:hover{
     border-color:#4F94CD;

@@ -140,7 +140,6 @@
 <style scoped>
   .whole{
     padding: 0;
-    position: absolute;
     background-color: black;
     z-index: 1;
   }

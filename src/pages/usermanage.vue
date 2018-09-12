@@ -1,89 +1,163 @@
 <template>
-  <div class="UserList" style="float:left">
+  <div class="UserList">
     <div>
       <adminNavi></adminNavi>
     </div>
-    <div class="mytable">
-      <div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">
-        <label style="font-size: 14px;">筛选条件:</label>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>用户名称：</label>
-        <form style="display:inline-block;color:black">
-          <input type="text" name="username" value="" v-model="input_username"/><!--<input type="text" v-model="input_username" />-->
-        </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>信用评级：</label>
-        <form style="display:inline-block;color:black">
-          <input type="text" name="level" value="" v-model="input_level"/>
-        </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label >电话：</label>
-        <form style="display:inline-block;color:black">
-          <input type="text" name="tel" value="" v-model="input_tel"/>
-        </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>邮箱：</label>
-        <form style="display:inline-block;color:black">
-          <input type="text" name="email" value="" v-model="input_email">
-        </form>
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <!--选择过滤条件-->
-        <label>借款状态：</label>
-        <select name="state" type="hidden" v-model.lazy="state" style="color:black;">
-          <option value="">所有</option>
-          <option value="无借款">无借款</option>
-          <option value="待还款">待还款</option>
-          <option value="逾期">逾期</option>
-        </select>
-
-      </div>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      <div class="tableBackground">
-        <table class="usertable">
-          <tbody class="usertablebody">
-          <tr>
-            <th style="border: 1px solid black;text-align:center;">用户名称</th>
-            <th style="border: 1px solid black;text-align:center;">信用评级</th>
-            <th style="border: 1px solid black;text-align:center;">电话</th>
-            <th style="border: 1px solid black;text-align:center;">邮箱</th>
-            <th style="border: 1px solid black;text-align:center;">借款状态</th>
-            <th style="border: 1px solid black;text-align:center;">操作</th>
-          </tr>
-          <tr v-for="user in filteredUsers" @click="showModel" >
-            <td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>
-            <td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>
-            <td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>
-            <td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>
-            <td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>
-            <td style="border: 1px solid black ;text-align:center;">
-              <router-link to="">
-                <button class="checkDetailButton">历史投资</button>
-              </router-link>
-              <router-link to="">
-                <button class="checkDetailButton">查看标的</button>
-              </router-link>
-              <router-link to="">
-                <button class="checkDetailButton">个人财务</button>
-              </router-link>
-            </td>
-          </tr>
-          </tbody>
-          <tfoot class="full-width">
-          <tr>
-            <th></th>
-            <th colspan="4" style="text-align:center;">
-              <button class="pageButton" @click="turnPage(-1)">Prev</button>
-              <span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>
-              <button class="pageButton" @click="turnPage(1)">Next</button>
-              <span>跳转到第</span>
-              <input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">
-              <span>页</span>
-            </th>
-          </tr>
-          </tfoot>
-        </table>
-      </div>
+    <div style="width: 100%;text-align: center">
+    <el-form :inline="true" style="margin-top: 50px;">
+      <el-form-item label="用户名称">
+        <el-input placeholder="请输入内容" style="width: 150px;" clearable></el-input>
+      </el-form-item>
+      <el-form-item label="信用评级">
+          <el-select multiple placeholder="请选择" style="width: 100px">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+      </el-form-item>
+      <el-form-item label="电话">
+        <el-input placeholder="请输入内容"  clearable></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input placeholder="请输入内容" clearable></el-input>
+      </el-form-item>
+      <el-form-item label="借款状态">
+        <el-select v-model="value" placeholder="请选择" style="width: 120px;">
+          <el-option
+            v-for="item in userOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <el-table :data="users" style="width: 900px;margin: auto">
+      <el-table-column
+        prop="username"
+        label="用户名称"
+        width="100">
+      </el-table-column>
+      <el-table-column
+        prop="level"
+        label="信用评级"
+        width="80">
+      </el-table-column>
+      <el-table-column
+        prop="tel"
+        label="电话"
+        width="130">
+      </el-table-column>
+      <el-table-column
+        prop="email"
+        label="邮箱"
+        width="170">
+      </el-table-column>
+      <el-table-column
+        prop="state"
+        label="状态"
+        width="100">
+      </el-table-column>
+      <el-table-column
+        label="操作"
+        width="300">
+          <template slot-scope="scope">
+            <el-button type="primary" size="mini" plain>历史投资</el-button>
+            <el-button type="success" size="mini" plain>查看标的</el-button>
+            <el-button type="warning" size="mini" plain>个人财务</el-button>
+          </template>
+      </el-table-column>
+    </el-table>
     </div>
+    <!--<div class="mytable">-->
+      <!--<div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">-->
+        <!--<label style="font-size: 14px;">筛选条件:</label>-->
+        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--<label>用户名称：</label>-->
+        <!--<form style="display:inline-block;color:black">-->
+          <!--<input type="text" name="username" value="" v-model="input_username"/>&lt;!&ndash;<input type="text" v-model="input_username" />&ndash;&gt;-->
+        <!--</form>-->
+        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--<label>信用评级：</label>-->
+        <!--<form style="display:inline-block;color:black">-->
+          <!--<input type="text" name="level" value="" v-model="input_level"/>-->
+        <!--</form>-->
+        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--<label >电话：</label>-->
+        <!--<form style="display:inline-block;color:black">-->
+          <!--<input type="text" name="tel" value="" v-model="input_tel"/>-->
+        <!--</form>-->
+        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--<label>邮箱：</label>-->
+        <!--<form style="display:inline-block;color:black">-->
+          <!--<input type="text" name="email" value="" v-model="input_email">-->
+        <!--</form>-->
+        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+        <!--&lt;!&ndash;选择过滤条件&ndash;&gt;-->
+        <!--<label>借款状态：</label>-->
+        <!--<select name="state" type="hidden" v-model.lazy="state" style="color:black;">-->
+          <!--<option value="">所有</option>-->
+          <!--<option value="无借款">无借款</option>-->
+          <!--<option value="待还款">待还款</option>-->
+          <!--<option value="逾期">逾期</option>-->
+        <!--</select>-->
+
+      <!--</div>-->
+      <!--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+      <!--<div class="tableBackground">-->
+        <!--<table class="usertable">-->
+          <!--<tbody class="usertablebody">-->
+          <!--<tr>-->
+            <!--<th style="border: 1px solid black;text-align:center;">用户名称</th>-->
+            <!--<th style="border: 1px solid black;text-align:center;">信用评级</th>-->
+            <!--<th style="border: 1px solid black;text-align:center;">电话</th>-->
+            <!--<th style="border: 1px solid black;text-align:center;">邮箱</th>-->
+            <!--<th style="border: 1px solid black;text-align:center;">借款状态</th>-->
+            <!--<th style="border: 1px solid black;text-align:center;">操作</th>-->
+          <!--</tr>-->
+          <!--<tr v-for="user in filteredUsers" @click="showModel" >-->
+            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>-->
+            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>-->
+            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>-->
+            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>-->
+            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>-->
+            <!--<td style="border: 1px solid black ;text-align:center;">-->
+              <!--<router-link to="">-->
+                <!--<button class="checkDetailButton">历史投资</button>-->
+              <!--</router-link>-->
+              <!--<router-link to="">-->
+                <!--<button class="checkDetailButton">查看标的</button>-->
+              <!--</router-link>-->
+              <!--<router-link to="">-->
+                <!--<button class="checkDetailButton">个人财务</button>-->
+              <!--</router-link>-->
+            <!--</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+          <!--<tfoot class="full-width">-->
+          <!--<tr>-->
+            <!--<th></th>-->
+            <!--<th colspan="4" style="text-align:center;">-->
+              <!--<button class="pageButton" @click="turnPage(-1)">Prev</button>-->
+              <!--<span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>-->
+              <!--<button class="pageButton" @click="turnPage(1)">Next</button>-->
+              <!--<span>跳转到第</span>-->
+              <!--<input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">-->
+              <!--<span>页</span>-->
+            <!--</th>-->
+          <!--</tr>-->
+          <!--</tfoot>-->
+        <!--</table>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div>
+
+    </div>
+
+
     <div>
       <footerBar></footerBar>
     </div>
@@ -162,7 +236,18 @@
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
         jPage: 1, // 跳转到某页
-
+        options:[
+          {value: 4, label: 'AA'},
+          {value: 3, label: 'A'},
+          {value: 2, label: 'B'},
+          {value: 1, label: 'C'},
+          {value: 0, label: 'D'},
+        ],
+        userOptions: [
+          {value:0, label: '无借款'},
+          {value:1, label: '待收款'},
+          {value:2, label: '逾期'}
+        ]
 
       }
     },
@@ -300,7 +385,6 @@
     min-height: 580px;
     padding: 50px 0px;
     line-height: 3px;
-    background-image: url("/static/pic/Investing.png");
     background-size: 110% 110% ;
     color: black;
     border: none;
