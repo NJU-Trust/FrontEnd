@@ -152,11 +152,12 @@
             </div>
           </div>
           <div class="col-sm-3 col-md-3">
-            <div class="change">
-              <div class="sort changeSecond">
-                <input type="button" v-on:click="handleClick1" value="未成交"/>
-                <input type="button" v-on:click="handleClick2" value="转让中"/>
-              </div>
+            <div class="onoffswitch1" style="margin-left:30%;">
+              <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="mySwitch1" v-on:click="handleClick1()">
+              <label class="onoffswitch1-label" for="mySwitch1">
+                <span class="onoffswitch1-inner"></span>
+                <span class="onoffswitch1-switch"></span>
+              </label>
             </div>
           </div>
         </div>
@@ -372,12 +373,14 @@
     },
     methods:{
       handleClick1(){
-        this.div1=true;
-        this.div2=false;
-      },
-      handleClick2(){
-        this.div1=false;
-        this.div2=true;
+        if(this.div1){
+          this.div1=false;
+          this.div2=true;
+        }
+        else{
+          this.div1=true;
+          this.div2=false;
+        }
       },
       handleCheckAllChange(val) {
         this.checkboxGroup2 = val ? indexAOptions : [];
@@ -655,5 +658,178 @@
   }
   .pagination a:active {
     outline: none;
+  }
+  .onoffswitch1 {
+    position: relative;
+    width: 60%;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select: none;
+  }
+  .onoffswitch1-checkbox {
+    display: none;
+  }
+  .onoffswitch1-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #e4e4e4;
+    border-radius: 30px;
+  }
+
+  .onoffswitch1-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s;
+    -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s;
+    transition: margin 0.3s ease-in 0s;
+  }
+
+  .onoffswitch1-inner:before, .onoffswitch1-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 30px;
+    box-shadow: 0px 15px 0px rgba(0,0,0,0.08) inset;
+  }
+
+  .onoffswitch1-inner:before {
+    content: "转让中";
+    padding-left: 5%;
+    background-color: #2FCCFF;
+    color: #FFFFFF;
+    border-radius: 30px 0 0 30px;
+  }
+
+  .onoffswitch1-inner:after {
+    content: "未成交";
+    padding-right: 5%;
+    background-color: #EEEEEE;
+    color: #999999;
+    text-align: right;
+    border-radius: 0 30px 30px 0;
+  }
+
+  .onoffswitch1-switch {
+    display: block;
+    width: 42%;
+    margin: 0px;
+    background: #FFFFFF;
+    border: 1px solid #C4C3C3;
+    border-radius: 30px;
+    position: absolute;
+    top: 0; bottom: 0; right: 90px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+    box-shadow: 0 1px 1px white inset;
+  }
+
+  .onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-inner {
+    margin-left: 0;
+  }
+
+  .onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-switch {
+    right: 0px;
+  }
+  .cmn-toggle
+  {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+
+  .cmn-toggle + label
+  {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input.cmn-toggle-round-flat + label
+  {
+    padding: 2px;
+    width: 75px;
+    height: 30px;
+    background-color: #dddddd;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 60px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+  }
+
+  input.cmn-toggle-round-flat + label:before, input.cmn-toggle-round-flat + label:after
+  {
+    display: block;
+    position: absolute;
+    content: "";
+  }
+
+  input.cmn-toggle-round-flat + label:before
+  {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #fff;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 60px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+  }
+
+  input.cmn-toggle-round-flat + label:after
+  {
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: 22px;
+    background-color: #dddddd;
+    -webkit-border-radius: 52px;
+    -moz-border-radius: 52px;
+    -ms-border-radius: 52px;
+    -o-border-radius: 52px;
+    border-radius: 52px;
+    -webkit-transition: margin 0.4s, background 0.4s;
+    -moz-transition: margin 0.4s, background 0.4s;
+    -o-transition: margin 0.4s, background 0.4s;
+    transition: margin 0.4s, background 0.4s;
+  }
+
+  input.cmn-toggle-round-flat:checked + label
+  {
+    background-color: #27A1CA;
+  }
+
+  input.cmn-toggle-round-flat:checked + label:after
+  {
+    margin-left: 45px;
+    background-color: #27A1CA;
   }
 </style>

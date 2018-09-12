@@ -3,7 +3,7 @@
     <div style="height:130px;text-align: center;">
       <el-row :gutter="20">
         <el-col :span="6">
-          <div style="display: inline;float: left;margin: 0;padding: 0">
+          <div style="display: inline;float: left;margin: -2px;padding: 0">
             <p class="text">{{investList.range}}</p>
             <div class="triangle-topleft">
             </div>

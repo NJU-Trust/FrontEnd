@@ -5,8 +5,8 @@
         <div>
           <div class="AdUsrInstruction" id="ad_info" style="display: inline;margin-top: 10px;margin-bottom: 10px">
             <h3 style="text-indent: 0px">高级账号校验</h3>
-            <p class="lead">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高级账号是会计职称的一种，会计职称分为会计初级职称、会计中级职称、会计高级职称。根据现行会计职称管理规定，通过中级会计职称考试后可以评定会计师职称。会计师指具有一定会计专业水平，经考核取得证书、可以接受当事人委托，承办有关审计、会计、咨询、税务等方面业务的会计人员，在西方国家，会计师同律师、医师、工程师一样，都是自由职业者。在中国，会计师，又是会计干部的技术职称之一。
+            <p class="lead" style="font-size: 16px;">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您即将成为拥有Trust平台高级账户的用户，较之中级账户只能查看日常校园卡消费统计数据，高级账户可以查看个人完整消费财务分析和针对借款生成的消费修正建议；较之中级账户高级账户只能进行标的投资和查看项目信息，高级账户增加了发布资金需求的功能。而成为高级账户，只需在此页面您导入银行卡和支付宝数据并在下一页面完成个性信息的填写。
             </p>
           </div>
           <hr/>

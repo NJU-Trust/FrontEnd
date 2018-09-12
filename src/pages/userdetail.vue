@@ -6,7 +6,7 @@
         <tbody>
         <tr>
           <td>
-            <div class="base-info" style="padding:20px;">
+            <div class="base-info" style="padding:30px 0px 50px 0px;font-size:14px;">
 
               <label>用户名称：</label>
               <label>XXXXXXXX</label>
@@ -22,14 +22,16 @@
               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
               <label>借款状态：</label>
               <label>XXXXXXX</label>
-
-
             </div>
             <div class="details">
               <el-tabs :tab-position="tabPosition">
-                <el-tab-pane label="投资详情">用户管理</el-tab-pane>
+                <el-tab-pane label="投资详情">
+                  <div style="padding:0px 0px 0px 20px;">
+                    <investInfoTabs></investInfoTabs>
+                  </div>
+                </el-tab-pane>
                 <el-tab-pane label="借款详情">
-                  <el-tabs v-model="activeName" @tab-click="handleClick">
+                  <el-tabs style="padding:0px 0px 0px 20px;" v-model="activeName" @tab-click="handleClick">
                     <el-tab-pane label="正在进行" name="first">
                       <loanTopBar></loanTopBar>
                       <loanUnderway></loanUnderway>
@@ -49,7 +51,9 @@
                   </el-tabs>
                 </el-tab-pane>
                 <el-tab-pane label="个人财务">
-                  <fin-standing></fin-standing>
+                  <div style="padding:0px 0px 0px 20px;">
+                    <fin-standing></fin-standing>
+                  </div>
                 </el-tab-pane>
               </el-tabs>
             </div>
@@ -85,10 +89,11 @@
   import loanUnbelievable from "../components/loanUnbelievable"
   import adminNavi from '@/components/adminNavi.vue';
   import FinStanding from "../components/finStanding";
+  import investInfoTabs from "../components/investInfoTabs";
 
   export default {
     name: "userdetail",
-    components:{adminNavi,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,FinStanding},
+    components:{adminNavi,loanTopBar,loanUnderway,loanComplete,loanLaunched,loanUnbelievable,FinStanding,investInfoTabs},
     data() {
       return {
         currentPage1: 2,
@@ -134,6 +139,5 @@
     background-color:white;
     width: 1100px;
     min-height: 700px;
-    border-radius: 5%;
   }
 </style>
