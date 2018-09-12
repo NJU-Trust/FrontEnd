@@ -2,18 +2,8 @@
   <div class="container">
     <a href='/'><img src="/static/pic/logo1_white.png" style="width:12%;position:absolute;top:15px;left: 6%;" align=center></a><br>
     <div class="mainbox">
-      <!--<img id="ad" src="/static/pic/advice.png" style="width:32%;display: inline-block;margin-left: 18%" >-->
-      <el-carousel indicator-position="outside" style="width:36%;display: inline-block;margin-left: 15%">
-        <el-carousel-item>
-          <img style="width: 100%;" src="/static/pic/loginBackground1.png">
-        </el-carousel-item>
-        <el-carousel-item>
-          <img style="width: 100%;" src="/static/pic/signupBackground.png">
-        </el-carousel-item>
-        <el-carousel-item>
-          <img style="width: 100%;" src="/static/pic/library.jpg">
-        </el-carousel-item>
-      </el-carousel>
+    <img id="ad" src="/static/pic/loginPic.png" style="width:32%;display: inline-block;margin-left: 16%">
+
       <el-card class="box-card loginbody">
         <h3 style="float: top;" align="center">登录</h3>
         <el-input id="account" class="loginInput" style="margin-top: 6%;" placeholder="账户/邮箱"></el-input>
