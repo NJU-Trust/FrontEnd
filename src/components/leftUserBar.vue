@@ -39,17 +39,18 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    style="height: auto">
+    style="height: auto"
+    router="true">
     <el-submenu index="1">
       <template slot="title">
         <i class="el-icon-location"></i>
         <span>个人信息</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="1-1">账户总览</el-menu-item>
-        <el-menu-item index="1-2">校园表现</el-menu-item>
-        <el-menu-item index="1-3">财务状况</el-menu-item>
-        <el-menu-item index="1-4">基本信息</el-menu-item>
+        <el-menu-item index="/UserSpace">账户总览</el-menu-item>
+        <el-menu-item index="/UserSpace/SchoolPerformance">校园表现</el-menu-item>
+        <el-menu-item index="/UserSpace/FinancialStanding">财务状况</el-menu-item>
+        <el-menu-item index="/UserSpace/BasicInformation">基本信息</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
     <el-submenu index="2">
@@ -58,8 +59,8 @@
         <span>借款管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="2-1">项目信息</el-menu-item>
-        <el-menu-item index="2-2">借款统计</el-menu-item>
+        <el-menu-item index="/UserSpace/LoanInformation">项目信息</el-menu-item>
+        <el-menu-item index="/UserSpace/LoanStatistics">借款统计</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
     <el-submenu index="3">
@@ -68,8 +69,8 @@
         <span>借款管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="3-1">项目信息</el-menu-item>
-        <el-menu-item index="3-2">投资统计</el-menu-item>
+        <el-menu-item index="/UserSpace/InvestInformation">项目信息</el-menu-item>
+        <el-menu-item index="/UserSpace/InvestEarnings">投资统计</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
     <el-submenu index="4">
@@ -78,9 +79,9 @@
         <span>信用验证</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="4-1">校园验证</el-menu-item>
-        <el-menu-item index="4-2">财务验证</el-menu-item>
-        <el-menu-item index="4-3">关系验证</el-menu-item>
+        <el-menu-item index="/UserSpace/NormalCheck">校园验证</el-menu-item>
+        <el-menu-item index="/UserSpace/AdvancedCheck">财务验证</el-menu-item>
+        <el-menu-item index="/UserSpace/CrossCheck">关系验证</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
