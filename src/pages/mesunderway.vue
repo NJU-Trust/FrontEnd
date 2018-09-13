@@ -6,13 +6,12 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">信息发布平台 -- 正在进行</h2>
+        <h2 class="myspace">信息发布 -- 正在进行</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
 
     <!--正文-->
-
     <el-row>
       <el-col span="6">
         <leftInformationbar></leftInformationbar>
@@ -22,109 +21,159 @@
           <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
             <el-tab-pane label="失物招领" name="first">
               <div v-for="i in mesdata.length" :key="i">
-                <!--<span>{{ i }}</span>
-                <span>{{ mesdata[i-1].mestype }}</span>-->
                 <div v-if="mesdata[i-1].mestype === '失物招领'"
                      v-show="mesdata[i-1].state" style="margin-left: 20px;margin-top: 20px">
-                  <el-card class="box-card">
-                    <div>
-                      <img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-                    </div>
-                    <div class="textitem">
-                      <div>
-                        <strong style="font-size: 15px;">物品类别</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                        <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
-                        <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
+                  <el-row>
+                    <el-col :span="24">
+                      <div class="grid-content bg-purple-dark">
+                        <el-card class="box-card">
+                          <el-row >
+                            <el-col :span="6">
+                              <div class="grid-content bg-purple">
+                                <div>
+                                  <img src="../../static/pic/mestest.png"  class="picbox" alt="User_pic">
+                                </div>
+                              </div>
+                            </el-col>
+                            <el-col :span="16">
+                              <div class="grid-content bg-purple" style="margin-left:5%;margin-top:5%;">
+                                <el-row>
+                                  <el-col :span="12">
+                                    <div class="grid-content bg-purple">
+                                      <div>
+                                        <strong style="font-size: 15px;">物品类别</strong>
+                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                                      </div>
+                                      <div>
+                                        <strong style="font-size: 15px;">发布时间</strong>
+                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                                      </div>
+                                    </div>
+                                  </el-col>
+                                  <el-col :span="12">
+                                    <div class="grid-content bg-purple-light">
+                                      <div>
+                                        <strong style="font-size: 15px;">物品名称</strong>
+                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].name}}</span>
+                                      </div>
+                                      <div >
+                                        <strong style="font-size: 15px;">联系方式</strong>
+                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
+                                      </div>
+                                    </div>
+                                  </el-col>
+                                </el-row>
+                                <br/>
+                                <div>
+                                    <strong style="font-size: 15px;">详细信息</strong>
+                                    <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                                  </div>
+                                <el-row>
+                                  <el-col :offset="14">
+                                    <el-button type="success"
+                                               round size="small"
+                                               @click="dialogFormVisible = true"
+                                               style="margin-top: 30px;">确认完成</el-button>
+                                    <el-dialog title="确认完成"
+                                               width="40%"
+                                               :visible.sync="dialogFormVisible">
+                                      <el-form :model="form" >
+                                        <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                                          <el-input v-model="form.name"
+                                                    style="width:330px;"
+                                                    auto-complete="off"></el-input>
+                                        </el-form-item>
+                                      </el-form>
+                                      <div slot="footer" class="dialog-footer">
+                                        <el-button @click="dialogFormVisible = false">取 消</el-button>
+                                        <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
+                                      </div>
+                                    </el-dialog>
+                                  </el-col>
+                                </el-row>
+                              </div>
+                            </el-col>
+                          </el-row>
+                        </el-card>
                       </div>
-                      <div style="position:relative;top:3px;">
-                        <strong style="font-size: 15px;">发布时间</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                      </div>
-                      <div style="position:relative;top:3px;">
-                        <strong style="font-size: 15px;">联系方式</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
-                      </div>
-                      <div style="position:relative;top:3px;width:400px;">
-                        <strong style="font-size: 15px;">详细信息</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                      </div>
-                      <el-button type="success"
-                                 round size="small"
-                                 @click="dialogFormVisible = true"
-                                 style="margin-top: 30px;">确认完成</el-button>
-                      <el-dialog title="确认完成"
-                                 width="40%"
-                                 :visible.sync="dialogFormVisible">
-                        <el-form :model="form" >
-                          <el-form-item label="对方用户名" :label-width="formLabelWidth">
-                            <el-input v-model="form.name"
-                                      style="width:330px;"
-                                      auto-complete="off"></el-input>
-                          </el-form-item>
-                        </el-form>
-                        <div slot="footer" class="dialog-footer">
-                          <el-button @click="dialogFormVisible = false">取 消</el-button>
-                          <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
-                        </div>
-                      </el-dialog>
-
-                    </div>
-                  </el-card>
+                    </el-col>
+                  </el-row>
                 </div>
               </div>
             </el-tab-pane>
 
             <el-tab-pane label="寻物启事" name="second">
               <div v-for="i in mesdata.length" :key="i">
-                <!--<span>{{ i }}</span>
-                <span>{{ mesdata[i-1].mestype }}</span>-->
                 <div v-if="mesdata[i-1].mestype === '寻物启事'"
                      v-show="mesdata[i-1].state" style="margin-left: 20px;margin-top: 20px">
                   <el-card class="box-card">
-                    <div>
-                      <img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">
-                    </div>
-                    <div class="textitem">
-                      <div>
-                        <strong style="font-size: 15px;">物品类别</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                        <strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>
-                        <span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>
-                      </div>
-                      <div style="position:relative;top:3px;">
-                        <strong style="font-size: 15px;">发布时间</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                      </div>
-                      <div style="position:relative;top:3px;">
-                        <strong style="font-size: 15px;">联系方式</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
-                      </div>
-                      <div style="position:relative;top:3px;width:400px;">
-                        <strong style="font-size: 15px;">详细信息</strong>
-                        <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                      </div>
-                      <el-button type="success"
-                                 round size="small"
-                                 @click="dialogFormVisible = true"
-                                 style="margin-top: 30px">确认完成</el-button>
-                      <el-dialog title="确认完成"
-                                 width="40%"
-                                 :visible.sync="dialogFormVisible">
-                        <el-form :model="form" >
-                          <el-form-item label="对方用户名" :label-width="formLabelWidth" prop="name">
-                            <el-input v-model="form.name"
-                                      style="width:330px;"
-                                      auto-complete="off"></el-input>
-                          </el-form-item>
-                        </el-form>
-                        <div slot="footer" class="dialog-footer">
-                          <el-button @click="dialogFormVisible = false">取 消</el-button>
-                          <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
+                    <el-row >
+                      <el-col :span="6">
+                        <div class="grid-content bg-purple">
+                          <div>
+                            <img src="../../static/pic/mestest2.png"  class="picbox" alt="User_pic">
+                          </div>
                         </div>
-                      </el-dialog>
-
-                    </div>
+                      </el-col>
+                      <el-col :span="16">
+                        <div class="grid-content bg-purple" style="margin-left:5%;margin-top:5%;">
+                          <el-row>
+                            <el-col :span="12">
+                              <div class="grid-content bg-purple">
+                                <div>
+                                  <strong style="font-size: 15px;">物品类别</strong>
+                                  <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
+                                </div>
+                                <div>
+                                  <strong style="font-size: 15px;">发布时间</strong>
+                                  <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
+                                </div>
+                              </div>
+                            </el-col>
+                            <el-col :span="12">
+                              <div class="grid-content bg-purple-light">
+                                <div>
+                                  <strong style="font-size: 15px;">物品名称</strong>
+                                  <span style="position:relative;left:20px;">{{ mesdata[i-1].name}}</span>
+                                </div>
+                                <div >
+                                  <strong style="font-size: 15px;">联系方式</strong>
+                                  <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
+                                </div>
+                              </div>
+                            </el-col>
+                          </el-row>
+                          <br/>
+                          <div>
+                            <strong style="font-size: 15px;">详细信息</strong>
+                            <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
+                          </div>
+                          <el-row>
+                            <el-col :offset="14">
+                              <el-button type="success"
+                                         round size="small"
+                                         @click="dialogFormVisible = true"
+                                         style="margin-top: 30px;">确认完成</el-button>
+                              <el-dialog title="确认完成"
+                                         width="40%"
+                                         :visible.sync="dialogFormVisible">
+                                <el-form :model="form" >
+                                  <el-form-item label="对方用户名" :label-width="formLabelWidth">
+                                    <el-input v-model="form.name"
+                                              style="width:330px;"
+                                              auto-complete="off"></el-input>
+                                  </el-form-item>
+                                </el-form>
+                                <div slot="footer" class="dialog-footer">
+                                  <el-button @click="dialogFormVisible = false">取 消</el-button>
+                                  <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
+                                </div>
+                              </el-dialog>
+                            </el-col>
+                          </el-row>
+                        </div>
+                      </el-col>
+                    </el-row>
                   </el-card>
                 </div>
               </div>
@@ -134,123 +183,6 @@
       </el-col>
     </el-row>
 
-
-    <!--<div class="back">-->
-      <!--<leftInformationbar></leftInformationbar>-->
-      <!--<div class="mesboxborder" >-->
-      <!--<el-tabs v-model="activeName2" type="card" @tab-click="handleClick" style="position:relative;top:35px;left:77px;width:800px;">-->
-        <!--<el-tab-pane label="失物招领" name="first">-->
-          <!--<div v-for="i in mesdata.length" :key="i">-->
-            <!--&lt;!&ndash;<span>{{ i }}</span>-->
-            <!--<span>{{ mesdata[i-1].mestype }}</span>&ndash;&gt;-->
-            <!--<div v-if="mesdata[i-1].mestype === '失物招领'"-->
-                 <!--v-show="mesdata[i-1].state">-->
-              <!--<el-card class="box-card">-->
-                <!--<div>-->
-                  <!--<img src="../../static/pic/mestest.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">-->
-                <!--</div>-->
-                <!--<div class="textitem">-->
-                  <!--<div>-->
-                    <!--<strong style="font-size: 15px;">物品类别</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
-                    <!--<strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>-->
-                    <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;">-->
-                    <!--<strong style="font-size: 15px;">发布时间</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;">-->
-                    <!--<strong style="font-size: 15px;">联系方式</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;width:400px;">-->
-                    <!--<strong style="font-size: 15px;">详细信息</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
-                  <!--</div>-->
-                  <!--<el-button type="success"-->
-                             <!--round size="small"-->
-                             <!--@click="dialogFormVisible = true"-->
-                             <!--style="position:absolute;left:300px;top:150px;">确认完成</el-button>-->
-                  <!--<el-dialog title="确认完成"-->
-                             <!--width="40%"-->
-                             <!--:visible.sync="dialogFormVisible">-->
-                    <!--<el-form :model="form" >-->
-                      <!--<el-form-item label="对方用户名" :label-width="formLabelWidth">-->
-                        <!--<el-input v-model="form.name"-->
-                                  <!--style="width:330px;"-->
-                                  <!--auto-complete="off"></el-input>-->
-                      <!--</el-form-item>-->
-                    <!--</el-form>-->
-                    <!--<div slot="footer" class="dialog-footer">-->
-                      <!--<el-button @click="dialogFormVisible = false">取 消</el-button>-->
-                      <!--<el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>-->
-                    <!--</div>-->
-                  <!--</el-dialog>-->
-
-                <!--</div>-->
-              <!--</el-card>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</el-tab-pane>-->
-
-        <!--<el-tab-pane label="寻物启事" name="second">-->
-          <!--<div v-for="i in mesdata.length" :key="i">-->
-            <!--&lt;!&ndash;<span>{{ i }}</span>-->
-            <!--<span>{{ mesdata[i-1].mestype }}</span>&ndash;&gt;-->
-            <!--<div v-if="mesdata[i-1].mestype === '寻物启事'"-->
-                 <!--v-show="mesdata[i-1].state">-->
-              <!--<el-card class="box-card">-->
-                <!--<div>-->
-                  <!--<img src="../../static/pic/mestest2.png" style="width:200px;height:200px;position:relative;top:3px;left:15px;" class="picbox" alt="User_pic">-->
-                <!--</div>-->
-                <!--<div class="textitem">-->
-                  <!--<div>-->
-                    <!--<strong style="font-size: 15px;">物品类别</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>-->
-                    <!--<strong style="font-size: 15px;position:relative;left:60px;">物品名称</strong>-->
-                    <!--<span style="position:relative;left:80px;">{{ mesdata[i-1].name}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;">-->
-                    <!--<strong style="font-size: 15px;">发布时间</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;">-->
-                    <!--<strong style="font-size: 15px;">联系方式</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>-->
-                  <!--</div>-->
-                  <!--<div style="position:relative;top:3px;width:400px;">-->
-                    <!--<strong style="font-size: 15px;">详细信息</strong>-->
-                    <!--<span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>-->
-                  <!--</div>-->
-                  <!--<el-button type="success"-->
-                             <!--round size="small"-->
-                             <!--@click="dialogFormVisible = true"-->
-                             <!--style="position:absolute;left:300px;top:150px;">确认完成</el-button>-->
-                  <!--<el-dialog title="确认完成"-->
-                             <!--width="40%"-->
-                             <!--:visible.sync="dialogFormVisible">-->
-                    <!--<el-form :model="form" >-->
-                      <!--<el-form-item label="对方用户名" :label-width="formLabelWidth" prop="name">-->
-                        <!--<el-input v-model="form.name"-->
-                                  <!--style="width:330px;"-->
-                                  <!--auto-complete="off"></el-input>-->
-                      <!--</el-form-item>-->
-                    <!--</el-form>-->
-                    <!--<div slot="footer" class="dialog-footer">-->
-                      <!--<el-button @click="dialogFormVisible = false">取 消</el-button>-->
-                      <!--<el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>-->
-                    <!--</div>-->
-                  <!--</el-dialog>-->
-
-                <!--</div>-->
-              <!--</el-card>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</el-tab-pane>-->
-      <!--</el-tabs>-->
-    <!--</div>-->
-    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -359,54 +291,40 @@
 
   /*消息框*/
   .mesboxborder{
-    width:850px;
+    //width:850px;
     margin-right: 10%;
     border-radius: 3px;
     margin-left: 5%;
     margin-top: 30px;
+    margin-bottom:5%;
     background:white;
     border:1px solid #e4e4e4;
-    height:800px;
+    min-height:800px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
   }
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 18px;
-  }
-.textitem{
-  position:relative;
-  left:300px;
-  top:-180px;
-}
 
 .picbox{
   box-shadow:
     0 1px 6px 0 rgba(0,0,0, .12),
     0 1px 6px 0 rgba(0,0,0, .12);
   border-radius: 3px;
-
+  max-width:250px;
+  max-height:200px;
+  margin-left:5%;
 }
 
 /*卡片样式*/
   .box-card {
-    width: 800px;
-    height: 250px;
+    min-height: 250px;
     border-radius: 5px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
-    margin: 0px;
+    margin-left:2%;
+    margin-right:5%;
     padding: 5px;
-  }
-
-  .label{
-    font-size: 15px;
-
   }
 </style>

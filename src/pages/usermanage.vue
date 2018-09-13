@@ -5,23 +5,24 @@
     </div>
     <div style="width: 100%;text-align: center;">
     <el-form :inline="true">
-      <el-form-item label="用户名称" style="padding:40px 20px 20px 20px;">
+      <el-form-item label="用户名称" style="padding:40px 40px 10px 40px;">
         <el-input placeholder="请输入查询内容" style="width: 150px;" clearable></el-input>
       </el-form-item>
-      <el-form-item label="电话" style="padding:40px 20px 20px 20px;">
+      <el-form-item label="电话" style="padding:40px 40px 10px 40px;">
         <el-input placeholder="请输入查询内容"  clearable></el-input>
       </el-form-item>
-      <el-form-item label="邮箱" style="padding:40px 20px 20px 20px;">
+      <el-form-item label="邮箱" style="padding:40px 40px 10px 40px;">
         <el-input placeholder="请输入查询内容" clearable></el-input>
       </el-form-item>
     </el-form>
     <el-table :data="users"
-              height="400"
+              height="500"
               border
               style="width: 920px;margin: auto;text-align: left;">
       <el-table-column
         prop="username"
         label="用户名称"
+        align="center"
         width="100">
       </el-table-column>
       <el-table-column
@@ -57,7 +58,7 @@
         align="center"
         width="300">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" plain>查看投资/借款/个人财务</el-button>
+            <el-button type="primary" size="mini" plain @click="seeDetail">查看投资/借款/个人财务</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -197,7 +198,7 @@
       level: 'D',
       tel: '13211238753',
       email: 'wangtong22@126.com',}];
-  var STORAGE_KEY = 'users';
+/*  var STORAGE_KEY = 'users';
   var userStorage = {
     fetch: function () {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || mockUsers
@@ -205,17 +206,17 @@
     save: function (data) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
     }
-  };
+  };*/
 
   export default {
     name: "usermanage",
     components:{adminNavi,footerBar},
     data () {
       return {
-        users: userStorage.fetch(), // users 数据
-        selectedUsers: [], // 保存选中的 users 数组
-        selectedUser: {}, // 选中 user
-        input_username: '', // 过滤 username 的关键字
+        users: mockUsers, // users 数据
+        /*selectedUsers: [], // 保存选中的 users 数组
+        selectedUser: {}, // 选中 user*/
+        /*input_username: '', // 过滤 username 的关键字
         input_level: '',// 过滤 level 的关键字
         input_tel: '',// 过滤 tel 的关键字
         input_email: '',// 过滤 email 的关键字
@@ -224,7 +225,7 @@
         limit: 9, // 每页显示行数
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
-        jPage: 1, // 跳转到某页
+        jPage: 1, // 跳转到某页*/
         options: [
           {value: 4, label: 'AA'},
           {value: 3, label: 'A'},
@@ -239,38 +240,33 @@
         ],
         searchOption: {
           name: '',
-          level:'',
           tel:'',
           email:'',
-          state:'',
         }
 
       }
     },
     // watch
-    watch: {
+    /*watch: {
       users: {
         handler () {
           userStorage.save(this.users)
         },
         deep: true
       },
-      searchOption:{
-        deep:true,
-        handler: function (val,oldVar) {
-
-        }
-      }
-    },
+    },*/
     // computed properties
     computed: {
-      filteredUsers () {
+      /*filteredUsers () {
         let fUsers = this.queryFilter('username', this.input_username, this.users)
         fUsers = this.queryFilter('state', this.state, fUsers)
         fUsers = this.queryFilter('level',this.input_level,fUsers)
         fUsers = this.queryFilter('tel',this.input_tel,fUsers)
         fUsers = this.queryFilter('email',this.input_email,fUsers)
         return this.paginate(fUsers)
+      }*/
+      users:function () {
+
       }
     },
     mounted:function(){
@@ -280,8 +276,10 @@
       filterHandler(value, row, column) {
         const property = column['property'];
         return row[property] === value;
-      }
-      ,
+      },
+      seeDetail(){
+        window.location.href='/userdetail';
+      },
       getData:function(pageNum){
         this.$axios.get('/AdminUser/manage', {
           params: {
@@ -296,9 +294,7 @@
 
           });
       },
-      addUser() {
-        this.users.push(this.user)
-      },
+/*
       queryFilter(prop, key, arr) {
         // none query string, return arr
         if (!key) {
@@ -352,7 +348,7 @@
         }
       },
 
-      /*doAudit(newAudit, user) {
+      /!*doAudit(newAudit, user) {
         // user 可指定，为 0 时指选中用户，为 -1 时指全部用户
         let users = []
         if (user === 0) {
@@ -370,7 +366,7 @@
         users.forEach((user) => {
           user.audit = aId
         })
-      },*/
+      },*!/
       showModel(e) {
         let target = e.target
         if (target.nodeName.toLowerCase() === 'td') {
@@ -379,6 +375,7 @@
         let index = $(target.parentNode).index()
         this.selectedUser = this.filteredUsers[index]
       }
+      */
     }
   }
 </script>

@@ -6,140 +6,135 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">信息发布平台 -- 发布消息</h2>
+        <h2 class="myspace">信息发布 -- 消息大厅</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
 
+    <!--正文-->
     <el-row>
       <el-col span="6">
         <leftInformationbar></leftInformationbar>
       </el-col>
       <el-col span="18">
-        <div class="publishmes" >
-          <el-form :rules="rules"
-                   :inline="true"
-                   ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">
-            <el-form-item label="消息性质" prop="type">
-              <el-radio-group v-model="sizeForm.type" size="small">
-                <el-radio border label="失物招领"></el-radio>
-                <el-radio border label="寻物启事"></el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <el-form-item label="物品类别" prop="itemtype" style="position:relative;left:50px;">
-              <el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">
-                <el-option label="校园卡" value="校园卡"></el-option>
-                <el-option label="钥匙" value="钥匙"></el-option>
-                <el-option label="证件" value="证件"></el-option>
-                <el-option label="其他" value="其他"></el-option>
-              </el-select>
-            </el-form-item>
-            <br/>
-            <el-form-item label="物品名称" prop="name" >
-              <el-input v-model="sizeForm.name"
-                        palceholder="请输入物品名称"
-                        style="width:203px;"></el-input>
-            </el-form-item>
-            <el-form-item label="联系方式"
-                          prop="phone"
-                          style="position:relative;left:50px;">
-              <el-input v-model.number="sizeForm.phone"
-                        type="phone"
-                        style="width:200px;"
-                        placeholder="QQ号"></el-input>
-            </el-form-item>
-            <br/>
-            <el-form-item label="物品图片" prop="pic" >
-              <el-upload class="upload-demo"
-                         drag
-                         action="https://jsonplaceholder.typicode.com/posts/"
-                         multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-              </el-upload>
-            </el-form-item>
-            <br/>
-            <el-form-item label="物品信息" prop="desc" >
-              <el-input type="textarea"
-                        style="width:360px"
-                        minRows="1"
-                        maxRows="3"
-                        autosize
-                        placeholder="请输物品的详细信息"
-                        v-model="sizeForm.desc"></el-input>
-            </el-form-item>
-            <br/>
-            <el-form-item size="large" style="margin-top: 20px">
-              <el-button type="primary" @click="onSubmit()">发布</el-button>
-            </el-form-item>
-          </el-form>
+        <div class="mesboxborder">
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card">
+              <el-tab-pane >
+                <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;最新消息</span>
+                <div style="position:relative;top:10px;margin-left:5%;margin-right:5%;">
+                  <template>
+                    <el-carousel :interval="3000" type="card" height="200px">
+                      <el-carousel-item v-for="i in latestmes.length" :key="i">
+                        <el-popover
+                          placement="left"
+                          style="background-color: #DCDFE6;"
+                          width="200"
+                          trigger="hover">
+                          <div >
+                            <div style="position:relative;top:3px;">
+                              <span style="position:relative;left:20px;"><i class="el-icon-time"></i>&nbsp;&nbsp;{{ latestmes[i-1].time}}</span>
+                              <br/>
+                              <span style="position:relative;left:20px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ latestmes[i-1].phone}}</span>
+                              <br/>
+                              <span style="position:relative;left:20px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ latestmes[i-1].loc}}</span>
+                            </div>
+                            <hr/>
+                            <div style="margin-top:-10%;width:150px;">
+                              <img v-bind:src=latestmes[i-1].headpic style="width:30px;height:30px;position:relative;left:10px;top:-15px;"  alt="User_pic" >
+                              <span style="position:relative;margin-top:-10%;">&nbsp;&nbsp;&nbsp;&nbsp;“{{ latestmes[i-1].dec}}”</span>
+                            </div>
+                          </div>
+                          <el-button slot="reference">
+                            <img v-bind:src=latestmes[i-1].pic class="picbox" alt="User_pic" >
+                          </el-button>
+                        </el-popover>
+                      </el-carousel-item>
+                    </el-carousel>
+                  </template>
+                  <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
+                    <span style="font-size:10px;">*点击图片快速查看详细信息</span>
+                  </div>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+            <hr/>
+          </div>
+
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card">
+              <el-tab-pane >
+                <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
+                <template>
+                  <div style="margin-top: 20px">
+                    <span><strong>消息性质</strong></span>
+                    <el-checkbox style="margin-left:2%;">失物招领</el-checkbox>
+                    <el-checkbox style="margin-left:2%;">寻物启事</el-checkbox>
+                    <br/>
+
+                    <span><strong>物品分类</strong></span>
+                    <el-checkbox v-for="type in types" :key="type" :label="type" style="margin-left:2%;">{{ type }}</el-checkbox>
+                    <br/>
+
+                    <span><strong>常见地点</strong></span>
+                    <el-checkbox v-for="loc in locs" :key="loc" :label="loc" style="margin-left:2%;">{{ loc }}</el-checkbox>
+                    <hr/>
+                  </div>
+                </template>
+                <div v-for="j in mesdata.length" :key="j">
+                  <el-row :gutter="400" >
+                    <div v-for="i in 2" :key="i">
+                      <el-col :span="6">
+                        <el-card class="box-card">
+                          <div class="grid-content bg-purple">
+                            <div style="margin-top:-3%;">
+                              <img v-bind:src=mesdata[j-1][i-1].headpic style="width:30px;height:30px;position:relative;left:10px;"  alt="User_pic" >
+                              <span style="position:relative;left:20px;">{{ mesdata[j-1][i-1].username}}</span>
+                              <span style="position:relative;left:135px;">{{ mesdata[j-1][i-1].time}}</span>
+                            </div>
+                            <br/>
+                            <el-row :gutter="30">
+                              <el-col :span="13">
+                                <div class="grid-content bg-purple" style="margin-top:-3%;">
+                                  <span style="position:relative;left:55px;"><i class="el-icon-phone"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].phone}}</span>
+                                  <br/>
+                                  <span style="position:relative;left:55px;"><i class="el-icon-location"></i>&nbsp;&nbsp;{{ mesdata[j-1][i-1].loc}}</span>
+                                  <br/>
+
+                                  <div style="position:relative;top:3px;width:200px;">
+                                    <span style="position:relative;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;{{ mesdata[j-1][i-1].dec}}</span>
+                                  </div>
+                                </div>
+                              </el-col>
+                              <el-col :span="10">
+                                <div class="grid-content bg-purple" style="margin-top:-9%;">
+                                  <img v-bind:src=mesdata[j-1][i-1].pic style="width:110px;height:110px;position:relative;left:5px;top:-8px;" class="picbox" alt="User_pic">
+                                  <br/>
+                                  <span style="position:relative;"><strong>{{ mesdata[j-1][i-1].mestype}}&nbsp;&nbsp;>></strong></span>
+                                  <span style="position:relative;left:5px;"><strong>{{ mesdata[j-1][i-1].name}}</strong></span>
+                                </div>
+                              </el-col>
+                            </el-row>
+                          </div>
+                        </el-card>
+                      </el-col>
+                    </div>
+                  </el-row>
+                </div>
+                <el-pagination
+                  background
+                  layout="prev, pager, next"
+                  style="position:relative;left:200px;"
+                  :total="1000">
+                </el-pagination>
+              </el-tab-pane>
+            </el-tabs>
+          </div>
+          <br/>
+          <hr/>
         </div>
       </el-col>
     </el-row>
-    <!--正文-->
-    <!--<div class="back">-->
-      <!--<leftInformationbar></leftInformationbar>-->
-      <!--<div class="publishmes" >-->
-      <!--<el-form :rules="rules"-->
-               <!--:inline="true"-->
-               <!--ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:130px;top:60px;">-->
-        <!--<el-form-item label="消息性质" prop="type">-->
-          <!--<el-radio-group v-model="sizeForm.type" size="small">-->
-            <!--<el-radio border label="失物招领"></el-radio>-->
-            <!--<el-radio border label="寻物启事"></el-radio>-->
-          <!--</el-radio-group>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="物品类别" prop="itemtype" style="position:relative;left:50px;">-->
-          <!--<el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">-->
-            <!--<el-option label="校园卡" value="校园卡"></el-option>-->
-            <!--<el-option label="钥匙" value="钥匙"></el-option>-->
-            <!--<el-option label="证件" value="证件"></el-option>-->
-            <!--<el-option label="其他" value="其他"></el-option>-->
-          <!--</el-select>-->
-        <!--</el-form-item>-->
-        <!--<br/>-->
-        <!--<el-form-item label="物品名称" prop="name" >-->
-          <!--<el-input v-model="sizeForm.name"-->
-                    <!--palceholder="请输入物品名称"-->
-                    <!--style="width:203px;"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="联系方式"-->
-                      <!--prop="phone"-->
-                      <!--style="position:relative;left:50px;">-->
-          <!--<el-input v-model.number="sizeForm.phone"-->
-                    <!--type="phone"-->
-                    <!--style="width:200px;"-->
-                    <!--placeholder="QQ号"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<br/>-->
-        <!--<el-form-item label="物品图片" prop="pic" >-->
-          <!--<el-upload class="upload-demo"-->
-                     <!--drag-->
-                     <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                     <!--multiple>-->
-            <!--<i class="el-icon-upload"></i>-->
-            <!--<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
-            <!--<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--</el-upload>-->
-        <!--</el-form-item>-->
-        <!--<br/>-->
-        <!--<el-form-item label="物品信息" prop="desc" >-->
-          <!--<el-input type="textarea"-->
-                    <!--style="width:360px"-->
-                    <!--minRows="1"-->
-                    <!--maxRows="3"-->
-                    <!--autosize-->
-                    <!--placeholder="请输物品的详细信息"-->
-                    <!--v-model="sizeForm.desc"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<br/>-->
-        <!--<el-form-item size="large" style="position:absolute;left:550px;">-->
-          <!--<el-button type="primary" @click="onSubmit()">发布</el-button>-->
-        <!--</el-form-item>-->
-      <!--</el-form>-->
-    <!--</div>-->
-    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
@@ -150,11 +145,8 @@
       <footer-bar></footer-bar>
     </div>
 
-    <!-- <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-       <footerBar></footerBar>
-     </div>-->
-
   </div>
+
 </template>
 
 <script>
@@ -162,68 +154,147 @@
   import footerBar from '@/components/footerBar.vue';
   import rightBar from '@/components/rightBar.vue';
   import leftInformationbar from "@/components/leftInformationbar.vue"
-
   export default {
-    name: "notice",
+    name: "found",
     components:{leftInformationbar, navi, footerBar, rightBar},
     data() {
       return {
-        sizeForm: {
-          name: '',
-          itemtype: '',
-          type:'',
-          phone: '',
-          pic: '',
-          mestype: [],
-          desc: ''
-        },
-        rules: {
-          mestype: [
-            {required: true, message: '请选择消息类型', trigger: 'change' }
-          ],
-          pic: [
-            { required: true, message: '请上传相关图片', trigger: 'blur' }
-          ],
-          name: [
-            { required: true, message: '请输入物品名称', trigger: 'blur' },
-            { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
-          ],
-          itemtype: [
-            { required: true, message: '请至少选择一个类别', trigger: 'blur' }
-          ],
-          type: [
-            { required: true, message: '请至少选择一个类别', trigger: 'blur' }
-          ],
-          desc: [
-            { required: true, message: '请填写物品详细信息', trigger: 'blur' },
-            { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
-          ],
-          phone:[
-            { required: true, message: '联系方式不能为空'},
-            { type: 'number', message: '联系方式必须为数字'},
+        types: ['校园卡', '钥匙', '水杯', '雨伞','其他'],
+        locs:['四五六食堂','基础实验楼','仙I','仙II','逸夫楼','九食堂','十食堂','操场'],
+        checkboxGroup: [],
+        value9: [],
+        list: [],
+        loading: false,
+        mesdata:[
+          [{
+            mestype:'失物招领',
+            itemtype:'钥匙',
+            name:'钥匙',
+            phone:'13834712391',
+            dec:'跑步机旁边捡到的，交给体育馆门口的叔叔了',
+            headpic:"../../static/pic/testuserpic1.png",
+            pic:"../../static/pic/testkey.png",
+            time:'2018-08-24 18:50:35',
+            state:true,
+            username:'刘一一',
+            loc:'方肇周体育馆',
+          },{
+            mestype:'寻物启事',
+            itemtype:'雨伞',
+            name:'雨伞',
+            phone:'15589210472',
+            dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
+            headpic:"../../static/pic/photo.jpg",
+            pic:'../../static/pic/testcup.png',
+            time:'2018-09-06 09:45:14',
+            state:true,
+            username:'徐忘',
+            loc:'共享单车',
+          }],[{
+            mestype:'寻物启事',
+            itemtype:'校园卡',
+            name:'校园卡',
+            phone:'15837196710',
+            dec:'就在教超阿姨那里',
+            headpic:"../../static/pic/testuserpic3.png",
+            pic:'../../static/pic/testcard.png',
+            time:'2018-09-05 21:59:24',
+            state:true,
+            username:'孟哲宁',
+            loc:'教超',
+          },{
+            mestype:'失物招领',
+            itemtype:'其他',
+            name:'U盘',
+            phone:'18842957391',
+            dec:'明天机房有考试呀，今天落在机房的U盘都收到119了哦',
+            headpic:"../../static/pic/testuserpic2.png",
+            pic:'../../static/pic/testusb.png',
+            time:'2018-09-07 12:34:40',
+            state:true,
+            username:'唐月',
+            loc:'基础实验楼乙124',
+          }],[{
+            mestype:'失物招领',
+            itemtype:'水杯',
+            name:'杯子',
+            phone:'13878916391',
+            dec:'下午在仙I-221上课的时候捡到的一个杯子，放到仙I的保卫处了。（P.s.竟然和我的杯子是同款）',
+            headpic:"../../static/pic/testuserpic5.png",
+            pic:'../../static/pic/mestest.png',
+            time:'2018-09-04 00:12:39',
+            state:true,
+            username:'王佳昕',
+            loc:'仙I-221',
+          },{
+            mestype:'失物招领',
+            itemtype:'校园卡',
+            name:'校园卡',
+            phone:'18852197520',
+            dec:'落在食堂的餐盘里面了！食堂阿姨说差点扔掉，在哪里放的盘子去哪里拿吧！',
+            headpic:"../../static/pic/testuserpic6.png",
+            pic:'../../static/pic/mestest3.png',
+            time:'2018-09-06 12:50:21',
+            state:true,
+            username:'成帆洁',
+            loc:'四五六食堂',
+          }]],
+        activeName: '1',
+        latestmes:[
+          {
+            headpic:"../../static/pic/testuserpic1.png",
+            pic:"../../static/pic/testkey.png",
+            phone:'13834712391',
+            dec:'跑步机旁边捡到的，交给体育馆门口的叔叔了',
+            loc:'方肇周体育馆',
+            time:'2018-08-24',
+          },{
+            headpic:"../../static/pic/testuserpic2.png",
+            pic:"../../static/pic/testusb.png",
+            phone:'18842957391',
+          dec:'明天机房有考试呀，今天落在机房的U盘都收到119了哦',
+          loc:'基础实验楼乙124',
+          time:'2018-09-07'
+          },{
+            headpic:"../../static/pic/testuserpic3.png",
+            pic:"../../static/pic/testcard.png",
+            phone:'15837196710',
+            dec:'就在教超阿姨那里',
+            loc:'教超',
+            time:'2018-09-05'
+          },{
+            headpic:"../../static/pic/photo.jpg",
+            pic:"../../static/pic/testcup.png",
+            phone:'15589210472',
+            dec:'落在四食门口的一辆小蓝里了！给了四食超市阿姨。',
+            loc:'共享单车',
+            time:'2018-09-06',}
           ]
-        },
-      };
+      }
     },
     methods: {
-      onSubmit() {
-        this.$confirm('确认发布这条信息吗', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '发布成功!'
-          });
-          this.$router.push('/notice/mesunderway');
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消'
-          });
-        });
-      }
+      test:function(){
+      },
+      remoteMethod(query) {
+        if (query !== '') {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.options4 = this.list.filter(item => {
+              return item.label.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1;
+            });
+          }, 200);
+        } else {
+          this.options4 = [];
+        }
+      },
+      dialog: function(){
+
+      },
+    },
+    created:function(){
+      this.test();
     },
     beforeCreate:function(){
       localStorage.route="#notice";
@@ -233,13 +304,14 @@
 </script>
 
 <style scoped>
-
   .back{
     /*background-color: rgba(173,216,230,0.5);*/
     width: 100%;
     background-color: #D9F3FB;
-    min-height:750px;
-    //height: 200px;
+    //height:100%;
+    height:1350px;
+  //height: 200px;
+    padding-bottom: 20px;
     display:flex;
   }
 
@@ -260,17 +332,118 @@
     font-size: 15px;
     color: #505050;
   }
-  /*主体样式*/
-  .publishmes{
-    background:white;
-    border:1px solid #e4e4e4;
-    height:630px;
+
+  /*消息框*/
+  .mesboxborder{
     width:850px;
-    margin: 30px 10% 50px 3%;
+    margin-right: 10%;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-left: 5%;
+    background:white;
+    /*border:1px solid #e4e4e4;*/
+    /*//height:80px;*/
+    /*box-shadow:*/
+      /*0 1px 6px 0 rgba(0,0,0, .12),*/
+      /*0 1px 6px 0 rgba(0,0,0, .12);*/
+    /*border-radius: 3px;*/
+  }
+
+  .textitem{
+    position:relative;
+    //background-color: #d3dce66;
+   // left:200px;
+    //top:-170px;
+
+  }
+
+  .picbox{
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
+    width:305px;
+    height:174px;
+    //margin-top:-2%;
+    //margin-left:-5%;
+  }
+
+  /*卡片样式*/
+  .box-card {
+    width: 370px;
+    height: 180px;
+    //border-top:3px solid dodgerblue;
+    border-radius: 5px;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    position:relative;
+  }
+  .box-card:hover{
+    border-color:#4F94CD;
+    border-left:solid #8DB6CD;
+    border-top:solid #8DB6CD;
+
+  //background:#D1EEEE;
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+
+  .select{
+    margin-left:10%;
+    margin-top:10%
+  }
+
+  .el-carousel__item h3{
+    color: ghostwhite;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+  }
+
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
+
+  .carousel{
+    position:relative;
+    top:10px;
+    margin-left:5%;
+    margin-top:5%;
+  }
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    margin-left:-3%;
+    margin-right:-13%;
+    //border-radius: 4px;
+    //min-height: 36px;
   }
 
 </style>

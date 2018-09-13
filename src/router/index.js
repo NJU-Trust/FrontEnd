@@ -38,7 +38,7 @@ import recommend from '@/pages/recommend'
 import mesunderway from '@/pages/mesunderway'
 import mesdone from '@/pages/mesdone'
 import lost from '@/pages/lost'
-import found from '@/pages/found'
+import upload from '@/pages/upload'
 import trade from '@/pages/trade'
 import tradeMine from '@/pages/tradeMine'
 import tradeGoing from '@/pages/tradeGoing'
@@ -245,9 +245,9 @@ export default new Router({
       component:lost
     },
     {
-      path:'/notice/found',
-      name:'found',
-      component:found
+      path:'/notice/upload',
+      name:'upload',
+      component:upload
     },
     {
       path:'/trade',

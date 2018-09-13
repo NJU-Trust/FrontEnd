@@ -1,27 +1,27 @@
 <template>
   <el-menu
     default-active="2"
-    class="el-menu-vertical-demo"
-    style="height: auto;margin-top: 30px"
+    class="my_menu"
+    active-text-color="#ffd04b"
     router="true">
-    <el-submenu index="1">
+    <el-submenu index="1" style="background-color:#e5e9f2">
       <template slot="title">
-        <i class="el-icon-location"></i>
-        <span>与我相关</span>
+        <i class="el-icon-bell"></i>
+        <span ><strong>与我相关</strong></span>
       </template>
-      <el-menu-item-group>
-        <el-menu-item index="/notice">发布消息</el-menu-item>
+      <el-menu-item-group >
+        <el-menu-item index="/notice/upload">发布消息</el-menu-item>
         <el-menu-item index="/notice/mesunderway">正在进行</el-menu-item>
         <el-menu-item index="/notice/mesdone">已经完成</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
-    <el-submenu index="1">
+    <el-submenu index="1" style="background-color:#e5e9f2">
       <template slot="title">
         <i class="el-icon-menu"></i>
-        <span>消息集散</span>
+        <span><strong>消息集散</strong></span>
       </template>
-      <el-menu-item-group>
-        <el-menu-item index="/notice/found">失物/寻物</el-menu-item>
+      <el-menu-item-group >
+        <el-menu-item index="/notice">失物/寻物</el-menu-item>
         <el-menu-item index="/notice/#">其他</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
@@ -32,10 +32,19 @@
 
 <script>
     export default {
-        name: "leftInformationbar"
+      name: "leftInformationbar",
     }
 </script>
 
 <style scoped>
-
+  .my_menu{
+    //active-text-color:#409EFF;
+    height: auto;
+    margin-top: 30px;
+    margin-left:25%;
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
+    border-radius: 3px;
+  }
 </style>
