@@ -39,7 +39,7 @@
             <div class="itemDescription" style="margin-top: 10px">
               <div>
                 <el-row>
-                  <el-button type="primary" round @click="showDetails">查看详情</el-button>
+                  <el-button type="primary" round @click="showDetails" class="showDetails">查看详情</el-button>
                 </el-row>
                 <br/>
                 <p style="font-size:10px;">借款截止：{{investList.beginTime}}</p>
@@ -158,6 +158,10 @@
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
+  }
+  .showDetails{
+    background: #F88562;
+    border:1px solid #F88562;
   }
 
 </style>
