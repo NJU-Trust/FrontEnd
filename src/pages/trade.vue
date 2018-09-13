@@ -10,15 +10,16 @@
         <p style="color: #777777;">欢迎来这里，让您的闲置创造价值！</p>
       </div>
     </div>
-    <div>
-      <div>
-        <el-row>
-          <el-col span="6">
-            <left-trade-bar></left-trade-bar>
+
+    <!--正文-->
+    <el-row>
+      <el-col span="6">
+            <leftTradeBar></leftTradeBar>
           </el-col>
-          <el-col span="18">
-            <div style="position:relative;top:20px;margin-left:6%;margin-right:3%;">
-              <el-tabs type="border-card">
+      <el-col span="18">
+        <div class="mesboxborder">
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card">
                 <el-tab-pane >
                   <span slot="label" style="font-size:19px;"><i class="el-icon-message"></i>&nbsp;&nbsp;鱼塘上新</span>
                   <div style="position:relative;top:20px;margin-left:5%;margin-right:5%;">
@@ -26,25 +27,19 @@
                       <el-carousel :interval="3000" type="card" height="250px">
                         <el-carousel-item v-for="i in topData.length" :key="i">
                           <div >
-                            <img v-bind:src=topData[i-1].pic style="width:360px;height:230px;margin-top:9px;margin-left:13px;" class="picbox" alt="User_pic">
+                            <img v-bind:src=topData[i-1].pic style="width:422px;height:250px;" class="picbox" alt="User_pic">
                           </div>
                         </el-carousel-item>
                       </el-carousel>
                     </template>
-                    <!----
-                    <div style="margin-left:70%;margin-top:-1%;margin-bottom: 1%;">
-                      <span style="font-size:10px;">*点击图片快速查看详细信息</span>
-                    </div>
-                    --->
-
                   </div>
                 </el-tab-pane>
               </el-tabs>
-            </div>
+            <hr/>
+          </div>
 
-            <div style="position:relative;top:20px;margin-left:6%;margin-right:3%;">
-              <hr/>
-              <el-tabs type="border-card" >
+          <div style="position:relative;top:20px;margin-left:3%;margin-right:3%;">
+            <el-tabs type="border-card" >
                 <el-tab-pane >
                   <span slot="label" style="font-size:19px;"><i class="el-icon-search"></i>&nbsp;&nbsp;分类检索</span>
                   <el-row :gutter="20">
@@ -112,23 +107,21 @@
                 </el-pagination>
 
               </el-tabs>
-              <hr/>
+          </div>
+          <br/>
+          <hr/>
+        </div>
+      </el-col>
+    </el-row>
 
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-    </div>
-
-
-
+    <!--右边栏-->
     <div>
       <right-bar></right-bar>
     </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
   </div>
@@ -306,6 +299,10 @@
     created:function(){
       this.test();
     },
+    beforeCreate:function(){
+      localStorage.route="#trade";
+    },
+
   }
 </script>
 
@@ -342,17 +339,17 @@
 
   /*消息框*/
   .mesboxborder{
-    width:950px;
-    margin-right: 10%;
+    //width:950px;
     border-radius: 3px;
-    position:absolute;top:222px;
-    margin-left: 24%;
+    margin-right: 10%;
+    margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom:5%;
     background:white;
     border:1px solid #e4e4e4;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
-    border-radius: 3px;
   }
 
   .textitem{

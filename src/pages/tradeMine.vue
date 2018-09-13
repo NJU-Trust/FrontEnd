@@ -11,39 +11,78 @@
       </div>
     </div>
 
-    <div>
-      <div>
-        <el-row>
-          <el-col span="6">
-            <el-menu
-              default-active="2"
-              class="el-menu-vertical-demo"
-              style="height: auto;margin-top: 30px">
-              <el-submenu index="1">
-                <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>交易大厅</span>
-                </template>
-                <el-menu-item-group>
-                  <el-menu-item index="1-1">交易大厅</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-              <el-submenu index="1">
-                <template slot="title">
-                  <i class="el-icon-menu"></i>
-                  <span>我的闲置</span>
-                </template>
-                <el-menu-item-group>
-                  <el-menu-item index="2-1">闲置上传</el-menu-item>
-                  <el-menu-item index="2-2">正在进行</el-menu-item>
-                  <el-menu-item index="2-3">成功交易</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-            </el-menu>
-          </el-col>
+    <el-row>
+      <el-col span="6">
+        <leftTradeBar></leftTradeBar>
+      </el-col>
+      <el-col span="18">
+        <div class="publishmes" >
+          <el-form :rules="rules"
+                   :inline="true"
+                   ref="ruleForm" :model="sizeForm" label-width="80px" style="margin-top:8%;margin-left:18%;">
+            <el-row>
+              <el-col :span="10" >
+                <div class="grid-content bg-purple">
+                  <el-form-item label="物品类别" prop="type">
+              <el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">
+                <el-option label="数码零件" value="家居日用"></el-option>
+                <el-option label="影音家电" value="影音家电"></el-option>
+                <el-option label="鞋服配饰" value="运动器材"></el-option>
+                <el-option label="化妆洗漱" value="化妆洗漱"></el-option>
+                <el-option label="图书教材" value="图书教材"></el-option>
+                <el-option label="其他" value="其他"></el-option>
+              </el-select>
+            </el-form-item>
+                  <el-form-item label="物品名称" prop="name">
+                    <el-input v-model="sizeForm.name"
+                              palceholder="请输入物品名称"
+                              style="width:200px;"></el-input>
+                  </el-form-item>
+                  <el-form-item label="联系方式"
+                                prop="phone">
+                    <el-input v-model.number="sizeForm.phone"
+                              type="phone"
+                              style="width:200px;"
+                              placeholder="电话"></el-input>
+                  </el-form-item>
+                </div>
+              </el-col>
+            </el-row>
+            <el-form-item label="物品图片" prop="pic">
+              <el-upload class="upload-demo"
+                         drag
+                         action="https://jsonplaceholder.typicode.com/posts/"
+                         multiple>
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+              </el-upload>
+            </el-form-item>
+            <el-form-item label="物品信息" prop="desc">
+              <el-input type="textarea"
+                        style="width:360px"
+                        minRows="1"
+                        maxRows="3"
+                        autosize
+                        placeholder="请输物品的详细信息"
+                        v-model="sizeForm.desc"></el-input>
+            </el-form-item>
+            <el-row :gutter="20">
+              <el-col :span="6" :offset="16">
+                <div class="grid-content bg-purple">
+                  <el-form-item size="large" style="margin-top: 20px;">
+                    <el-button type="primary" @click="onSubmit()" >发布</el-button>
+                  </el-form-item>
+                </div>
+              </el-col>
+            </el-row>
+          </el-form>
+        </div>
+      </el-col>
+    </el-row>
 
+    <!--<el-row>
           <el-col span="18">
-            <div class="back">
               <div class="publishmes">
                 <el-form :rules="rules" ref="ruleForm" :model="sizeForm" label-width="80px">
                   <el-form-item label="物品类别" prop="type">
@@ -92,132 +131,17 @@
                   </el-form-item>
                 </el-form>
               </div>
-            </div>
           </el-col>
-        </el-row>
-      </div>
-    </div>
+        </el-row>-->
 
-
-
-
-
-
-
-
-
-    <!--&lt;!&ndash;左边栏&ndash;&gt;-->
-    <!--<div>-->
-      <!--<leftTradeBar></leftTradeBar>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;正文&ndash;&gt;-->
-    <!--&lt;!&ndash;用于个人发布消息-->
-    <!--<div class="publishmes" style="position:relative;left:80px;top:-350px;">-->
-      <!--<el-form ref="form" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:140px;top:60px;">-->
-        <!--<el-form-item label="物品类别" style="position:relative;right:0px;top:-55px">-->
-          <!--<el-select v-model="sizeForm.region" placeholder="请选择物品类别" style="width:200px">-->
-            <!--<el-option label="数码零件" value="家居日用"></el-option>-->
-            <!--<el-option label="影音家电" value="影音家电"></el-option>-->
-            <!--<el-option label="鞋服配饰" value="运动器材"></el-option>-->
-            <!--<el-option label="化妆洗漱" value="化妆洗漱"></el-option>-->
-            <!--<el-option label="图书教材" value="图书教材"></el-option>-->
-            <!--<el-option label="其他" value="其他"></el-option>-->
-          <!--</el-select>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="物品名称" style="position:relative;top:-55px">-->
-          <!--<el-input v-model="sizeForm.name"-->
-                    <!--style="width:200px;"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="联系方式"  style="position:relative;left:400px;top:-107px">-->
-          <!--<el-input v-model="sizeForm.phone"-->
-                    <!--style="width:200px;"-->
-                    <!--placeholder="手机号"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="目标价格" style="position:relative;top:-100px;">-->
-          <!--<el-input v-model="sizeForm.num"-->
-                    <!--style="width:200px;"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="物品图片" style="position:relative;top:-100px;">-->
-          <!--<el-upload class="upload-demo"-->
-                     <!--drag-->
-                     <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                     <!--multiple>-->
-            <!--<i class="el-icon-upload"></i>-->
-            <!--<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
-            <!--<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>-->
-          <!--</el-upload>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="物品信息" style="position:relative;top:-100px;">-->
-          <!--<el-input type="textarea"-->
-                    <!--style="width:380px;"-->
-                    <!--v-model="sizeForm.desc"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item size="large" style="position:relative;top:-120px;left:500px;">-->
-          <!--<el-button type="primary" @click="onSubmit">发布</el-button>-->
-        <!--</el-form-item>-->
-      <!--</el-form>-->
-    <!--</div>-->
-    <!--&ndash;&gt;-->
-    <!--<div class="back">-->
-      <!--<div class="publishmes" style="position:relative;left:80px;top:-350px;">-->
-        <!--<el-form :rules="rules" ref="ruleForm" :model="sizeForm" label-width="80px" size="mini" style="position:relative;left:140px;top:60px;">-->
-          <!--<el-form-item label="物品类别" prop="type" style="position:relative;top:-55px">-->
-            <!--<el-select v-model="sizeForm.region"  placeholder="请选择物品类别" style="width:200px">-->
-              <!--<el-option label="数码零件" value="家居日用"></el-option>-->
-              <!--<el-option label="影音家电" value="影音家电"></el-option>-->
-              <!--<el-option label="鞋服配饰" value="运动器材"></el-option>-->
-              <!--<el-option label="化妆洗漱" value="化妆洗漱"></el-option>-->
-              <!--<el-option label="图书教材" value="图书教材"></el-option>-->
-              <!--<el-option label="其他" value="其他"></el-option>-->
-            <!--</el-select>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="物品名称" prop="name" style="position:relative;top:-55px">-->
-            <!--<el-input v-model="sizeForm.name"-->
-                      <!--palceholder="请输入物品名称"-->
-                      <!--style="width:200px;"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="联系方式"-->
-                        <!--prop="phone"-->
-                        <!--style="position:relative;left:400px;top:-107px">-->
-            <!--<el-input v-model.number="sizeForm.phone"-->
-                      <!--type="phone"-->
-                      <!--style="width:200px;"-->
-                      <!--placeholder="电话"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="物品图片" prop="pic" style="position:relative;top:-100px;">-->
-            <!--<el-upload class="upload-demo"-->
-                       <!--drag-->
-                       <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-                       <!--multiple>-->
-              <!--<i class="el-icon-upload"></i>-->
-              <!--<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
-              <!--<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>-->
-            <!--</el-upload>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="物品信息" prop="desc" style="position:relative;top:-100px;">-->
-            <!--<el-input type="textarea"-->
-                      <!--style="width:360px"-->
-                      <!--minRows="1"-->
-                      <!--maxRows="3"-->
-                      <!--autosize-->
-                      <!--placeholder="请输物品的详细信息"-->
-                      <!--v-model="sizeForm.desc"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item size="large" style="position:absolute;top:400px;left:500px;">-->
-            <!--<el-button type="primary" @click="onSubmit()">发布</el-button>-->
-          <!--</el-form-item>-->
-        <!--</el-form>-->
-      <!--</div>-->
-    <!--</div>-->
     <!--右边栏-->
     <div>
       <right-bar></right-bar>
     </div>
 
     <!--底栏-->
-    <div class="col-sm-12 col-md-12" style="float:bottom; padding:0;margin-top:100px;">
-      <footerBar></footerBar>
+    <div class="col-xs-12 col-md-12" style="padding: 0;position: relative;background-color: black;">
+      <footer-bar></footer-bar>
     </div>
 
   </div>
@@ -282,8 +206,10 @@
           });
         });
       }
-    }
-
+    },
+    beforeCreate:function(){
+      localStorage.route="#trade";
+    },
   }
 </script>
 
@@ -310,13 +236,9 @@
   .publishmes{
     background:white;
     border:1px solid #e4e4e4;
-    border-top:5px solid dodgerblue;
-    height:650px;
-    width:800px;
-    margin-top: 30px;
-    margin-right: 10%;
-    margin-left: 5%;
-    padding: 20px 50px 20px 50px;
+    //height:630px;
+  //width:850px;
+    margin: 30px 10% 50px 3%;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
