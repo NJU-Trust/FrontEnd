@@ -252,6 +252,9 @@
         return false;
       },
     },
+    beforeCreate:function(){
+      localStorage.route="#trade";
+    },
   }
 </script>
 
@@ -276,19 +279,34 @@
 
   /*消息框*/
   .mesboxborder{
-    width:850px;
+  //width:850px;
     margin-right: 10%;
-    border-radius: 3px;
+    margin-left: 5%;
     margin-top: 30px;
-    margin-left: 3%;
+    margin-bottom:5%;
     background:white;
     border:1px solid #e4e4e4;
-    height:800px;
+    min-height:800px;
     box-shadow:
       0 1px 6px 0 rgba(0,0,0, .12),
       0 1px 6px 0 rgba(0,0,0, .12);
     border-radius: 3px;
   }
+
+  /*.mesboxborder{*/
+    /*width:850px;*/
+    /*margin-right: 10%;*/
+    /*border-radius: 3px;*/
+    /*margin-top: 30px;*/
+    /*margin-left: 3%;*/
+    /*background:white;*/
+    /*border:1px solid #e4e4e4;*/
+    /*height:800px;*/
+    /*box-shadow:*/
+      /*0 1px 6px 0 rgba(0,0,0, .12),*/
+      /*0 1px 6px 0 rgba(0,0,0, .12);*/
+    /*border-radius: 3px;*/
+  /*}*/
   .text {
     font-size: 14px;
   }

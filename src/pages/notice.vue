@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">信息发布 -- 消息大厅</h2>
+        <h2 class="myspace">消息大厅</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -335,18 +335,19 @@
 
   /*消息框*/
   .mesboxborder{
-    width:850px;
+    //width:850px;
     margin-right: 10%;
-    border-radius: 3px;
-    margin-top: 10px;
     margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom:5%;
+
+]    border-radius: 3px;
     background:white;
-    /*border:1px solid #e4e4e4;*/
+    border:1px solid #e4e4e4;
     /*//height:80px;*/
-    /*box-shadow:*/
-      /*0 1px 6px 0 rgba(0,0,0, .12),*/
-      /*0 1px 6px 0 rgba(0,0,0, .12);*/
-    /*border-radius: 3px;*/
+    box-shadow:
+      0 1px 6px 0 rgba(0,0,0, .12),
+      0 1px 6px 0 rgba(0,0,0, .12);
   }
 
   .textitem{

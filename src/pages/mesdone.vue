@@ -19,72 +19,6 @@
       <el-col span="18">
         <div class="mesboxborder">
           <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-            <!--
-                        <el-card class="box-card">
-                          <el-row >
-                            <el-col :span="16">
-                              <div class="grid-content bg-purple" style="margin-left:5%;margin-top:5%;">
-                                <el-row>
-                                  <el-col :span="12">
-                                    <div class="grid-content bg-purple">
-                                      <div>
-                                        <strong style="font-size: 15px;">物品类别</strong>
-                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].itemtype}}</span>
-                                      </div>
-                                      <div>
-                                        <strong style="font-size: 15px;">发布时间</strong>
-                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].time}}</span>
-                                      </div>
-                                    </div>
-                                  </el-col>
-                                  <el-col :span="12">
-                                    <div class="grid-content bg-purple-light">
-                                      <div>
-                                        <strong style="font-size: 15px;">物品名称</strong>
-                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].name}}</span>
-                                      </div>
-                                      <div >
-                                        <strong style="font-size: 15px;">联系方式</strong>
-                                        <span style="position:relative;left:20px;">{{ mesdata[i-1].phone}}</span>
-                                      </div>
-                                    </div>
-                                  </el-col>
-                                </el-row>
-                                <br/>
-                                <div>
-                                  <strong style="font-size: 15px;">详细信息</strong>
-                                  <span style="position:relative;left:20px;">{{ mesdata[i-1].dec}}</span>
-                                </div>
-                                <el-row>
-                                  <el-col :offset="14">
-                                    <el-button type="success"
-                                               round size="small"
-                                               @click="dialogFormVisible = true"
-                                               style="margin-top: 30px;">确认完成</el-button>
-                                    <el-dialog title="确认完成"
-                                               width="40%"
-                                               :visible.sync="dialogFormVisible">
-                                      <el-form :model="form" >
-                                        <el-form-item label="对方用户名" :label-width="formLabelWidth">
-                                          <el-input v-model="form.name"
-                                                    style="width:330px;"
-                                                    auto-complete="off"></el-input>
-                                        </el-form-item>
-                                      </el-form>
-                                      <div slot="footer" class="dialog-footer">
-                                        <el-button @click="dialogFormVisible = false">取 消</el-button>
-                                        <el-button type="primary" @click="dialogFormVisible=done(mesdata[i-1])">确 定</el-button>
-                                      </div>
-                                    </el-dialog>
-                                  </el-col>
-                                </el-row>
-                              </div>
-                            </el-col>
-                          </el-row>
-                        </el-card>-->
-
-
-
             <el-tab-pane label="失物招领" name="first">
               <div v-for="i in mesdata.length" :key="i">
                 <div v-if="mesdata[i-1].mestype === '失物招领'" style="margin-top: 20px;margin-left: 20px">
@@ -335,7 +269,6 @@
   .mesboxborder{
   //width:850px;
     margin-right: 10%;
-    border-radius: 3px;
     margin-left: 5%;
     margin-top: 30px;
     margin-bottom:5%;

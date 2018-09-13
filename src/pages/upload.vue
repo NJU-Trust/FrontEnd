@@ -6,7 +6,7 @@
     </div>
     <div class="col-xs-12 col-md-12" style="padding: 0;position:relative;">
       <div class="myspace">
-        <h2 class="myspace">信息发布平台 -- 发布消息</h2>
+        <h2 class="myspace">信息发布 -- 发布消息</h2>
         <p style="color: #777777;">欢迎访问这个帮你找东西的神奇平台！</p>
       </div>
     </div>
@@ -51,7 +51,7 @@
                     <el-input v-model.number="sizeForm.phone"
                               type="phone"
                               style="width:200px;"
-                              placeholder="QQ号"></el-input>
+                              placeholder="手机号"></el-input>
                   </el-form-item>
 
                 </div>
@@ -212,7 +212,7 @@
   .publishmes{
     background:white;
     border:1px solid #e4e4e4;
-    height:630px;
+    min-height:600px;
     //width:850px;
     margin: 30px 10% 50px 3%;
     box-shadow:
