@@ -3,8 +3,8 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="个人资料" name="first">
         <div id="userinformation">
-          <div class="col-xs-12 col-md-12">
-            <div class="col-xs-12 col-sm-8 placeholder">
+          <el-row>
+            <el-col :span="16">
               <div class="user_info">
                 <div class="table-responsive">
                   <table class="table" style="border: 0px solid transparent">
@@ -61,16 +61,18 @@
                   </table>
                 </div>
               </div>
-            </div>
-            <div class="col-xs-6 col-sm-4 placeholder">
-              <br>
-              <img src="/static/pic/nju_user.jpg" width="200" height="200" class="img-responsive img-thumbnail" alt="User_pic" >
-              <!--<div style="display: none;">-->
+            </el-col>
+            <el-col :span="8">
+              <div class="user_photo">
+                <br>
+                <img src="/static/pic/nju_user.jpg" width="200" height="200" class="img-responsive img-thumbnail" alt="User_pic" >
+                <!--<div style="display: none;">-->
                 <!--<h4>{{ userName.name }}</h4>-->
                 <!--<span class="text-muted">{{ userName.level }}</span>-->
-              <!--</div>-->
-            </div>
-          </div>
+                <!--</div>-->
+              </div>
+            </el-col>
+          </el-row>
         </div>
       </el-tab-pane>
       <el-tab-pane label="修改资料" name="second">

@@ -2,22 +2,8 @@
   <div>
     <h3><b>消费修正建议</b></h3><hr/>
     <div class="LoanPanel">
-      <div>
-        <!--<p>距离最终还款还有<b class="LoanHighLight"> 60 </b>天</p>-->
-        <!--<p v-if=" valueX<1 ">-->
-        <!--在您的还款期内，根据历史消费记录预测，可知扣去现有负债后结余占用率为：{{ valueX }}-->
-        <!--</p>-->
-        <!--<p v-if=" (valueY>0)&&(valueZ==0)">-->
-        <!--在您的还款期内，根据历史消费记录预测，可知扣去现有负债和预测结余后还需还款M-K(N)+Q元。如无兼职、奖学金、相关理财收入等额外收入，可调支出占用率为：Y，建议您酌情调整下图中占比较大的前几项。-->
-        <!--</p>-->
-        <!--<p>-->
-        <!--在您的还款期内，根据历史消费记录预测，可知扣去负债、预测结余和所有可调支出后，还需还款M-K(N)+Q元，建议您酌情考虑兼职、奖学金、相关理财收入等额外收入。-->
-        <!--</p>-->
-      </div><!--历史版本修正建议-->
       <div id="myNextPay">
-        <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>25</span> 天, 下次还需还款 <span>300</span> 元</b></h4>
-        <!--<nextpay paytitle="托福考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
-        <!--<nextpay paytitle="CPA考试借款项目" project-time="2017.9.1-2018.11.1" times="7" interest-plus="2100" times-a="8" time-a="2018.5.1" amount-a="300" times-b="9"  time-b="2018.6.1" amount-b="300" times-c="10" time-c="2018.7.1" amount-c="300"></nextpay>-->
+        <h4><b><i class="el-icon-warning" style="color: #409EFF"></i>&nbsp&nbsp距离下次还款还需 <span>{{ nextRepayTime }}</span> 天, 下次还需还款 <span>{{ nextRepayAmount }}</span> 元</b></h4>
         <nextpay
           v-for="item in NextpayList"
           v-bind:paylist="item"
@@ -139,6 +125,8 @@
     components: {Nextpay, InvestList},
     data() {
       return {
+        nextRepayAmount:318,
+        nextRepayTime:15,
         loanStart: 12,
         user:{
           surplus: 3140, //结余
