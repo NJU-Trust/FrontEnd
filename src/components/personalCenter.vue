@@ -6,13 +6,9 @@
 
     <div style="padding: 0;position: relative;z-index: 1">
       <div class="myspace">
-        <div v-if="isStudent">
+        <div>
           <h2 class="myspace">个人中心</h2>
-          <!--<p style="color: #777777;">在此处，你可以查看个人财务统计和收藏情况，并进行信用验证</p>-->
-        </div>
-        <div v-if="!isStudent">
-          <h2 class="myspace">个人中心</h2>
-          <!--<p style="color: #777777;">在此处，你可以查看个人财务统计并追踪校友投资详情</p>-->
+          <p style="color: #777777;">欢迎访问个人中心, 您的Trust您做主!</p>
         </div>
         <br/>
       </div>
