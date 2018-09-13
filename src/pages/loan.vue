@@ -1,19 +1,12 @@
 <template>
     <div id="app">
       <navi></navi>
-      <!--<img src="/static/pic/Investing.png" class="img-responsive"
-           alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 950px">-->
 
       <el-form class="back">
 
         <div>
           <right-bar></right-bar>
         </div>
-
-       <!-- <div style="width: 100%;" align="center">
-
-        </div>-->
-
 
         <div id="sheet" class="sheet">
 
