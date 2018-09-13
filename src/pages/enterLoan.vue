@@ -25,7 +25,7 @@
 
         <div class="btn" onclick="location.href='/largeLoan'">
           <div class="type">
-            <font-awesome-icon :icon="['fas', 'coins']" size="4x" style="color: white;margin-left: 10px;margin-top: 50px;" />
+            <font-awesome-icon :icon="['fas', 'coins']" size="4x" style="color: white;margin-left: 8px;margin-top: 50px;" />
           </div>
           <div class="name" style="margin-left: 0px;">
             学习培训类大额长期
@@ -132,7 +132,7 @@
 
   .btn{
     margin-top: 20px;
-    margin-left: 150px;
+    margin-left: 20%;
     width: 180px;
     height: 200px;
   }

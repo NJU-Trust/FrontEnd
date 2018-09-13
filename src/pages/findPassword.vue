@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <a href='/'><img src="/static/pic/logo1_white.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
+    <a href='/'><img src="/static/pic/logo3.png" style="width:15%;position:absolute;top:15px;left: 8%;" align=center></a><br>
     <div class="mainbox">
       <div class="mainbody">
         <h3 style="color: white;float: top;" align="center">找回密码</h3>
