@@ -7,21 +7,22 @@
         <tr>
           <td>
             <div class="base-info" style="padding:30px 0px 50px 0px;font-size:14px;">
-
-              <label>用户名称：</label>
-              <label>XXXXXXXX</label>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-              <label>信用评级：</label>
-              <label>XXXXXXXX</label>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-              <label >手机号：</label>
-              <label>XXXXXXXX</label>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-              <label>邮箱：</label>
-              <label>XXXXXXX</label>
-              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-              <label>借款状态：</label>
-              <label>XXXXXXX</label>
+              <div style="display: flex">
+                <label>用户名称：</label>
+                <label>XXXXXXXX</label>
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label>信用评级：</label>
+                <label>XXXXXXXX</label>
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label >手机号：</label>
+                <label>XXXXXXXX</label>
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label>邮箱：</label>
+                <label>XXXXXXX</label>
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label>借款状态：</label>
+                <label>XXXXXXX</label>
+              </div>
             </div>
             <div class="details" style="border: 1px solid lightgrey;">
               <el-tabs :tab-position="tabPosition">
@@ -97,7 +98,17 @@
         currentPage1: 2,
         activeName: 'first',
         tabPosition:"left",
+        baseinfo:{
+          name:'',
+          level:'',
+          tel:'',
+          email:'',
+          state:'',
+        }
       };
+    },
+    mounted:{
+
     },
     methods:{
       handleClick(tab, event) {
