@@ -2,7 +2,7 @@
   <div>
     <navi></navi>
     <img src="../../static/pic/guideBackground.jpg"  style="width:100%;min-height:1150px;opacity:0.3;position: absolute"/>
-    <div style="position:relative;display:flex;width:100%;top:100px;">
+    <div style="position:relative;display:flex;width:100%;margin-top:8%;">
       <div>
         <el-row>
           <el-col :span="24">
@@ -439,6 +439,7 @@
     components:{navi},
     data(){
       return{
+        //页面跳转
         item1:true,
         item2:false,
         item3:false,
@@ -451,8 +452,10 @@
         item10:false,
         item11:false,
         item12:false,
+        //item5分页
         page1:true,
         page2:false,
+        //item6分页
         page3:true,
         page4:false,
       }

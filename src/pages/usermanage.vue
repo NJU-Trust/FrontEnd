@@ -3,39 +3,22 @@
     <div>
       <adminNavi></adminNavi>
     </div>
-    <div style="width: 100%;text-align: center">
-    <el-form :inline="true" style="margin-top: 50px;">
-      <el-form-item label="用户名称">
-        <el-input placeholder="请输入内容" style="width: 150px;" clearable></el-input>
+    <div style="width: 100%;text-align: center;">
+    <el-form :inline="true">
+      <el-form-item label="用户名称" style="padding:40px 20px 20px 20px;">
+        <el-input placeholder="请输入查询内容" style="width: 150px;" clearable></el-input>
       </el-form-item>
-      <el-form-item label="信用评级">
-          <el-select multiple placeholder="请选择" style="width: 100px">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
+      <el-form-item label="电话" style="padding:40px 20px 20px 20px;">
+        <el-input placeholder="请输入查询内容"  clearable></el-input>
       </el-form-item>
-      <el-form-item label="电话">
-        <el-input placeholder="请输入内容"  clearable></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱">
-        <el-input placeholder="请输入内容" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="借款状态">
-        <el-select v-model="value" placeholder="请选择" style="width: 120px;">
-          <el-option
-            v-for="item in userOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+      <el-form-item label="邮箱" style="padding:40px 20px 20px 20px;">
+        <el-input placeholder="请输入查询内容" clearable></el-input>
       </el-form-item>
     </el-form>
-    <el-table :data="users" style="width: 900px;margin: auto">
+    <el-table :data="users"
+              height="400"
+              border
+              style="width: 920px;margin: auto;text-align: left;">
       <el-table-column
         prop="username"
         label="用户名称"
@@ -44,30 +27,37 @@
       <el-table-column
         prop="level"
         label="信用评级"
-        width="80">
+        align="center"
+        :filters="[{text: 'AA', value: 'AA'}, {text: 'A', value: 'A'}, {text: 'B', value: 'B'}, {text: 'C', value: 'C'}, {text: 'D', value: 'D'}]"
+        :filter-method="filterHandler"
+        width="100">
       </el-table-column>
       <el-table-column
         prop="tel"
         label="电话"
+        align="center"
         width="130">
       </el-table-column>
       <el-table-column
         prop="email"
         label="邮箱"
+        align="center"
         width="170">
       </el-table-column>
       <el-table-column
         prop="state"
         label="状态"
+        align="center"
+        :filters="[{text: '无借款', value: '无借款'}, {text: '待还款', value: '待还款'}, {text: '逾期', value: '逾期'}, ]"
+        :filter-method="filterHandler"
         width="100">
       </el-table-column>
       <el-table-column
         label="操作"
+        align="center"
         width="300">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" plain>历史投资</el-button>
-            <el-button type="success" size="mini" plain>查看标的</el-button>
-            <el-button type="warning" size="mini" plain>个人财务</el-button>
+            <el-button type="primary" size="mini" plain>查看投资/借款/个人财务</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -158,7 +148,7 @@
     </div>
 
 
-    <div>
+    <div style="padding-top: 50px;">
       <footerBar></footerBar>
     </div>
   </div>
@@ -226,17 +216,16 @@
         selectedUsers: [], // 保存选中的 users 数组
         selectedUser: {}, // 选中 user
         input_username: '', // 过滤 username 的关键字
-        input_level:'',// 过滤 level 的关键字
-        input_tel:'',// 过滤 tel 的关键字
-        input_email:'',// 过滤 email 的关键字
+        input_level: '',// 过滤 level 的关键字
+        input_tel: '',// 过滤 tel 的关键字
+        input_email: '',// 过滤 email 的关键字
         name: '', // 上一次过滤的 name 关键字，初始化为''
         state: '', // 过滤 state 的关键字
-        //audit: '', // 上一次过滤的 audit关键字，初始化为''
         limit: 9, // 每页显示行数
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
         jPage: 1, // 跳转到某页
-        options:[
+        options: [
           {value: 4, label: 'AA'},
           {value: 3, label: 'A'},
           {value: 2, label: 'B'},
@@ -244,10 +233,17 @@
           {value: 0, label: 'D'},
         ],
         userOptions: [
-          {value:0, label: '无借款'},
-          {value:1, label: '待收款'},
-          {value:2, label: '逾期'}
-        ]
+          {value: 0, label: '无借款'},
+          {value: 1, label: '待收款'},
+          {value: 2, label: '逾期'}
+        ],
+        searchOption: {
+          name: '',
+          level:'',
+          tel:'',
+          email:'',
+          state:'',
+        }
 
       }
     },
@@ -258,6 +254,12 @@
           userStorage.save(this.users)
         },
         deep: true
+      },
+      searchOption:{
+        deep:true,
+        handler: function (val,oldVar) {
+
+        }
       }
     },
     // computed properties
@@ -272,23 +274,26 @@
       }
     },
     mounted:function(){
-      this.getData();
+
     },
     methods: {
-      getData:function(){
+      filterHandler(value, row, column) {
+        const property = column['property'];
+        return row[property] === value;
+      }
+      ,
+      getData:function(pageNum){
         this.$axios.get('/AdminUser/manage', {
           params: {
-            page:1,
+            page:pageNum,
             pageSize:20,
-            keyword: "未",
-            type:"无借款",
+            keyword: "",
+            type:"",
           }
         }).then(function (response) {
-            alert("success!");
-            console.log(response);
+
           }).catch(function (error) {
-            alert("error!")
-            console.log(error);
+
           });
       },
       addUser() {
@@ -380,55 +385,6 @@
 
 
 <style scoped>
-  .mytable{
-    min-width: 400px;
-    min-height: 580px;
-    padding: 50px 0px;
-    line-height: 3px;
-    background-size: 110% 110% ;
-    color: black;
-    border: none;
-    font-size: 16px;
-    font-family: "Microsoft YaHei UI";
-    width:100%;
-    left: 0%;
-    letter-spacing: 2px;
-  }
-  .tableBackground{
-    background-color:transparent;
-    padding:20px;
-  }
-  .usertable{
-    min-width: 400px;
-    padding: 240px 0px;
-    line-height: 40px;
-    color: black;
-    border-collapse: collapse;
-    border: none;
-    font-size: 16px;
-    font-family: "Microsoft YaHei UI";
-    width:80%;
-    left: 10%;
-    height: 70%;
-    position: relative;
-    letter-spacing: 2px;
-  }
-  .sureButton,.checkDetailButton,.pageButton{
-    border-radius: 30px;
-    min-width: 80px;
-    min-height: 28px;
-    padding: 0px 0px;
-    line-height: 18px;
-    background-color:rgba(173,210,250,0.8);
-    color: black;
-    border: none;
-    font-size: 14px;
-    font-family: "Microsoft YaHei UI";
-    top: 550px;
-    width: 10%;
-    left: 43%;
-    letter-spacing: 2px;
-  }
 
 
   .status-picker select {
@@ -441,9 +397,7 @@
     padding: 0 10px;
   }
 
-  .jtp {
-    color:black;
-  }
+
 
 </style>
 
