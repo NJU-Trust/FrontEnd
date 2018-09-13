@@ -28,15 +28,15 @@
           <tbody>
           <tr>
             <th width="280px">学校分类</th>
-            <td>{{ user.schoolClass }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.schoolClass }}</td>
             <th>专业情况</th>
-            <td>{{ user.majorCondition }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.majorCondition }}</td>
           </tr>
           <tr>
             <th>受教育情况</th>
-            <td>{{ user.educationBackground }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.educationBackground }}</td>
             <th>经济来源</th>
-            <td>{{ user.financeSource }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.financeSource }}</td>
           </tr>
           </tbody>
           <thead>
@@ -47,16 +47,16 @@
           <tbody>
           <tr>
             <th>学习成绩</th>
-            <td>{{ user.GPA }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.GPA }}</td>
             <th>挂科数目</th>
-            <td>{{ user.numNoPass }}</td>
+            <td>&nbsp&nbsp&nbsp{{ user.numNoPass }}</td>
           </tr>
           <tr>
             <th>奖学金情况</th>
             <td colspan="3">
               <div>
                 <div v-if="user.scholarship==null">
-                  无奖学金情况
+                  &nbsp&nbsp&nbsp无奖学金情况
                 </div>
                 <div v-else>
                   <ol>
@@ -73,7 +73,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.reseachCompetition==null">
-                  无获奖情况
+                  &nbsp&nbsp&nbsp无获奖情况
                 </div>
                 <div v-else>
                   <ol>
@@ -97,7 +97,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.awards==null">
-                  无奖励情况
+                  &nbsp&nbsp&nbsp无奖励情况
                 </div>
                 <div v-else>
                   <ol>
@@ -114,7 +114,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.punishment==null">
-                  无不良信息
+                  &nbsp&nbsp&nbsp无不良信息
                 </div>
                 <div v-else>
                   <ol>
@@ -138,7 +138,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.payment==null">
-                  全按时缴纳
+                  &nbsp&nbsp&nbsp全按时缴纳
                 </div>
                 <div v-else>
                   <ol>
@@ -155,7 +155,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.library==null">
-                  无超时还书记录
+                  &nbsp&nbsp&nbsp无超时还书记录
                 </div>
                 <div v-else>
                   <ol>
@@ -171,7 +171,7 @@
             <td colspan="3">
               <div>
                 <div v-if="user.cheating==null">
-                  无作弊记录
+                  &nbsp&nbsp&nbsp无作弊记录
                 </div>
                 <div v-else>
                   <ol>
@@ -210,6 +210,7 @@
   export default {
     name: "academicPerformance",
     data(){
+
       return{
         user:{
           schoolClass: '985',
@@ -238,7 +239,8 @@
           punishment: null,
           payment: null,
           library: null,
-          cheating: null
+          cheating: null,
+          indentNull: '&nbsp&nbsp',
         }
       }
     },

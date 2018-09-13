@@ -33,9 +33,9 @@
       </div>
     </div>
     <div style="width: 100%;border-top: 1px solid #33333a;">
-      <img src="/static/pic/logo_silverBlue.png" style="margin-left:4%;width:8%">
-      <span style="color: white;text-align: center;font-size: 16px;margin-top: 10px">让你的大学生活更美好</span>
-      <span style="color: white;text-align: center;font-size: 16px;float: right;padding-top: 20px;margin-right: 4%">NJU_Trust Team</span>
+      <img src="/static/pic/logo3.png" style="margin-left:4%;width:8%;padding-top: 10px">
+      <span style="color: white;text-align: center;margin-left: 10px;font-size: 16px;vertical-align: -30%">让你的大学生活更美好</span>
+      <span style="color: white;text-align: center;font-size: 16px;float: right;padding-top: 10px;margin-right: 4%">NJU_Trust Team</span>
     </div>
   </div>
 </template>

@@ -20,12 +20,11 @@
       <el-table
         :data="tableData"
         stripe
-        height="500"
-        style="width: 100%;">
+        style="width: 100%;min-height: 300px">
         <el-table-column
           prop="state"
           label="状态"
-          width="150">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="date"
@@ -35,31 +34,30 @@
         <el-table-column
           prop="time"
           label="时间"
-          width="150">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="kind"
           label="类型"
-          width="150"
+          width="120"
         >
         </el-table-column>
         <el-table-column
-          prop="kind"
+          prop="content"
           label="内容">
         </el-table-column>
         <el-table-column
-          prop="operate"
           label="操作"
           width="100"
         >
-          <el-button type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <template slot-scope="scope">
+            <el-button type="text" size="small" @click.native.prevent="deleteRow(scope.$index, tableData)">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
 
       <div style="margin-top: 20px">
-        <a>删除已读</a>
-        <a>一键已读</a>
+        <a v-on:click="allDelete()">一键删除</a>
       </div>
 
 
@@ -74,11 +72,11 @@
         <!--<h4>时间：{{timeOfDetail}}</h4>-->
         <!--<h4>类型：{{kindOfDetail}}</h4>-->
       <!--</div>-->
-      <!--<div style="padding: 20px">-->
+      <!--<div style="padding: 30px;padding-right: 70px;padding-left: 70px;">-->
         <!--<p>{{contentOfDetail}}</p>-->
       <!--</div>-->
-      <!--<a v-on:click="closeDetail()">查看完毕</a>-->
     <!--</el-card>-->
+    <!--<a v-on:click="closeDetail()" id="closeDetail" style="position:fixed;z-index: 11;top: 450px;left:35%">查看完毕</a>-->
 
 
   </div>
@@ -95,16 +93,47 @@
       components:{navi, footerBar, rightBar},
       data(){
         return{
-          dateOfDetail: '2018.9.10',
+          dateOfDetail: '2018-09-10',
           timeOfDetail: '19:18:31',
           kindOfDetail: '借款',
-          contentOfDetail:'Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的渐进式框架。\n' +
-          '\n' +
-          'Vue 只关注视图层， 采用自底向上增量开发的设计。\n' +
-          '\n' +
-          'Vue 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。\n' +
-          '\n' +
-          'Vue 学习起来非常简单，本教程基于 Vue 2.1.8 版本测试。'
+          contentOfDetail:'您的编号10012的借款申请已经通过审核，可在个人空间查看借款进度，祝您早日借款成功。',
+          tableData: [
+            {
+              state: '最新',
+              date: '2018-09-21',
+              time: '21:01',
+              kind: '借款进展',
+              content: '您的编号10012的借款申请已经通过审核，可在个人空间查看借款进度，祝您早日借款成功。'
+            },
+            {
+              state: '最新',
+              date: '2018-09-20',
+              time: '19:34',
+              kind: '发布情况',
+              content: '您在2018年9月20日发布的“失物招领”帖发布成功，感谢您为校园物品寻回助力。'
+            },
+            {
+              state: '已读',
+              date: '2018-09-16',
+              time: '14:45',
+              kind: '交易情况',
+              content: '您在2018年9月20日发布的“出售加湿器”出物帖交易成功，请及时在相应界面对其进行操作。'
+            },
+            {
+              state: '已读',
+              date: '2018-09-14',
+              time: '11:36',
+              kind: '借款进展',
+              content: '您的借款标的456365，已提前满标，请在相应界面对其进行操作。'
+            },
+            {
+              state: '已读',
+              date: '2018-09-11',
+              time: '12:35',
+              kind: '验证结果',
+              content: '恭喜您，用户个人信息完善成功，目前账户等级为中级。'
+            }
+          ]
         }
       },
       mounted: function () {
@@ -112,9 +141,12 @@
         $('#message').attr('src', '/static/pic/message_blue.png');
       },
       methods:{
-          closeDetail:function () {
-            $('#messageDetail').css('display','none');
-          }
+         allDelete: function () {
+           this.tableData=[];
+         },
+        deleteRow(index, rows) {
+          rows.splice(index, 1);
+        }
       }
 
     }
@@ -123,6 +155,8 @@
 <style scoped>
   .container {
     width:100%;
+    background: #D9F3FB
+  ;
     /*background-image:url('/static/pic/messageBackground.png');*/
     /*background-size: cover;*/
     /*background-attachment:fixed;*/
@@ -141,6 +175,7 @@
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .12),
     0 1px 6px 0 rgba(0, 0, 0, .12);
     border-radius: 3px;
+    margin-top: 69px;
   }
 
   .el-card{
