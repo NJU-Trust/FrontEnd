@@ -1,5 +1,5 @@
 <template>
-  <check-center paneltitle="小额标的审核">
+  <check-center paneltitle="大额标的审核">
     <div id="check" class="sheet">
       <el-table
         :data="tableData"
@@ -34,7 +34,7 @@
           <template slot-scope="scope">
             <i class="el-icon-view"></i>
             <el-button type="text" @click="dialogFormVisible = check(scope.$index)">审核</el-button>
-            <el-dialog title="小额标的审核"
+            <el-dialog title="大额标的审核"
                        :lock-scroll="false"
                        :visible.sync="dialogFormVisible">
               <el-steps :active="active" finfish-status="success">
@@ -70,8 +70,8 @@
                 <el-form-item label="资金用途分类"><span>{{ tableData[tempindex].classify}}</span></el-form-item>
                 <el-form-item label="资金用途详述">{{ tableData[tempindex].desc }}</el-form-item>
                 <el-form-item label="凭证">
-                  <template>
-                    <img v-bind:src=tableData[tempindex].pics  class="pics"/>
+                  <template >
+                    <img v-bind:src=tableData[tempindex].pic alt="user" class="pics"/>
                   </template>
                 </el-form-item>
               </el-form>
@@ -102,7 +102,7 @@
 <script>
   import CheckCenter from '../components/CheckCenter'
   export default {
-    name: "smalltargetcheck",
+    name: "largetargetcheck",
     components:{CheckCenter},
     methods:{
       check: function(index){
@@ -230,110 +230,116 @@
 
         tableData: [{
           time:'2018-08-06',
-          name: '看音乐剧',
+          name: '考托福',
           state: 1,
           action:'',
-          username:'刘一凡',
-          risk:'A',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
           projectid:'mu3424581',
           startTime: '2018-8-25',
           endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '近期有一部音乐剧《猫》上映，真的很想去看！但是这个月的生活费有点吃紧，所以跪求借款200元，谢谢大家啦！拜托拜托！！！',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
           money:200,
           rate: '10%',
           repayDate:'2018-9-25',
           returntype: '等额本息',
-          pics: '../../static/pic/小额1.png',
+          pic:"../../static/pic/大额1.png",
         }, {
           time:'2018-09-08',
-          name: '十一出游住宿',
+          name: '考托福',
           state: 1,
           action:'',
-          username:'吴畅',
-          risk:'B',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
-          projectid:'mu3425271',
-          startTime: '2018-9-15',
-          endTime:'2018-12-15',
+          projectid:'mu3424581',
+          startTime: '2018-8-25',
+          endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '十一想去香港玩几天，大概是和别人一起拼房，想住3天，所以共需要1200元，我自己手上有一点点钱啦，拜托大家可怜可怜，再借我800元吧！！！',
-          money:800,
-          rate: '13.4%',
-          repayDate:'2018-10-15',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
+          money:200,
+          rate: '10%',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
-          pics: '../../static/pic/小额2.png',
+          pics:'',
         }, {
           time:'2018-08-13',
-          name: '购买游戏装备',
-          state: 2,
+          name: '考雅思',
+          state: 1,
           action:'',
-          username:'吴畅',
-          risk:'B',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
-          projectid:'mu3425271',
-          startTime: '2018-9-15',
-          endTime:'2018-12-15',
+          projectid:'mu3424581',
+          startTime: '2018-8-25',
+          endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '十一想去香港玩几天，大概是和别人一起拼房，想住3天，所以共需要1200元，我自己手上有一点点钱啦，拜托大家可怜可怜，再借我800元吧！！！',
-          money:800,
-          rate: '13.4%',
-          repayDate:'2018-10-15',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
+          money:200,
+          rate: '10%',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
           pics:'',
         },{
           time:'2018-09-06',
-          name: '社团活动费用',
-          state: 1,
+          name: '报班再战托福',
+          state: 2,
           action:'',
-          username:'吴畅',
-          risk:'B',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
-          projectid:'mu3425271',
-          startTime: '2018-9-15',
-          endTime:'2018-12-15',
+          projectid:'mu3424581',
+          startTime: '2018-8-25',
+          endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '十一想去香港玩几天，大概是和别人一起拼房，想住3天，所以共需要1200元，我自己手上有一点点钱啦，拜托大家可怜可怜，再借我800元吧！！！',
-          money:800,
-          rate: '13.4%',
-          repayDate:'2018-10-15',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
+          money:200,
+          rate: '10%',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
           pics:'',
         },{
           time:'2018-09-04',
-          name: '求资金买耳机',
+          name: '出国党求支援',
           state: 1,
           action:'',
-          username:'吴畅',
-          risk:'B',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
-          projectid:'mu3425271',
-          startTime: '2018-9-15',
-          endTime:'2018-12-15',
+          projectid:'mu3424581',
+          startTime: '2018-8-25',
+          endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '十一想去香港玩几天，大概是和别人一起拼房，想住3天，所以共需要1200元，我自己手上有一点点钱啦，拜托大家可怜可怜，再借我800元吧！！！',
-          money:800,
-          rate: '13.4%',
-          repayDate:'2018-10-15',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
+          money:200,
+          rate: '10%',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
           pics:'',
         }, {
           time:'2018-08-31',
-          name: '新学期添置学习用品',
+          name: '急需雅思报名费',
           state: 1,
           action:'',
-          username:'吴畅',
-          risk:'B',
+          username:'张一一',
+          risk:'AA',
           userstate:'已通过',
-          projectid:'mu3425271',
-          startTime: '2018-9-15',
-          endTime:'2018-12-15',
+          projectid:'mu3424581',
+          startTime: '2018-8-25',
+          endTime:'2018-12-25',
           classify:'日常开销',
-          desc: '十一想去香港玩几天，大概是和别人一起拼房，想住3天，所以共需要1200元，我自己手上有一点点钱啦，拜托大家可怜可怜，再借我800元吧！！！',
-          money:800,
-          rate: '13.4%',
-          repayDate:'2018-10-15',
+          desc: '本人第一次考托福，真的觉得有点小贵，最近生活费不太富足，所以想着先在平台少借一点点啦！！！拜托大家给个机会！',
+          pics:'',
+          money:200,
+          rate: '10%',
+          repayDate:'2018-9-25',
           returntype: '等额本息',
           pics:'',
         }]
@@ -350,5 +356,5 @@
   }
 </style>
 <style>
-  #leftB { color: dodgerblue !important}
+  #leftC { color: dodgerblue !important}
 </style>

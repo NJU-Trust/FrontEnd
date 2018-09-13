@@ -51,6 +51,7 @@ import findPassword from '@/pages/findPassword'
 import resetPassword from '@/pages/resetPassword'
 import messageList from '@/pages/messageList'
 import guide from '@/pages/guide'
+import styletest from '@/pages/styletest'
 
 Vue.use(Router)
 
@@ -308,6 +309,11 @@ export default new Router({
       path:'/guide',
       name:'guide',
       component:guide
+    },
+    {
+      path:'/styletest',
+      name:'styletest',
+      component:styletest
     },
 
 
