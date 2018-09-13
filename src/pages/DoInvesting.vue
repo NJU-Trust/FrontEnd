@@ -2,7 +2,9 @@
   <div id="Investing">
     <navi></navi>
     <rightBar></rightBar>
-    <img src="https://megsoftconsulting.com/wp-content/uploads/2016/04/web-design-packages-background.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 400px;position: absolute">
+    <div>
+      <img src="https://megsoftconsulting.com/wp-content/uploads/2016/04/web-design-packages-background.jpg" class="img-responsive gray" alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height:450px;position: absolute">
+    </div>
     <div class="overview" style="padding: 100px 60px 40px 40px;font-size:18px;height: 400px">
       <el-row>
         <el-col :span="12">
@@ -38,15 +40,16 @@
               </countdown>
               <!--<label>剩余时间：{{leftTime}}</label>-->
               <br>
-              <label>还需投资：{{leftNeeds}} 元</label>
+              <label style="font-weight: normal">还需投资：{{leftNeeds}} 元</label>
               <br/>
-              <label>您的余额为：{{userMoney}} 元</label>
+              <label style="font-weight: normal">您的余额为：{{userMoney}} 元</label>
               <br/>
               <br/>
-              <label>投资金额： </label>
+              <label style="font-weight: normal">投资金额： </label>
               <div class="block">
                 <el-slider
                   v-model="num1"
+                  max="5000"
                   :format-tooltip="formatTooltip"
                   show-input>
                 </el-slider>
@@ -140,6 +143,17 @@
                 <div style="padding:5px;">
                   <img src="../../static/pic/TOEFL.jpg" style="width:400px;"/>
                   <label style="font-size:16px;font-style: oblique;text-align: center;font-weight: normal;color:grey">此图为用户上传的项目说明</label>
+                  <br/>
+                  <label>信用等级排序说明：</label>
+                  <label class="level">AA</label>
+                  <label>></label>
+                  <label class="level">A</label>
+                  <label >></label>
+                  <label class="level">B</label>
+                  <label>></label>
+                  <label class="level">C</label>
+                  <label>></label>
+                  <label class="level">D</label>
                 </div>
                 <div style="padding:5px;width:500px;">
                   <el-card class="box-card" style="width:430px;">
@@ -156,21 +170,9 @@
                     <hr/>
                     <div>
                       <label>用户信用评级：</label>
-                      <label class="level">A</label>
-                      <br/>
+                      <label class="level">A&nbsp;&nbsp;</label>
                       <label>项目风险评级:</label>
                       <label class="level">AA</label>
-                      <br/>
-                      <label>信用等级排序说明：</label>
-                      <label class="level">AA</label>
-                      <label>></label>
-                      <label class="level">A</label>
-                      <label >></label>
-                      <label class="level">B</label>
-                      <label>></label>
-                      <label class="level">C</label>
-                      <label>></label>
-                      <label class="level">D</label>
                     </div>
                   </el-card>
 
@@ -252,7 +254,7 @@
           totalLoan:8000,
           leftNeeds:1600,
           userMoney:1000,
-          num1: 100,
+          num1: 1000,
           tabPostion:"left",
           DoInvest:"确认投资",
 
