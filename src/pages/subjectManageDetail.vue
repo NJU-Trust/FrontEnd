@@ -1,9 +1,93 @@
 <template>
   <div class="UserList">
     <adminNavi></adminNavi>
-    <img src="/static/pic/Investing.png" class="img-responsive"
-         alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">
-    <div class="mytable">
+    <div style="height:700px;padding-top: 50px;">
+      <table style="margin:0 auto;">
+        <tbody>
+        <tr>
+          <td>
+            <el-card class="box-card">
+              <div style="padding: 30px 0px;">
+                <span style="font-size: 24px;padding:50px 0px;">基本信息</span>
+              </div>
+              <div style="padding: 30px;">
+                <el-table
+                  :data="detailData"
+                  style="width: 100%"
+                  height="100">
+                  <el-table-column
+                    prop="id"
+                    label="编号"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="name"
+                    label="用户名"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="time"
+                    label="拆借起始时间"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="total"
+                    label="金额"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="gainMoney"
+                    label="已筹集金额"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="projectState"
+                    label="标的状态"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="profit"
+                    label="收益情况"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="projectLevel"
+                    label="项目风险评级"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                  <el-table-column
+                    prop="payPlan"
+                    label="还款方案"
+                    align="center"
+                    width="120">
+                  </el-table-column>
+                </el-table>
+              </div>
+              <div style="padding: 30px 0px;">
+                <span style="font-size: 24px;padding:50px 0px;">项目描述</span>
+              </div>
+              <div style="padding: 30px;font-size:18px;">
+                想要报名托福学习课程，无奈费用太高，想请有缘人帮助
+              </div>
+            </el-card>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div style="padding:50px;float: right;">
+        <el-button class="returnButton" plain @click="seeList">返回列表</el-button>
+      </div>
+    </div>
+
+    <!--<div class="mytable">
       <div class="tableBackground">
         <table class="usertable">
           <tbody class="usertablebody">
@@ -42,7 +126,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div>-->
     <footerBar></footerBar>
 
   </div>
@@ -59,11 +143,26 @@
     components:{adminNavi,footerBar},
     data () {
       return {
-        subject:{id:"0001",name:"王刚",beginTime:"2018.9.1",
-        endTime:"2018.10.1",money:1000,remainMoney:800,description:"想要报名托福学习课程，无奈费用太高，想请有缘人帮助",
-        state:"运行中",profit:"5.55%",range:"A",solution:"每月10%",other:"无"},
+        detailData:[
+          {
+            id:"0001",
+            name:'王刚',
+            time:'2018-09-01',
+            total:1000,
+            gainMoney:800,
+            projectState:'运行中',
+            profit:'5.55%',
+            projectLevel:'A',
+            payPlan:'每月10%'
+          },
+        ],
       }
     },
+    methods:{
+      seeList(){
+        window.location.href='/subjectManage';
+      },
+    }
   }
 </script>
 

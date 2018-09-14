@@ -52,7 +52,6 @@
         </el-table-column>
       </el-table>
     </div>
-
     <!--<div class="mytable">
       <div class="base-info" style="padding:50px 0px 0px 30px;font-size:15px;margin-left:20%;">
         <label>标的状态：</label>
