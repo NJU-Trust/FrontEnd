@@ -177,7 +177,7 @@
                 </el-form-item>
                 <el-form-item label="还款期数">
                   <div>
-                    <el-input placeholder="请填写还款期数" v-model="form3.period"></el-input>
+                    <el-input placeholder="请填写还款期数(一期时长为一个月)" v-model="form3.period"></el-input>
                     <div style="color:red;font-size: 12px;">*小额贷款最长期限为1年，建议范围为[{{form3.lowerPeriod}},{{form3.upperPeriod}}]</div>
                   </div>
 
@@ -296,6 +296,49 @@
 
         onSubmit(){
           console.log("确认贷款："+this.form3.activeName);
+          if(this.form3.activeName==="1"){
+            this.form3.repaymentType = 'EQUAL_INSTALLMENT_OF_PRINCIPAL_AND_INTEREST';
+          }else if(this.form3.activeName==="2"){
+            this.form3.repaymentType = 'EQUAL_PRINCIPAL';
+          }else if(this.form3.activeName==="3"){
+            this.form3.repaymentType = 'ONE_TIME_PAYMENT';
+          }else if(this.form3.activeName==="4"){
+            this.form3.repaymentType = 'PRE_INTEREST';
+          }
+
+          var name = this.form1.name;
+          var start_time = this.form1.date1;
+          var money = this.form3.money;
+          var description = this.form2.textarea1;
+          var username = "test";
+          var targetType = "SMALL";
+          var proof = "";
+          var completoinRate = this.form1.least_rate;
+          var interestRate = this.form3.rate;
+          var duration = this.form3.period;
+          var useOfFonds = this.selectedOptions2[1];
+          console.log(useOfFonds);
+          var identityOption = this.layer;
+          var repaymentType = this.form3.repaymentType;
+
+          this.$axios.post('/loan/borrow1',{"name": name,"start_time": start_time,"money": money,"projectDescription": description,"proof": proof,
+            "username": username,"completoinRate": completoinRate,"interestRate": interestRate,"name": name,"duration": duration,"useOfFonds": useOfFonds,
+            "identityOption": identityOption,"repaymentType": repaymentType,}).then(
+            function(response){
+              var res = response;
+              if(res.success){
+                alert("SUCCESS");
+                window.location.href = "/enterLoan";
+              }else{
+                alert("ERROR")
+              }
+            }
+          ).catch(function (error) {
+            console.log(error);
+          });
+
+
+
         },
         clean_form3(){
           this.form3.activeName = '';
@@ -344,10 +387,10 @@
              this.scheme.change = res.note.exceedDisc;
              this.scheme.count = res.note.exceedSurplusMonths.length;
              this.scheme.months = res.note.exceedSurplusMonths;
-             this.scheme.a = this.toPercent(res.note.discRatios[0]);
-              this.scheme.b = this.toPercent(res.note.discRatios[1]);
-              this.scheme.c = this.toPercent(res.note.discRatios[2]);
-              this.scheme.d = this.toPercent(res.note.discRatios[3]);
+             this.scheme.a = res.note.discRatios[0]+"%";
+              this.scheme.b = res.note.discRatios[1]+"%";
+              this.scheme.c = res.note.discRatios[2]+"%";
+              this.scheme.d = res.note.discRatios[3]+"%";
               this.scheme.income = res.note.income;
               this.scheme.count2 = res.note.income.length;
 
@@ -369,12 +412,6 @@
 
         get_interest_first(money,period,rate){
           console.log("先息后本")
-        },
-
-        toPercent(point){
-          var str=Number(point*100).toFixed(1);
-          str+="%";
-          return str;
         },
 
         last() {
@@ -425,21 +462,25 @@
         get_layer(num){
           console.log(num);
           if(num===1){
+            this.layer = "ONE"
             this.form2.layer1 = true;
             this.form2.layer2 = true;
             this.form2.layer3 = true;
             this.form2.layer4 = true;
           }else if(num===2){
+            this.layer = "TWO"
             this.form2.layer1 = false;
             this.form2.layer2 = true;
             this.form2.layer3 = true;
             this.form2.layer4 = true;
           }else if(num===3){
+            this.layer = "Three"
             this.form2.layer1 = false;
             this.form2.layer2 = false;
             this.form2.layer3 = true;
             this.form2.layer4 = true;
           }else if(num===4){
+            this.layer = "Four"
             this.form2.layer1 = false;
             this.form2.layer2 = false;
             this.form2.layer3 = false;
@@ -449,7 +490,7 @@
         handleChange(value) {
           console.log(value);
         },
-        getRate(a){
+        getRate(){
           this.$axios.post('/loan/rate').then(
             function(response){
               var res = response;
@@ -523,6 +564,7 @@
             upperRate:'',
             lowerPeriod:0,
             upperPeriod:0,
+            repaymentType:'',
           },
 
           scheme:{
@@ -546,6 +588,8 @@
 
           usage_radio: 3,
           textarea2:'',
+
+          layer:'',
 
           options: [{
             value: 'shop',
