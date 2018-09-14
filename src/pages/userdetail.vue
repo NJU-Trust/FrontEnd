@@ -105,11 +105,14 @@
           email:'',
           state:'',
         }
-      };
+      }
     },
-    mounted:{
-
-    },
+    /*mounted:{
+      /!*show(){
+        //this.$route.params.name
+        /!*console.log(this.$route.userdetail.passData);*!/
+      }*!/
+    },*/
     methods:{
       handleClick(tab, event) {
         console.log(tab, event);

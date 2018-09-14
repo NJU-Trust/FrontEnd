@@ -18,6 +18,7 @@
     <el-table :data="users"
               height="500"
               border
+              @cell-click="checkDetail"
               style="width: 920px;margin: auto;text-align: left;">
       <el-table-column
         prop="username"
@@ -63,87 +64,7 @@
       </el-table-column>
     </el-table>
     </div>
-    <!--<div class="mytable">-->
-      <!--<div class="base-info" style="padding:50px 0px 0px 30px; font-size:12px;">-->
-        <!--<label style="font-size: 14px;">筛选条件:</label>-->
-        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-        <!--<label>用户名称：</label>-->
-        <!--<form style="display:inline-block;color:black">-->
-          <!--<input type="text" name="username" value="" v-model="input_username"/>&lt;!&ndash;<input type="text" v-model="input_username" />&ndash;&gt;-->
-        <!--</form>-->
-        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-        <!--<label>信用评级：</label>-->
-        <!--<form style="display:inline-block;color:black">-->
-          <!--<input type="text" name="level" value="" v-model="input_level"/>-->
-        <!--</form>-->
-        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-        <!--<label >电话：</label>-->
-        <!--<form style="display:inline-block;color:black">-->
-          <!--<input type="text" name="tel" value="" v-model="input_tel"/>-->
-        <!--</form>-->
-        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-        <!--<label>邮箱：</label>-->
-        <!--<form style="display:inline-block;color:black">-->
-          <!--<input type="text" name="email" value="" v-model="input_email">-->
-        <!--</form>-->
-        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-        <!--&lt;!&ndash;选择过滤条件&ndash;&gt;-->
-        <!--<label>借款状态：</label>-->
-        <!--<select name="state" type="hidden" v-model.lazy="state" style="color:black;">-->
-          <!--<option value="">所有</option>-->
-          <!--<option value="无借款">无借款</option>-->
-          <!--<option value="待还款">待还款</option>-->
-          <!--<option value="逾期">逾期</option>-->
-        <!--</select>-->
 
-      <!--</div>-->
-      <!--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
-      <!--<div class="tableBackground">-->
-        <!--<table class="usertable">-->
-          <!--<tbody class="usertablebody">-->
-          <!--<tr>-->
-            <!--<th style="border: 1px solid black;text-align:center;">用户名称</th>-->
-            <!--<th style="border: 1px solid black;text-align:center;">信用评级</th>-->
-            <!--<th style="border: 1px solid black;text-align:center;">电话</th>-->
-            <!--<th style="border: 1px solid black;text-align:center;">邮箱</th>-->
-            <!--<th style="border: 1px solid black;text-align:center;">借款状态</th>-->
-            <!--<th style="border: 1px solid black;text-align:center;">操作</th>-->
-          <!--</tr>-->
-          <!--<tr v-for="user in filteredUsers" @click="showModel" >-->
-            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.username }}</td>-->
-            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.level }}</td>-->
-            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.tel }}</td>-->
-            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.email }}</td>-->
-            <!--<td style="border: 1px solid black ;text-align:center;">{{ user.state }}</td>-->
-            <!--<td style="border: 1px solid black ;text-align:center;">-->
-              <!--<router-link to="">-->
-                <!--<button class="checkDetailButton">历史投资</button>-->
-              <!--</router-link>-->
-              <!--<router-link to="">-->
-                <!--<button class="checkDetailButton">查看标的</button>-->
-              <!--</router-link>-->
-              <!--<router-link to="">-->
-                <!--<button class="checkDetailButton">个人财务</button>-->
-              <!--</router-link>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--</tbody>-->
-          <!--<tfoot class="full-width">-->
-          <!--<tr>-->
-            <!--<th></th>-->
-            <!--<th colspan="4" style="text-align:center;">-->
-              <!--<button class="pageButton" @click="turnPage(-1)">Prev</button>-->
-              <!--<span>共 {{ totalPage }} 页，当前第 {{ currentPage+1 }} 页</span>-->
-              <!--<button class="pageButton" @click="turnPage(1)">Next</button>-->
-              <!--<span>跳转到第</span>-->
-              <!--<input type="text" v-model="jPage" @keyup.enter="jumpToPage" style="width:50px;height:25px;color:black;">-->
-              <!--<span>页</span>-->
-            <!--</th>-->
-          <!--</tr>-->
-          <!--</tfoot>-->
-        <!--</table>-->
-      <!--</div>-->
-    <!--</div>-->
     <div>
 
     </div>
@@ -242,7 +163,16 @@
           name: '',
           tel:'',
           email:'',
-        }
+        },
+        passData:[
+          {
+            username:'',
+            level:'',
+            tel:'',
+            email:'',
+            state:'',
+          }
+        ],
 
       }
     },
@@ -256,19 +186,6 @@
       },
     },*/
     // computed properties
-    computed: {
-      /*filteredUsers () {
-        let fUsers = this.queryFilter('username', this.input_username, this.users)
-        fUsers = this.queryFilter('state', this.state, fUsers)
-        fUsers = this.queryFilter('level',this.input_level,fUsers)
-        fUsers = this.queryFilter('tel',this.input_tel,fUsers)
-        fUsers = this.queryFilter('email',this.input_email,fUsers)
-        return this.paginate(fUsers)
-      }*/
-      users:function () {
-
-      }
-    },
     mounted:function(){
 
     },
@@ -278,8 +195,19 @@
         return row[property] === value;
       },
       seeDetail(){
-        window.location.href='/userdetail';
+        console.log(this.passData)
+        this.$router.push({name:'userdetail',params:this.passData})
+       /* window.location.href='/userdetail';*/
       },
+      checkDetail(row, column, cell, event){
+        //console.log(row,column,cell,event)
+        this.passData.username = row.username;
+        this.passData.level = row.level;
+        this.passData.tel = row.tel;
+        this.passData.state = row.state;
+        this.passData.email = row.email;
+      }
+      ,
       getData:function(pageNum){
         this.$axios.get('/AdminUser/manage', {
           params: {
@@ -294,6 +222,7 @@
 
           });
       },
+
 /*
       queryFilter(prop, key, arr) {
         // none query string, return arr
