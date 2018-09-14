@@ -178,14 +178,14 @@
                 <el-form-item label="还款期数">
                   <div>
                     <el-input placeholder="请填写还款期数" v-model="form3.period"></el-input>
-                    <div style="color:red;font-size: 12px;">*小额贷款最长期限为1年，建议范围为[N1,N2]</div>
+                    <div style="color:red;font-size: 12px;">*小额贷款最长期限为1年，建议范围为[{{form3.lowerPeriod}},{{form3.upperPeriod}}]</div>
                   </div>
 
                 </el-form-item>
                 <el-form-item label="基准还款利率">
                   <div>
                     <el-input placeholder="请设置还款利率" v-model="form3.rate"></el-input>
-                    <div style="color:red;font-size: 12px;">*利率上下限为[M1,M2],建议设置为M0</div>
+                    <div style="color:red;font-size: 12px;">*利率上下限为[{{form3.lowerRate}},{{form3.upperRate}}],建议设置为{{form3.recommendRate}}</div>
                   </div>
                 </el-form-item>
 
@@ -302,48 +302,79 @@
         },
 
         get_scheme(num){
+
+          console.log(num);
+          var money = parseFloat(this.form3.money);
+          var period = parseInt(this.form3.period);
+          var rate = parseFloat(this.form3.rate);
+
+          if(num===1){
+
+          }else if(num===2){
+            this.get_average_capital(money,period,rate);
+          }else if(num===3){
+
+          }else if(num===4){
+
+          }
+
           document.getElementById('small_loan').className+=' animation_left';
           document.getElementById('small_loan').setAttribute('width','550px');
           document.getElementById('evaluate').style.display = 'block';
           this.show_evaluate = true;
-          console.log(num);
-          console.log("等额本金");
-          this.scheme.difficulty = 3;
+
+         /* this.scheme.difficulty = 3;
           this.scheme.capital = 20000;
           this.scheme.interest = 4000;
           this.scheme.sum = 24000;
           this.scheme.count = 10;
-          this.scheme.months = [1,2,4,5,6,7,8,10,11,12];
+          this.scheme.months = [1,2,4,5,6,7,8,10,11,12];*/
         },
 
-        get_average_capital(num){
-          document.getElementById('small_loan').className+=' animation_left';
-          document.getElementById('small_loan').setAttribute('width','550px');
-          document.getElementById('evaluate').style.display = 'block';
-          this.show_evaluate = true;
-          console.log(num);
+        get_average_capital(money,period,rate){
           console.log("等额本金");
-          this.scheme.capital = 20000;
-          this.scheme.interest = 4000;
-          this.scheme.sum = 24000;
+          this.$axios.post('/loan/repayment/ep',{"money": money,"duration":period,"interestRate":rate}).then(
+            function(response){
+              var res = response;
+             this.scheme.interest = res.interest;
+             this.scheme.sum = res.sum;
+             this.scheme.difficulty = res.difficulty;
+             this.scheme.capital = parseFloat(this.form3.money);
+             this.scheme.enough = res.note.exceedSurplus;
+             this.scheme.change = res.note.exceedDisc;
+             this.scheme.count = res.note.exceedSurplusMonths.length;
+             this.scheme.months = res.note.exceedSurplusMonths;
+             this.scheme.a = this.toPercent(res.note.discRatios[0]);
+              this.scheme.b = this.toPercent(res.note.discRatios[1]);
+              this.scheme.c = this.toPercent(res.note.discRatios[2]);
+              this.scheme.d = this.toPercent(res.note.discRatios[3]);
+              this.scheme.income = res.note.income;
+              this.scheme.count2 = res.note.income.length;
+
+            }
+          ).catch(function (error) {
+            console.log(error);
+          });
         },
 
-        get_average_capital_plus_interest(){
+        get_average_capital_plus_interest(money,period,rate){
 
-          document.getElementById('small_loan').className+=' animation_left';
-          document.getElementById('evaluate').style.display = 'block';
           console.log("等额本息");
-          this.scheme.capital = 20000;
-          this.scheme.interest = 5000;
-          this.scheme.sum = 25000;
+
         },
 
-        get_one_off(){
+        get_one_off(money,period,rate){
           console.log("一次性还本付息")
         },
 
-        get_interest_first(){
+        get_interest_first(money,period,rate){
           console.log("先息后本")
+        },
+
+        toPercent(point){
+          var str=Number(point*100).toFixed(1);
+          str+="%";
+          return str;
         },
 
         last() {
@@ -417,6 +448,42 @@
         },
         handleChange(value) {
           console.log(value);
+        },
+        getRate(a){
+          this.$axios.post('/loan/rate').then(
+            function(response){
+              var res = response;
+              this.form3.rate = res.rate;
+              this.form3.recommendRate = res.rate;
+            }
+            ).catch(function (error) {
+            console.log(error);
+          });
+
+          console.log(this.form3.rate)
+        },
+        getRateRange(){
+          this.$axios.post('/loan/rateRange').then(
+            function(response){
+              var res = response;
+              this.form3.lowerRate = res.lower;
+              this.form3.upperRate = res.upper;
+            }
+          ).catch(function (error) {
+            console.log(error);
+          });
+        },
+        getTimeRange(a){
+          var money = parseFloat(a.money);
+          this.$axios.post('/loan/timeRange',{"money": money}).then(
+            function(response){
+              var res = response;
+              this.form3.lowerPeriod = res.lower;
+              this.form3.upperPeriod = res.upper;
+            }
+          ).catch(function (error) {
+            console.log(error);
+          });
         }
 
       },
@@ -451,6 +518,11 @@
             rate:'',
             create:false,
             activeName: '',
+            recommendRate:'',
+            lowerRate:'',
+            upperRate:'',
+            lowerPeriod:0,
+            upperPeriod:0,
           },
 
           scheme:{
@@ -460,6 +532,14 @@
             sum:0,
             count:0,
             months:[],
+            enough:false,
+            change:true,
+            a:'',
+            b:'',
+            c:'',
+            d:'',
+            income:[],
+            count2:0
           },
 
           limit:3000,
@@ -534,6 +614,16 @@
           show_evaluate:false,
 
         };//return
+      },
+      watch:{
+        form3:{
+          handler(a){
+            this.getRate();
+            this.getRateRange();
+            this.getTimeRange(a);
+          },
+          deep:true
+        }
       },
 
       mounted() {
