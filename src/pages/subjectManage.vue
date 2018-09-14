@@ -1,9 +1,59 @@
 <template>
   <div class="UserList">
     <adminNavi></adminNavi>
-    <img src="/static/pic/Investing.png" class="img-responsive"
-         alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">
-    <div class="mytable">
+    <!--<img src="/static/pic/Investing.png" class="img-responsive"
+         alt="Cinque Terre" style="opacity:0.7;top: 0;z-index: -1;width:100%;height: 650px">-->
+    <div style="position: relative;padding: 60px 0px;height:600px;">
+      <el-table :data="subjects"
+                height="500"
+                border
+                style="width: 920px;margin: auto;text-align: left;">
+        <el-table-column
+          prop="id"
+          label="编号"
+          align="center"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="loanUser"
+          label="借款人"
+          align="center"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="investUser"
+          label="投资人"
+          align="center"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="state"
+          label="状态"
+          align="center"
+          :filters="[{text: '待审核', value: '待审核'}, {text: '待投标', value: '待投标'}, {text: '运行中', value: '运行中'}, {text: '已结束', value: '已结束'}]"
+          :filter-method="filterHandler"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          prop="type"
+          label="标的分类"
+          align="center"
+          :filters="[{text: '小额拆借类', value: '小额拆借类'}, {text: '学习培训类', value: '学习培训类'}]"
+          :filter-method="filterHandler"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          label="操作"
+          align="center"
+          width="150">
+          <template slot-scope="scope">
+            <el-button type="primary" size="mini" plain @click="seeDetail">查看详情</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+    <!--<div class="mytable">
       <div class="base-info" style="padding:50px 0px 0px 30px;font-size:15px;margin-left:20%;">
         <label>标的状态：</label>
         <select name="state" type="hidden" v-model.lazy="state" style="color:black;">
@@ -55,8 +105,11 @@
           </tfoot>
         </table>
       </div>
+    </div>-->
+    <div style="padding-top: 30px;">
+      <footerBar></footerBar>
     </div>
-    <footerBar></footerBar>
+
 
   </div>
 
@@ -71,42 +124,62 @@
     {id:'0001',
       loanUser:'王刚',
       investUser:'李明',
+      state:'待审核',
+      type:'学习培训类'
     },
     {id:'0002',
       loanUser:'田明',
       investUser:'张三',
+      state:'待审核',
+      type:'学习培训类'
     },
     {id:'0003',
       loanUser:'杨清',
       investUser:'马源',
+      state:'运行中',
+      type:'小额拆借类',
     },
     {id:'0004',
       loanUser:'欣欣',
       investUser:'小红',
+      state:'待审核',
+      type:'小额拆借类'
     },
     {id:'0005',
       loanUser:'小兰',
       investUser:'茵茵',
+      state:'待投标',
+      type:'学习培训类'
     },
     {id:'0006',
       loanUser:'华华',
       investUser:'天天',
+      state:'已结束',
+      type:'小额拆借类'
     },
     {id:'0007',
       loanUser:'黄浩',
       investUser:'连号',
+      state:'待审核',
+      type:'学习培训类'
     },
     {id:'0008',
       loanUser:'郭小童',
       investUser:'关云',
+      state:'待投标',
+      type:'学习培训类'
     },
     {id:'0009',
       loanUser:'李顶',
       investUser:'青樱',
+      state:'待审核',
+      type:'学习培训类'
     },
     {id:'0010',
       loanUser:'Jack',
       investUser:'Rose',
+      state:'待审核',
+      type:'小额拆借类'
     },
     ];
   var STORAGE_KEY = 'subjects';
@@ -125,12 +198,12 @@
     data () {
       return {
         subjects: subjectStorage.fetch(), // subjects 数据
-        selectedSubjects: [], // 保存选中的 users 数组
+        /*selectedSubjects: [], // 保存选中的 users 数组
         selectedSubject: {}, // 选中 user
         limit: 9, // 每页显示行数
         totalPage: 0, // 总页数
         currentPage: 0, // 当前页
-        jPage: 1, // 跳转到某页
+        jPage: 1, // 跳转到某页*/
       }
     },
     watch: {
@@ -150,7 +223,14 @@
       }
     },
     methods: {
-      addSubject() {
+      filterHandler(value, row, column) {
+        const property = column['property'];
+        return row[property] === value;
+      },
+      seeDetail(){
+        window.location.href='/subjectManageDetail';
+      },
+      /*addSubject() {
         this.subjects.push(this.subject)
       },
       queryFilter(prop, key, arr) {
@@ -212,7 +292,7 @@
         }
         let index = $(target.parentNode).index()
         this.selectedSubject = this.filteredSubject[index]
-      }
+      }*/
     }
   }
 </script>
