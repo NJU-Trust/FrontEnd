@@ -9,20 +9,17 @@
         <el-table-column
           prop="time"
           label="提交时间"
-          align="center"
           sortable
           width="150">
         </el-table-column>
         <el-table-column
           prop="name"
           label="标的名称"
-          align="center"
           width="300">
         </el-table-column>
         <el-table-column
           prop="state"
           label="当前状态"
-          align="center"
           width="150">
           <template slot-scope="scope">
             <el-tag :type="scope.row.state | statusFilter">{{scope.row.state | formatStata}}</el-tag>
