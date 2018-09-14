@@ -169,7 +169,12 @@
             <div id="test" style="display: flex">
               <el-form id="small_loan" ref="form3" :model="form3" label-width="100px" class="primary_info" style="display: none">
                 <div class="title">关于贷款</div>
-                <el-form-item label="拆借金额">
+                <el-form-item
+                  label="拆借金额"
+                  :rules="[
+      { required: true, message: '金额不能为空'},
+      { type: 'number', message: '金额必须为数字值'}
+    ]">
                   <div>
                     <el-input placeholder="请填写拆借金额" v-model="form3.money"></el-input>
                     <div style="color:red;font-size: 12px;">*借款额度剩余{{limit}}</div>
